@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Facility Gamemode" modversion="0.0.10" corepackage="False" steamworkshopid="2912737397" gameversion="0.20.16.1">
+  <Character file="%ModDir%/Mantisadmin/Mantisadmin.xml" />
+  <Character file="%ModDir%/Crawleradmin/Crawleradmin.xml" />
+  <Jobs file="%ModDir%/JobsOverride.xml" />
+  <Text file="%ModDir%/JobText.xml" />
+  <Submarine file="%ModDir%/_Respawn.sub" />
+  <Submarine file="%ModDir%/_Monorail256.sub" />
+  <Submarine file="%ModDir%/_Monorail128.sub" />
+  <Submarine file="%ModDir%/_Monorail512.sub" />
+  <Submarine file="%ModDir%/_Facility.sub" />
+</contentpackage>

@@ -1,0 +1,28 @@
+DISCORD SERVER: https://discord.gg/c7Qnp8S4yB
+
+WARNING: THE MAP IS UNDER DEVELOPMENT, THE SURFACE AND OFFICE AREA ARE FINISHED, BUT THE PRISON AND RESEARCH AREA AREN'T.
+I RECOMMEND NOT PICKING INMATE FOR NOW, JUST STICK WITH NEXPHARMA AND MONSTERS.
+
+DO NOT DO THESE
+	-DESTROYING THE TRAMS/MONORAILS OR FLOODING THE MAP
+	-TEAM SABOTAGE OR TEAMING WITH THE ENEMY
+	-CHEATING OF ANY KIND (INCLUDES KILLING ESCAPED CIVIES)
+	-HARASSMENT/DISRESPECT AGAISN'T PLAYER
+
+The goal of this gamemode is to elimate every player from the opposing teams.
+If you are a civilian, escape to gain better loot, and if you are an armed class, help them.
+
+You will find and spawn with keycards. They can have up to 3 tiers (starting at 0) of 2 different perms, those being Admin (A) and Weapons (W).
+Elite Guard (light blue, A2W2) and Overseer (purple, A3W0) are nonexistant classes, but you'll find keycards for them laying around.
+
+Admin 1 allows access to Shafts, Tram 512, Offices and Medbay. It's trusted to all staff.
+Admin 2 allows access to Tram 256 and 128 (which lead to the exit).
+Admin 3 allows access to R&D rooms with experimental technology.
+Weaponry tiers allow access to armories, the higher the tier, the better the loot.
+
+There are 3 teams, and they each have a few classes.
+	-Nexpharma, with MERCS (blue, A3W3, can't start as) and Enforcers/Guards (cyan, A1W1) as armed classes, and with Staff (green, A1W0) as civilians.
+	-Terrorists, with JET (orange, A2W3, can't start as) as armed classes, and with Inmates (yellow, A0W0) as civilians.
+	-Monsters, with Mutated Mantis (red) and Mutated Crawler (pink). Can use all Trams & Shaft, but you can just break doors down).
+
+Contact me on discord to be notified of when I host and when new updates come out!
