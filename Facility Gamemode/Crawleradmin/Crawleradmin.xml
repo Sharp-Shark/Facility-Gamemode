@@ -10,10 +10,10 @@
     vitality="1200"
 	StunImmunity="true"
 	doesbleed="false"
-	bleedingreduction="0.15"
-	burnreduction="0.15"
-    constanthealthregeneration="0.15"
-    healthregenerationwheneating="3">
+	bleedingreduction="0.2"
+	burnreduction="0.2"
+    constanthealthregeneration="0.2"
+    healthregenerationwheneating="4">
     <Limb name="Torso">
       <VitalityMultiplier type="damage,burn" multiplier="1.0" />
     </Limb>

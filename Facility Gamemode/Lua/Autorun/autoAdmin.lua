@@ -21,43 +21,46 @@ global_militantPlayers = {}
 
 -- JET Loadout
 global_terroristLoadout = {
-	{'autoshotgun', 1},
-	{'handcannon', 1},
-	{'shotgunshell', 12},
-	{'handcannonround', 12},
-	{'crowbar', 1},
-	{'antibleeding2', 2},--Plastiseal
-	{'shotgunshell', 12},
-	{'shotgunshell', 12},
-	{'handcannonround', 6},
-	{'combatstimulantsyringe', 1},
-	{'oxygentank', 1},
-	{'divingmask', 1},
-	{'pirateclothes', 1},
-	{'piratebodyarmor', 1},
-	{'autoinjectorheadset', 1},
-	{'idcardjet', 1},
+	{'autoshotgun', 1, 7},
+	{'shotgunshell', 12, 7},
+	{'shotgunshell', 12, 7},
+	{'handcannon', 1, 8},
+	{'handcannonround', 6, 8},
+	{'shotgunshell', 12, 9},
+	{'handcannonround', 12, 10},
+	{'crowbar', 1, 11},
+	{'antibleeding2', 2, 12},--Plastiseal
+	{'oxygentank', 1, 13},
+	{'flashlight', 1, 14},
+	{'batterycell', 1, 14},
+	{'divingmask', 1, 2},
+	{'pirateclothes', 1, 3},
+	{'piratebodyarmor', 1, 4},
+	{'autoinjectorheadset', 1, 1},
+	{'combatstimulantsyringe', 1, 1},
+	{'idcardjet', 1, 0},
 }
 
 -- MERCS Ladout
 global_nexpharmaLoadout = {
-	{'assaultrifle', 1},
-	{'assaultriflemagazine', 2},
-	{'assaultriflemagazine', 2},
-	{'divingknife', 1},
-	{'antibleeding2', 2},--Plastiseal
-	{'assaultriflemagazine', 1},
-	{'combatstimulantsyringe', 1},
-	{'oxygentank', 1},
-	{'piratebandana', 1},
-	{'securityuniform2', 1},
-	{'pucs', 1},
-	{'headset', 1},
-	{'idcardmercs', 1}
-}
-
--- Give Item Queue
-global_giveItemQueue = {
+	{'assaultrifle', 1, 7},
+	{'assaultriflemagazine', 1, 7},
+	{'smg', 1, 8},
+	{'smgmagazine', 1, 8},
+	{'assaultriflemagazine', 2, 9},
+	{'assaultriflemagazine', 2, 10},
+	{'smgmagazine', 1, 11},
+	{'divingknife', 1, 12},
+	{'antibleeding2', 2, 13},--Plastiseal
+	{'flashlight', 1, 14},
+	{'batterycell', 1, 14},
+	{'piratebandana', 1, 2},
+	{'securityuniform2', 1, 3},
+	{'pucs', 1, 4},
+	{'combatstimulantsyringe', 1, 4},
+	{'oxygentank', 1, 4},
+	{'headset', 1, 1},
+	{'idcardmercs', 1, 0}
 }
 
 -- Respawn tickets for JET and MERCS
@@ -75,11 +78,14 @@ function distance (v2a, v2b)
 end
 
 -- Gives a certain amount of an item to a character
-function giveItemCharacter (character, identifier, amount)
+function giveItemCharacter (character, identifier, amount, slot)
 
 	-- Give Item
 	for n=1,amount do 
-		Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.GetItemPrefab(identifier), character.Inventory, nil, nil, nil)
+		Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.GetItemPrefab(identifier), character.Inventory, nil, nil, function (spawnedItem)
+			if slot == nil then return end
+			character.Inventory.TryPutItem(spawnedItem, slot, true, true, character, true, true)
+		end)
 	end
 	
 	return true
@@ -90,8 +96,6 @@ function spawnPlayerMonster (character, species)
 	-- Guard clause.
 	if character.IsBot then return end
 
-	-- Announce the player's team in chat
-	Game.ExecuteCommand('say ' .. character.Info.Name .. ' is ' .. species .. 'admin!')
 	-- Spawn monster at containment cell
 	Entity.Spawner.AddCharacterToSpawnQueue(species .. 'admin', Submarine.MainSub.GetWaypoints(false)[global_monsterSpawnWaypointIndex].WorldPosition, function ()
 		-- Give player control of their monster (and bump monster counters)
@@ -106,10 +110,16 @@ function spawnPlayerMonster (character, species)
 end
 
 -- Messages a message to a client
-function messageClient (client, r, g, b, text)
-	local chatMessage = ChatMessage.Create("@", text, ChatMessageType.Radio, nil, nil)
-	chatMessage.Color = Color(r, g, b, 255)
-	Game.SendDirectChatMessage(chatMessage, client)
+function messageClient (client, msgType, text)
+	if msgType == 'blue' then
+		local chatMessage = ChatMessage.Create("@", text, ChatMessageType.Radio, nil, nil)
+		chatMessage.Color = Color(155, 200, 255, 255)
+		Game.SendDirectChatMessage(chatMessage, client)
+	elseif msgType == 'popup' then
+		Game.SendDirectChatMessage("",text, nil, ChatMessageType.MessageBox, client)
+	elseif msgType == 'info' then
+		Game.SendDirectChatMessage("",text, nil, ChatMessageType.ServerMessageBoxInGame, client, 'WorkshopMenu.InfoButton')
+	end
 end
 
 -- Removes the items of respawnees, gives them their proper loadout (be it JET or MERCS) and teleports them to their spawn area
@@ -124,20 +134,24 @@ function spawnPlayerMilitant (character, team)
 	-- Team Specific Actions
 	if team == 'JET' then
 		-- Give items
-		for item in global_terroristLoadout do
-			for n=1,item[2] do
-				table.insert(global_giveItemQueue, {character, item[1]})
+		Timer.Wait(function ()
+			for item in global_terroristLoadout do
+				for n=1,item[2] do
+					giveItemCharacter(character, item[1], 1, item[3])
+				end
 			end
-		end
+		end, 100)
 		-- Teleport player into battlefield
 		character.TeleportTo(Submarine.MainSub.GetWaypoints(false)[global_terroristSpawnWaypointIndex].WorldPosition)
 	elseif team == 'MERCS' then
 		-- Give items
-		for item in global_nexpharmaLoadout do
-			for n=1,item[2] do
-				table.insert(global_giveItemQueue, {character, item[1]})
+		Timer.Wait(function ()
+			for item in global_nexpharmaLoadout do
+				for n=1,item[2] do
+					giveItemCharacter(character, item[1], 1, item[3])
+				end
 			end
-		end
+		end, 100)
 		-- Teleport player into battlefield
 		character.TeleportTo(Submarine.MainSub.GetWaypoints(false)[global_nexpharmaSpawnWaypointIndex].WorldPosition)
 	end
@@ -149,11 +163,6 @@ end
 Hook.Add("think", "thinkCheck", function ()
 
 	global_thinkCounter = global_thinkCounter + 1
-
-	if global_giveItemQueue[1] ~= nil then
-		giveItemCharacter(global_giveItemQueue[1][1], global_giveItemQueue[1][2], 1)
-		table.remove(global_giveItemQueue, 1)
-	end
 	
 	if global_thinkCounter % 30 == 0 then
 		for player in Client.ClientList do
@@ -190,10 +199,19 @@ Hook.Add("roundStart", "prepareMatch", function (createdCharacter)
 	for sub in Submarine.Loaded do
 		sub.GodMode = true
 	end
-	-- Important info
-	Game.ExecuteCommand('say Welcome to Facility Gamemode (by Sharp-Shark)!')
 
     return true
+end)
+
+-- Execute when someone joins
+Hook.Add("client.connected", "characterDied", function (connectedClient)
+
+	messageClient(connectedClient, 'popup', [[_Welcome to the Facility Gamemode by Sharp-Shark. Please have fun and respect the rules. If you want, join our discord.
+	
+	_When the game starts, your objective is to be the last team standing.
+	_If you are a civilian, try and escape to grant your team tickets. Tickets determine the amount of respawns your team has.
+	_If you are a militant, kill the other teams and help the civilians from your team in their quest to escape.]])
+
 end)
 
 -- Execugte when a character dies
@@ -224,23 +242,23 @@ Hook.Add("character.death", "characterDied", function (character)
 	
 	endGame = false
 	if (terroristPlayersAlive + nexpharmaPlayersAlive + monsterPlayersAlive) == 0 then
-		for n=1,5 do
-			Game.ExecuteCommand('say ROUND HAS ENDED IN: STALEMATE')
+		for player in Client.ClientList do
+			messageClient(player, 'popup', 'The match has ended in a STALEMATE - there are no living players.')
 		end
 		endGame = true
 	elseif terroristPlayersAlive > 0 and (nexpharmaPlayersAlive + monsterPlayersAlive) == 0 then
-		for n=1,5 do
-			Game.ExecuteCommand('say ROUND HAS ENDED IN: TERRORIST WIN')
+		for player in Client.ClientList do
+			messageClient(player, 'popup', 'The match has ended in a TERRORIST WIN - all other teams have been eliminated.')
 		end
 		endGame = true
 	elseif nexpharmaPlayersAlive > 0 and (terroristPlayersAlive + monsterPlayersAlive) == 0 then
-		for n=1,5 do
-			Game.ExecuteCommand('say ROUND HAS ENDED IN: NEXPHARMA WIN')
+		for player in Client.ClientList do
+			messageClient(player, 'popup', 'The match has ended in a NEXPHARMA WIN - all other teams have been eliminated.')
 		end
 		endGame = true
 	elseif monsterPlayersAlive > 0 and (terroristPlayersAlive + nexpharmaPlayersAlive) == 0 then
-		for n=1,5 do
-			Game.ExecuteCommand('say ROUND HAS ENDED IN: MONSTER WIN')
+		for player in Client.ClientList do
+			messageClient(player, 'popup', 'The match has ended in a MONSTER WIN - all other teams have been eliminated.')
 		end
 		endGame = true
 	end
@@ -253,8 +271,8 @@ Hook.Add("character.death", "characterDied", function (character)
 			end, n*1000)
 		end
 		Timer.Wait(function ()
-			Game.ExecuteCommand('end')
-		end, 10*1100+500)
+			Game.EndGame()
+		end, 11*1000+500)
 	end
 
 	return true
@@ -263,15 +281,36 @@ end)
 -- Execute when players are spawned - be it a respawn wave, or the start of the match
 Hook.Add("character.giveJobItems", "monsterAndRespawns", function (createdCharacter)
 
+	characterClient = ''
+	for player in Client.ClientList do
+		if createdCharacter.Info.Name == player.Name then
+			characterClient = player
+		end
+	end
+	
+	if characterClient == '' then return end
+
 	-- Executed on match start to spawn in the monsters
 	if createdCharacter.Submarine.Info.Name == '_Facility' then
 		-- Captain is Mutated Mantis
 		if createdCharacter.HasJob('captain') then
 			spawnPlayerMonster(createdCharacter, 'mantis')
+			messageClient(characterClient, 'info', 'You are a Mutated Mantis! A slow and weak monster with lots of HP. Work with your fellow monsters to kill all humans! You may eat corpses, use regular doors, use the trams and use local voicechat.')
 		-- Medic is Mutated Crawler
 		elseif createdCharacter.HasJob('medicaldoctor') then
 			spawnPlayerMonster(createdCharacter, 'crawler')
+			messageClient(characterClient, 'info', 'You are a Mutated Crawler! A fast and strong monster with decent HP. Work with your fellow monsters to kill all humans! You may eat corpses, use regular doors, use the trams and use local voicechat.')
+		-- Mechanic and Engineer (Researcher) are Nexpharma Staff
+		elseif createdCharacter.HasJob('mechanic') or createdCharacter.HasJob('engineer') then
+			messageClient(characterClient, 'info', 'You are a civilian, part of Nexpharma staff, equipped with your low level keycard and a few supplies. Work with MERCS, guards and fellow staff to escape the facility!')
+		-- Security Officer is Nexpharma Security
+		elseif createdCharacter.HasJob('securityofficer') then
+			messageClient(characterClient, 'info', 'You are an armed member of Nexpharma security, equipped with a simple guard card and a sidearm. Work with MERCS and fellow guards to kill inmates, JET and monsters whilst helping staff escape.')
+		-- Assistant is Inmate
+		elseif createdCharacter.HasJob('assistant') then
+			messageClient(characterClient, 'info', 'You are a civilian member of the Terrorist faction, equipped with almost nothing. Work with your fellow inmates and JET to escape this wretched place!')
 		end
+		
 	-- Executed at respawn waves to equip and teleport the JET and MERCS
 	elseif createdCharacter.Submarine.Info.Name == '_Respawn' then
 		-- Inmate and Monsters respawn as JET
@@ -282,6 +321,7 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (createdCharac
 				Game.ExecuteCommand('say Terrorists have lost a ticket! ' .. global_terroristTickets .. ' tickets left!' )
 				-- Spawns JET
 				spawnPlayerMilitant(createdCharacter, 'JET')
+				messageClient(characterClient, 'info', 'The Jovian Elite Troops or JET - a militant member of the Terrorist militia, equipped with heavy weaponry, meds, armor and a high-level card. Help inmates escape and kill the monsters and everyone working for Nexpharma.')
 			else
 				Game.ExecuteCommand('say Terrorists are out of tickets - no more respawns!')
 				Game.ExecuteCommand('kill ' .. createdCharacter.Info.Name)
@@ -295,6 +335,7 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (createdCharac
 				Game.ExecuteCommand('say Nexpharma has lost a ticket! ' .. global_nexpharmaTickets .. ' tickets left!' )
 				-- Spawns MERCS
 				spawnPlayerMilitant(createdCharacter, 'MERCS')
+				messageClient(characterClient, 'info', 'The Mobile Emergency Rescue and Combat Squad or MERCS - a militant member of the Nexpharma private army, equipped with heavy weaponry, meds, armor and a high-level card. Work together with guards to help staff escape and kill the inmates, JET and monsters.')
 			else
 				Game.ExecuteCommand('say Nexpharma is out of tickets - no more respawns!')
 				Game.ExecuteCommand('kill ' .. createdCharacter.Info.Name)
@@ -310,11 +351,11 @@ end)
 Hook.Add("chatMessage", "helpCommand", function (message, client)
     if message ~= '/help' then return end
 	
-	messageClient(client, 0, 200, 255, '/help - gives command list.')
-	messageClient(client, 0, 200, 255, '/admin - calls admin attention.')
-	messageClient(client, 0, 200, 255, '/admin <text> - sends text to admin.')
-	messageClient(client, 0, 200, 255, '/players - gives a list of players and their roles.')
-	messageClient(client, 0, 200, 255, '/tickets - tells JET and MERCS ticket count.')
+	messageClient(client, 'blue', '/help - gives command list.')
+	messageClient(client, 'blue', '/admin - calls admin attention.')
+	messageClient(client, 'blue', '/admin <text> - sends text to admin.')
+	messageClient(client, 'blue', '/players - gives a list of players and their roles.')
+	messageClient(client, 'blue', '/tickets - tells JET and MERCS ticket count.')
 
     return true
 end)
@@ -340,18 +381,18 @@ Hook.Add("chatMessage", "livePlayerList", function (message, client)
 		if player.Character ~= nil and not player.Character.IsDead then
 			if player.Character.SpeciesName == 'human' then
 				if (player.Character.HasJob('assistant') or player.Character.HasJob('captain') or player.Character.HasJob('medicaldoctor')) and global_militantPlayers[player.Name]  then
-					messageClient(client, 0, 200, 255, player.Name .. ' is a armed member of the terrorist faction.')
+					messageClient(client, 'blue', player.Name .. ' is an armed member of the terrorist faction.')
 				elseif player.Character.HasJob('assistant') then
-					messageClient(client, 0, 200, 255, player.Name .. ' is a civilian member of the terrorist faction.')
+					messageClient(client, 'blue', player.Name .. ' is a civilian member of the terrorist faction.')
 				elseif player.Character.HasJob('securityofficer') or ((player.Character.HasJob('mechanic') or player.Character.HasJob('engineer')) and global_militantPlayers[player.Name]) then
-					messageClient(client, 0, 200, 255, player.Name .. ' is an armed member of the nexpharma corp.')
+					messageClient(client, 'blue', player.Name .. ' is an armed member of the nexpharma corp.')
 				elseif player.Character.HasJob('mechanic') or player.Character.HasJob('engineer') then
-					messageClient(client, 0, 200, 255, player.Name .. ' is a civilian member of the nexpharma corp.')
+					messageClient(client, 'blue', player.Name .. ' is a civilian member of the nexpharma corp.')
 				end
 			elseif player.Character.SpeciesName == 'mantisadmin' then
-				messageClient(client, 0, 200, 255, player.Name .. ' is mutated mantis.')
+				messageClient(client, 'blue', player.Name .. ' is mutated mantis.')
 			elseif player.Character.SpeciesName == 'crawleradmin' then
-				messageClient(client, 0, 200, 255, player.Name .. ' is mutated crawler.')
+				messageClient(client, 'blue', player.Name .. ' is mutated crawler.')
 			end
 		end
 	end
@@ -363,8 +404,8 @@ end)
 Hook.Add("chatMessage", "ticketCount", function (message, client)
     if message ~= '/tickets' then return end
 	
-	messageClient(client, 0, 200, 255, 'Terrorists have ' .. global_terroristTickets .. ' tickets left.')
-	messageClient(client, 0, 200, 255, 'Nexpharma has ' .. global_nexpharmaTickets .. ' tickets left.')
+	messageClient(client, 'blue', 'Terrorists have ' .. global_terroristTickets .. ' tickets left.')
+	messageClient(client, 'blue', 'Nexpharma has ' .. global_nexpharmaTickets .. ' tickets left.')
 
     return true
 end)
