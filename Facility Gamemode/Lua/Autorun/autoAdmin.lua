@@ -1,7 +1,7 @@
 -- Game.EnableControlHusk(override)
 
 -- Turn on for debugging and testing, disable when hosting
-global_debug = false
+global_debug = true
 
 -- Tells you if the round is ending
 global_endGame = false
@@ -124,34 +124,41 @@ end
 
 -- Removes the items of respawnees, gives them their proper loadout (be it JET or MERCS) and teleports them to their spawn area
 function spawnPlayerMilitant (character, team)
+	if character == nil or character.SpeciesName ~= 'human' or character.IsDead then return end
 
 	global_militantPlayers[character.Info.Name] = true
 	
 	-- Remove player items
-	for item in character.Inventory.AllItems do
-		Entity.Spawner.AddEntityToRemoveQueue(item)
-	end
+	Timer.Wait(function ()
+		for item in character.Inventory.AllItems do
+			Entity.Spawner.AddEntityToRemoveQueue(item)
+		end
+	end, 250)
 	-- Team Specific Actions
 	if team == 'JET' then
 		-- Give items
-		Timer.Wait(function ()
-			for item in global_terroristLoadout do
+		itemCount = 1
+		for item in global_terroristLoadout do
+			Timer.Wait(function ()
 				for n=1,item[2] do
 					giveItemCharacter(character, item[1], 1, item[3])
 				end
-			end
-		end, 100)
+			end, itemCount*20+500)
+			itemCount = itemCount + 1
+		end
 		-- Teleport player into battlefield
 		character.TeleportTo(Submarine.MainSub.GetWaypoints(false)[global_terroristSpawnWaypointIndex].WorldPosition)
 	elseif team == 'MERCS' then
 		-- Give items
-		Timer.Wait(function ()
-			for item in global_nexpharmaLoadout do
+		itemCount = 1
+		for item in global_nexpharmaLoadout do
+			Timer.Wait(function ()
 				for n=1,item[2] do
 					giveItemCharacter(character, item[1], 1, item[3])
 				end
-			end
-		end, 100)
+			end, itemCount*20+500)
+			itemCount = itemCount + 1
+		end
 		-- Teleport player into battlefield
 		character.TeleportTo(Submarine.MainSub.GetWaypoints(false)[global_nexpharmaSpawnWaypointIndex].WorldPosition)
 	end
