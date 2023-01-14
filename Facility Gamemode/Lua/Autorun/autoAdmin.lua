@@ -359,8 +359,10 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (createdCharac
     return true
 end)
 
+-- Overrides the jobs the players chose, assuming auto jobs is activated
 Hook.Add("jobsAssigned", "automaticJobAssignment", function ()
 	if not global_autoJob then return end
+
 	global_playerRole = assignPlayerRole()
 	
 	roleJob = {}
@@ -373,9 +375,23 @@ Hook.Add("jobsAssigned", "automaticJobAssignment", function ()
 		for player in Client.ClientList do
 			if playerName == player.Name then
 				if role == 'monster' then
-					player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), 0) --ERROR HERE!
+					if player.preferredJob == 'captain' then
+						player.AssignedJob = JobVariant(JobPrefab.Get('captain'), 0)
+					elseif player.preferredJob == 'medicaldoctor' then
+						player.AssignedJob = JobVariant(JobPrefab.Get('medicaldoctor'), 0)
+					else
+						player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), 0)
+					end
+				elseif role == 'staff' then
+					if player.preferredJob == 'mechanic' then
+						player.AssignedJob = JobVariant(JobPrefab.Get('mechanic'), math.random(0,1))
+					elseif player.preferredJob == 'engineer' then
+						player.AssignedJob = JobVariant(JobPrefab.Get('engineer'), math.random(0,1))
+					else
+						player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), math.random(0,1))
+					end
 				else
-					player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), math.random(0,1)) --(WOULD HAPPEN HERE TOO)
+					player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), math.random(0,1))
 				end
 				break
 			end
@@ -384,6 +400,114 @@ Hook.Add("jobsAssigned", "automaticJobAssignment", function ()
 	
 	return true
 end)
+
+-- Get Team Distribution
+function roleDistribution ()
+
+	unassigned = #Client.ClientList
+	teamCount = {}
+	teamCount['monster'] = 0
+	teamCount['staff'] = 0
+	teamCount['guard'] = 0
+	teamCount['inmate'] = 0
+	
+	teamCount['monster'] = math.ceil(unassigned/6)
+	unassigned = unassigned - teamCount['monster']
+	
+	teamCount['staff'] = math.ceil(unassigned/4)
+	unassigned = unassigned - teamCount['staff']
+	teamCount['guard'] = math.floor(unassigned/3)
+	unassigned = unassigned - teamCount['guard']
+	
+	teamCount['inmate'] = unassigned
+	
+	return teamCount
+end
+
+-- Assign Players a Role
+function assignPlayerRole ()
+
+	teamCount = roleDistribution()
+	unassignedPlayers = {}
+	for player in Client.ClientList do
+		table.insert(unassignedPlayers, player.Name)
+	end
+	playerRole = {}
+	preferredRole = ''
+	selectedRole = ''
+	
+	while ((teamCount['monster'] + teamCount['staff'] + teamCount['guard'] + teamCount['inmate']) > 0) and #unassignedPlayers > 0 do
+		index = math.random(#unassignedPlayers)
+		
+		for player in Client.ClientList do
+			if unassignedPlayers[index] == player.Name then
+				if (player.PreferredJob == 'captain' or player.PreferredJob == 'medicaldoctor') and teamCount['monster'] > 0 then
+					preferredRole = 'monster'
+				elseif (player.PreferredJob == 'mechanic' or player.PreferredJob == 'engineer') and teamCount['staff'] > 0 then
+					preferredRole = 'staff'
+				elseif (player.PreferredJob == 'securityofficer') and teamCount['guard'] > 0 then
+					preferredRole = 'guard'
+				elseif (player.PreferredJob == 'assistant') and teamCount['inmate'] > 0 then
+					preferredRole = 'inmate'
+				else
+					preferredRole = ''
+				end
+			end
+		end
+		
+		selectedRole = ''
+		if (preferredRole == '' or preferredRole == 'monster') and teamCount['monster'] > 0 then
+			selectedRole = 'monster'
+		elseif (preferredRole == '' or preferredRole == 'staff') and teamCount['staff'] > 0 then
+			selectedRole = 'staff'
+		elseif (preferredRole == '' or preferredRole == 'guard') and teamCount['guard'] > 0 then
+			selectedRole = 'guard'
+		elseif (preferredRole == '' or preferredRole == 'inmate') and teamCount['inmate'] > 0 then
+			selectedRole = 'inmate'
+		end
+		
+		if selectedRole ~= '' then
+			playerRole[table.remove(unassignedPlayers, index)] = selectedRole
+			teamCount[selectedRole] = teamCount[selectedRole] - 1
+		end
+	end
+	
+	return playerRole
+end
+
+-- Respawns escapee as militant and rewards team with 1 tickets
+function promoteEscapee (username)
+
+	-- Search for client
+	clientIndex = -1
+	counter = 1
+	for player in Client.ClientList do
+		if player.Name == username then
+			clientIndex = counter
+			break
+		end
+		counter = counter + 1
+	end
+	if clientIndex == -1 then return end
+	-- Spawn escapee as militant
+	Game.ExecuteCommand('say ' .. Client.ClientList[clientIndex].Character.Info.Name .. ' has escaped!')
+	global_militantPlayers[Client.ClientList[clientIndex].Name] = true
+	clientCharacter = Client.ClientList[clientIndex].Character
+	if clientCharacter.HasJob('assistant') or clientCharacter.HasJob('captain') or clientCharacter.HasJob('medicaldoctor') then
+		-- Update Ticket Count
+		global_terroristTickets = global_terroristTickets + 1
+		Game.ExecuteCommand('say Terrorists have gained a ticket! ' .. global_terroristTickets .. ' tickets left!' )
+		-- Spawns JET
+		spawnPlayerMilitant(clientCharacter, 'JET')
+	elseif clientCharacter.HasJob('securityofficer') or clientCharacter.HasJob('mechanic') or clientCharacter.HasJob('engineer') then
+		-- Update Ticket Count
+		global_nexpharmaTickets = global_nexpharmaTickets + 1
+		Game.ExecuteCommand('say Nexpharma has gained a ticket! ' .. global_nexpharmaTickets .. ' tickets left!' )
+		-- Spawns MERCS
+		spawnPlayerMilitant(clientCharacter, 'MERCS')
+	end
+
+end
 
 -- User Commands
 -- Lists and explains user commands
@@ -448,126 +572,3 @@ Hook.Add("chatMessage", "ticketCount", function (message, client)
 
     return true
 end)
-
--- Admin Commands
--- Lists important variables and commands
-function help ()
-	print('-|FUNCTIONS|-')
-	print('promoteEscapee(username)')
-	print('giveItem(username, identifier, amount)')
-	print('-|VARIABLES|-')
-	print('global_debug')
-	print('global_militantPlayers')
-	print('global_terroristTickets')
-	print('global_nexpharmaTickets')
-	print('global_monsterCount')
-end
-
--- Get Team Distribution
-function roleDistribution ()
-
-	unassigned = #Client.ClientList
-	teamCount = {}
-	teamCount['monster'] = 0
-	teamCount['staff'] = 0
-	teamCount['guard'] = 0
-	teamCount['inmate'] = 0
-	
-	teamCount['monster'] = math.ceil(unassigned/6)
-	unassigned = unassigned - teamCount['monster']
-	
-	teamCount['staff'] = math.ceil(unassigned/4)
-	unassigned = unassigned - teamCount['staff']
-	teamCount['guard'] = math.floor(unassigned/3)
-	unassigned = unassigned - teamCount['guard']
-	
-	teamCount['inmate'] = unassigned
-	
-	return teamCount
-end
-
--- Assign Players a Team
-function assignPlayerRole ()
-
-	teamCount = roleDistribution()
-	unassignedPlayers = {}
-	for player in Client.ClientList do
-		table.insert(unassignedPlayers, player.Name)
-	end
-	playerRole = {}
-	
-	while (teamCount['monster'] + teamCount['staff'] + teamCount['guard'] + teamCount['inmate']) > 0 do
-		index = math.random(#unassignedPlayers)
-		if teamCount['monster'] > 0 then
-			playerRole[table.remove(unassignedPlayers, index)] = 'monster'
-			teamCount['monster'] = teamCount['monster'] - 1
-		elseif teamCount['staff'] > 0 then
-			playerRole[table.remove(unassignedPlayers, index)] = 'staff'
-			teamCount['staff'] = teamCount['staff'] - 1
-		elseif teamCount['guard'] > 0 then
-			playerRole[table.remove(unassignedPlayers, index)] = 'guard'
-			teamCount['guard'] = teamCount['guard'] - 1
-		else
-			playerRole[table.remove(unassignedPlayers, index)] = 'inmate'
-			teamCount['inmate'] = teamCount['inmate'] - 1
-		end
-	end
-	
-	return playerRole
-end
-
--- Respawns escapee as militant and rewards team with 1 tickets
-function promoteEscapee (username)
-
-	-- Search for client
-	clientIndex = -1
-	counter = 1
-	for player in Client.ClientList do
-		if player.Name == username then
-			clientIndex = counter
-			break
-		end
-		counter = counter + 1
-	end
-	if clientIndex == -1 then return end
-	-- Spawn escapee as militant
-	Game.ExecuteCommand('say ' .. Client.ClientList[clientIndex].Character.Info.Name .. ' has escaped!')
-	global_militantPlayers[Client.ClientList[clientIndex].Name] = true
-	clientCharacter = Client.ClientList[clientIndex].Character
-	if clientCharacter.HasJob('assistant') or clientCharacter.HasJob('captain') or clientCharacter.HasJob('medicaldoctor') then
-		-- Update Ticket Count
-		global_terroristTickets = global_terroristTickets + 1
-		Game.ExecuteCommand('say Terrorists have gained a ticket! ' .. global_terroristTickets .. ' tickets left!' )
-		-- Spawns JET
-		spawnPlayerMilitant(clientCharacter, 'JET')
-	elseif clientCharacter.HasJob('securityofficer') or clientCharacter.HasJob('mechanic') or clientCharacter.HasJob('engineer') then
-		-- Update Ticket Count
-		global_nexpharmaTickets = global_nexpharmaTickets + 1
-		Game.ExecuteCommand('say Nexpharma has gained a ticket! ' .. global_nexpharmaTickets .. ' tickets left!' )
-		-- Spawns MERCS
-		spawnPlayerMilitant(clientCharacter, 'MERCS')
-	end
-
-end
-
--- Gives a certain amount of an item to a client's character
-function giveItem (username, identifier, amount)
-
-	-- Search for client
-	clientIndex = -1
-	counter = 1
-	for player in Client.ClientList do
-		if player.Name == username then
-			clientIndex = counter
-			break
-		end
-		counter = counter + 1
-	end
-	if clientIndex == -1 then return end
-	-- Give Item
-	for n=1,amount do 
-		Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.GetItemPrefab(identifier), Client.ClientList[clientIndex].Character.Inventory, nil, nil, nil)
-	end
-	
-	return true
-end
