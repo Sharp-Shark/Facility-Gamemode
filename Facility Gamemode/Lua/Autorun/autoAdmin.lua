@@ -1,13 +1,19 @@
 -- Game.EnableControlHusk(override)
 
--- Turn on for debugging and testing, disable when hosting
-global_debug = true
+-- Disables auto round end - turn to false for testing
+global_allowEnd = true
+
+-- Automatically give players a job - turn to false for testing
+global_autoJob = true
 
 -- Tells you if the round is ending
 global_endGame = false
 
 -- Counts amounts the think hook has been called, might be reset, don't use it as a total call counter
 global_thinkCounter = 0
+
+-- Player roles set at the start of the match
+global_playerRole = {}
 
 -- Waypoint used for spawnpoints for monsters, JET (Terrorists) and MERCS (Nexpharma) respectivelly
 global_monsterSpawnWaypointIndex = 1014
@@ -270,7 +276,7 @@ Hook.Add("character.death", "characterDied", function (character)
 		endGame = true
 	end
 	
-	if endGame and not global_debug then
+	if endGame and global_allowEnd then
 		global_endGame = true
 		for n=1,11 do
 			Timer.Wait(function ()
@@ -353,6 +359,32 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (createdCharac
     return true
 end)
 
+Hook.Add("jobsAssigned", "automaticJobAssignment", function ()
+	if not global_autoJob then return end
+	global_playerRole = assignPlayerRole()
+	
+	roleJob = {}
+	roleJob['monster'] = {'medicaldoctor', 'captain'}
+	roleJob['staff'] = {'mechanic', 'engineer'}
+	roleJob['guard'] = {'securityofficer'}
+	roleJob['inmate'] = {'assistant'}
+
+	for playerName, role in pairs(global_playerRole) do
+		for player in Client.ClientList do
+			if playerName == player.Name then
+				if role == 'monster' then
+					player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), 0) --ERROR HERE!
+				else
+					player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), math.random(0,1)) --(WOULD HAPPEN HERE TOO)
+				end
+				break
+			end
+		end
+	end
+	
+	return true
+end)
+
 -- User Commands
 -- Lists and explains user commands
 Hook.Add("chatMessage", "helpCommand", function (message, client)
@@ -429,6 +461,59 @@ function help ()
 	print('global_terroristTickets')
 	print('global_nexpharmaTickets')
 	print('global_monsterCount')
+end
+
+-- Get Team Distribution
+function roleDistribution ()
+
+	unassigned = #Client.ClientList
+	teamCount = {}
+	teamCount['monster'] = 0
+	teamCount['staff'] = 0
+	teamCount['guard'] = 0
+	teamCount['inmate'] = 0
+	
+	teamCount['monster'] = math.ceil(unassigned/6)
+	unassigned = unassigned - teamCount['monster']
+	
+	teamCount['staff'] = math.ceil(unassigned/4)
+	unassigned = unassigned - teamCount['staff']
+	teamCount['guard'] = math.floor(unassigned/3)
+	unassigned = unassigned - teamCount['guard']
+	
+	teamCount['inmate'] = unassigned
+	
+	return teamCount
+end
+
+-- Assign Players a Team
+function assignPlayerRole ()
+
+	teamCount = roleDistribution()
+	unassignedPlayers = {}
+	for player in Client.ClientList do
+		table.insert(unassignedPlayers, player.Name)
+	end
+	playerRole = {}
+	
+	while (teamCount['monster'] + teamCount['staff'] + teamCount['guard'] + teamCount['inmate']) > 0 do
+		index = math.random(#unassignedPlayers)
+		if teamCount['monster'] > 0 then
+			playerRole[table.remove(unassignedPlayers, index)] = 'monster'
+			teamCount['monster'] = teamCount['monster'] - 1
+		elseif teamCount['staff'] > 0 then
+			playerRole[table.remove(unassignedPlayers, index)] = 'staff'
+			teamCount['staff'] = teamCount['staff'] - 1
+		elseif teamCount['guard'] > 0 then
+			playerRole[table.remove(unassignedPlayers, index)] = 'guard'
+			teamCount['guard'] = teamCount['guard'] - 1
+		else
+			playerRole[table.remove(unassignedPlayers, index)] = 'inmate'
+			teamCount['inmate'] = teamCount['inmate'] - 1
+		end
+	end
+	
+	return playerRole
 end
 
 -- Respawns escapee as militant and rewards team with 1 tickets
