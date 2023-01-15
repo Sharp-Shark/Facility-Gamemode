@@ -1,1 +1,0 @@
-There is no way to override the game's default text nor way to remove the vanilla jobs (as far as I know), so I have repeated the job text files to increase the odds it won't pick the vanilla text.
