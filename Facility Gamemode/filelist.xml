@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Facility Gamemode" modversion="1.2.10" corepackage="False" steamworkshopid="2915017487" gameversion="0.20.16.1">
+  <Character file="%ModDir%/Mantisadmin/Mantisadmin.xml" />
+  <Character file="%ModDir%/Crawleradmin/Crawleradmin.xml" />
+  <Item file="%ModDir%/Items/IdcardExtra.xml" />
+  <Text file="%ModDir%/Items/ItemText.xml" />
+  <Jobs file="%ModDir%/Jobs/JobsOverride.xml" />
+  <Text file="%ModDir%/Jobs/JobText.xml" />
+  <Text file="%ModDir%/Jobs/JobTextRepeats/JobTextRepeat1.xml" />
+  <Text file="%ModDir%/Jobs/JobTextRepeats/JobTextRepeat2.xml" />
+  <Text file="%ModDir%/Jobs/JobTextRepeats/JobTextRepeat3.xml" />
+  <Text file="%ModDir%/Jobs/JobTextRepeats/JobTextRepeat4.xml" />
+  <Text file="%ModDir%/Jobs/JobTextRepeats/JobTextRepeat5.xml" />
+  <Text file="%ModDir%/Jobs/JobTextRepeats/JobTextRepeat6.xml" />
+  <Text file="%ModDir%/Jobs/JobTextRepeats/JobTextRepeat7.xml" />
+  <Text file="%ModDir%/Jobs/JobTextRepeats/JobTextRepeat8.xml" />
+  <Text file="%ModDir%/Jobs/JobTextRepeats/JobTextRepeat9.xml" />
+  <Submarine file="%ModDir%/Submarines/_Monorail256.sub" />
+  <Submarine file="%ModDir%/Submarines/_Monorail128.sub" />
+  <Submarine file="%ModDir%/Submarines/_Monorail512.sub" />
+  <Submarine file="%ModDir%/Submarines/_Respawn.sub" />
+  <Submarine file="%ModDir%/Submarines/_Facility.sub" />
+</contentpackage>
