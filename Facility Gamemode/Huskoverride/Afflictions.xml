@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Afflictions>
+
+  <Override>
+  <AfflictionHusk
+    name="Husk infection"
+    identifier="huskinfection"
+    description="Something dark and unpleasant moves in the mouth. They are rendered completely mute, save for occasional clicking sounds apparently emanating from deep within the throat."
+    type="alieninfection"
+    targets="human,crawler"
+    huskedspeciesname="husk"
+    causeofdeathdescription="Taken over by a husk parasite"
+    selfcauseofdeathdescription="You have been taken over by the husk parasite."
+    limbspecific="false"
+    indicatorlimb="Torso"
+    activationthreshold="0"
+    showiconthreshold="75"
+    showinhealthscannerthreshold="75"
+	sendmessages="false"
+    karmachangeonapplied="-1"
+    maxstrength="100"
+    transferbuffs="true"
+    achievementonremoved="healhusk"
+    dormantthreshold="50"
+    activethreshold="75"
+    transformthresholdondeath="75"
+    transitionthreshold="100"
+    IgnoreTreatmentIfAfflictedBy="husktransformimmunity"
+    healcostmultiplier="2.5"
+    basehealcost="200"
+    iconcolors="60,140,195,255;60,107,195,255;60,0,195,255">
+     <Description
+      textidentifier="afflictiondescription.huskinfection.dormant.self"
+      target="Self"
+      minstrength="0"
+      maxstrength="50"/>
+    <Description
+      textidentifier="afflictiondescription.huskinfection.transition.self"
+      target="Self"
+      minstrength="50"
+      maxstrength="75"/>
+    <Description
+      textidentifier="afflictiondescription.huskinfection.active.self"
+      target="Self"
+      minstrength="75"
+      maxstrength="99"/>
+    <Description
+      textidentifier="afflictiondescription.huskinfection.dormant.other"
+      target="OtherCharacter"
+      minstrength="0"
+      maxstrength="50"/>
+    <Description
+      textidentifier="afflictiondescription.huskinfection.transition.other"
+      target="OtherCharacter"
+      minstrength="50"
+      maxstrength="75"/>
+    <Description
+      textidentifier="afflictiondescription.huskinfection.active.other"
+      target="OtherCharacter"
+      minstrength="75"
+      maxstrength="99"/>
+    <Description
+      textidentifier="afflictiondescription.huskinfection.final"
+      minstrength="99"
+      maxstrength="101"/>
+    <Effect minstrength="0" maxstrength="75"
+      maxvitalitydecrease="0"
+      strengthchange="2.5"
+      minbodytint="195,195,195,0"
+      maxbodytint="195,195,195,150"/>
+    <Effect minstrength="75" maxstrength="100"
+      maxvitalitydecrease="0"
+      strengthchange="0.1"
+      minbodytint="195,195,195,150"
+      maxbodytint="195,195,195,200"
+      tag="huskinfected"/>
+    <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="0,640,128,128" color="60,107,195,255" origin="0,0"/>
+  </AfflictionHusk>
+
+  <Affliction
+    name="Husk Infection Resistance"
+    identifier="huskinfectionresistance"
+    description="Husk be gone."
+    type="resistance"
+    isbuff="true"
+    limbspecific="false"
+    maxstrength="600"
+    affectmachines="false">
+    <Effect minstrength="0" maxstrength="600"
+      strengthchange="-1.0"
+      resistancefor="huskinfection"
+      minresistance="0"
+      maxresistance="1.00"/>
+    <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="384,896,128,128" color="10,193,114,255" origin="0,0"/>
+  </Affliction>
+  </Override>
+
+</Afflictions>
