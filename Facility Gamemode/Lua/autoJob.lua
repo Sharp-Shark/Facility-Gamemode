@@ -105,6 +105,7 @@ end
 Hook.Add("jobsAssigned", "automaticJobAssignment", function ()
 	if CLIENT and Game.IsMultiplayer then return end
 	if not global_autoJob then return end
+	if #Client.ClientList - table.size(global_spectators) <= 1 then print('[!] Only 1 player, will not assign jobs.') return end
 
 	global_playerRole = assignPlayerRole()
 	

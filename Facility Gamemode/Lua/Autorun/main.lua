@@ -70,34 +70,22 @@ global_nexpharmaTickets = 5
 global_monsterCount = {mantis = 0, crawler = 0}
 
 -- Respawns escapee as militant and rewards team with 1 tickets
-function promoteEscapee (username)
+function promoteEscapee (client)
 
-	-- Search for client
-	local clientIndex = -1
-	local counter = 1
-	for player in Client.ClientList do
-		if player.Name == username then
-			clientIndex = counter
-			break
-		end
-		counter = counter + 1
-	end
-	if clientIndex == -1 then return end
 	-- Spawn escapee as militant
-	global_militantPlayers[Client.ClientList[clientIndex].Name] = true
-	clientCharacter = Client.ClientList[clientIndex].Character
-	if clientCharacter.HasJob('assistant') or clientCharacter.HasJob('captain') or clientCharacter.HasJob('medicaldoctor') then
+	global_militantPlayers[client.Name] = true
+	if client.Character.HasJob('assistant') or client.Character.HasJob('captain') or client.Character.HasJob('medicaldoctor') then
 		-- Update Ticket Count
 		global_terroristTickets = global_terroristTickets + 2
 		Game.ExecuteCommand('say Terrorists have gained 2 tickets - civilian has escaped! ' .. global_terroristTickets .. ' tickets left!' )
 		-- Spawns JET
-		spawnPlayerMilitant(clientCharacter, 'JET')
-	elseif clientCharacter.HasJob('securityofficer') or clientCharacter.HasJob('mechanic') or clientCharacter.HasJob('engineer') then
+		spawnPlayerMilitant(client, 'JET')
+	elseif client.Character.HasJob('securityofficer') or client.Character.HasJob('mechanic') or client.Character.HasJob('engineer') then
 		-- Update Ticket Count
 		global_nexpharmaTickets = global_nexpharmaTickets + 1
 		Game.ExecuteCommand('say Nexpharma has gained 1 ticket - civilian has escaped! ' .. global_nexpharmaTickets .. ' tickets left!' )
 		-- Spawns MERCS
-		spawnPlayerMilitant(clientCharacter, 'MERCS')
+		spawnPlayerMilitant(client, 'MERCS')
 	end
 
 end
@@ -124,7 +112,7 @@ Hook.Add("think", "thinkCheck", function ()
 		for player in Client.ClientList do
 			if player.Character ~= nil and player.Character.SpeciesName == 'human' and (player.Character.HasJob('assistant') or player.Character.HasJob('mechanic') or player.Character.HasJob('engineer')) and
 			distance(Submarine.MainSub.GetWaypoints(false)[global_waypointIndexes.escape].WorldPosition, player.Character.WorldPosition) < 200 and not global_militantPlayers[player.Name] then
-				promoteEscapee(player.Name)
+				promoteEscapee(player)
 			end
 		end
 	end
@@ -183,27 +171,38 @@ Hook.Add("roundStart", "prepareMatch", function (createdCharacter)
 		Timer.Wait(function ()
 			-- Infect a random prisoner
 			local chars = {}
+			local char = nil
 			for player in Client.ClientList do
 				if player.Character ~= nil and player.Character.HasJob('assistant') then
 					table.insert(chars, player.Character)
 				end
 			end
-			if chars == {} then
+			if table.size(chars) == 0 then
 				-- If no valid characters, infect someone at random
 				local tries = 0
-				local char = Client.ClientList[math.random(#Client.ClientList)].Character
+				char = Client.ClientList[math.random(#Client.ClientList)].Character
 				while char == nil and tries <= 999 do
 					char = Client.ClientList[math.random(#Client.ClientList)].Character
 					tries = tries + 1
 				end
 			else
-				local char = chars[math.random(#chars)]
+				char = chars[math.random(#chars)]
 			end
 			char.CharacterHealth.ApplyAffliction(char.AnimController.MainLimb, AfflictionPrefab.Prefabs["huskinfection"].Instantiate(100))
 		end, 10*1000)
 	end
 
     return true
+end)
+
+-- Executes when a human is transformed
+Hook.Add("husk.clientControl", "humanTransformed", function (client, husk)
+
+	Timer.Wait(function ()
+		messageClient(client, 'info', 'You are now a Husk! A weak but infectious and dexterious monster. Work with your fellow monsters to kill all humans! You may infect, use doors, use items and use local voicechat.')
+	end, 5*1000)
+	
+	return true
 end)
 
 -- Sucess Message

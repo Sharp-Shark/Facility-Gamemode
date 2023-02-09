@@ -40,8 +40,8 @@ Hook.Add("character.death", "characterDied", function (character)
 	
 	-- Add a 1 second delay before checking for end conditions just to be sure
 	Timer.Wait(function ()
-		-- Ignore round end if there are only 2 players
 		if #Client.ClientList - table.size(global_spectators) <= 1 then print('[!] Only 1 player, will not end round.') return end
+		
 		-- Make sure the game isn't already ending
 		if global_endGame then return end
 		-- Count live players

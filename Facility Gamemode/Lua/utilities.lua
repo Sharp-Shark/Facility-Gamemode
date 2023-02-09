@@ -12,16 +12,66 @@ end
 
 -- Gives a certain amount of an item to a character
 function giveItemCharacter (character, identifier, amount, slot)
-
 	-- Give Item
-	for n=1,amount do 
+	for n=1,(amount or 1) do 
 		Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.GetItemPrefab(identifier), character.Inventory, nil, nil, function (spawnedItem)
 			if slot == nil then return end
 			character.Inventory.TryPutItem(spawnedItem, slot, true, true, character, true, true)
 		end)
 	end
-	
-	return true
+end
+
+-- Gives the character of the client with the username an amount of an item
+function giveItem (username, identifier, amount)
+	giveItemCharacter(findClientByUsername(username).Character, identifier, amount, nil)
+end
+
+-- Checks wheter a character is part of Nexpharma Corporation
+function isCharacterNexpharma (character)
+	if character.SpeciesName ~= 'human' and (character.HasJob('mechanic') or character.HasJob('engineer') or character.HasJob('securityofficer')) then
+		return true
+	else
+		return false
+	end
+end
+
+-- Checks wheter a character is part of Terrorist Faction
+function isCharacterTerrorist (character)
+	if character.SpeciesName ~= 'human' and (character.HasJob('captain') or character.HasJob('medicaldoctor') or character.HasJob('assistant')) then
+		return true
+	else
+		return false
+	end
+end
+
+-- Returns the client whose client matches
+function findClientByCharacter (character)
+	for player in Client.ClientList do
+		if player.Character == character then
+			return player
+		end
+	end
+	return nil
+end
+
+-- Returns the client whose username matches
+function findClientByUsername (username)
+	for player in Client.ClientList do
+		if player.Name == username then
+			return player
+		end
+	end
+	return nil
+end
+
+-- Returns the character whose username matches
+function findCharacterByUsername (username)
+	for character in Character.CharacterList do
+		if character.Name == username then
+			return character
+		end
+	end
+	return nil
 end
 
 -- Messages a message to a client
