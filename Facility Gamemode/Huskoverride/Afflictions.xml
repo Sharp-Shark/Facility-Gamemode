@@ -2,9 +2,11 @@
 <Afflictions>
 
   <Affliction
-    name="Husk Stun"
+    name="Husk stun"
     identifier="huskstun"
+    description="Husk neurotoxin and eggs present in the host's blood."
     type="stun"
+    targets="human"
     limbspecific="false"
     indicatorlimb="Torso"
     showiconthreshold="0"
@@ -18,7 +20,7 @@
         <Affliction identifier="stun" amount="1" />
       </StatusEffect>
       <StatusEffect target="Character" interval="1" disabledeltatime="true">
-        <Affliction identifier="huskinfection" amount="5" />
+        <Affliction identifier="huskinfection" amount="10" />
       </StatusEffect>
     </Effect>
     <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="0,640,128,128" color="0,255,0,255" origin="0,0"/>
@@ -98,7 +100,7 @@
       maxbodytint="195,195,195,200"
       tag="huskinfected">
       <StatusEffect target="Character" interval="1" disabledeltatime="true">
-        <Affliction identifier="organdamage" amount="1" />
+        <Affliction identifier="organdamage" amount="1.65" />
       </StatusEffect>
 	</Effect>
     <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="0,640,128,128" color="60,107,195,255" origin="0,0"/>
