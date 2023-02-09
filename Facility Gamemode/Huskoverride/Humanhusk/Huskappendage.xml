@@ -16,9 +16,8 @@
       torque="-20"
       force="10"
       applyforceonlimbs="0,6">
-      <Affliction identifier="bitewounds" strength="10" />
-      <Affliction identifier="bleeding" strength="5"/>
-      <Affliction identifier="huskstun" strength="15"/>
+      <Affliction identifier="bitewounds" strength="15" />
+      <Affliction identifier="huskstun" strength="20"/>
       <Affliction identifier="stun" strength="0.1" />
     </attack>
   </limb>
