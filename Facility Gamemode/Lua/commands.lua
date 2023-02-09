@@ -39,19 +39,21 @@ Hook.Add("chatMessage", "livePlayerList", function (message, client)
 	for player in Client.ClientList do
 		if player.Character ~= nil and not player.Character.IsDead then
 			if player.Character.SpeciesName == 'human' then
-				if (player.Character.HasJob('assistant') or player.Character.HasJob('captain') or player.Character.HasJob('medicaldoctor')) and global_militantPlayers[player.Name]  then
+				if isCharacterTerrorist(player.Character) and global_militantPlayers[player.Name]  then
 					messageClient(client, 'blue', player.Name .. ' is an armed member of the terrorist faction.')
 				elseif player.Character.HasJob('assistant') then
 					messageClient(client, 'blue', player.Name .. ' is a civilian member of the terrorist faction.')
-				elseif player.Character.HasJob('securityofficer') or ((player.Character.HasJob('mechanic') or player.Character.HasJob('engineer')) and global_militantPlayers[player.Name]) then
+				elseif isCharacterNexpharma(player.Character) and global_militantPlayers[player.Name] then
 					messageClient(client, 'blue', player.Name .. ' is an armed member of the nexpharma corp.')
-				elseif player.Character.HasJob('mechanic') or player.Character.HasJob('engineer') then
+				elseif isCharacterStaff(player.Character) then
 					messageClient(client, 'blue', player.Name .. ' is a civilian member of the nexpharma corp.')
 				end
-			elseif player.Character.SpeciesName == 'mantisadmin' then
+			elseif player.Character.SpeciesName == 'Mantisadmin' then
 				messageClient(client, 'blue', player.Name .. ' is mutated mantis.')
-			elseif player.Character.SpeciesName == 'crawleradmin' then
+			elseif player.Character.SpeciesName == 'Crawleradmin' then
 				messageClient(client, 'blue', player.Name .. ' is mutated crawler.')
+			elseif player.Character.SpeciesName == 'Humanhusk' then
+				messageClient(client, 'blue', player.Name .. ' is a husk.')
 			end
 		end
 	end

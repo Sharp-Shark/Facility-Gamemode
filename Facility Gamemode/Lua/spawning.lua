@@ -83,7 +83,7 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (createdCharac
 			spawnPlayerMonster(client, 'crawler')
 			messageClient(client, 'info', 'You are a Mutated Crawler! A fast and strong monster with decent HP. Work with your fellow monsters to kill all humans! You may eat corpses, use regular doors, use the trams and use local voicechat.')
 		-- Mechanic and Engineer (Researcher) are Nexpharma Staff
-		elseif createdCharacter.HasJob('mechanic') or createdCharacter.HasJob('engineer') then
+		elseif isCharacterStaff(createdCharacter) then
 			messageClient(client, 'info', 'You are a civilian, part of Nexpharma staff, equipped with your low level keycard and a few supplies. Work with MERCS, guards and fellow staff to escape the facility!')
 		-- Security Officer is Nexpharma Security
 		elseif createdCharacter.HasJob('securityofficer') then
@@ -99,7 +99,7 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (createdCharac
 	-- Executed at respawn waves to equip and teleport the JET and MERCS
 	elseif createdCharacter.Submarine.Info.Name == '_Respawn' then
 		-- Inmate and Monsters respawn as JET
-		if createdCharacter.HasJob('assistant') or createdCharacter.HasJob('captain') or createdCharacter.HasJob('medicaldoctor') then
+		if isCharacterTerrorist(createdCharacter) then
 			if global_terroristTickets >= 1 then
 				-- Update Ticket Count
 				global_terroristTickets = global_terroristTickets - 1
@@ -116,7 +116,7 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (createdCharac
 			end
 			
 		-- Guards and Staff respawn as MERCS
-		elseif createdCharacter.HasJob('securityofficer') or createdCharacter.HasJob('mechanic') or createdCharacter.HasJob('engineer') then
+		elseif isCharacterNexpharma(createdCharacter) then
 			if global_nexpharmaTickets >= 1 then
 				-- Update Ticket Count
 				global_nexpharmaTickets = global_nexpharmaTickets - 1

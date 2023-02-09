@@ -74,13 +74,13 @@ function promoteEscapee (client)
 
 	-- Spawn escapee as militant
 	global_militantPlayers[client.Name] = true
-	if client.Character.HasJob('assistant') or client.Character.HasJob('captain') or client.Character.HasJob('medicaldoctor') then
+	if isCharacterTerrorist(client.Character) then
 		-- Update Ticket Count
 		global_terroristTickets = global_terroristTickets + 2
 		Game.ExecuteCommand('say Terrorists have gained 2 tickets - civilian has escaped! ' .. global_terroristTickets .. ' tickets left!' )
 		-- Spawns JET
 		spawnPlayerMilitant(client, 'JET')
-	elseif client.Character.HasJob('securityofficer') or client.Character.HasJob('mechanic') or client.Character.HasJob('engineer') then
+	elseif isCharacterNexpharma(client.Character) then
 		-- Update Ticket Count
 		global_nexpharmaTickets = global_nexpharmaTickets + 1
 		Game.ExecuteCommand('say Nexpharma has gained 1 ticket - civilian has escaped! ' .. global_nexpharmaTickets .. ' tickets left!' )

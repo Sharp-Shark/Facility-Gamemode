@@ -26,9 +26,9 @@ function giveItem (username, identifier, amount)
 	giveItemCharacter(findClientByUsername(username).Character, identifier, amount, nil)
 end
 
--- Checks wheter a character is part of Nexpharma Corporation
-function isCharacterNexpharma (character)
-	if character.SpeciesName ~= 'human' and (character.HasJob('mechanic') or character.HasJob('engineer') or character.HasJob('securityofficer')) then
+-- Checks wheter a character is a monster
+function isCharacterMonster (character)
+	if character.SpeciesName == 'Mantisadmin' or character.SpeciesName == 'Crawleradmin' or character.SpeciesName == 'Humanhusk' then
 		return true
 	else
 		return false
@@ -37,7 +37,25 @@ end
 
 -- Checks wheter a character is part of Terrorist Faction
 function isCharacterTerrorist (character)
-	if character.SpeciesName ~= 'human' and (character.HasJob('captain') or character.HasJob('medicaldoctor') or character.HasJob('assistant')) then
+	if character.SpeciesName == 'human' and (character.HasJob('captain') or character.HasJob('medicaldoctor') or character.HasJob('assistant')) then
+		return true
+	else
+		return false
+	end
+end
+
+-- Checks wheter a character is part of Nexpharma Corporation
+function isCharacterNexpharma (character)
+	if character.SpeciesName == 'human' and (character.HasJob('mechanic') or character.HasJob('engineer') or character.HasJob('securityofficer')) then
+		return true
+	else
+		return false
+	end
+end
+
+-- Checks wheter a character is part of staff
+function isCharacterStaff (character)
+	if character.SpeciesName == 'human' and (character.HasJob('mechanic') or character.HasJob('engineer')) and not global_militantPlayers[findClientByCharacter(character).Name] then
 		return true
 	else
 		return false
