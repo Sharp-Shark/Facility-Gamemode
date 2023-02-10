@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <infotexts language="English" nowhitespace="false" translatedname="English">
 
+<!-- Midazolam -->
+<entityname.midazolam>Midazolam</entityname.midazolam>
+<entitydescription.midazolam>Strong drug with healing properties, but due to it's composition, it causes alcohol poisoning and unconciousness.</entitydescription.midazolam>
+
 <!-- Terrorist ID Cards -->
 <entityname.idcardjet>JET ID Card</entityname.idcardjet>
 <entitydescription.idcardjet>Nexpharma militant. Admin tier 2 and weapons tier 3.</entitydescription.idcardjet>

@@ -10,7 +10,7 @@ global_lootTables = {
 		{'revolverround', 0.25, 1, 3},
 	},
 	fg_office1 = {
-		{'antidama2', 0.35, 1, 1},
+		{'midazolam', 0.35, 1, 1},
 		{'batterycell', 0.3, 1, 1},
 		{'opium', 0.3, 2, 1},
 		{'tonicliquid', 0.2, 3, 1},
@@ -97,7 +97,8 @@ global_lootTables = {
 	fg_med1 = {
 		{'antibleeding2', 0.15, 2, 1},
 		{'antibleeding1', 0.6, 4, 1},
-		{'antidama1', 0.2, 2, 1},
+		{'midazolam', 0.4, 2, 1},
+		{'antidama1', 0.3, 2, 1},
 		{'deusizine', 0.15, 2, 1},
 		{'antibiotics', 0.15, 2, 1},
 		{'opium', 0.5, 3, 1}
@@ -106,8 +107,8 @@ global_lootTables = {
 		{'antibloodloss1', 0.3, 3, 1},
 		{'antibleeding2', 0.3, 3, 1},
 		{'antibleeding1', 0.6, 6, 1},
+		{'midazolam', 0.6, 3, 1},
 		{'antidama1', 0.4, 3, 1},
-		{'chloralhydrate', 0.6, 3, 1},
 		{'deusizine', 0.3, 3, 1},
 		{'antibiotics', 0.3, 3, 1},
 		{'calyxanide', 0.6, 1, 1},

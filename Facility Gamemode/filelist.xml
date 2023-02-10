@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Facility Gamemode" modversion="1.4.1" corepackage="False" steamworkshopid="2915017487" gameversion="0.21.6.0">
+<contentpackage name="Facility Gamemode" modversion="1.5.2" corepackage="False" steamworkshopid="2915017487" gameversion="0.21.6.0">
   <Character file="%ModDir%/Mantisadmin/Mantisadmin.xml" />
   <Character file="%ModDir%/Crawleradmin/Crawleradmin.xml" />
   <Character file="%ModDir%/Huskoverride/Humanhusk/Humanhusk.xml" />
   <Afflictions file="%ModDir%/Huskoverride/Afflictions.xml" />
   <Item file="%ModDir%/Items/IdcardExtra.xml" />
+  <Item file="%ModDir%/Items/Medical.xml" />
   <Text file="%ModDir%/Items/ItemText.xml" />
   <Jobs file="%ModDir%/Jobs/JobsOverride.xml" />
   <Text file="%ModDir%/Jobs/JobText.xml" />
