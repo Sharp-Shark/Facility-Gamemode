@@ -91,6 +91,7 @@ global_lootTables = {
 		{'weldingfueltank', 0.4, 4, 1},
 		{'oxygentank', 0.4, 4, 1},
 		{'batterycell', 0.4, 4, 1},
+		{'midazolam', 0.4, 2, 1},
 		{'idcardstaff', 0.6, 1, 1},
 		{'idcardenforcerguard', 0.2, 1, 1}
 	},
@@ -127,6 +128,7 @@ global_lootTables = {
 		{'divingmask', 0.6, 2, 1},
 		{'oxygentank', 0.55, 3, 1},
 		{'antibleeding1', 0.5, 3, 1},
+		{'midazolam', 0.2, 2, 1},
 		{'antidama1', 0.2, 2, 1},
 		{'bodyarmor', 0.2, 2, 1},
 		{'revolver', 0.6, 1, 1},
@@ -142,6 +144,7 @@ global_lootTables = {
 		{'extinguisher', 0.5, 1, 1},
 		{'headset', 0.35, 2, 1},
 		{'antibleeding1', 0.5, 3, 1},
+		{'midazolam', 0.2, 2, 1},
 		{'antidama1', 0.2, 2, 1},
 		{'bodyarmor', 0.2, 2, 1},
 		{'revolver', 0.6, 1, 1},

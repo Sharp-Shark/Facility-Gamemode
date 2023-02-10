@@ -2,9 +2,6 @@ print('...')
 print('[!] Loading Facility Gamemode...')
 
 -- CUSTOMIZABLE VARIABLE
-global_admins = {['Sharp-Shark'] = true} -- Determines who can use the admin commands
-
--- CUSTOMIZABLE VARIABLE
 global_huskMode = false -- Husk Gamemode
 
 -- CUSTOMIZABLE VARIABLE

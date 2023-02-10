@@ -92,7 +92,7 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (createdCharac
 		elseif createdCharacter.HasJob('assistant') then
 			messageClient(client, 'info', 'You are a civilian member of the Terrorist faction, equipped with almost nothing. Work with your fellow inmates and JET to escape this wretched place!')
 			-- Set Team
-			createdCharacter.TeamID = 2
+			createdCharacter.TeamID = CharacterTeamType.Team2
 			createdCharacter.UpdateTeam()
 		end
 		
@@ -108,7 +108,7 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (createdCharac
 				spawnPlayerMilitant(client, 'JET')
 				messageClient(client, 'info', 'The Jovian Elite Troops or JET - a militant member of the Terrorist militia, equipped with heavy weaponry, meds, armor and a high-level card. Help inmates escape and kill the monsters and everyone working for Nexpharma.')
 				-- Set Team
-				createdCharacter.TeamID = 2
+				createdCharacter.TeamID = CharacterTeamType.Team2
 				createdCharacter.UpdateTeam()
 			else
 				Game.ExecuteCommand('say Terrorists are out of tickets - no more respawns!')
