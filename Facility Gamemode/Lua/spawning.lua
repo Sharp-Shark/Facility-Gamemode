@@ -1,7 +1,7 @@
 -- Spawns a monster at a containment cell, gives a player control of it, tps their body to it and kills it too (free meal)
 function spawnPlayerMonster (client, species)
 	-- Guard clause
-	local character = client.character
+	local character = client.Character
 	if character.IsBot then return end
 
 	-- Spawn monster at containment cell
@@ -19,15 +19,11 @@ end
 
 -- Removes the items of respawnees, gives them their proper loadout (be it JET or MERCS) and teleports them to their spawn area
 function spawnPlayerMilitant (client, team)
-	local character = client.character
+	local character = client.Character
 	-- Guard clause
 	if character == nil or character.SpeciesName ~= 'human' or character.IsDead then return end
 
 	global_militantPlayers[client.Name] = true
-	
-	-- Heal incase player was hurt
-	Game.ExecuteCommand('heal ' .. character.Info.Name)
-	Game.ExecuteCommand('revive ' .. character.Info.Name)
 	
 	-- Remove player items
 	Timer.Wait(function ()
@@ -70,7 +66,7 @@ end
 -- Execute when players job item are given - be it a respawn wave, or the start of the match
 Hook.Add("character.giveJobItems", "monsterAndRespawns", function (character)
 	local client = findClientByCharacter(character)
-	if not client then return end
+	if client == nil then return end
 
 	-- Executed on match start to spawn in the monsters
 	if character.Submarine.Info.Name == '_Facility' then
