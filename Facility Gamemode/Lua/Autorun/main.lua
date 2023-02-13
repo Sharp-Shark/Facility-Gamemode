@@ -39,7 +39,8 @@ end
 print('...')
 
 -- Indexes for Important Indexes (such as MERCS and JET spawn, monster spawn and escape area)
-global_waypointIndexes = {monsterSpawn = 1014, terroristSpawn = 582, nexpharmaSpawn = 628, escape = 504}
+-- lua n = nil d = 999999 for i,w in pairs(Submarine.MainSub.GetWaypoints(false)) do if distance(Character.CharacterList[1].WorldPosition, w.WorldPosition) < d then n = i d = distance(Character.CharacterList[1].WorldPosition, w.WorldPosition) end end print(n)
+global_waypointIndexes = {monsterSpawn = 859, terroristSpawn = 1123, nexpharmaSpawn = 1134, escape = 1051}
 
 -- Husk Control cuz WHY NOT?!
  Game.EnableControlHusk(true)

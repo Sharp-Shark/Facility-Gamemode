@@ -9,7 +9,7 @@ Hook.Add("chatMessage", "helpCommand", function (message, client)
 	messageClient(client, 'blue', '/admin <text> - sends text to admin.')
 	messageClient(client, 'blue', '/players - gives a list of players and their roles.')
 	messageClient(client, 'blue', '/tickets - tells JET and MERCS ticket count.')
-	if client.HasPermissions then
+	if client.HasPermission(ClientPermissions.ConsoleCommands) then
 		messageClient(client, 'blue', '-HOST COMMANDS-')
 		messageClient(client, 'blue', '/am_spect - sets yourself as a spectator.')
 		messageClient(client, 'blue', '/reset_spect - empties spectator list.')
@@ -74,7 +74,7 @@ end)
 -- Declare self as Spectator (ADMIN ONLY)
 Hook.Add("chatMessage", "declareSpectator", function (message, client)
     if message ~= '/am_spect' then return end
-	if not client.HasPermissions then messageClient(client, 'blue', 'Admin only command!') return true end
+	if not client.HasPermission(ClientPermissions.ConsoleCommands) then messageClient(client, 'blue', 'Admin only command!') return true end
 	
 	messageClient(client, 'blue', 'You are now in the spectators list.')
 	global_spectators[client.Name] = true
@@ -85,7 +85,7 @@ end)
 -- Reset Spectator list (ADMIN ONLY)
 Hook.Add("chatMessage", "resetSpectator", function (message, client)
     if message ~= '/reset_spect' then return end
-	if not client.HasPermissions then messageClient(client, 'blue', 'Admin only command!') return true end
+	if not client.HasPermission(ClientPermissions.ConsoleCommands) then messageClient(client, 'blue', 'Admin only command!') return true end
 	
 	messageClient(client, 'blue', 'Spectator list reset.')
 	global_spectators = {}
@@ -96,7 +96,7 @@ end)
 -- Toggle Husk Gamemode (ADMIN ONLY)
 Hook.Add("chatMessage", "toggleHuskMode", function (message, client)
     if message ~= '/huskmode' then return end
-	if not client.HasPermissions then messageClient(client, 'blue', 'Admin only command!') return true end
+	if not client.HasPermission(ClientPermissions.ConsoleCommands) then messageClient(client, 'blue', 'Admin only command!') return true end
 	
 	global_huskMode = not global_huskMode
 	if global_huskMode then

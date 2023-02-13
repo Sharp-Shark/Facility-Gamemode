@@ -28,7 +28,7 @@ Hook.Add("character.death", "characterDied", function (character)
 		-- If dead is terrorist and killer is nexpharma then...
 		elseif isCharacterTerrorist(character) and isCharacterNexpharma(character.LastAttacker) then
 			global_nexpharmaTickets = global_nexpharmaTickets + 0.5
-			Game.ExecuteCommand('say Nexpharma has gained a 0.5 tickets - human target eliminated! ' .. global_nexpharmaTickets .. ' tickets left!' )
+			Game.ExecuteCommand('say Nexpharma has gained 0.5 tickets - human target eliminated! ' .. global_nexpharmaTickets .. ' tickets left!' )
 		end
 	end
 
@@ -90,9 +90,9 @@ Hook.Add("character.death", "characterDied", function (character)
 			end
 			Timer.Wait(function ()
 				Game.EndGame()
-			end, 11*1000+500)
+			end, 11.5*1000)
 		end
-	end, 5000)
+	end, 5*1000)
 
 	return true
 end)
