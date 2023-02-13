@@ -39,7 +39,7 @@ end
 print('...')
 
 -- Indexes for Important Indexes (such as MERCS and JET spawn, monster spawn and escape area)
--- lua n = nil d = 999999 for i,w in pairs(Submarine.MainSub.GetWaypoints(false)) do if distance(Character.CharacterList[1].WorldPosition, w.WorldPosition) < d then n = i d = distance(Character.CharacterList[1].WorldPosition, w.WorldPosition) end end print(n)
+-- lua name = 'Sharp-Shark' n = nil d = 999999 for i,w in pairs(Submarine.MainSub.GetWaypoints(false)) do if distance(findClientByUsername(name).Character.WorldPosition, w.WorldPosition) < d then n = i d = distance(findClientByUsername(name).Character.WorldPosition, w.WorldPosition) end end print(n)
 global_waypointIndexes = {monsterSpawn = 859, terroristSpawn = 1123, nexpharmaSpawn = 1134, escape = 1051}
 
 -- Husk Control cuz WHY NOT?!
@@ -69,6 +69,10 @@ global_monsterCount = {mantis = 0, crawler = 0}
 
 -- Respawns escapee as militant and rewards team with 1 tickets
 function promoteEscapee (client)
+
+	-- Heal escapee incase he was hurt
+	Game.ExecuteCommand('heal ' .. client.Character.Name)
+	Game.ExecuteCommand('revive ' .. client.Character.Name)
 
 	-- Spawn escapee as militant
 	global_militantPlayers[client.Name] = true
