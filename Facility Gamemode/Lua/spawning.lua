@@ -4,14 +4,16 @@ function spawnPlayerMonster (client, species)
 	local character = client.Character
 	if character.IsBot then return end
 
+	local items = findItemsByTag('fg_monsterspawn')
+
 	-- Spawn monster at containment cell
-	Entity.Spawner.AddCharacterToSpawnQueue(species .. 'admin', Submarine.MainSub.GetWaypoints(false)[global_waypointIndexes.monsterSpawn].WorldPosition, function ()
+	Entity.Spawner.AddCharacterToSpawnQueue(species .. 'admin', items[math.random(#items)].WorldPosition, function ()
 		-- Give player control of their monster (and bump monster counters)
 		Game.ExecuteCommand('setclientcharacter "' .. client.Name .. '" ' .. species .. 'admin ' .. global_monsterCount[species])
 		global_monsterCount[species] = global_monsterCount[species] + 1
 		-- Teleport and kill their human bodies
 		Game.ExecuteCommand('kill "' .. character.Info.Name .. '"')
-		character.TeleportTo(Submarine.MainSub.GetWaypoints(false)[global_waypointIndexes.monsterSpawn].WorldPosition)
+		character.TeleportTo(items[math.random(#items)].WorldPosition)
 	end)
 
 	return true
@@ -44,7 +46,8 @@ function spawnPlayerMilitant (client, team)
 			itemCount = itemCount + 1
 		end
 		-- Teleport player into battlefield
-		character.TeleportTo(Submarine.MainSub.GetWaypoints(false)[global_waypointIndexes.terroristSpawn].WorldPosition)
+		local items = findItemsByTag('fg_terroristspawn')
+		character.TeleportTo(items[math.random(#items)].WorldPosition)
 	elseif team == 'MERCS' then
 		-- Give items
 		local itemCount = 1
@@ -57,7 +60,8 @@ function spawnPlayerMilitant (client, team)
 			itemCount = itemCount + 1
 		end
 		-- Teleport player into battlefield
-		character.TeleportTo(Submarine.MainSub.GetWaypoints(false)[global_waypointIndexes.nexpharmaSpawn].WorldPosition)
+		local items = findItemsByTag('fg_nexpharmaspawn')
+		character.TeleportTo(items[math.random(#items)].WorldPosition)
 	end
 
 	return true
@@ -69,7 +73,7 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (character)
 	if client == nil then return end
 
 	-- Executed on match start to spawn in the monsters
-	if character.Submarine.Info.Name == '_Facility' then
+	if character.Submarine.Info.Name == Submarine.MainSub.Info.Name then
 		-- Captain is Mutated Mantis
 		if character.HasJob('captain') then
 			spawnPlayerMonster(client, 'mantis')

@@ -38,10 +38,6 @@ if table.size(global_failedFiles) > 0 then
 end
 print('...')
 
--- Indexes for Important Indexes (such as MERCS and JET spawn, monster spawn and escape area)
--- lua name = 'Sharp-Shark' n = nil d = 999999 for i,w in pairs(Submarine.MainSub.GetWaypoints(false)) do if distance(findClientByUsername(name).Character.WorldPosition, w.WorldPosition) < d then n = i d = distance(findClientByUsername(name).Character.WorldPosition, w.WorldPosition) end end print(n)
-global_waypointIndexes = {monsterSpawn = 859, terroristSpawn = 1123, nexpharmaSpawn = 1134, escape = 1051}
-
 -- Husk Control cuz WHY NOT?!
  Game.EnableControlHusk(true)
 
@@ -107,13 +103,15 @@ end)
 
 -- Executes constantly
 Hook.Add("think", "thinkCheck", function ()
+	if not Game.RoundStarted then return end
 
 	global_thinkCounter = global_thinkCounter + 1
 	
 	if global_thinkCounter % 30 == 0 then
+		local items = findItemsByTag('fg_extractionpoint')
 		for player in Client.ClientList do
 			if player.Character ~= nil and player.Character.SpeciesName == 'human' and (player.Character.HasJob('assistant') or player.Character.HasJob('mechanic') or player.Character.HasJob('engineer')) and
-			distance(Submarine.MainSub.GetWaypoints(false)[global_waypointIndexes.escape].WorldPosition, player.Character.WorldPosition) < 200 and not global_militantPlayers[player.Name] then
+			distance(items[math.random(#items)].WorldPosition, player.Character.WorldPosition) < 200 and not global_militantPlayers[player.Name] then
 				promoteEscapee(player)
 			end
 		end

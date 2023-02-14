@@ -62,6 +62,17 @@ function isCharacterStaff (character)
 	end
 end
 
+-- Returns first item found with the tag
+function findItemsByTag (tag, alsoFromConnectedSubs)
+	items = {}
+	for item in Submarine.MainSub.GetItems(alsoFromConnectedSubs or false) do
+		if item.HasTag(tag) then
+			table.insert(items, item)
+		end
+	end
+	return items
+end
+
 -- Returns the client whose client matches
 function findClientByCharacter (character)
 	for player in Client.ClientList do
