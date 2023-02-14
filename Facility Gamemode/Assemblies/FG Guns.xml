@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ItemAssembly name="FG Guns" description="" hideinmenus="false">
+  <Item name="" identifier="securesteelcabinet" ID="4082" rect="-32,64,52,80" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,225,200,255" InventoryIconColor="255,225,200,255" ContainerColor="255,225,200,255" InvulnerableToDamage="False" Tags="container,securecontainer,locker,fg_guns" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.84" HiddenInGame="False" conditionpercentage="100">
+    <ItemContainer ContainableRestrictions="" AutoFill="False" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="ItemMsgInteractSelect" contained=",,,,,,,,,,,,,,,,,,,">
+      <requireditem items="w1" type="Picked" optional="false" ignoreineditor="true" excludebroken="true" requireempty="false" excludefullcondition="false" targetslot="-1" allowvariants="true" rotation="0" setactive="false" msg="ItemMsgUnauthorizedAccess" />
+    </ItemContainer>
+  </Item>
+  <Item name="" identifier="emergencylight" ID="4081" rect="-30,-15,48,8" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,225,200,255" InventoryIconColor="255,225,200,255" ContainerColor="255,225,200,255" InvulnerableToDamage="False" Tags="smallitem,light" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.8" HiddenInGame="False" conditionpercentage="100">
+    <LightComponent Range="100" CastShadows="False" DrawBehindSubs="False" IsOn="True" Flicker="0" FlickerSpeed="1" PulseFrequency="0" PulseAmount="0" BlinkFrequency="0" LightColor="255,155,55,50" MinVoltage="0" PowerConsumption="0" Voltage="1" VulnerableToEMP="True" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+    <ConnectionPanel Locked="False" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="ItemMsgRewireScrewdriver">
+      <requireditem items="screwdriver" type="Equipped" optional="false" ignoreineditor="false" excludebroken="true" requireempty="false" excludefullcondition="false" targetslot="-1" allowvariants="true" rotation="0" setactive="false" />
+      <input name="toggle" />
+      <input name="set_state" />
+      <input name="set_color" />
+    </ConnectionPanel>
+  </Item>
+  <Structure name="Label Icon Weapons" identifier="labelsiconweapons" ID="4080" rect="-25,-18,63,62" MaxHealth="100" CrushDepth="0" SpriteColor="255,225,200,155" UseDropShadow="False" DropShadowOffset="0,0" Scale="0.15" TextureScale="1,1" TextureOffset="0,0" NoAITarget="False" DisallowedUpgrades="" SpriteDepth="0.75" HiddenInGame="False" />
+</ItemAssembly>

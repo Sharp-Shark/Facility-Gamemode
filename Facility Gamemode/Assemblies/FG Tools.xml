@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ItemAssembly name="FG Tools" description="" hideinmenus="false">
+  <Item name="" identifier="suppliescabinet" ID="4084" rect="-22,48,60,66" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,15" InventoryIconColor="255,255,255,15" ContainerColor="255,255,255,15" InvulnerableToDamage="False" Tags="suppliescontainer,container,fg_office1" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.73999995" HiddenInGame="False" conditionpercentage="100">
+    <ItemContainer ContainableRestrictions="" AutoFill="False" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="ItemMsgInteractSelect" contained=",,,,," />
+  </Item>
+  <Item name="" identifier="label" ID="4085" rect="-25,-24,64,16" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="0,0,0,100" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" InvulnerableToDamage="False" Tags="" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.85" HiddenInGame="False" conditionpercentage="100">
+    <ItemLabel Padding="0,0,0,0" Text="Supplies" IgnoreLocalization="False" TextColor="255,255,255,255" TextScale="1" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="" />
+  </Item>
+  <Structure name="Tool Rack" identifier="opdeco_toolrack2" ID="4086" rect="-19,49,54,69" MaxHealth="100" CrushDepth="0" SpriteColor="255,255,255,255" UseDropShadow="False" DropShadowOffset="0,0" Scale="0.5" TextureScale="1,1" TextureOffset="0,0" NoAITarget="False" DisallowedUpgrades="" SpriteDepth="0.77" HiddenInGame="False" />
+  <Structure name="Fin Deco 10" identifier="finadeco10" ID="4087" rect="-33,52,76,74" MaxHealth="100" CrushDepth="0" SpriteColor="55,55,55,255" UseDropShadow="False" DropShadowOffset="0,0" Scale="1.05" TextureScale="1,1" TextureOffset="0,0" NoAITarget="False" DisallowedUpgrades="" SpriteDepth="0.78499997" HiddenInGame="False" />
+</ItemAssembly>

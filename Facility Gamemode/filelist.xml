@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Facility Gamemode" modversion="1.5.6" corepackage="False" steamworkshopid="2915017487" gameversion="0.21.6.0">
+<contentpackage name="Facility Gamemode" modversion="1.6.0" corepackage="False" steamworkshopid="2915017487" gameversion="0.21.6.0">
   <Character file="%ModDir%/Mantisadmin/Mantisadmin.xml" />
   <Character file="%ModDir%/Crawleradmin/Crawleradmin.xml" />
   <Character file="%ModDir%/Huskoverride/Humanhusk/Humanhusk.xml" />
@@ -23,4 +23,26 @@
   <Submarine file="%ModDir%/Submarines/_Monorail512.sub" />
   <Submarine file="%ModDir%/Submarines/_Respawn.sub" />
   <Submarine file="%ModDir%/Submarines/_Facility.sub" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Ammo.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Armory.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Diving.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Extraction Point.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Guns.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Med1.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Med2.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Monster Spawn.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Nexpharma Spawn.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Office1.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Office2.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Office3.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Office4.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Secure Door.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Shelter.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Supplies1.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Supplies2.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Table.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Terrorist Spawn.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Tools.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Trash.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Weaponry.xml" />
 </contentpackage>

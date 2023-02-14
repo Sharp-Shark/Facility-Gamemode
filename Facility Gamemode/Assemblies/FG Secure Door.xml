@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ItemAssembly name="FG Secure Door" description="" hideinmenus="false">
+  <Structure name="Large Inside Wall Tie V3" identifier="inwallltiev3" ID="4087" rect="-32,68,54,108" MaxHealth="100" CrushDepth="0" SpriteColor="255,255,255,255" UseDropShadow="False" DropShadowOffset="0,0" Scale="0.5" TextureScale="1,1" TextureOffset="0,0" NoAITarget="True" DisallowedUpgrades="" SpriteDepth="0.895" HiddenInGame="False" />
+  <Structure name="Large Inside Wall Tie V3" identifier="inwallltiev3" ID="4086" rect="-30,68,54,108" flippedx="true" MaxHealth="100" CrushDepth="0" SpriteColor="255,255,255,255" UseDropShadow="False" DropShadowOffset="0,0" Scale="0.5" TextureScale="1,1" TextureOffset="0,0" NoAITarget="True" DisallowedUpgrades="" SpriteDepth="0.895" HiddenInGame="False" />
+  <Structure name="Small Vertical Back 2" identifier="smallverticalback2" ID="4089" rect="-31,112,32,208" flippedy="true" MaxHealth="100" CrushDepth="0" SpriteColor="255,255,255,255" UseDropShadow="False" DropShadowOffset="0,0" Scale="1" TextureScale="1,1" TextureOffset="0,0" NoAITarget="False" DisallowedUpgrades="" SpriteDepth="0.9" HiddenInGame="False" />
+  <Structure name="Small Vertical Back 2" identifier="smallverticalback2" ID="4088" rect="-9,112,32,208" flippedx="true" flippedy="true" MaxHealth="100" CrushDepth="0" SpriteColor="255,255,255,255" UseDropShadow="False" DropShadowOffset="0,0" Scale="1" TextureScale="1,1" TextureOffset="0,0" NoAITarget="False" DisallowedUpgrades="" SpriteDepth="0.9" HiddenInGame="False" />
+  <Item name="" identifier="doorwbuttons" ID="4090" rect="-16,112,24,208" linked="4091" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" InvulnerableToDamage="False" Tags="door" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.51" HiddenInGame="False" conditionpercentage="100">
+    <Door OpeningSpeed="3" ClosingSpeed="3" ToggleCoolDown="1" IsOpen="False" UseBetweenOutpostModules="True" BotsShouldKeepOpen="False" PickingTime="20" CanBePicked="True" AllowInGameEditing="True" Msg="ItemMsgForceOpenCrowbar">
+      <requireditem items="crowbar" type="Equipped" optional="true" ignoreineditor="false" excludebroken="true" requireempty="false" excludefullcondition="false" targetslot="-1" allowvariants="true" rotation="0" setactive="false" />
+      <requireditem items="" type="Picked" optional="true" ignoreineditor="false" excludebroken="true" requireempty="false" excludefullcondition="false" targetslot="-1" allowvariants="true" rotation="0" setactive="false" />
+    </Door>
+    <Repairable DeteriorationSpeed="0" MinDeteriorationDelay="0" MaxDeteriorationDelay="0" MinDeteriorationCondition="50" RepairThreshold="80" FixDurationLowSkill="25" FixDurationHighSkill="10" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="ItemMsgRepairWrench">
+      <requireditem items="wrench" type="Equipped" optional="false" ignoreineditor="false" excludebroken="true" requireempty="false" excludefullcondition="false" targetslot="-1" allowvariants="true" rotation="0" setactive="false" />
+    </Repairable>
+    <ConnectionPanel Locked="False" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="ItemMsgRewireScrewdriver">
+      <requireditem items="screwdriver" type="Equipped" optional="false" ignoreineditor="false" excludebroken="true" requireempty="false" excludefullcondition="false" targetslot="-1" allowvariants="true" rotation="0" setactive="false" />
+      <input name="toggle" />
+      <input name="set_state" />
+      <output name="state_out" />
+      <output name="condition_out" />
+    </ConnectionPanel>
+  </Item>
+  <Gap ID="4091" horizontal="true" hiddeningame="false" rect="-16,112,24,208" />
+</ItemAssembly>
