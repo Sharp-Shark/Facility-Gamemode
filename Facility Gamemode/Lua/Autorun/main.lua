@@ -218,6 +218,57 @@ Hook.Add("husk.clientControl", "humanTransformed", function (client, husk)
 	return true
 end)
 
+-- Applies the settings to the server
+global_serverSettings = {
+    AllowDisguises = false,
+    AllowFileTransfers = true,
+    AllowFriendlyFire = true,
+    AllowLinkingWifiToChat = false,
+    AllowModDownloads = true,
+    AllowModeVoting = false,
+    AllowRagdollButton = true,
+    AllowRespawn = true,
+    AllowRewiring = false,
+    AllowSpectating = true,
+    AllowSubVoting = false,
+    BotCount = 0,
+    DisableBotConversations = true,
+    ExtraCargo = {},
+    GameModeIdentifier = 'sandbox',
+    KarmaEnabled = false,
+    KillableNPCs = true,
+    LockAllDefaultWires = true,
+    LosMode = 2,--Opaque    
+    MaxTransportTime = 5,--Duration of respawn transport
+    MinRespawnRatio = 0,--Minimun players to respawn
+    ModeSelectionMode = 0,--Manual
+    MonsterEnabled = {},
+    PlayStyle = 3,--Rampage
+    RespawnInterval = 3*60,
+    SelectedShuttle = '_Respawn',
+    SelectedSubmarine = '_Facility',
+    ServerDetailsChanged = true,
+    ShowEnemyHealthBars = 0,
+    SubSelectionMode = 0,--Manual
+    TraitorsEnabled = 0,
+    UseRespawnShuttle = true,
+    VoiceChatEnabled = true
+}
+
+-- Applies settings to server
+for setting, value in pairs(global_serverSettings) do
+    if not pcall(function ()
+        Game.ServerSettings[setting] = value
+    end) then
+        LuaUserData.MakeMethodAccessible(Descriptors['Barotrauma.Networking.ServerSettings'], 'set_' .. setting)
+        Game.ServerSettings['set_' .. setting](value)
+    end
+end
+-- Actually applies the settings
+Game.ServerSettings.ForcePropertyUpdate()
+-- Set difficulty to 0%
+Game.NetLobbyScreen.SetLevelDifficulty(0)
+
 -- Sucess Message
 print('[!] Facility Gamemode by Sharp-Shark!')
 print('...')

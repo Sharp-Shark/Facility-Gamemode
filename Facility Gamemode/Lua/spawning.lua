@@ -129,7 +129,7 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (character)
 end)
 
 -- Executes when players spawn
-Hook.Add("character.created", "monsterAndRespawns", function (createdCharacter)
+Hook.Add("character.created", "assignPlayerTeams", function (createdCharacter)
 	if createdCharacter == nil or createdCharacter.SpeciesName ~= 'human' then return end
 	
 	-- Set Player TeamID to 2 if he's a terrorist

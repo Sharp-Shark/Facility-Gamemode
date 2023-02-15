@@ -21,7 +21,7 @@ end)
 
 -- Communicate with admin
 Hook.Add("chatMessage", "callAdmin", function (message, client)
-    if message.sub(message, 1, 7) ~= "/admin " and message ~= '/admin' then return end
+    if string.sub(message, 1, 7) ~= "/admin " and message ~= '/admin' then return end
 	
 	if #message < 8 then
 		Game.ExecuteCommand('say ' .. client.Name .. ' requires an admin/host.')
