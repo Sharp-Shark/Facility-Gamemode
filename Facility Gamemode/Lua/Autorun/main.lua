@@ -1,14 +1,20 @@
 print('...')
 print('[!] Loading Facility Gamemode...')
 
--- CUSTOMIZABLE VARIABLE
-global_huskMode = false -- Husk Gamemode
+-- Husk Gamemode
+global_huskMode = false
 
--- CUSTOMIZABLE VARIABLE
-global_allowEnd = true -- Disables auto round end - turn to false for testing
+-- Disables auto round end - turn to false for testing
+global_allowEnd = true
 
--- CUSTOMIZABLE VARIABLE
-global_autoJob = true -- Automatically give players a job - turn to false for testing
+-- Automatically give players a job - turn to false for testing
+global_autoJob = true
+
+-- Server message text aka server description
+global_serverMessageText = [[MOD BY Sharp-Shark! DO /help FOR COMMANDS.
+DISCORD: https://discord.gg/c7Qnp8S4yB
+
+]]
 
 -- Load other files
 global_loadedFiles = {autoJob = false, commands = false, death = false, loadoutTables = false, lootTables = false, spawning = false, utilities = false}
@@ -103,11 +109,18 @@ end)
 
 -- Executes constantly
 Hook.Add("think", "thinkCheck", function ()
-	if not Game.RoundStarted then return end
-
 	global_thinkCounter = global_thinkCounter + 1
 	
+	-- Only execute once every 1/2 a second for performance
 	if global_thinkCounter % 30 == 0 then
+		if string.sub(Game.ServerSettings.ServerMessageText, 1, #global_serverMessageText) ~= global_serverMessageText then
+			Game.ServerSettings.ServerMessageText = global_serverMessageText .. Game.ServerSettings.ServerMessageText
+		end
+	
+		-- Only execute the following code if the round has started
+		if not Game.RoundStarted then return end
+		
+		-- Check for escapees
 		local items = findItemsByTag('fg_extractionpoint')
 		for player in Client.ClientList do
 			if player.Character ~= nil and player.Character.SpeciesName == 'human' and (player.Character.HasJob('assistant') or player.Character.HasJob('mechanic') or player.Character.HasJob('engineer')) and
