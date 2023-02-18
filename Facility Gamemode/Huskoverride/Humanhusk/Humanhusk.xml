@@ -9,13 +9,13 @@
   <bloodemitter particle="blood" particleamount="5" anglemin="0" anglemax="0" scalemin="1" scalemax="1" velocitymin="0" velocitymax="0" emitinterval="0" particlespersecond="0" highqualitycollisiondetection="False" copyentityangle="False" />
   <bloodemitter particle="waterblood" particleamount="1" anglemin="0" anglemax="0" scalemin="1" scalemax="1" velocitymin="0" velocitymax="0" emitinterval="0" particlespersecond="0" highqualitycollisiondetection="False" copyentityangle="False" />
   <health
-    vitality="80"
+    vitality="100"
 	StunImmunity="false"
 	PoisonImmunity="true"
 	doesbleed="true"
-	bleedingreduction="2.5"
-	burnreduction="2.5"
-    constanthealthregeneration="2.5"
+	bleedingreduction="1"
+	burnreduction="1"
+    constanthealthregeneration="1"
     healthregenerationwheneating="0"
 	applyafflictioncolors="true"
 	UseHealthWindow="False">

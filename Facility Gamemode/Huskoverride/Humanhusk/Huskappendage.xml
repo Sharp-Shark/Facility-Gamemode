@@ -17,7 +17,7 @@
       force="10"
       applyforceonlimbs="0,6">
       <Affliction identifier="bitewounds" strength="15" />
-      <Affliction identifier="huskstun" strength="20"/>
+      <Affliction identifier="huskstun" strength="24"/>
       <Affliction identifier="stun" strength="0.1" />
     </attack>
   </limb>
