@@ -218,7 +218,7 @@ Hook.Add("husk.clientControl", "humanTransformed", function (client, husk)
 	return true
 end)
 
--- Applies the settings to the server
+-- Server settings to be applied
 global_serverSettings = {
     AllowDisguises = false,
     AllowFileTransfers = true,
@@ -244,7 +244,7 @@ global_serverSettings = {
     ModeSelectionMode = 0,--Manual
     MonsterEnabled = {},
     PlayStyle = 3,--Rampage
-    RespawnInterval = 3*60,
+    RespawnInterval = 2*60,
     SelectedShuttle = '_Respawn',
     SelectedSubmarine = '_Facility',
     ServerDetailsChanged = true,

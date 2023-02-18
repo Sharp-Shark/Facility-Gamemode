@@ -1,11 +1,22 @@
 -- Execugte when a character dies
 Hook.Add("character.death", "characterDied", function (character)
-	if character == nil or global_endGame then return end
+	if character == nil or global_endGame or character.IsBot then return end
 	
 	-- Reward a team for target elimination
 	if character.LastAttacker ~= nil and character.LastAttacker.SpeciesName == 'human' then
+		-- If dead is husk and...
+		if character.SpeciesName == 'humanhusk' then
+			-- and killer is terrorist then...
+			if isCharacterTerrorist(character.LastAttacker) then
+				global_terroristTickets = global_terroristTickets + 2
+				Game.ExecuteCommand('say Terrorists have gained 0.5 tickets - infected eliminated! ' .. global_terroristTickets .. ' tickets left!' )
+			-- and killer is nexpharma then...
+			elseif isCharacterNexpharma(character.LastAttacker) then
+				global_nexpharmaTickets = global_nexpharmaTickets + 2
+				Game.ExecuteCommand('say Nexpharma has gained 0.5 tickets - infected eliminated! ' .. global_nexpharmaTickets .. ' tickets left!' )
+			end
 		-- If dead is monster and...
-		if character.SpeciesName ~= 'human' then
+		elseif character.SpeciesName ~= 'human' then
 			-- and killer is terrorist then...
 			if isCharacterTerrorist(character.LastAttacker) then
 				global_terroristTickets = global_terroristTickets + 2

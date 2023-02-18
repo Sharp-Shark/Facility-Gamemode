@@ -60,8 +60,8 @@ global_lootTables = {
 		{'oxygentank', 0.4, 4, 1},
 		{'batterycell', 0.4, 4, 1},
 		{'idcardenforcerguard', 0.3, 1, 1},
-		{'idcardeliteguard', 0.1, 1, 1},
-		{'idcardoverseer', 0.1, 1, 1}
+		{'idcardeliteguard', 0.2, 1, 1},
+		{'idcardoverseer', 0.2, 1, 1}
 	},
 	fg_supplies1 = {
 		{'antibleeding2', 0.3, 3, 1},
@@ -96,24 +96,24 @@ global_lootTables = {
 		{'idcardenforcerguard', 0.2, 1, 1}
 	},
 	fg_med1 = {
+		{'antibloodloss1', 0.4, 3, 1},
 		{'antibleeding2', 0.15, 2, 1},
 		{'antibleeding1', 0.6, 4, 1},
 		{'midazolam', 0.4, 2, 1},
 		{'antidama1', 0.3, 2, 1},
-		{'deusizine', 0.15, 2, 1},
 		{'antibiotics', 0.15, 2, 1},
 		{'opium', 0.5, 3, 1}
 	},
 	fg_med2 = {
-		{'antibloodloss1', 0.3, 3, 1},
+		{'antibloodloss1', 0.5, 5, 1},
 		{'antibleeding2', 0.3, 3, 1},
 		{'antibleeding1', 0.6, 6, 1},
+		{'opium', 0.5, 5, 1},
 		{'midazolam', 0.6, 3, 1},
 		{'antidama1', 0.4, 3, 1},
-		{'deusizine', 0.3, 3, 1},
 		{'antibiotics', 0.3, 3, 1},
-		{'calyxanide', 0.6, 1, 1},
-		{'combatstimulantsyringe', 0.1, 1, 1}
+		{'calyxanide', 0.4, 2, 1},
+		{'combatstimulantsyringe', 0.1, 2, 1}
 	},
 	fg_guns = {
 		{'bodyarmor', 0.5, 1, 1},
