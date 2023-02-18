@@ -40,12 +40,12 @@
     maxstrength="100"
     WeaponsSkillGain="1.0"
 	iconcolors="224,128,64,255">
-    <Effect minstrength="0" maxstrength="90" strengthchange="-2" minspeedmultiplier="1.0" maxspeedmultiplier="0.5" />
+    <Effect minstrength="0" maxstrength="90" strengthchange="-5" minspeedmultiplier="1.0" maxspeedmultiplier="0.35" />
     <Effect minstrength="90" maxstrength="100" strengthchange="-0.5">
       <StatusEffect target="Character" setvalue="true">
         <Affliction identifier="stun" amount="1" />
       </StatusEffect>
-      <StatusEffect target="Character" interval="1" disabledeltatime="true">
+      <StatusEffect target="Character" interval="0.1" disabledeltatime="true">
         <Affliction identifier="huskinfection" amount="10" />
       </StatusEffect>
     </Effect>
