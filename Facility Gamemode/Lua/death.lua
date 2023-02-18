@@ -1,6 +1,6 @@
 -- Execugte when a character dies
 Hook.Add("character.death", "characterDied", function (character)
-	if character == nil or global_endGame or character.IsBot then return end
+	if character == nil or global_endGame or  not character.IsPlayer then return end
 	
 	-- Reward a team for target elimination
 	if character.LastAttacker ~= nil and character.LastAttacker.SpeciesName == 'human' then
