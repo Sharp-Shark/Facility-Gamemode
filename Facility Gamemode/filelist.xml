@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Facility Gamemode" modversion="1.6.3" corepackage="False" steamworkshopid="2915017487" gameversion="0.21.6.0">
+<contentpackage name="Facility Gamemode" modversion="1.7.0" corepackage="False" steamworkshopid="2915017487" gameversion="0.21.6.0">
   <Character file="%ModDir%/Mantisadmin/Mantisadmin.xml" />
   <Character file="%ModDir%/Crawleradmin/Crawleradmin.xml" />
   <Character file="%ModDir%/Huskoverride/Humanhusk/Humanhusk.xml" />
@@ -18,11 +18,12 @@
   <Text file="%ModDir%/Jobs/JobTextRepeats/JobTextRepeat7.xml" />
   <Text file="%ModDir%/Jobs/JobTextRepeats/JobTextRepeat8.xml" />
   <Text file="%ModDir%/Jobs/JobTextRepeats/JobTextRepeat9.xml" />
-  <Submarine file="%ModDir%/Submarines/_Monorail256.sub" />
+  <Submarine file="%ModDir%/Submarines/_Facility.sub" />
   <Submarine file="%ModDir%/Submarines/_Monorail128.sub" />
+  <Submarine file="%ModDir%/Submarines/_Monorail256.sub" />
+  <Submarine file="%ModDir%/Submarines/_Monorail384.sub" />
   <Submarine file="%ModDir%/Submarines/_Monorail512.sub" />
   <Submarine file="%ModDir%/Submarines/_Respawn.sub" />
-  <Submarine file="%ModDir%/Submarines/_Facility.sub" />
   <ItemAssembly file="%ModDir%/Assemblies/FG Ammo.xml" />
   <ItemAssembly file="%ModDir%/Assemblies/FG Armory.xml" />
   <ItemAssembly file="%ModDir%/Assemblies/FG Diving.xml" />
