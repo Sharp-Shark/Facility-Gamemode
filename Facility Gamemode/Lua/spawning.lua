@@ -70,6 +70,12 @@ end
 -- Execute when players job item are given - be it a respawn wave, or the start of the match
 Hook.Add("character.giveJobItems", "monsterAndRespawns", function (character)
 	local client = findClientByCharacter(character)
+	-- Set TeamID to 2 if it's a terrorist
+	if isCharacterTerrorist(character) then
+		character.SetOriginalTeam(CharacterTeamType.Team2)
+		character.UpdateTeam()
+	end
+	-- Guard clause
 	if client == nil then return end
 
 	-- Executed on match start to spawn in the monsters
@@ -126,19 +132,6 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (character)
 	end
 
     return true
-end)
-
--- Executes when players spawn
-Hook.Add("character.created", "assignPlayerTeams", function (createdCharacter)
-	if createdCharacter == nil or createdCharacter.SpeciesName ~= 'human' then return end
-	
-	-- Set Player TeamID to 2 if he's a terrorist
-	if isCharacterTerrorist(createdCharacter) then
-		createdCharacter.SetOriginalTeam(CharacterTeamType.Team2)
-		createdCharacter.UpdateTeam()
-	end
-
-	return true
 end)
 
 global_loadedFiles['spawning'] = true

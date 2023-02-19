@@ -63,7 +63,7 @@ global_playerRole = {}
 global_militantPlayers = {}
 
 -- Respawn tickets for JET and MERCS
-global_terroristTickets = 2.5
+global_terroristTickets = 3
 global_nexpharmaTickets = 5
 
 -- Monster counter for setclientcharacter when multiple players pick the same monster
@@ -145,7 +145,7 @@ Hook.Add("roundStart", "prepareMatch", function (createdCharacter)
 	-- Refresh Monster Count
 	global_monsterCount = {mantis = 0, crawler = 0}
 	-- Refresh Tickets
-	global_terroristTickets = 2.5
+	global_terroristTickets = 3
 	global_nexpharmaTickets = 5
 	-- Enabling cheats is necessary for ExecuteCommand method
 	Game.ExecuteCommand('enablecheats')
@@ -222,7 +222,7 @@ end)
 global_serverSettings = {
     AllowDisguises = false,
     AllowFileTransfers = true,
-    AllowFriendlyFire = true,
+    AllowFriendlyFire = false,
     AllowLinkingWifiToChat = false,
     AllowModDownloads = true,
     AllowModeVoting = false,

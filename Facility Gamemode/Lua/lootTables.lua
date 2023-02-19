@@ -44,7 +44,7 @@ global_lootTables = {
 		{'revolverround', 0.5, 3, 3},
 		{'cigar', 0.6, 2, 1},
 		{'idcardstaff', 0.2, 1, 1},
-		{'idcardenforcerguard', 0.2, 1, 1},
+		{'idcardenforcerguard', 0.3, 1, 1},
 		{'idcardoverseer', 0.05, 1, 1}
 	},
 	fg_office4 = {

@@ -16,7 +16,7 @@ function roleDistribution ()
 	teamCount['guard'] = 0
 	teamCount['inmate'] = 0
 	
-	teamCount['monster'] = math.ceil(unassigned/5)
+	teamCount['monster'] = math.ceil(unassigned/6)
 	unassigned = unassigned - teamCount['monster']
 	
 	teamCount['staff'] = math.ceil(unassigned/4)

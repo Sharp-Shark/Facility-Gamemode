@@ -11,8 +11,9 @@ Hook.Add("chatMessage", "helpCommand", function (message, client)
 	messageClient(client, 'blue', '/tickets - tells JET and MERCS ticket count.')
 	if client.HasPermission(ClientPermissions.ConsoleCommands) then
 		messageClient(client, 'blue', '-HOST COMMANDS-')
-		messageClient(client, 'blue', '/am_spect - sets yourself as a spectator.')
-		messageClient(client, 'blue', '/reset_spect - empties spectator list.')
+		messageClient(client, 'blue', '/spectator - toggles yourself as spectator.')
+		messageClient(client, 'blue', '/spectator <player> - toggles player as spectator.')
+		messageClient(client, 'blue', '/spectators - list spectators.')
 		messageClient(client, 'blue', '/huskmode - toggles huskmode on or off.')
 	end
 
@@ -72,23 +73,33 @@ Hook.Add("chatMessage", "ticketCount", function (message, client)
 end)
 
 -- Declare self as Spectator (ADMIN ONLY)
-Hook.Add("chatMessage", "declareSpectator", function (message, client)
-    if message ~= '/am_spect' then return end
+Hook.Add("chatMessage", "toggleSpectator", function (message, client)
+    if string.sub(message, 1, 11) ~= "/spectator " and message ~= '/spectator' then return end
 	if not client.HasPermission(ClientPermissions.ConsoleCommands) then messageClient(client, 'blue', 'Admin only command!') return true end
 	
-	messageClient(client, 'blue', 'You are now in the spectators list.')
-	global_spectators[client.Name] = true
+	if message == '/spectator' then
+		global_spectators[client.Name] = not global_spectators[client.Name]
+		messageClient(client, 'blue', 'Now you are ' .. string.rep('not ', global_spectators[client.Name] and 0 or 1) .. 'in the spectators list.')
+	else
+		if not findClientByUsername(string.sub(message, 12)) then 
+			messageClient(client, 'blue', 'There is no player with that username in the lobby.')
+			return true
+		end
+		global_spectators[string.sub(message, 12)] = not global_spectators[string.sub(message, 12)]
+		messageClient(client, 'blue', 'Now ' .. string.sub(message, 12) .. ' is ' .. string.rep('not ', global_spectators[string.sub(message, 12)] and 0 or 1) .. 'in the spectators list.')
+	end
 
     return true
 end)
 
--- Reset Spectator list (ADMIN ONLY)
-Hook.Add("chatMessage", "resetSpectator", function (message, client)
-    if message ~= '/reset_spect' then return end
+-- Declare self as Spectator (ADMIN ONLY)
+Hook.Add("chatMessage", "listSpectator", function (message, client)
+    if message ~= '/spectators' then return end
 	if not client.HasPermission(ClientPermissions.ConsoleCommands) then messageClient(client, 'blue', 'Admin only command!') return true end
 	
-	messageClient(client, 'blue', 'Spectator list reset.')
-	global_spectators = {}
+	for player, value in pairs(global_spectators) do 
+		if value then messageClient(client, 'blue', player .. ' is in the spectators list.') end
+	end
 
     return true
 end)
