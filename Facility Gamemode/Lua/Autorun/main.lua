@@ -103,7 +103,7 @@ Hook.Add("client.connected", "characterDied", function (connectedClient)
 	_If you are a civilian, try and escape to grant your team tickets. Tickets determine the amount of respawns your team has.
 	_If you are a militant, kill the other teams and help the civilians from your team in their quest to escape.
 	
-	_Your preferred job may be overriden by the gamemode's autobalance script, but the script will try and give you your desired job if possible. ALso, only the 1st job in your preferred jobs list matters.]])
+	_Your preferred job may be overriden by the gamemode's autobalance script, but the script will try and give you your desired job if possible. Also, only the 1st job in your preferred jobs list matters.]])
 
 end)
 
