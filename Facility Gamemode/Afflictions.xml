@@ -2,6 +2,45 @@
 <Afflictions>
 
   <Affliction
+    name="Intoxicated"
+    identifier="intoxicated"
+    description="Noxious gases in the air tear through armor, skin and organs."
+    type="intoxicated"
+    targets="human,crawleradmin,mantisadmin"
+    limbspecific="false"
+    indicatorlimb="Torso"
+    showiconthreshold="0"
+    showinhealthscannerthreshold="0"
+    karmachangeonapplied="-10"
+    maxstrength="75"
+    WeaponsSkillGain="1.0"
+	iconcolors="128,224,64,255">
+    <Effect minstrength="0" maxstrength="60" strengthchange="-1" minvitalitydecrease="0" maxvitalitydecrease="1" multiplybymaxvitality="true" />
+    <Effect minstrength="60" maxstrength="75" strengthchange="-1" minvitalitydecrease="1" maxvitalitydecrease="2" multiplybymaxvitality="true" />
+    <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="640,640,128,128" color="106,106,106,255" origin="0,0"/>
+  </Affliction>
+
+  <Affliction
+    name="Justice's Rage"
+    identifier="justice"
+    description="Lady justice is mad at you for being unsportsmanlike."
+    type="justice"
+    targets="human,crawleradmin,mantisadmin"
+    limbspecific="false"
+    indicatorlimb="Torso"
+    showiconthreshold="15"
+    showinhealthscannerthreshold="15"
+    karmachangeonapplied="-10"
+    maxstrength="75"
+    WeaponsSkillGain="1.0"
+    iconcolors="60,0,195,255">
+    <Effect minstrength="0" maxstrength="15" strengthchange="-1" />
+    <Effect minstrength="15" maxstrength="60" strengthchange="-1" minvitalitydecrease="0" maxvitalitydecrease="1" multiplybymaxvitality="true" />
+    <Effect minstrength="60" maxstrength="75" strengthchange="-1" minvitalitydecrease="1" maxvitalitydecrease="2" multiplybymaxvitality="true" />
+    <icon texture="Content/UI/CommandUIAtlas.png" sourcerect="768,896,128,128" origin="0,0"/>
+  </Affliction>
+
+  <Affliction
     name="Stimulated"
     identifier="stimulated"
     description="Healing capabilities are increased."

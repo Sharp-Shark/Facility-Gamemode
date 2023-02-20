@@ -21,6 +21,10 @@ function giveItemCharacter (character, identifier, amount, slot)
 	end
 end
 
+function giveAfflictionCharacter (character, identifier, amount)
+	character.CharacterHealth.ApplyAffliction(character.AnimController.MainLimb, AfflictionPrefab.Prefabs[identifier].Instantiate(amount))
+end
+
 -- Gives the character of the client with the username an amount of an item
 function giveItem (username, identifier, amount)
 	giveItemCharacter(findClientByUsername(username).Character, identifier, amount, nil)

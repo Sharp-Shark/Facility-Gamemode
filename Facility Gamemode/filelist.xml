@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Facility Gamemode" modversion="1.7.1" corepackage="False" steamworkshopid="2915017487" gameversion="0.21.6.0">
+<contentpackage name="Facility Gamemode" modversion="1.8.0" corepackage="False" steamworkshopid="2915017487" gameversion="0.21.6.0">
   <Character file="%ModDir%/Mantisadmin/Mantisadmin.xml" />
   <Character file="%ModDir%/Crawleradmin/Crawleradmin.xml" />
   <Character file="%ModDir%/Huskoverride/Humanhusk/Humanhusk.xml" />
@@ -29,6 +29,7 @@
   <ItemAssembly file="%ModDir%/Assemblies/FG Diving.xml" />
   <ItemAssembly file="%ModDir%/Assemblies/FG Extraction Point.xml" />
   <ItemAssembly file="%ModDir%/Assemblies/FG Guns.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Justice.xml" />
   <ItemAssembly file="%ModDir%/Assemblies/FG Med1.xml" />
   <ItemAssembly file="%ModDir%/Assemblies/FG Med2.xml" />
   <ItemAssembly file="%ModDir%/Assemblies/FG Monster Spawn.xml" />
@@ -41,6 +42,7 @@
   <ItemAssembly file="%ModDir%/Assemblies/FG Shelter.xml" />
   <ItemAssembly file="%ModDir%/Assemblies/FG Supplies1.xml" />
   <ItemAssembly file="%ModDir%/Assemblies/FG Supplies2.xml" />
+  <ItemAssembly file="%ModDir%/Assemblies/FG Surface.xml" />
   <ItemAssembly file="%ModDir%/Assemblies/FG Table.xml" />
   <ItemAssembly file="%ModDir%/Assemblies/FG Terrorist Spawn.xml" />
   <ItemAssembly file="%ModDir%/Assemblies/FG Tools.xml" />

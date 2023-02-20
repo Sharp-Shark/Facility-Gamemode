@@ -53,6 +53,9 @@ global_spectators = {}
 -- Tells you if the round is ending
 global_endGame = false
 
+-- Decontamination starts at 15m15s
+global_decontaminationTimer = 60*15 + 15
+
 -- Counts amounts the think hook has been called, might be reset, don't use it as a total call counter
 global_thinkCounter = 0
 
@@ -110,6 +113,7 @@ end)
 -- Executes constantly
 Hook.Add("think", "thinkCheck", function ()
 	global_thinkCounter = global_thinkCounter + 1
+	local rect = 0
 	
 	-- Only execute once every 1/2 a second for performance
 	if global_thinkCounter % 30 == 0 then
@@ -120,12 +124,56 @@ Hook.Add("think", "thinkCheck", function ()
 		-- Only execute the following code if the round has started
 		if not Game.RoundStarted then return end
 		
+		-- Apply affliction to everyone inside of area for anti-camping
+		for item in findItemsByTag('fg_justice') do
+			rect = item.WorldRect
+			for char in Character.CharacterList do
+				-- Item center is at its top left corner
+				if math.abs(char.WorldPosition.X - rect.X - rect.Width/2) <= rect.Width/2 and math.abs(char.WorldPosition.Y - rect.Y + rect.Height/2) <= rect.Height/2 then
+					giveAfflictionCharacter(char, 'justice', char.MaxHealth * 0.01)
+				end
+			end
+		end
+		
+		-- Decontamination
+		if global_decontaminationTimer > 0 then
+			global_decontaminationTimer = global_decontaminationTimer - 0.5
+			-- Announce time until decontamination at certain time stamps
+			if global_decontaminationTimer == 0 then
+				Game.ExecuteCommand('say Complete facility decontamination has been initiated.')
+			elseif global_decontaminationTimer == 10 then
+				Game.ExecuteCommand('say T-10 seconds until complete facility decontamination.')
+			elseif global_decontaminationTimer == 60 then
+				Game.ExecuteCommand('say T-1 minute until complete facility decontamination.')
+			elseif global_decontaminationTimer % 60 == 0 then
+				Game.ExecuteCommand('say T-' .. global_decontaminationTimer / 60 .. ' minutes until complete facility decontamination.')
+			elseif global_decontaminationTimer <= 10 and global_decontaminationTimer % 1 == 0 then
+				Game.ExecuteCommand('say T-' .. global_decontaminationTimer .. '...')
+			end
+		else
+			-- Apply affliction to everyone outside of surface after decontamination started
+			local chars = {}
+			for item in findItemsByTag('fg_surface') do
+				rect = item.WorldRect
+				for char in Character.CharacterList do
+					-- Item center is at its top left corner
+					if not (math.abs(char.WorldPosition.X - rect.X - rect.Width/2) <= rect.Width/2 and math.abs(char.WorldPosition.Y - rect.Y + rect.Height/2) <= rect.Height/2) then
+						table.insert(chars, char)
+					end
+				end
+			end
+			for char in chars do
+				giveAfflictionCharacter(char, 'intoxicated', char.MaxHealth * 0.01)
+			end
+		end
+		
 		-- Check for escapees
-		local items = findItemsByTag('fg_extractionpoint')
-		for player in Client.ClientList do
-			if player.Character ~= nil and player.Character.SpeciesName == 'human' and (player.Character.HasJob('assistant') or player.Character.HasJob('mechanic') or player.Character.HasJob('engineer')) and
-			distance(items[math.random(#items)].WorldPosition, player.Character.WorldPosition) < 200 and not global_militantPlayers[player.Name] then
-				promoteEscapee(player)
+		for item in findItemsByTag('fg_extractionpoint') do
+			for player in Client.ClientList do
+				if player.Character ~= nil and player.Character.SpeciesName == 'human' and (player.Character.HasJob('assistant') or player.Character.HasJob('mechanic') or player.Character.HasJob('engineer')) and
+				distance(item.WorldPosition, player.Character.WorldPosition) < 200 and not global_militantPlayers[player.Name] then
+					promoteEscapee(player)
+				end
 			end
 		end
 	end
@@ -138,6 +186,8 @@ Hook.Add("roundStart", "prepareMatch", function (createdCharacter)
 
 	-- Resets round end
 	global_endGame = false
+	-- Reset decon timer to 15m15s
+	global_decontaminationTimer = 60*15 + 15
 	-- Refresh think call counter
 	global_thinkCounter = 0
 	-- Refresh Militant Player List
@@ -149,6 +199,9 @@ Hook.Add("roundStart", "prepareMatch", function (createdCharacter)
 	global_nexpharmaTickets = 5
 	-- Enabling cheats is necessary for ExecuteCommand method
 	Game.ExecuteCommand('enablecheats')
+	-- Helps with trams not getting stuck
+	Submarine.MainSub.LockX = false
+	Submarine.MainSub.LockY = true
 	-- Stops the facility from being destroyed by players
 	Game.ExecuteCommand('godmode_mainsub')
 	for sub in Submarine.Loaded do
