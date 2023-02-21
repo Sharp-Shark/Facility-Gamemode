@@ -119,17 +119,17 @@ Hook.Add("jobsAssigned", "automaticJobAssignment", function ()
 		for player in Client.ClientList do
 			if playerName == player.Name then
 				if role == 'monster' then
-					if player.preferredJob == 'captain' then
+					if player.PreferredJob == 'captain' then
 						player.AssignedJob = JobVariant(JobPrefab.Get('captain'), 0)
-					elseif player.preferredJob == 'medicaldoctor' then
+					elseif player.PreferredJob == 'medicaldoctor' then
 						player.AssignedJob = JobVariant(JobPrefab.Get('medicaldoctor'), 0)
 					else
 						player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), 0)
 					end
 				elseif role == 'staff' then
-					if player.preferredJob == 'mechanic' then
+					if player.PreferredJob == 'mechanic' then
 						player.AssignedJob = JobVariant(JobPrefab.Get('mechanic'), 0)
-					elseif player.preferredJob == 'engineer' then
+					elseif player.PreferredJob == 'engineer' then
 						player.AssignedJob = JobVariant(JobPrefab.Get('engineer'), 0)
 					else
 						player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), 0)
