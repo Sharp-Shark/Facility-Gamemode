@@ -53,8 +53,8 @@ global_spectators = {}
 -- Tells you if the round is ending
 global_endGame = false
 
--- Decontamination starts at 15m15s
-global_decontaminationTimer = 60*15 + 15
+-- Decontamination starts at 12m15s
+global_decontaminationTimer = 60*12 + 15
 
 -- Counts amounts the think hook has been called, might be reset, don't use it as a total call counter
 global_thinkCounter = 0
@@ -145,7 +145,7 @@ Hook.Add("think", "thinkCheck", function ()
 				Game.ExecuteCommand('say T-10 seconds until complete facility decontamination.')
 			elseif global_decontaminationTimer == 60 then
 				Game.ExecuteCommand('say T-1 minute until complete facility decontamination.')
-			elseif global_decontaminationTimer % 60 == 0 then
+			elseif global_decontaminationTimer % 120 == 0 then
 				Game.ExecuteCommand('say T-' .. global_decontaminationTimer / 60 .. ' minutes until complete facility decontamination.')
 			elseif global_decontaminationTimer <= 10 and global_decontaminationTimer % 1 == 0 then
 				Game.ExecuteCommand('say T-' .. global_decontaminationTimer .. '...')
@@ -184,10 +184,12 @@ end)
 -- Execute at round start
 Hook.Add("roundStart", "prepareMatch", function (createdCharacter)
 
+	-- Disables friendly fire
+	Game.ServerSettings['AllowFriendlyFire'] = false
 	-- Resets round end
 	global_endGame = false
-	-- Reset decon timer to 15m15s
-	global_decontaminationTimer = 60*15 + 15
+	-- Reset decon timer to 12m15s
+	global_decontaminationTimer = 60*12 + 15
 	-- Refresh think call counter
 	global_thinkCounter = 0
 	-- Refresh Militant Player List
@@ -202,6 +204,8 @@ Hook.Add("roundStart", "prepareMatch", function (createdCharacter)
 	-- Helps with trams not getting stuck
 	Submarine.MainSub.LockX = false
 	Submarine.MainSub.LockY = true
+	-- Disables tripophobia menace
+	Submarine.MainSub.ImmuneToBallastFlora = true
 	-- Stops the facility from being destroyed by players
 	Game.ExecuteCommand('godmode_mainsub')
 	for sub in Submarine.Loaded do
