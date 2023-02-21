@@ -34,8 +34,8 @@
     maxstrength="75"
     WeaponsSkillGain="1.0"
     iconcolors="60,0,195,255">
-    <Effect minstrength="0" maxstrength="15" strengthchange="-1" />
-    <Effect minstrength="15" maxstrength="60" strengthchange="-1" minvitalitydecrease="0" maxvitalitydecrease="1" multiplybymaxvitality="true" />
+    <Effect minstrength="0" maxstrength="30" strengthchange="-1" />
+    <Effect minstrength="30" maxstrength="60" strengthchange="-1" minvitalitydecrease="0" maxvitalitydecrease="1" multiplybymaxvitality="true" />
     <Effect minstrength="60" maxstrength="75" strengthchange="-1" minvitalitydecrease="1" maxvitalitydecrease="2" multiplybymaxvitality="true" />
     <icon texture="Content/UI/CommandUIAtlas.png" sourcerect="768,896,128,128" origin="0,0"/>
   </Affliction>
