@@ -29,7 +29,7 @@ Hook.Add("character.death", "characterDied", function (character)
 		-- If dead is nexpharma and killer is terrorist then...
 		elseif isCharacterNexpharma(character) and isCharacterTerrorist(character.LastAttacker) then
 			-- Reward 0.5 extra tickts if it was by an inmate
-			if findClientByCharacter(character.LastAttacker).Name and not global_militantPlayers[findClientByCharacter(character.LastAttacker).Name] then
+			if findClientByCharacter(character.LastAttacker) and not global_militantPlayers[findClientByCharacter(character.LastAttacker).Name] then
 				global_terroristTickets = global_terroristTickets + 1.0
 				Game.ExecuteCommand('say Terrorists have gained 1 ticket - human eliminated by inmate! ' .. global_terroristTickets .. ' tickets left!' )
 			else
@@ -102,6 +102,8 @@ Hook.Add("character.death", "characterDied", function (character)
 			Timer.Wait(function ()
 				Game.EndGame()
 			end, 11.5*1000)
+			-- Enable friendly fire for fun
+			Game.ServerSettings['AllowFriendlyFire'] = true
 		end
 	end, 5*1000)
 
