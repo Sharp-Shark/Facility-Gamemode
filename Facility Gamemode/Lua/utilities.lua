@@ -5,6 +5,40 @@ table.size = function (t)
 	return size
 end
 
+-- Custom method for nicely printing tables
+table.print = function(t)
+	for key, value in pairs(t) do
+		out = ''
+		if type(key) == 'userdata' then
+			if not pcall(function ()
+				out = out .. key.Name..': '
+			end) then
+				if not pcall(function ()
+					out = out .. key.Info.Name..': '
+				end) then
+					out = out .. 'USERDATA: '
+				end
+			end
+		else
+			out = out .. key..': '
+		end
+		if type(value) == 'userdata' then
+			if not pcall(function ()
+				out = out .. value.Name
+			end) then
+				if not pcall(function ()
+					out = out .. value.Info.Name
+				end) then
+					out = out .. 'USERDATA'
+				end
+			end
+		else
+			out = out .. value
+		end
+		print(out)
+	end
+end
+
 -- Checks distance between two vectors
 function distance (v2a, v2b)
 	return ((v2a.x-v2b.x)^2 + (v2a.y-v2b.y)^2)^0.5
