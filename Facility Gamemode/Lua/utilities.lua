@@ -7,20 +7,26 @@ end
 
 -- Custom method for nicely printing tables
 table.print = function(t)
+	local out = '{ '
+	local first = true
 	for key, value in pairs(t) do
-		out = ''
+		if not first then
+			out = out .. ', '
+		else
+			first = false
+		end
 		if type(key) == 'userdata' then
 			if not pcall(function ()
-				out = out .. key.Name..': '
+				out = out .. key.Name..' = '
 			end) then
 				if not pcall(function ()
-					out = out .. key.Info.Name..': '
+					out = out .. key.Info.Name..' = '
 				end) then
-					out = out .. 'USERDATA: '
+					out = out .. 'USERDATA = '
 				end
 			end
 		else
-			out = out .. key..': '
+			out = out .. key..' = '
 		end
 		if type(value) == 'userdata' then
 			if not pcall(function ()
@@ -35,8 +41,9 @@ table.print = function(t)
 		else
 			out = out .. value
 		end
-		print(out)
 	end
+	out = out .. ' }'
+	print(out)
 end
 
 -- Checks distance between two vectors
