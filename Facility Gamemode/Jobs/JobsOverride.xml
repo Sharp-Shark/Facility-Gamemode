@@ -143,7 +143,7 @@
       <Item identifier="baseballcap" equip="true"/>
       <Item identifier="bodyarmor" equip="true"/>
       <Item identifier="idcardenforcerguard" equip="true"/>
-	  <Item identifier="machinepistol">
+	  <Item identifier="smg">
 	    <Item identifier="smgmagazine"/>
       </Item>
       <Item identifier="smgmagazine"/>
