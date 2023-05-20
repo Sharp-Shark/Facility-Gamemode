@@ -66,6 +66,7 @@
       </StatusEffect>
     </MeleeWeapon>
     <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
+    <SkillRequirementHint identifier="medical" level="30" />
   </Midazolam>
   
   <Override>
@@ -119,6 +120,7 @@
         <Remove />
       </StatusEffect>
     </MeleeWeapon>
+    <SkillRequirementHint identifier="medical" level="60" />
   </Opium>
   </Override>
   

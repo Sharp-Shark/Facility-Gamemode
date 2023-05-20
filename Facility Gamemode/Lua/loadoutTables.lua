@@ -28,9 +28,9 @@ global_nexpharmaLoadout = {
 	{'assaultriflemagazine', 1, 7},
 	{'revolver', 1, 8},
 	{'revolverround', 6, 8},
+	{'revolverround', 12, 11},
 	{'assaultriflemagazine', 2, 9},
 	{'assaultriflemagazine', 2, 10},
-	{'revolverround', 12, 11},
 	{'divingknife', 1, 12},
 	{'antibleeding2', 2, 13},--Plastiseal
 	{'midazolam', 2, 14},

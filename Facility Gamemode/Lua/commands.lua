@@ -42,7 +42,7 @@ Hook.Add("chatMessage", "livePlayerList", function (message, client)
 			if player.Character.SpeciesName == 'human' then
 				if isCharacterTerrorist(player.Character) and global_militantPlayers[player.Name]  then
 					messageClient(client, 'blue', player.Name .. ' is an armed member of the terrorist faction.')
-				elseif player.Character.HasJob('assistant') then
+				elseif isCharacterTerrorist(player.Character) then
 					messageClient(client, 'blue', player.Name .. ' is a civilian member of the terrorist faction.')
 				elseif isCharacterNexpharma(player.Character) and global_militantPlayers[player.Name] then
 					messageClient(client, 'blue', player.Name .. ' is an armed member of the nexpharma corp.')

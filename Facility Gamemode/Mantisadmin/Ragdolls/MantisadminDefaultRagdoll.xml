@@ -93,7 +93,7 @@
       force="10"
       applyforceonlimbs="0,6">
       <Affliction
-        identifier="blunttrauma"
+        identifier="bitewounds"
         strength="45" />
       <Affliction
         identifier="bleeding"

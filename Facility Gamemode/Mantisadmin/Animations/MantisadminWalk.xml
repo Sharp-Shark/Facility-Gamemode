@@ -1,5 +1,5 @@
 ﻿<MantisWalk
-  movementspeed="2"
+  movementspeed="3"
   stepsize="0.1281207,0.1795029"
   legtorque="0"
   colliderstandangle="0"

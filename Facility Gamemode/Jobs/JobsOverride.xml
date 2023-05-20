@@ -1,9 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Jobs>
-  <!--Mutant Mantis-->
   <Override>
   <Job identifier="captain"
-       uicolor="1.0,0.0,0.0"
+       uicolor="0.8,0.8,0.8"
+       vitalitymodifier="0"
+       pricemultiplier="1.0"
+	   maxnumber="0"
+       idlebehavior="Active">
+  </Job>
+  <Job identifier="engineer"
+       uicolor="0.8,0.8,0.8"
+       vitalitymodifier="0"
+       pricemultiplier="1.0"
+	   maxnumber="0"
+       idlebehavior="Active">
+  </Job>
+  <Job identifier="mechanic"
+       uicolor="0.8,0.8,0.8"
+       vitalitymodifier="0"
+       pricemultiplier="1.0"
+	   maxnumber="0"
+       idlebehavior="Active">
+  </Job>
+  <Job identifier="securityofficer"
+       uicolor="0.8,0.8,0.8"
+       vitalitymodifier="0"
+       pricemultiplier="1.0"
+	   maxnumber="0"
+       idlebehavior="Active">
+  </Job>
+  <Job identifier="medicaldoctor"
+       uicolor="0.8,0.8,0.8"
+       vitalitymodifier="0"
+       pricemultiplier="1.0"
+	   maxnumber="0"
+       idlebehavior="Active">
+  </Job>
+  <Job identifier="assistant"
+       uicolor="0.8,0.8,0.8"
+       vitalitymodifier="0"
+       pricemultiplier="1.0"
+	   maxnumber="0"
+       idlebehavior="Active">
+  </Job>
+  </Override>
+  <!--Mutant Mantis-->
+  <Job identifier="mutatedmantis"
+       uicolor="0.8,0.3,0.0"
        vitalitymodifier="0"
        pricemultiplier="1.0"
        idlebehavior="Active">
@@ -36,8 +79,9 @@
     </AppropriateOrders>
   </Job>
   <!--Staff Researcher-->
-  <Job identifier="engineer"
-       uicolor="0.0,1.0,0.8"
+  <Job identifier="researcher"
+       uicolor="0.3,1.0,0.3"
+       initialcount="1"
        vitalitymodifier="0"
        pricemultiplier="1.0"
        idlebehavior="Active">
@@ -73,8 +117,9 @@
     </AppropriateOrders>
   </Job>
   <!--Staff Mechanic-->
-  <Job identifier="mechanic"
-       uicolor="0.0,1.0,0.4"
+  <Job identifier="repairmen"
+       uicolor="0.0,1.0,0.6"
+       initialcount="1"
        vitalitymodifier="0"
        pricemultiplier="1.0"
        idlebehavior="Active">
@@ -119,8 +164,9 @@
     </AppropriateOrders>
   </Job>
   <!--Enforcer Guard-->
-  <Job identifier="securityofficer"
-       uicolor="0.0,1.0,1.0"
+  <Job identifier="enforcerguard"
+       uicolor="0.0,0.8,0.8"
+       initialcount="2"
        vitalitymodifier="0"
        pricemultiplier="1.0"
        idlebehavior="Active">
@@ -169,8 +215,8 @@
     </AppropriateOrders>
   </Job>
   <!--Mutated Crawler-->
-  <Job identifier="medicaldoctor"
-       uicolor="1.0,0.0,0.5"
+  <Job identifier="mutatedcrawler"
+       uicolor="0.8,0.0,0.3"
        vitalitymodifier="0"
        pricemultiplier="1.0"
        idlebehavior="Active">
@@ -203,8 +249,8 @@
     </AppropriateOrders>
   </Job>
   <!--Inmate-->
-  <Job identifier="assistant"
-       uicolor="1.0,0.5,0.0"
+  <Job identifier="inmate"
+       uicolor="0.8,0.8,0.0"
        initialcount="3"
        vitalitymodifier="0"
        pricemultiplier="1.0"
@@ -239,5 +285,199 @@
       <Order identifier="requestfirstaid"/>
     </AppropriateOrders>
   </Job>
-  </Override>
+  <!--JET-->
+  <Job identifier="jet"
+       uicolor="1.0,0.5,0.0"
+       vitalitymodifier="0"
+       pricemultiplier="1.0"
+	   maxnumber="0"
+       idlebehavior="Active">
+    <Jobicon>
+      <sprite texture="Content/UI/MainIconsAtlas.png" sourcerect="256,256,128,128" origin="0.5,0.5"/>
+    </Jobicon>
+    <JobiconSmall>
+      <sprite texture="Content/UI/CommandUIAtlas.png" sourcerect="612,640,28,28" origin="0.5,0.5"/>
+    </JobiconSmall>
+    <Skills>
+      <Skill identifier="helm" level="0,0"/>
+      <Skill identifier="weapons" level="60,60"/>
+      <Skill identifier="mechanical" level="60,60"/>
+      <Skill identifier="electrical" level="60,60"/>
+      <Skill identifier="medical" level="60,60"/>
+    </Skills>
+    <ItemSet>
+      <Item identifier="pirateclothes" equip="true" outfit="true"/>
+      <Item identifier="autoinjectorheadset" equip="true">
+		<Item identifier="combatstimulantsyringe"/>
+	  </Item>
+      <Item identifier="divingmask" equip="true"/>
+      <Item identifier="piratebodyarmor" equip="true"/>
+      <Item identifier="idcardjet" equip="true"/>
+	  <Item identifier="autoshotgun">
+		<!--24 Rounds-->
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+	    <Item identifier="shotgunshell"/>
+		<!--End-->
+      </Item>
+	  <Item identifier="handcannon">
+		<!--6 Rounds-->
+		<Item identifier="handcannonround"/>
+		<Item identifier="handcannonround"/>
+		<Item identifier="handcannonround"/>
+		<Item identifier="handcannonround"/>
+		<Item identifier="handcannonround"/>
+		<Item identifier="handcannonround"/>
+		<!--End-->
+      </Item>
+	  <!--12 Rounds-->
+	  <Item identifier="handcannonround"/>
+	  <Item identifier="handcannonround"/>
+	  <Item identifier="handcannonround"/>
+	  <Item identifier="handcannonround"/>
+	  <Item identifier="handcannonround"/>
+	  <Item identifier="handcannonround"/>
+	  <Item identifier="handcannonround"/>
+	  <Item identifier="handcannonround"/>
+	  <Item identifier="handcannonround"/>
+	  <Item identifier="handcannonround"/>
+	  <Item identifier="handcannonround"/>
+	  <Item identifier="handcannonround"/>
+	  <!--End-->
+	  <!--12 Rounds-->
+      <Item identifier="shotgunshell"/>
+	  <Item identifier="shotgunshell"/>
+	  <Item identifier="shotgunshell"/>
+	  <Item identifier="shotgunshell"/>
+	  <Item identifier="shotgunshell"/>
+	  <Item identifier="shotgunshell"/>
+      <Item identifier="shotgunshell"/>
+	  <Item identifier="shotgunshell"/>
+	  <Item identifier="shotgunshell"/>
+	  <Item identifier="shotgunshell"/>
+	  <Item identifier="shotgunshell"/>
+	  <Item identifier="shotgunshell"/>
+	  <!--End-->
+	  <Item identifier="crowbar"/>
+	  <Item identifier="antibleeding2"/>
+	  <Item identifier="antibleeding2"/>
+	  <Item identifier="midazolam"/>
+	  <Item identifier="midazolam"/>
+	  <Item identifier="opium"/>
+	  <Item identifier="oxygentank"/>
+	  <Item identifier="flashlight">
+		<Item identifier="batterycell"/>
+      </Item>
+    </ItemSet>
+    <AutonomousObjectives>
+      <Order identifier="fightintruders"  prioritymodifier="1"/>
+      <Order identifier="rescue" prioritymodifier="0.5"/>
+    </AutonomousObjectives>
+    <AppropriateOrders>
+      <Order identifier="fightintruders"/>
+      <Order identifier="rescue"/>
+      <Order identifier="requestfirstaid"/>
+    </AppropriateOrders>
+  </Job>
+  <!--MERCS-->
+  <Job identifier="mercs"
+       uicolor="0.2,0.2,1.0"
+       vitalitymodifier="0"
+       pricemultiplier="1.0"
+	   maxnumber="0"
+       idlebehavior="Active">
+    <Jobicon>
+      <sprite texture="Content/UI/MainIconsAtlas.png" sourcerect="256,256,128,128" origin="0.5,0.5"/>
+    </Jobicon>
+    <JobiconSmall>
+      <sprite texture="Content/UI/CommandUIAtlas.png" sourcerect="612,640,28,28" origin="0.5,0.5"/>
+    </JobiconSmall>
+    <Skills>
+      <Skill identifier="helm" level="0,0"/>
+      <Skill identifier="weapons" level="60,60"/>
+      <Skill identifier="mechanical" level="60,60"/>
+      <Skill identifier="electrical" level="60,60"/>
+      <Skill identifier="medical" level="60,60"/>
+    </Skills>
+    <ItemSet>
+      <Item identifier="securityuniform2" equip="true" outfit="true"/>
+      <Item identifier="headset" equip="true"/>
+      <Item identifier="piratebandana" equip="true"/>
+      <Item identifier="pucs" equip="true">	
+		<Item identifier="combatstimulantsyringe"/>
+		<Item identifier="oxygentank"/>
+	  </Item>
+      <Item identifier="idcardmercs" equip="true"/>
+	  <Item identifier="assaultrifle">
+	    <Item identifier="assaultriflemagazine"/>
+      </Item>
+	  <Item identifier="revolver">
+		<!--6 Rounds-->
+		<Item identifier="revolverround"/>
+		<Item identifier="revolverround"/>
+		<Item identifier="revolverround"/>
+		<Item identifier="revolverround"/>
+		<Item identifier="revolverround"/>
+		<Item identifier="revolverround"/>
+		<!--End-->
+      </Item>
+	  <!--12 Rounds-->
+	  <Item identifier="revolverround"/>
+	  <Item identifier="revolverround"/>
+	  <Item identifier="revolverround"/>
+	  <Item identifier="revolverround"/>
+	  <Item identifier="revolverround"/>
+	  <Item identifier="revolverround"/>
+	  <Item identifier="revolverround"/>
+	  <Item identifier="revolverround"/>
+	  <Item identifier="revolverround"/>
+	  <Item identifier="revolverround"/>
+	  <Item identifier="revolverround"/>
+	  <Item identifier="revolverround"/>
+	  <!--End-->
+      <Item identifier="assaultriflemagazine"/>
+      <Item identifier="assaultriflemagazine"/>
+      <Item identifier="assaultriflemagazine"/>
+      <Item identifier="assaultriflemagazine"/>
+	  <Item identifier="divingknife"/>
+	  <Item identifier="antibleeding2"/>
+	  <Item identifier="antibleeding2"/>
+	  <Item identifier="midazolam"/>
+	  <Item identifier="midazolam"/>
+	  <Item identifier="opium"/>
+	  <Item identifier="flashlight">
+		<Item identifier="batterycell"/>
+      </Item>
+    </ItemSet>
+    <AutonomousObjectives>
+      <Order identifier="fightintruders"  prioritymodifier="1"/>
+      <Order identifier="rescue" prioritymodifier="0.5"/>
+    </AutonomousObjectives>
+    <AppropriateOrders>
+      <Order identifier="fightintruders"/>
+      <Order identifier="rescue"/>
+      <Order identifier="requestfirstaid"/>
+    </AppropriateOrders>
+  </Job>
 </Jobs>

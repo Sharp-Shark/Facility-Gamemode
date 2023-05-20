@@ -1,5 +1,5 @@
 ﻿<CrawlerWalk
-  MovementSpeed="3"
+  MovementSpeed="3.4"
   footangle="-36.14369"
   Flip="True"
   FlipCooldown="0.5"

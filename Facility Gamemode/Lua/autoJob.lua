@@ -26,11 +26,6 @@ function roleDistribution ()
 	
 	teamCount['inmate'] = unassigned
 	
-	if global_huskMode then
-		teamCount['inmate'] = teamCount['inmate'] + teamCount['monster']
-		teamCount['monster'] = 0
-	end
-	
 	return teamCount
 end
 
@@ -56,16 +51,16 @@ function assignPlayerRole ()
 		selectedRole = ''
 		for player in Client.ClientList do
 			if unassignedPlayers[index] == player.Name then
-				if (player.PreferredJob == 'captain' or player.PreferredJob == 'medicaldoctor') and teamCount['monster'] > 0 then
+				if (player.PreferredJob == 'mutatedmantis' or player.PreferredJob == 'mutatedcrawler') and teamCount['monster'] > 0 then
 					selectedRole = 'monster'
-				elseif (player.PreferredJob == 'mechanic' or player.PreferredJob == 'engineer') and teamCount['staff'] > 0 then
+				elseif (player.PreferredJob == 'repairmen' or player.PreferredJob == 'researcher') and teamCount['staff'] > 0 then
 					selectedRole = 'staff'
-				elseif (player.PreferredJob == 'securityofficer') and teamCount['guard'] > 0 then
+				elseif (player.PreferredJob == 'enforcerguard') and teamCount['guard'] > 0 then
 					selectedRole = 'guard'
-				elseif (player.PreferredJob == 'assistant') and teamCount['inmate'] > 0 then
+				elseif (player.PreferredJob == 'inmate') and teamCount['inmate'] > 0 then
 					selectedRole = 'inmate'
 				else
-					-- Couldn't give preferred role - move to unsolved player lit
+					-- Couldn't give preferred role - move to unsolved player list
 					table.insert(unsolvedPlayers, table.remove(unassignedPlayers, index))
 				end
 			end
@@ -104,33 +99,37 @@ end
 -- Overrides the jobs the players chose, assuming auto jobs is activated
 Hook.Add("jobsAssigned", "automaticJobAssignment", function ()
 	if CLIENT and Game.IsMultiplayer then return end
+	global_playerRole = {}
 	if not global_autoJob then return end
 	if #Client.ClientList - table.size(global_spectators) <= 1 then print('[!] Only 1 player, will not assign jobs.') return end
 
 	global_playerRole = assignPlayerRole()
 	
 	local roleJob = {}
-	roleJob['monster'] = {'medicaldoctor', 'captain'}
-	roleJob['staff'] = {'mechanic', 'engineer'}
-	roleJob['guard'] = {'securityofficer'}
-	roleJob['inmate'] = {'assistant'}
+	roleJob['monster'] = {'mutatedcrawler', 'mutatedmantis'}
+	roleJob['staff'] = {'repairmen', 'researcher'}
+	roleJob['guard'] = {'enforcerguard'}
+	roleJob['inmate'] = {'inmate'}
 
 	for playerName, role in pairs(global_playerRole) do
 		for player in Client.ClientList do
 			if playerName == player.Name then
 				if role == 'monster' then
-					if player.PreferredJob == 'captain' then
-						player.AssignedJob = JobVariant(JobPrefab.Get('captain'), 0)
-					elseif player.PreferredJob == 'medicaldoctor' then
-						player.AssignedJob = JobVariant(JobPrefab.Get('medicaldoctor'), 0)
+					if global_huskMode then
+						player.AssignedJob = JobVariant(JobPrefab.Get('inmate'), 0)
+						global_huskPlayers[playerName] = true
+					elseif player.PreferredJob == 'mutatedmantis' then
+						player.AssignedJob = JobVariant(JobPrefab.Get('mutatedmantis'), 0)
+					elseif player.PreferredJob == 'mutatedcrawler' then
+						player.AssignedJob = JobVariant(JobPrefab.Get('mutatedcrawler'), 0)
 					else
 						player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), 0)
 					end
 				elseif role == 'staff' then
-					if player.PreferredJob == 'mechanic' then
-						player.AssignedJob = JobVariant(JobPrefab.Get('mechanic'), 0)
-					elseif player.PreferredJob == 'engineer' then
-						player.AssignedJob = JobVariant(JobPrefab.Get('engineer'), 0)
+					if player.PreferredJob == 'repairmen' then
+						player.AssignedJob = JobVariant(JobPrefab.Get('repairmen'), 0)
+					elseif player.PreferredJob == 'researcher' then
+						player.AssignedJob = JobVariant(JobPrefab.Get('researcher'), 0)
 					else
 						player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), 0)
 					end

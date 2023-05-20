@@ -3,6 +3,7 @@ print('[!] Loading Facility Gamemode...')
 
 -- Husk Gamemode
 global_huskMode = false
+global_huskPlayers = {}
 
 -- Disables auto round end - turn to false for testing
 global_allowEnd = true
@@ -53,8 +54,11 @@ global_spectators = {}
 -- Tells you if the round is ending
 global_endGame = false
 
--- Decontamination starts at 12m15s
+-- Decontamination starts at 12min15s
 global_decontaminationTimer = 60*12 + 15
+
+-- Respawn timer isn't 6min (value is variable)
+global_respawnTimer = 360
 
 -- Counts amounts the think hook has been called, might be reset, don't use it as a total call counter
 global_thinkCounter = 0
@@ -100,7 +104,7 @@ end
 -- Execute when someone joins
 Hook.Add("client.connected", "characterDied", function (connectedClient)
 
-	messageClient(connectedClient, 'popup', [[_Welcome to the Facility Gamemode by Sharp-Shark. Please have fun and respect the rules. If you want, join our discord.
+	messageClient(connectedClient, 'popup', [[_Welcome to Facility Gamemode by Sharp-Shark. Please have fun and respect the rules. If you want, join our discord.
 	
 	_When the game starts, your objective is to be the last team standing.
 	_If you are a civilian, try and escape to grant your team tickets. Tickets determine the amount of respawns your team has.
@@ -117,6 +121,8 @@ Hook.Add("think", "thinkCheck", function ()
 	
 	-- Only execute once every 1/2 a second for performance
 	if global_thinkCounter % 30 == 0 then
+		Game.ServerSettings['AllowRespawn'] = global_serverSettings['AllowRespawn']
+	
 		if string.sub(Game.ServerSettings.ServerMessageText, 1, #global_serverMessageText) ~= global_serverMessageText then
 			Game.ServerSettings.ServerMessageText = global_serverMessageText .. Game.ServerSettings.ServerMessageText
 		end
@@ -133,6 +139,52 @@ Hook.Add("think", "thinkCheck", function ()
 					giveAfflictionCharacter(char, 'justice', char.MaxHealth * 0.01)
 				end
 			end
+		end
+		
+		-- Respawn timer
+		if global_respawnTimer > 0 then
+			-- Count dead players
+			local dead = 0
+			local total = 0
+			for player in Client.ClientList do
+				if player.Character == nil or player.Character.IsDead then
+					dead = dead + 1
+				end
+				total = total + 1
+			end
+			local deadPercentage = dead/total
+			-- Decrement timer
+			global_respawnTimer = global_respawnTimer - 30 / #Client.ClientList * deadPercentage
+		elseif not Game.ServerSettings['AllowRespawn'] then
+			-- Respawn dead players
+			local balance = 0
+			for player in Client.ClientList do
+				if player.Character == nil or player.Character.IsDead then
+					if (global_playerRole[player.Name] == 'monster' or global_playerRole[player.Name] ==  'inmate' or global_playerRole[player.Name] == 'jet') and global_terroristTickets >= 1 then
+						global_playerRole[player.Name] = 'jet'
+						spawnPlayerMilitant(player, 'jet')
+						global_terroristTickets = global_terroristTickets - 1
+					elseif (global_playerRole[player.Name] == 'staff' or global_playerRole[player.Name] ==  'guard' or global_playerRole[player.Name] == 'mercs') and global_nexpharmaTickets >= 1 then
+						global_playerRole[player.Name] = 'mercs'
+						spawnPlayerMilitant(player, 'mercs')
+						global_nexpharmaTickets = global_nexpharmaTickets - 1
+					else
+						if (balance > 0 or global_nexpharmaTickets < 1) and global_terroristTickets >= 1 then
+							global_playerRole[player.Name] = 'jet'
+							spawnPlayerMilitant(player, 'jet')
+							global_terroristTickets = global_terroristTickets - 1
+							balance = balance - 1
+						elseif global_nexpharmaTickets >= 1 then
+							global_playerRole[player.Name] = 'mercs'
+							spawnPlayerMilitant(player, 'mercs')
+							global_nexpharmaTickets = global_nexpharmaTickets - 1
+							balance = balance + 1
+						end
+					end
+				end
+			end
+			-- Reset
+			global_respawnTimer = 360
 		end
 		
 		-- Decontamination
@@ -170,7 +222,7 @@ Hook.Add("think", "thinkCheck", function ()
 		-- Check for escapees
 		for item in findItemsByTag('fg_extractionpoint') do
 			for player in Client.ClientList do
-				if player.Character ~= nil and player.Character.SpeciesName == 'human' and (player.Character.HasJob('assistant') or player.Character.HasJob('mechanic') or player.Character.HasJob('engineer')) and
+				if player.Character ~= nil and player.Character.SpeciesName == 'human' and (player.Character.HasJob('inmate') or player.Character.HasJob('repairmen') or player.Character.HasJob('researcher')) and
 				distance(item.WorldPosition, player.Character.WorldPosition) < 200 and not global_militantPlayers[player.Name] then
 					promoteEscapee(player)
 				end
@@ -190,6 +242,8 @@ Hook.Add("roundStart", "prepareMatch", function (createdCharacter)
 	global_endGame = false
 	-- Reset decon timer to 12m15s
 	global_decontaminationTimer = 60*12 + 15
+	-- Resets respawn timer
+	global_respawnTimer = 360
 	-- Refresh think call counter
 	global_thinkCounter = 0
 	-- Refresh Militant Player List
@@ -202,8 +256,8 @@ Hook.Add("roundStart", "prepareMatch", function (createdCharacter)
 	-- Enabling cheats is necessary for ExecuteCommand method
 	Game.ExecuteCommand('enablecheats')
 	-- Helps with trams not getting stuck
-	Submarine.MainSub.LockX = false
-	Submarine.MainSub.LockY = true
+	--Submarine.MainSub.LockX = false
+	--Submarine.MainSub.LockY = true
 	-- Disables tripophobia menace
 	Submarine.MainSub.ImmuneToBallastFlora = true
 	-- Stops the facility from being destroyed by players
@@ -236,30 +290,14 @@ Hook.Add("roundStart", "prepareMatch", function (createdCharacter)
 		end
 	end, 100)
 	
-	-- Randomly infect someone
+	-- Infect
 	if global_huskMode then
 		Timer.Wait(function ()
-			-- Infect a random prisoner
-			local chars = {}
-			local char = nil
-			for player in Client.ClientList do
-				if player.Character ~= nil and player.Character.HasJob('assistant') then
-					table.insert(chars, player.Character)
-				end
+			for playerName, value in pairs(global_huskPlayers) do
+				local char = findClientByUsername(playerName).Character
+				char.CharacterHealth.ApplyAffliction(char.AnimController.MainLimb, AfflictionPrefab.Prefabs["huskinfection"].Instantiate(100))
 			end
-			if table.size(chars) == 0 then
-				-- If no valid characters, infect someone at random
-				local tries = 0
-				char = Client.ClientList[math.random(#Client.ClientList)].Character
-				while char == nil and tries <= 999 do
-					char = Client.ClientList[math.random(#Client.ClientList)].Character
-					tries = tries + 1
-				end
-			else
-				char = chars[math.random(#chars)]
-			end
-			char.CharacterHealth.ApplyAffliction(char.AnimController.MainLimb, AfflictionPrefab.Prefabs["huskinfection"].Instantiate(100))
-		end, 10*1000)
+		end, 5*1000)
 	end
 
     return true
@@ -284,7 +322,7 @@ global_serverSettings = {
     AllowModDownloads = true,
     AllowModeVoting = false,
     AllowRagdollButton = true,
-    AllowRespawn = true,
+    AllowRespawn = false,--Using custom respawn
     AllowRewiring = false,
     AllowSpectating = true,
     AllowSubVoting = false,

@@ -82,7 +82,7 @@ end
 
 -- Checks wheter a character is part of Terrorist Faction
 function isCharacterTerrorist (character)
-	if character.SpeciesName == 'human' and (character.HasJob('captain') or character.HasJob('medicaldoctor') or character.HasJob('assistant')) then
+	if character.SpeciesName == 'human' and (character.HasJob('mutatedmantis') or character.HasJob('mutatedcrawler') or character.HasJob('inmate') or character.HasJob('jet')) then
 		return true
 	else
 		return false
@@ -91,7 +91,7 @@ end
 
 -- Checks wheter a character is part of Nexpharma Corporation
 function isCharacterNexpharma (character)
-	if character.SpeciesName == 'human' and (character.HasJob('mechanic') or character.HasJob('engineer') or character.HasJob('securityofficer')) then
+	if character.SpeciesName == 'human' and (character.HasJob('repairmen') or character.HasJob('researcher') or character.HasJob('enforcerguard') or character.HasJob('mercs')) then
 		return true
 	else
 		return false
@@ -100,7 +100,7 @@ end
 
 -- Checks wheter a character is part of staff
 function isCharacterStaff (character)
-	if character.SpeciesName == 'human' and (character.HasJob('mechanic') or character.HasJob('engineer')) and not global_militantPlayers[findClientByCharacter(character).Name] then
+	if character.SpeciesName == 'human' and (character.HasJob('repairmen') or character.HasJob('researcher')) and not global_militantPlayers[findClientByCharacter(character).Name] then
 		return true
 	else
 		return false
@@ -160,5 +160,21 @@ function messageClient (client, msgType, text)
 		Game.SendDirectChatMessage("",text, nil, ChatMessageType.ServerMessageBoxInGame, client, 'WorkshopMenu.InfoButton')
 	end
 end
+
+function spawnHuman (client, job, pos)
+	local info
+	if client.CharacterInfo == nil then
+		info = CharacterInfo("human", client.Name)
+	else
+		info = client.CharacterInfo
+	end
+	info.Job = Job(JobPrefab.Get(job))
+	local character = Character.Create('human', pos, client.Name, info, 0, true, false)
+	
+	character.GiveJobItems()
+	client.SetClientCharacter(character)
+end
+
+c = Client.ClientList[1]
 
 global_loadedFiles['utilities'] = true

@@ -19,8 +19,23 @@ function spawnPlayerMonster (client, species)
 	return true
 end
 
--- Removes the items of respawnees, gives them their proper loadout (be it JET or MERCS) and teleports them to their spawn area
+-- Spawns a human who is a militant, distinct from SpawnPlayerMilitant
 function spawnPlayerMilitant (client, team)
+	if team == 'jet' then
+		local items = findItemsByTag('fg_terroristspawn')
+		spawnHuman(client, 'jet', items[math.random(#items)].WorldPosition)
+		client.Character.SetOriginalTeam(CharacterTeamType.Team2)
+		client.Character.UpdateTeam()
+	elseif team == 'mercs' then
+		local items = findItemsByTag('fg_nexpharmaspawn')
+		spawnHuman(client, 'mercs', items[math.random(#items)].WorldPosition)
+		client.Character.SetOriginalTeam(CharacterTeamType.Team1)
+		client.Character.UpdateTeam()
+	end
+end
+
+-- Removes the items of respawnees, gives them their proper loadout (be it JET or MERCS) and teleports them to their spawn area
+function spawnPlayerMilitant_OLD (client, team)
 	local character = client.Character
 	-- Guard clause
 	if character == nil or character.SpeciesName ~= 'human' or character.IsDead then return end
@@ -80,22 +95,17 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (character)
 
 	-- Executed on match start to spawn in the monsters
 	if character.Submarine.Info.Name == Submarine.MainSub.Info.Name then
-		-- Captain is Mutated Mantis
-		if character.HasJob('captain') then
+		if character.HasJob('mutatedmantis') then
 			spawnPlayerMonster(client, 'mantis')
 			messageClient(client, 'info', 'You are a Mutated Mantis! A slow and weak monster with lots of HP. Work with your fellow monsters to kill all humans! You may eat corpses, use regular doors, use the trams and use local voicechat.')
-		-- Medic is Mutated Crawler
-		elseif character.HasJob('medicaldoctor') then
+		elseif character.HasJob('mutatedcrawler') then
 			spawnPlayerMonster(client, 'crawler')
 			messageClient(client, 'info', 'You are a Mutated Crawler! A fast and strong monster with decent HP. Work with your fellow monsters to kill all humans! You may eat corpses, use regular doors, use the trams and use local voicechat.')
-		-- Mechanic and Engineer (Researcher) are Nexpharma Staff
 		elseif isCharacterStaff(character) then
 			messageClient(client, 'info', 'You are a civilian, part of Nexpharma staff, equipped with your low level keycard and a few supplies. Work with MERCS, guards and fellow staff to escape the facility!')
-		-- Security Officer is Nexpharma Security
-		elseif character.HasJob('securityofficer') then
+		elseif character.HasJob('enforcerguard') then
 			messageClient(client, 'info', 'You are an armed member of Nexpharma security, equipped with a simple guard card and a sidearm. Work with MERCS and fellow guards to kill inmates, JET and monsters whilst helping staff escape.')
-		-- Assistant is Inmate
-		elseif character.HasJob('assistant') then
+		elseif character.HasJob('inmate') then
 			messageClient(client, 'info', 'You are a civilian member of the Terrorist faction, equipped with almost nothing. Work with your fellow inmates and JET to escape this wretched place!')
 		end
 		
@@ -108,7 +118,7 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (character)
 				global_terroristTickets = global_terroristTickets - 1
 				Game.ExecuteCommand('say Terrorists have lost 1 ticket - an unit has respawned! ' .. global_terroristTickets .. ' tickets left!' )
 				-- Spawns JET
-				spawnPlayerMilitant(client, 'JET')
+				spawnPlayerMilitant_OLD(client, 'JET')
 				messageClient(client, 'info', 'The Jovian Elite Troops or JET - a militant member of the Terrorist militia, equipped with heavy weaponry, meds, armor and a high-level card. Help inmates escape and kill the monsters and everyone working for Nexpharma.')
 			else
 				Game.ExecuteCommand('say Terrorists are out of tickets - no more respawns!')
@@ -122,7 +132,7 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (character)
 				global_nexpharmaTickets = global_nexpharmaTickets - 1
 				Game.ExecuteCommand('say Nexpharma has lost 1 ticket - an unit has respawned! ' .. global_nexpharmaTickets .. ' tickets left!' )
 				-- Spawns MERCS
-				spawnPlayerMilitant(client, 'MERCS')
+				spawnPlayerMilitant_OLD(client, 'MERCS')
 				messageClient(client, 'info', 'The Mobile Emergency Rescue and Combat Squad or MERCS - a militant member of the Nexpharma private army, equipped with heavy weaponry, meds, armor and a high-level card. Work together with guards to help staff escape and kill the inmates, JET and monsters.')
 			else
 				Game.ExecuteCommand('say Nexpharma is out of tickets - no more respawns!')

@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Afflictions>
 
+  <!-- Speed affliction does nothing, it only exists so items that affect speed can have it listed in it's stats -->
+  <Affliction
+    name="Speed"
+    identifier="speed"
+    description="-"
+    type="speed"
+    targets="human"
+    limbspecific="false"
+    indicatorlimb="Torso"
+    showiconthreshold="0"
+    showinhealthscannerthreshold="0"
+    karmachangeonapplied="-10"
+    maxstrength="1"
+    WeaponsSkillGain="1.0"
+	iconcolors="128,224,64,255">
+    <Effect minstrength="0" maxstrength="1" strengthchange="-1" />
+    <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="640,640,128,128" color="106,106,106,255" origin="0,0"/>
+  </Affliction>
+
   <Affliction
     name="Intoxicated"
     identifier="intoxicated"
