@@ -1,5 +1,5 @@
 -- Get Team Distribution
-function roleDistribution ()
+function roleDistribution (amount)
 
 	print('...')
 	if table.size(global_spectators) > 0 then
@@ -9,13 +9,15 @@ function roleDistribution ()
 		print('...')
 	end
 	
-	local unassigned = #Client.ClientList - table.size(global_spectators)
+	local unassigned = amount or (#Client.ClientList - table.size(global_spectators))
 	local teamCount = {}
 	teamCount['monster'] = 0
 	teamCount['staff'] = 0
 	teamCount['guard'] = 0
 	teamCount['inmate'] = 0
 	
+	-- OLD role distribution code
+	--[[
 	teamCount['monster'] = math.ceil(unassigned/6)
 	unassigned = unassigned - teamCount['monster']
 	
@@ -25,6 +27,21 @@ function roleDistribution ()
 	unassigned = unassigned - teamCount['guard']
 	
 	teamCount['inmate'] = unassigned
+	--]]
+	
+	local roleSequence = 'msiigsmiigsimigsiimg'
+	for count = 0, unassigned - 1 do
+		local letter = string.sub(roleSequence, count % #roleSequence + 1, count % #roleSequence + 1)
+		if letter == 'm' then
+			teamCount['monster'] = teamCount['monster'] + 1
+		elseif letter == 's' then
+			teamCount['staff'] = teamCount['staff'] + 1
+		elseif letter == 'g' then
+			teamCount['guard'] = teamCount['guard'] + 1
+		elseif letter == 'i' then
+			teamCount['inmate'] = teamCount['inmate'] + 1
+		end
+	end
 	
 	return teamCount
 end

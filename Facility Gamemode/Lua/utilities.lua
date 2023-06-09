@@ -173,6 +173,8 @@ function spawnHuman (client, job, pos)
 	
 	character.GiveJobItems()
 	client.SetClientCharacter(character)
+	
+	return character
 end
 
 c = Client.ClientList[1]

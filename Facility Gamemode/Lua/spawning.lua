@@ -19,19 +19,55 @@ function spawnPlayerMonster (client, species)
 	return true
 end
 
--- Spawns a human who is a militant, distinct from SpawnPlayerMilitant
-function spawnPlayerMilitant (client, team)
-	if team == 'jet' then
-		local items = findItemsByTag('fg_terroristspawn')
-		spawnHuman(client, 'jet', items[math.random(#items)].WorldPosition)
+-- General code for when respawning a player as militant
+function spawnPlayerMilitant (client, team, OLD)
+	if OLD then
+		spawnPlayerMilitant_OLD(client, team)
+	else
+		spawnPlayerMilitant_NEW(client, team)
+	end
+	if team == 'JET' then
+		global_playerRole[client.Name] = 'jet'
+		messageClient(client, 'info', 'The Jovian Elite Troops or JET - a militant member of the Terrorist militia, equipped with heavy weaponry, meds, armor and a high-level card. Help inmates escape and kill the monsters and everyone working for Nexpharma.')
+		global_terroristTickets = global_terroristTickets - 1
+	elseif team == 'MERCS' then
+		global_playerRole[client.Name] = 'mercs'
+		messageClient(client, 'info', 'The Mobile Emergency Rescue and Combat Squad or MERCS - a militant member of the Nexpharma private army, equipped with heavy weaponry, meds, armor and a high-level card. Work together with guards to help staff escape and kill the inmates, JET and monsters.')
+		global_nexpharmaTickets = global_nexpharmaTickets - 1
+	end
+end
+
+-- Spawns a human who is a militant and sets it to the client's character, distinct from SpawnPlayerMilitant_OLD
+function spawnPlayerMilitant_NEW (client, team)
+	local character
+	local items
+	if team == 'JET' then
+		items = findItemsByTag('fg_terroristspawn')
+		character = spawnHuman(client, 'jet', items[math.random(#items)].WorldPosition)
 		client.Character.SetOriginalTeam(CharacterTeamType.Team2)
 		client.Character.UpdateTeam()
-	elseif team == 'mercs' then
-		local items = findItemsByTag('fg_nexpharmaspawn')
-		spawnHuman(client, 'mercs', items[math.random(#items)].WorldPosition)
+		-- Spawn id card via lua due to bug
+		Timer.Wait(function ()
+			giveItemCharacter(character, 'idcardjet', 1, 0)
+		end, 1*1000)
+	elseif team == 'MERCS' then
+		items = findItemsByTag('fg_nexpharmaspawn')
+		character = spawnHuman(client, 'mercs', items[math.random(#items)].WorldPosition)
 		client.Character.SetOriginalTeam(CharacterTeamType.Team1)
 		client.Character.UpdateTeam()
+		-- Spawn id card via lua due to bug
+		Timer.Wait(function ()
+			giveItemCharacter(character, 'idcardmercs', 1, 0)
+		end, 1*1000)
 	end
+	--[[
+	Timer.Wait(function ()
+		local idcard = character.Inventory.GetItemAt(0)
+		idcard.GetComponentString('IdCard').TeamID = CharacterTeamType.Team1
+		local property = idcard.SerializableProperties[Identifier(newProperty)]
+		Networking.CreateEntityEvent(idcard, Item.ChangePropertyEventData(property, idcard))
+	end, 1*1000)
+	--]]
 end
 
 -- Removes the items of respawnees, gives them their proper loadout (be it JET or MERCS) and teleports them to their spawn area
@@ -114,12 +150,7 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (character)
 		-- Inmate and Monsters respawn as JET
 		if isCharacterTerrorist(character) then
 			if global_terroristTickets >= 1 then
-				-- Update Ticket Count
-				global_terroristTickets = global_terroristTickets - 1
-				Game.ExecuteCommand('say Terrorists have lost 1 ticket - an unit has respawned! ' .. global_terroristTickets .. ' tickets left!' )
-				-- Spawns JET
-				spawnPlayerMilitant_OLD(client, 'JET')
-				messageClient(client, 'info', 'The Jovian Elite Troops or JET - a militant member of the Terrorist militia, equipped with heavy weaponry, meds, armor and a high-level card. Help inmates escape and kill the monsters and everyone working for Nexpharma.')
+				spawnPlayerMilitant(client, 'JET', true)
 			else
 				Game.ExecuteCommand('say Terrorists are out of tickets - no more respawns!')
 				Game.ExecuteCommand('kill ' .. character.Info.Name)
@@ -128,12 +159,7 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (character)
 		-- Guards and Staff respawn as MERCS
 		elseif isCharacterNexpharma(character) then
 			if global_nexpharmaTickets >= 1 then
-				-- Update Ticket Count
-				global_nexpharmaTickets = global_nexpharmaTickets - 1
-				Game.ExecuteCommand('say Nexpharma has lost 1 ticket - an unit has respawned! ' .. global_nexpharmaTickets .. ' tickets left!' )
-				-- Spawns MERCS
-				spawnPlayerMilitant_OLD(client, 'MERCS')
-				messageClient(client, 'info', 'The Mobile Emergency Rescue and Combat Squad or MERCS - a militant member of the Nexpharma private army, equipped with heavy weaponry, meds, armor and a high-level card. Work together with guards to help staff escape and kill the inmates, JET and monsters.')
+				spawnPlayerMilitant(client, 'MERCS', true)
 			else
 				Game.ExecuteCommand('say Nexpharma is out of tickets - no more respawns!')
 				Game.ExecuteCommand('kill ' .. character.Info.Name)

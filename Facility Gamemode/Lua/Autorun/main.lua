@@ -17,6 +17,23 @@ DISCORD: https://discord.gg/c7Qnp8S4yB
 
 ]]
 
+-- Message text for when someone join
+global_joinMessageText = [[_Welcome to Facility Gamemode by Sharp-Shark. Please have fun and respect the rules. If you want, join our discord.
+	
+_When the game starts, your objective is to be the last team standing.
+_If you are a civilian, try and escape to grant your team tickets. Tickets determine the amount of respawns your team has.
+_If you are a militant, kill the other teams and help the civilians from your team in their quest to escape.
+	
+_Your preferred job may be overriden by the gamemode's autobalance script, but the script will try and give you your desired job if possible. Also, only the 1st job in your preferred jobs list matters.
+	
+_Do /help for a list of commands.]]
+
+-- Message text for when someone dies
+global_dieMessageText = [[You have died. Do /respawn to get an estimated time until respawn and amount of tickets. If more people die, it will go down faster.
+
+If you belive your death is a bug or was caused by someone breaking the rules, say so in our discord.
+Discord: https://discord.gg/c7Qnp8S4yB]]
+
 -- Load other files
 global_loadedFiles = {autoJob = false, commands = false, death = false, loadoutTables = false, lootTables = false, spawning = false, utilities = false}
 require 'autoJob'
@@ -59,6 +76,7 @@ global_decontaminationTimer = 60*12 + 15
 
 -- Respawn timer isn't 6min (value is variable)
 global_respawnTimer = 360
+global_respawnETA = 'never for now.'
 
 -- Counts amounts the think hook has been called, might be reset, don't use it as a total call counter
 global_thinkCounter = 0
@@ -70,7 +88,7 @@ global_playerRole = {}
 global_militantPlayers = {}
 
 -- Respawn tickets for JET and MERCS
-global_terroristTickets = 3
+global_terroristTickets = 4
 global_nexpharmaTickets = 5
 
 -- Monster counter for setclientcharacter when multiple players pick the same monster
@@ -90,27 +108,22 @@ function promoteEscapee (client)
 		global_terroristTickets = global_terroristTickets + 2
 		Game.ExecuteCommand('say Terrorists have gained 2 tickets - civilian has escaped! ' .. global_terroristTickets .. ' tickets left!' )
 		-- Spawns JET
-		spawnPlayerMilitant(client, 'JET')
+		spawnPlayerMilitant_OLD(client, 'JET')
 	elseif isCharacterNexpharma(client.Character) then
 		-- Update Ticket Count
 		global_nexpharmaTickets = global_nexpharmaTickets + 1
 		Game.ExecuteCommand('say Nexpharma has gained 1 ticket - civilian has escaped! ' .. global_nexpharmaTickets .. ' tickets left!' )
 		-- Spawns MERCS
-		spawnPlayerMilitant(client, 'MERCS')
+		spawnPlayerMilitant_OLD(client, 'MERCS')
 	end
 
 end
 
 -- Execute when someone joins
-Hook.Add("client.connected", "characterDied", function (connectedClient)
+Hook.Add("client.connected", "clientConnected", function (connectedClient)
 
-	messageClient(connectedClient, 'popup', [[_Welcome to Facility Gamemode by Sharp-Shark. Please have fun and respect the rules. If you want, join our discord.
-	
-	_When the game starts, your objective is to be the last team standing.
-	_If you are a civilian, try and escape to grant your team tickets. Tickets determine the amount of respawns your team has.
-	_If you are a militant, kill the other teams and help the civilians from your team in their quest to escape.
-	
-	_Your preferred job may be overriden by the gamemode's autobalance script, but the script will try and give you your desired job if possible. Also, only the 1st job in your preferred jobs list matters.]])
+	messageClient(connectedClient, 'popup', global_joinMessageText)
+	messageClient(connectedClient, 'blue', global_joinMessageText)
 
 end)
 
@@ -147,40 +160,56 @@ Hook.Add("think", "thinkCheck", function ()
 			local dead = 0
 			local total = 0
 			for player in Client.ClientList do
-				if player.Character == nil or player.Character.IsDead then
+				if (player.Character == nil or player.Character.IsDead) and not global_spectators[player.Name] then
 					dead = dead + 1
 				end
-				total = total + 1
+				if not global_spectators[player.Name] then
+					total = total + 1
+				end
 			end
+			if total == 0 then total = 1 end
 			local deadPercentage = dead/total
 			-- Decrement timer
 			global_respawnTimer = global_respawnTimer - 30 / #Client.ClientList * deadPercentage
+			-- Update Estimated Time of Arrival
+			if not (((30 / #Client.ClientList * deadPercentage) / 2) > 0) then
+				global_respawnETA = 'never for now'
+			elseif (global_respawnTimer / (30 / #Client.ClientList * deadPercentage) / 2) > 3 then
+				global_respawnETA = global_respawnTimer / (30 / #Client.ClientList * deadPercentage) / 2
+				global_respawnETA = 'in ' .. global_respawnETA .. 's for now'
+			else
+				global_respawnETA = global_respawnTimer / (30 / #Client.ClientList * deadPercentage) / 2
+				global_respawnETA = 'right now'
+			end
 		elseif not Game.ServerSettings['AllowRespawn'] then
 			-- Respawn dead players
-			local balance = 0
+			local balance = (global_terroristTickets > global_nexpharmaTickets) and 1 or 0
 			for player in Client.ClientList do
-				if player.Character == nil or player.Character.IsDead then
+				if (player.Character == nil or player.Character.IsDead) and not global_spectators[player.Name] then
+					if balance == 1 then
+						if global_terroristTickets >= 1 then
+							spawnPlayerMilitant(player, 'JET')
+						end
+					elseif balance == 0 then
+						if global_nexpharmaTickets >= 1 then
+							spawnPlayerMilitant(player, 'MERCS')
+						end
+					end
+			--[[
 					if (global_playerRole[player.Name] == 'monster' or global_playerRole[player.Name] ==  'inmate' or global_playerRole[player.Name] == 'jet') and global_terroristTickets >= 1 then
-						global_playerRole[player.Name] = 'jet'
-						spawnPlayerMilitant(player, 'jet')
-						global_terroristTickets = global_terroristTickets - 1
+						spawnPlayerMilitant(player, 'JET')
 					elseif (global_playerRole[player.Name] == 'staff' or global_playerRole[player.Name] ==  'guard' or global_playerRole[player.Name] == 'mercs') and global_nexpharmaTickets >= 1 then
-						global_playerRole[player.Name] = 'mercs'
-						spawnPlayerMilitant(player, 'mercs')
-						global_nexpharmaTickets = global_nexpharmaTickets - 1
+						spawnPlayerMilitant(player, 'MERCS')
 					else
 						if (balance > 0 or global_nexpharmaTickets < 1) and global_terroristTickets >= 1 then
-							global_playerRole[player.Name] = 'jet'
-							spawnPlayerMilitant(player, 'jet')
-							global_terroristTickets = global_terroristTickets - 1
+							spawnPlayerMilitant(player, 'JET')
 							balance = balance - 1
 						elseif global_nexpharmaTickets >= 1 then
-							global_playerRole[player.Name] = 'mercs'
-							spawnPlayerMilitant(player, 'mercs')
-							global_nexpharmaTickets = global_nexpharmaTickets - 1
+							spawnPlayerMilitant(player, 'MERCS')
 							balance = balance + 1
 						end
 					end
+			--]]
 				end
 			end
 			-- Reset
@@ -236,6 +265,11 @@ end)
 -- Execute at round start
 Hook.Add("roundStart", "prepareMatch", function (createdCharacter)
 
+	-- Print in console all players
+	print('[!] Starting round with:')
+	for client in Client.ClientList do
+		print('    - ' .. client.Name)
+	end
 	-- Disables friendly fire
 	Game.ServerSettings['AllowFriendlyFire'] = false
 	-- Resets round end
@@ -256,8 +290,8 @@ Hook.Add("roundStart", "prepareMatch", function (createdCharacter)
 	-- Enabling cheats is necessary for ExecuteCommand method
 	Game.ExecuteCommand('enablecheats')
 	-- Helps with trams not getting stuck
-	--Submarine.MainSub.LockX = false
-	--Submarine.MainSub.LockY = true
+	Submarine.MainSub.LockX = false
+	Submarine.MainSub.LockY = true
 	-- Disables tripophobia menace
 	Submarine.MainSub.ImmuneToBallastFlora = true
 	-- Stops the facility from being destroyed by players

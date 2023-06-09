@@ -63,11 +63,20 @@ Hook.Add("chatMessage", "livePlayerList", function (message, client)
 end)
 
 -- Tells the current amount of tickets
-Hook.Add("chatMessage", "ticketCount", function (message, client)
-    if message ~= '/tickets' then return end
+Hook.Add("chatMessage", "respawnInfo", function (message, client)
+    if message ~= '/tickets' and message ~= '/respawn' then return end
+	if not Game.RoundStarted then
+		messageClient(client, 'blue', 'Round has not started yet.')
+		return true
+	end
 	
 	messageClient(client, 'blue', 'Terrorists have ' .. global_terroristTickets .. ' tickets left.')
 	messageClient(client, 'blue', 'Nexpharma has ' .. global_nexpharmaTickets .. ' tickets left.')
+	if (global_terroristTickets + global_nexpharmaTickets) > 0 then
+		messageClient(client, 'blue', 'Respawn is going to be ' .. global_respawnETA .. '.')
+	else
+		messageClient(client, 'blue', 'No tickets, no respawns.')
+	end
 
     return true
 end)

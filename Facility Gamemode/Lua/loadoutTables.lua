@@ -14,7 +14,7 @@ global_terroristLoadout = {
 	{'oxygentank', 1, 15},
 	{'flashlight', 1, 16},
 	{'batterycell', 1, 16},
-	{'divingmask', 1, 2},
+	{'jetmask', 1, 2},
 	{'pirateclothes', 1, 3},
 	{'piratebodyarmor', 1, 4},
 	{'autoinjectorheadset', 1, 1},
