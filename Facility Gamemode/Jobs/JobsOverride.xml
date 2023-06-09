@@ -310,9 +310,9 @@
       <Item identifier="autoinjectorheadset" equip="true">
 		<Item identifier="combatstimulantsyringe"/>
 	  </Item>
-      <Item identifier="divingmask" equip="true"/>
+      <Item identifier="jetmask" equip="true"/>
       <Item identifier="piratebodyarmor" equip="true"/>
-      <Item identifier="idcardjet" equip="true"/>
+	  <!--<Item identifier="idcardjet" equip="true"/>-->
 	  <Item identifier="autoshotgun">
 		<!--24 Rounds-->
 	    <Item identifier="shotgunshell"/>
@@ -428,7 +428,7 @@
 		<Item identifier="combatstimulantsyringe"/>
 		<Item identifier="oxygentank"/>
 	  </Item>
-      <Item identifier="idcardmercs" equip="true"/>
+	  <!--<Item identifier="idcardmercs" equip="true"/>-->
 	  <Item identifier="assaultrifle">
 	    <Item identifier="assaultriflemagazine"/>
       </Item>
