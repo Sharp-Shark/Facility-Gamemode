@@ -6,7 +6,7 @@ table.size = function (t)
 end
 
 -- Custom method for nicely printing tables
-table.print = function(t)
+table.print = function(t, output)
 	local out = '{ '
 	local first = true
 	for key, value in pairs(t) do
@@ -17,17 +17,20 @@ table.print = function(t)
 		end
 		if type(key) == 'userdata' then
 			if not pcall(function ()
-				out = out .. key.Name..' = '
+				out = out .. key.Name
 			end) then
 				if not pcall(function ()
-					out = out .. key.Info.Name..' = '
+					out = out .. key.Info.Name
 				end) then
-					out = out .. 'USERDATA = '
+					out = out .. 'USERDATA'
 				end
 			end
+		elseif type(key) == 'table' then
+			out = out .. table.print(key, true)
 		else
-			out = out .. key..' = '
+			out = out .. key
 		end
+		out = out .. ' = '
 		if type(value) == 'userdata' then
 			if not pcall(function ()
 				out = out .. value.Name
@@ -38,12 +41,28 @@ table.print = function(t)
 					out = out .. 'USERDATA'
 				end
 			end
+		elseif type(value) == 'table' then
+			out = out .. table.print(value, true)
 		else
 			out = out .. value
 		end
 	end
 	out = out .. ' }'
-	print(out)
+	if not output then print(out) end
+	return out
+end
+
+-- Shuffles a table (assumes it has an array-like structure)
+function shuffleArray (array)
+	local shuffledArray = {}
+	local originalArray = {}
+	for key, value in pairs(array) do
+		originalArray[key] = value
+	end
+	while #originalArray > 0 do
+		table.insert(shuffledArray, table.remove(originalArray, math.random(#originalArray)))
+	end
+	return shuffledArray
 end
 
 -- Checks distance between two vectors
@@ -150,17 +169,48 @@ end
 
 -- Messages a message to a client
 function messageClient (client, msgType, text)
-	if msgType == 'blue' then
-		local chatMessage = ChatMessage.Create("@", text, ChatMessageType.Radio, nil, nil)
-		chatMessage.Color = Color(155, 200, 255, 255)
+	-- For other stuff
+	if msgType == 'text-general' then
+		local chatMessage = ChatMessage.Create('[General Info]', text, ChatMessageType.Server, nil, nil)
+		chatMessage.Color = Color(180, 180, 200, 255)
 		Game.SendDirectChatMessage(chatMessage, client)
+	-- For warnings
+	elseif msgType == 'text-warning' then
+		local chatMessage = ChatMessage.Create('[Warning]', text, ChatMessageType.Server, nil, nil)
+		chatMessage.Color = Color(255, 0, 0, 255)
+		Game.SendDirectChatMessage(chatMessage, client)
+	-- For ingame info
+	elseif msgType == 'text-game' then
+		local chatMessage = ChatMessage.Create('[Important Intel]', text, ChatMessageType.Server, nil, nil)
+		chatMessage.Color = Color(255, 125, 100, 255)
+		Game.SendDirectChatMessage(chatMessage, client)
+	-- For console commands
+	elseif msgType == 'text-command' then
+		local chatMessage = ChatMessage.Create('[Chat Command]', text, ChatMessageType.Server, nil, nil)
+		chatMessage.Color = Color(190, 215, 255, 255)
+		Game.SendDirectChatMessage(chatMessage, client)
+	-- Big popup
 	elseif msgType == 'popup' then
-		Game.SendDirectChatMessage("",text, nil, ChatMessageType.MessageBox, client)
+		Game.SendDirectChatMessage(msgType,text, nil, ChatMessageType.MessageBox, client)
+		-- Also message user (like with text-general msgType)
+		messageClient(client, 'text-general', text)
+	-- Subtle popup
 	elseif msgType == 'info' then
-		Game.SendDirectChatMessage("",text, nil, ChatMessageType.ServerMessageBoxInGame, client, 'WorkshopMenu.InfoButton')
+		Game.SendDirectChatMessage(msgType,text, nil, ChatMessageType.ServerMessageBoxInGame, client, 'WorkshopMenu.InfoButton')
+		-- Also message user (like with text-general msgType)
+		messageClient(client, 'text-general', text)
 	end
 end
 
+-- Messages all clients using messageClient
+function messageAllClients (msgType, text)
+	for client in Client.ClientList do
+		messageClient(client, msgType, text)
+	end
+end
+
+
+-- Spawns a human with a job somewhere
 function spawnHuman (client, job, pos)
 	local info
 	if client.CharacterInfo == nil then

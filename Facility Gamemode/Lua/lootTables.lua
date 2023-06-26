@@ -5,9 +5,9 @@ global_lootTables = {
 --		{'identifier', p, n, amount}
 --	}
 	fg_trash = {
+		{'plastic', 0.6, 1, 1},
 		{'antidama2', 0.35, 1, 1},
-		{'idcardstaff', 0.3, 1, 1},
-		{'revolverround', 0.25, 1, 3},
+		{'revolverround', 0.25, 1, 3}
 	},
 	fg_office1 = {
 		{'midazolam', 0.35, 1, 1},
@@ -57,16 +57,19 @@ global_lootTables = {
 		{'smgmagazine', 0.4, 2, 1},
 		{'revolver', 0.6, 1, 1},
 		{'revolverround', 0.6, 4, 3},
-		{'oxygentank', 0.4, 4, 1},
 		{'batterycell', 0.4, 4, 1},
 		{'idcardenforcerguard', 0.3, 1, 1},
 		{'idcardeliteguard', 0.2, 1, 1},
-		{'idcardoverseer', 0.2, 1, 1}
+		{'idcardoverseer', 0.2, 1, 1},
+		{'stungrenade', 0.6, 2, 1},
+		{'fraggrenade', 0.4, 1, 1}
 	},
 	fg_supplies1 = {
+		{'extinguisher', 0.4, 1, 1},
+		{'plastic', 0.4, 3, 1},
 		{'antibleeding2', 0.3, 3, 1},
-		{'handcannon', 0.3, 1, 1},
-		{'handcannonround', 0.25, 3, 6},
+		{'revolver', 0.3, 1, 1},
+		{'revolverround', 0.25, 3, 6},
 		{'ironhelmet', 0.35, 1, 1},
 		{'toolbelt', 0.35, 1, 1},
 		{'crowbar', 0.5, 1, 1},
@@ -74,10 +77,12 @@ global_lootTables = {
 		{'flashlight', 0.35, 1, 1},
 		{'weldingfueltank', 0.4, 4, 1},
 		{'batterycell', 0.4, 4, 1},
-		{'idcardstaff', 0.4, 1, 1},
-		{'idcardenforcerguard', 0.1, 1, 1}
+		{'idcardstaff', 0.3, 1, 1},
+		{'idcardenforcerguard', 0.05, 1, 1}
 	},
 	fg_supplies2 = {
+		{'extinguisher', 0.6, 1, 1},
+		{'plastic', 0.5, 4, 1},
 		{'antibleeding2', 0.4, 4, 1},
 		{'shotgun', 0.6, 1, 1},
 		{'shotgunshell', 0.5, 3, 6},
@@ -117,14 +122,17 @@ global_lootTables = {
 	},
 	fg_guns = {
 		{'bodyarmor', 0.5, 1, 1},
-		{'machinepistol', 0.25, 1, 1},
+		{'smg', 0.22, 1, 1},
 		{'smgmagazine', 0.75, 8, 1},
 		{'revolver', 0.55, 2, 1},
 		{'revolverround', 0.5, 6, 6},
-		{'divingknife', 0.5, 2, 1}
+		{'divingknife', 0.5, 2, 1},
+		{'stungrenade', 0.6, 2, 1},
+		{'fraggrenade', 0.4, 1, 1}
 	},
 	fg_shelter = {
-		{'extinguisher', 0.5, 1, 1},
+		{'carbonatespray', 0.6, 1, 1},
+		{'extinguisher', 0.6, 1, 1},
 		{'divingmask', 0.6, 2, 1},
 		{'oxygentank', 0.55, 3, 1},
 		{'antibleeding1', 0.5, 3, 1},
@@ -135,13 +143,12 @@ global_lootTables = {
 		{'flashlight', 0.35, 1, 1},
 		{'revolverround', 0.2, 2, 6},
 		{'crowbar', 0.45, 1, 1},
-		{'divingknife', 0.2, 2, 1},
 		{'batterycell', 0.3, 3, 1},
 		{'flare', 0.2, 2, 2},
 		{'idcardoverseer', 0.4, 1, 1}
 	},
 	fg_armory = {
-		{'extinguisher', 0.5, 1, 1},
+		{'carbonatespray', 0.6, 1, 1},
 		{'headset', 0.35, 2, 1},
 		{'antibleeding1', 0.5, 3, 1},
 		{'midazolam', 0.2, 2, 1},
@@ -155,13 +162,18 @@ global_lootTables = {
 		{'divingknife', 0.2, 2, 1},
 		{'batterycell', 0.3, 3, 1},
 		{'idcardenforcerguard', 0.3, 1, 1},
-		{'idcardeliteguard', 0.1, 1, 1}
+		{'idcardeliteguard', 0.1, 1, 1},
+		{'fraggrenade', 0.6, 3, 1},
+		{'stungrenade', 0.5, 2, 1},
+		{'chemgrenade', 0.4, 1, 1}
 	},
 	fg_ammo = {
 		{'assaultriflemagazine', 0.8, 10, 1},
-		{'shotgunshell', 0.8, 8, 6},
-		{'smgmagazine', 0.7, 6, 1},
-		{'revolverround', 0.7, 6, 6}
+		{'shotgunshell', 0.8, 6, 6},
+		{'smgmagazine', 0.8, 6, 1},
+		{'revolverround', 0.8, 4, 6},
+		{'fraggrenade', 0.6, 3, 1},
+		{'chemgrenade', 0.4, 2, 1}
 	},
 	fg_diving = {
 		{'underwaterscooter', 0.35, 2, 1},

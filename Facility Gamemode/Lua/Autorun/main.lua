@@ -1,3 +1,8 @@
+if CLIENT and Game.IsMultiplayer then
+	print("[!] Won't run clientside lua in multiplayer.")
+	return
+end
+
 print('...')
 print('[!] Loading Facility Gamemode...')
 
@@ -75,8 +80,11 @@ global_endGame = false
 global_decontaminationTimer = 60*12 + 15
 
 -- Respawn timer isn't 6min (value is variable)
-global_respawnTimer = 360
+global_respawnTimer = 100
+global_respawnTimerSeconds = 0
 global_respawnETA = 'never for now.'
+global_respawnTimerUpdate = false
+global_respawnTimerLastUpdateSeconds = -1
 
 -- Counts amounts the think hook has been called, might be reset, don't use it as a total call counter
 global_thinkCounter = 0
@@ -88,8 +96,8 @@ global_playerRole = {}
 global_militantPlayers = {}
 
 -- Respawn tickets for JET and MERCS
-global_terroristTickets = 4
-global_nexpharmaTickets = 5
+global_terroristTickets = 3.5
+global_nexpharmaTickets = 4.5
 
 -- Monster counter for setclientcharacter when multiple players pick the same monster
 global_monsterCount = {mantis = 0, crawler = 0}
@@ -98,23 +106,22 @@ global_monsterCount = {mantis = 0, crawler = 0}
 function promoteEscapee (client)
 
 	-- Heal escapee incase he was hurt
-	Game.ExecuteCommand('heal ' .. client.Character.Name)
-	Game.ExecuteCommand('revive ' .. client.Character.Name)
+	client.Character.Revive(true)
 
 	-- Spawn escapee as militant
 	global_militantPlayers[client.Name] = true
 	if isCharacterTerrorist(client.Character) then
 		-- Update Ticket Count
 		global_terroristTickets = global_terroristTickets + 2
-		Game.ExecuteCommand('say Terrorists have gained 2 tickets - civilian has escaped! ' .. global_terroristTickets .. ' tickets left!' )
+		messageAllClients('text-game', 'Terrorists have gained 2 tickets - civilian has escaped! ' .. global_terroristTickets .. ' tickets left!')
 		-- Spawns JET
-		spawnPlayerMilitant_OLD(client, 'JET')
+		spawnPlayerMilitant(client, 'JET')
 	elseif isCharacterNexpharma(client.Character) then
 		-- Update Ticket Count
 		global_nexpharmaTickets = global_nexpharmaTickets + 1
-		Game.ExecuteCommand('say Nexpharma has gained 1 ticket - civilian has escaped! ' .. global_nexpharmaTickets .. ' tickets left!' )
+		messageAllClients('text-game', 'Nexpharma has gained 1 ticket - civilian has escaped! ' .. global_nexpharmaTickets .. ' tickets left!' )
 		-- Spawns MERCS
-		spawnPlayerMilitant_OLD(client, 'MERCS')
+		spawnPlayerMilitant(client, 'MERCS')
 	end
 
 end
@@ -123,7 +130,10 @@ end
 Hook.Add("client.connected", "clientConnected", function (connectedClient)
 
 	messageClient(connectedClient, 'popup', global_joinMessageText)
-	messageClient(connectedClient, 'blue', global_joinMessageText)
+	
+	if not global_endGame or not Game.RoundStarted then return end
+
+	global_respawnTimerUpdate = true
 
 end)
 
@@ -132,12 +142,29 @@ Hook.Add("think", "thinkCheck", function ()
 	global_thinkCounter = global_thinkCounter + 1
 	local rect = 0
 	
+	--[[
+	-- Stamina code (might remove later)
+	if Game.RoundStarted then
+		for char in Character.CharacterList do
+			if char.SpeciesName == 'human' then
+				if char.AnimController.IsMovingFast then
+					giveAfflictionCharacter(char, 'fatigue', char.MaxHealth * 0.0005)
+				else
+					char.CharacterHealth.ReduceAfflictionOnAllLimbs(AfflictionPrefab.Prefabs['fatigue'].identifier,  char.MaxHealth * 0.001)
+				end
+			end
+		end
+	end
+	--]]
+	
 	-- Only execute once every 1/2 a second for performance
 	if global_thinkCounter % 30 == 0 then
-		Game.ServerSettings['AllowRespawn'] = global_serverSettings['AllowRespawn']
+		if SERVER then
+			Game.ServerSettings['AllowRespawn'] = global_serverSettings['AllowRespawn']
 	
-		if string.sub(Game.ServerSettings.ServerMessageText, 1, #global_serverMessageText) ~= global_serverMessageText then
-			Game.ServerSettings.ServerMessageText = global_serverMessageText .. Game.ServerSettings.ServerMessageText
+			if string.sub(Game.ServerSettings.ServerMessageText, 1, #global_serverMessageText) ~= global_serverMessageText then
+				Game.ServerSettings.ServerMessageText = global_serverMessageText .. Game.ServerSettings.ServerMessageText
+			end
 		end
 	
 		-- Only execute the following code if the round has started
@@ -170,32 +197,62 @@ Hook.Add("think", "thinkCheck", function ()
 			if total == 0 then total = 1 end
 			local deadPercentage = dead/total
 			-- Decrement timer
-			global_respawnTimer = global_respawnTimer - 30 / #Client.ClientList * deadPercentage
+			local rate = 10 / #Client.ClientList * deadPercentage
+			global_respawnTimer = global_respawnTimer - rate
 			-- Update Estimated Time of Arrival
-			if not (((30 / #Client.ClientList * deadPercentage) / 2) > 0) then
-				global_respawnETA = 'never for now'
-			elseif (global_respawnTimer / (30 / #Client.ClientList * deadPercentage) / 2) > 3 then
-				global_respawnETA = global_respawnTimer / (30 / #Client.ClientList * deadPercentage) / 2
-				global_respawnETA = 'in ' .. global_respawnETA .. 's for now'
-			else
-				global_respawnETA = global_respawnTimer / (30 / #Client.ClientList * deadPercentage) / 2
-				global_respawnETA = 'right now'
+			global_respawnTimerSeconds = -1
+			if rate > 0 then
+				global_respawnTimerSeconds = math.ceil(global_respawnTimer / rate / 2)
 			end
-		elseif not Game.ServerSettings['AllowRespawn'] then
+			if not ((rate / 2) > 0) then
+				global_respawnETA = 'never for now'
+			else
+				global_respawnETA = 'in ' .. global_respawnTimerSeconds .. 's for now'
+			end
+			-- Announce respawn timer to the dead every so often
+			if global_respawnTimerSeconds < (global_respawnTimerLastUpdateSeconds - 30) then
+				global_respawnTimerUpdate = true
+				global_respawnTimerLastUpdateSeconds = -1
+			end
+			if global_respawnTimerLastUpdateSeconds == -1 then
+				global_respawnTimerLastUpdateSeconds = global_respawnTimerSeconds
+			end
+			-- Display respawn timer
+			if global_respawnTimerUpdate then
+				for player in Client.ClientList do
+					if (player.Character == nil or player.Character.IsDead) and not global_spectators[player.Name] then
+						respawnInfo(player)
+					end
+				end
+				global_respawnTimerUpdate = false
+			end
+		elseif not global_endGame and not Game.ServerSettings['AllowRespawn'] then
 			-- Respawn dead players
-			local balance = (global_terroristTickets > global_nexpharmaTickets) and 1 or 0
-			for player in Client.ClientList do
+			local balance = (global_terroristTickets >= global_nexpharmaTickets) and 1 or 0
+			-- If it's a tie, decide it randomly
+			if global_terroristTickets == global_nexpharmaTickets then balance = math.random(2) - 1 end
+			-- Respawn/spawn dead/new players in a random order
+			for player in shuffleArray(Client.ClientList) do
 				if (player.Character == nil or player.Character.IsDead) and not global_spectators[player.Name] then
 					if balance == 1 then
 						if global_terroristTickets >= 1 then
 							spawnPlayerMilitant(player, 'JET')
+						else
+							messageClient(player, 'text-game', 'Terrorists are out of tickets - no more respawns!')
 						end
 					elseif balance == 0 then
 						if global_nexpharmaTickets >= 1 then
 							spawnPlayerMilitant(player, 'MERCS')
+						else
+							messageClient(player, 'text-game', 'Nexpharma is out of tickets - no more respawns!')
 						end
 					end
+				end
+			end
 			--[[
+			local balance = (global_terroristTickets > global_nexpharmaTickets) and 1 or 0
+			for player in shuffleArray(Client.ClientList) do
+				if (player.Character == nil or player.Character.IsDead) and not global_spectators[player.Name] then
 					if (global_playerRole[player.Name] == 'monster' or global_playerRole[player.Name] ==  'inmate' or global_playerRole[player.Name] == 'jet') and global_terroristTickets >= 1 then
 						spawnPlayerMilitant(player, 'JET')
 					elseif (global_playerRole[player.Name] == 'staff' or global_playerRole[player.Name] ==  'guard' or global_playerRole[player.Name] == 'mercs') and global_nexpharmaTickets >= 1 then
@@ -209,11 +266,12 @@ Hook.Add("think", "thinkCheck", function ()
 							balance = balance + 1
 						end
 					end
-			--]]
 				end
 			end
+			--]]
 			-- Reset
-			global_respawnTimer = 360
+			global_respawnTimer = 100
+			global_respawnTimerLastUpdateSeconds = -1
 		end
 		
 		-- Decontamination
@@ -221,15 +279,15 @@ Hook.Add("think", "thinkCheck", function ()
 			global_decontaminationTimer = global_decontaminationTimer - 0.5
 			-- Announce time until decontamination at certain time stamps
 			if global_decontaminationTimer == 0 then
-				Game.ExecuteCommand('say Complete facility decontamination has been initiated.')
+				messageAllClients('text-game', 'Complete facility decontamination has been initiated.')
 			elseif global_decontaminationTimer == 10 then
-				Game.ExecuteCommand('say T-10 seconds until complete facility decontamination.')
+				messageAllClients('text-game', 'T-10 seconds until complete facility decontamination.')
 			elseif global_decontaminationTimer == 60 then
-				Game.ExecuteCommand('say T-1 minute until complete facility decontamination.')
+				messageAllClients('text-game', 'T-1 minute until complete facility decontamination.')
 			elseif global_decontaminationTimer % 120 == 0 then
-				Game.ExecuteCommand('say T-' .. global_decontaminationTimer / 60 .. ' minutes until complete facility decontamination.')
+				messageAllClients('text-game', 'T-' .. global_decontaminationTimer / 60 .. ' minutes until complete facility decontamination.')
 			elseif global_decontaminationTimer <= 10 and global_decontaminationTimer % 1 == 0 then
-				Game.ExecuteCommand('say T-' .. global_decontaminationTimer .. '...')
+				messageAllClients('text-game', 'T-' .. global_decontaminationTimer .. '...')
 			end
 		else
 			-- Apply affliction to everyone outside of surface after decontamination started
@@ -238,13 +296,15 @@ Hook.Add("think", "thinkCheck", function ()
 				rect = item.WorldRect
 				for char in Character.CharacterList do
 					-- Item center is at its top left corner
-					if not (math.abs(char.WorldPosition.X - rect.X - rect.Width/2) <= rect.Width/2 and math.abs(char.WorldPosition.Y - rect.Y + rect.Height/2) <= rect.Height/2) then
-						table.insert(chars, char)
+					if math.abs(char.WorldPosition.X - rect.X - rect.Width/2) <= rect.Width/2 and math.abs(char.WorldPosition.Y - rect.Y + rect.Height/2) <= rect.Height/2 then
+						chars[char] = true
+					elseif not chars[char] then
+						chars[char] = false
 					end
 				end
 			end
-			for char in chars do
-				giveAfflictionCharacter(char, 'intoxicated', char.MaxHealth * 0.01)
+			for char, value in pairs(chars) do
+				if not value then giveAfflictionCharacter(char, 'intoxicated', char.MaxHealth * 0.01) end
 			end
 		end
 		
@@ -252,7 +312,7 @@ Hook.Add("think", "thinkCheck", function ()
 		for item in findItemsByTag('fg_extractionpoint') do
 			for player in Client.ClientList do
 				if player.Character ~= nil and player.Character.SpeciesName == 'human' and (player.Character.HasJob('inmate') or player.Character.HasJob('repairmen') or player.Character.HasJob('researcher')) and
-				distance(item.WorldPosition, player.Character.WorldPosition) < 200 and not global_militantPlayers[player.Name] then
+				distance(item.WorldPosition, player.Character.WorldPosition) < 200 then
 					promoteEscapee(player)
 				end
 			end
@@ -270,14 +330,19 @@ Hook.Add("roundStart", "prepareMatch", function (createdCharacter)
 	for client in Client.ClientList do
 		print('    - ' .. client.Name)
 	end
-	-- Disables friendly fire
-	Game.ServerSettings['AllowFriendlyFire'] = false
+	-- Server only code
+	if SERVER then
+		-- Disables friendly fire
+		Game.ServerSettings['AllowFriendlyFire'] = global_serverSettings['AllowFriendlyFire']
+	end
 	-- Resets round end
 	global_endGame = false
 	-- Reset decon timer to 12m15s
 	global_decontaminationTimer = 60*12 + 15
 	-- Resets respawn timer
-	global_respawnTimer = 360
+	global_respawnTimer = 100
+	global_respawnTimerUpdate = false
+	global_respawnTimerLastUpdate = -1
 	-- Refresh think call counter
 	global_thinkCounter = 0
 	-- Refresh Militant Player List
@@ -285,8 +350,8 @@ Hook.Add("roundStart", "prepareMatch", function (createdCharacter)
 	-- Refresh Monster Count
 	global_monsterCount = {mantis = 0, crawler = 0}
 	-- Refresh Tickets
-	global_terroristTickets = 3
-	global_nexpharmaTickets = 5
+	global_terroristTickets = 3.5
+	global_nexpharmaTickets = 4.5
 	-- Enabling cheats is necessary for ExecuteCommand method
 	Game.ExecuteCommand('enablecheats')
 	-- Helps with trams not getting stuck
@@ -309,7 +374,7 @@ Hook.Add("roundStart", "prepareMatch", function (createdCharacter)
 				for tag, content in pairs(global_lootTables) do
 					if item.HasTag(tag) then
 						-- Iterate through all the items in the loot table and do spawning procedure
-						for loot in content do
+						for loot in shuffleArray(content) do
 							for n = 1, loot[3] do
 								if loot[2] > math.random() then
 									for n = 1, loot[4] do
@@ -320,6 +385,14 @@ Hook.Add("roundStart", "prepareMatch", function (createdCharacter)
 						end
 					end
 				end
+			end
+		end
+		-- Fill all hulls tagged with "fg_flooded" with water
+		for hull in Submarine.MainSub.GetHulls(false) do
+			if hull.RoomName == 'Tunnels' then
+				hull.WaterVolume = hull.Volume
+			elseif hull.RoomName == 'Tunnel Access' then
+				hull.WaterVolume = hull.Volume / 5
 			end
 		end
 	end, 100)
@@ -385,18 +458,20 @@ global_serverSettings = {
 }
 
 -- Applies settings to server
-for setting, value in pairs(global_serverSettings) do
-    if not pcall(function ()
-        Game.ServerSettings[setting] = value
-    end) then
-        LuaUserData.MakeMethodAccessible(Descriptors['Barotrauma.Networking.ServerSettings'], 'set_' .. setting)
-        Game.ServerSettings['set_' .. setting](value)
-    end
+if SERVER then
+	for setting, value in pairs(global_serverSettings) do
+		if not pcall(function ()
+			Game.ServerSettings[setting] = value
+		end) then
+			LuaUserData.MakeMethodAccessible(Descriptors['Barotrauma.Networking.ServerSettings'], 'set_' .. setting)
+			Game.ServerSettings['set_' .. setting](value)
+		end
+	end
+	-- Actually applies the settings
+	Game.ServerSettings.ForcePropertyUpdate()
+	-- Set difficulty to 0%
+	Game.NetLobbyScreen.SetLevelDifficulty(0)
 end
--- Actually applies the settings
-Game.ServerSettings.ForcePropertyUpdate()
--- Set difficulty to 0%
-Game.NetLobbyScreen.SetLevelDifficulty(0)
 
 -- Sucess Message
 print('[!] Facility Gamemode by Sharp-Shark!')

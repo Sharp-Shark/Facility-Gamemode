@@ -7,12 +7,12 @@ function spawnPlayerMonster (client, species)
 	local items = findItemsByTag('fg_monsterspawn')
 
 	-- Spawn monster at containment cell
-	Entity.Spawner.AddCharacterToSpawnQueue(species .. 'admin', items[math.random(#items)].WorldPosition, function ()
+	Entity.Spawner.AddCharacterToSpawnQueue(species .. 'admin', items[math.random(#items)].WorldPosition, function (characterMonster)
 		-- Give player control of their monster (and bump monster counters)
-		Game.ExecuteCommand('setclientcharacter "' .. client.Name .. '" ' .. species .. 'admin ' .. global_monsterCount[species])
+		client.SetClientCharacter(characterMonster)
 		global_monsterCount[species] = global_monsterCount[species] + 1
 		-- Teleport and kill their human bodies
-		Game.ExecuteCommand('kill "' .. character.Info.Name .. '"')
+		character.Kill(CauseOfDeathType.Unknown)
 		character.TeleportTo(items[math.random(#items)].WorldPosition)
 	end)
 
@@ -21,6 +21,7 @@ end
 
 -- General code for when respawning a player as militant
 function spawnPlayerMilitant (client, team, OLD)
+	global_militantPlayers[client.Name] = true
 	if OLD then
 		spawnPlayerMilitant_OLD(client, team)
 	else
@@ -39,26 +40,25 @@ end
 
 -- Spawns a human who is a militant and sets it to the client's character, distinct from SpawnPlayerMilitant_OLD
 function spawnPlayerMilitant_NEW (client, team)
-	local character
 	local items
 	if team == 'JET' then
 		items = findItemsByTag('fg_terroristspawn')
+	elseif team == 'MERCS' then
+		items = findItemsByTag('fg_nexpharmaspawn')
+	end
+	if (client.Character ~= nil) and not client.Character.IsDead then
+		client.Character.Kill(CauseOfDeathType.Unknown)
+		client.Character.TeleportTo(items[math.random(#items)].WorldPosition)
+	end
+	local character
+	if team == 'JET' then
 		character = spawnHuman(client, 'jet', items[math.random(#items)].WorldPosition)
 		client.Character.SetOriginalTeam(CharacterTeamType.Team2)
 		client.Character.UpdateTeam()
-		-- Spawn id card via lua due to bug
-		Timer.Wait(function ()
-			giveItemCharacter(character, 'idcardjet', 1, 0)
-		end, 1*1000)
 	elseif team == 'MERCS' then
-		items = findItemsByTag('fg_nexpharmaspawn')
 		character = spawnHuman(client, 'mercs', items[math.random(#items)].WorldPosition)
 		client.Character.SetOriginalTeam(CharacterTeamType.Team1)
 		client.Character.UpdateTeam()
-		-- Spawn id card via lua due to bug
-		Timer.Wait(function ()
-			giveItemCharacter(character, 'idcardmercs', 1, 0)
-		end, 1*1000)
 	end
 	--[[
 	Timer.Wait(function ()
@@ -75,8 +75,6 @@ function spawnPlayerMilitant_OLD (client, team)
 	local character = client.Character
 	-- Guard clause
 	if character == nil or character.SpeciesName ~= 'human' or character.IsDead then return end
-
-	global_militantPlayers[client.Name] = true
 	
 	-- Remove player items
 	Timer.Wait(function ()
@@ -126,6 +124,17 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (character)
 		character.SetOriginalTeam(CharacterTeamType.Team2)
 		character.UpdateTeam()
 	end
+	-- Spawn JET and MERCS card via LUA due to bug
+	if character.HasJob('jet') then
+		Timer.Wait(function ()
+			giveItemCharacter(character, 'idcardjet', 1, 0)
+		end, 1*1000)
+	end
+	if character.HasJob('mercs') then
+		Timer.Wait(function ()
+			giveItemCharacter(character, 'idcardmercs', 1, 0)
+		end, 1*1000)
+	end
 	-- Guard clause
 	if client == nil then return end
 
@@ -152,8 +161,8 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (character)
 			if global_terroristTickets >= 1 then
 				spawnPlayerMilitant(client, 'JET', true)
 			else
-				Game.ExecuteCommand('say Terrorists are out of tickets - no more respawns!')
-				Game.ExecuteCommand('kill ' .. character.Info.Name)
+				messageAllClients('text-game', 'Terrorists are out of tickets - no more respawns!')
+				character.Kill(CauseOfDeathType.Unknown)
 			end
 			
 		-- Guards and Staff respawn as MERCS
@@ -161,8 +170,8 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (character)
 			if global_nexpharmaTickets >= 1 then
 				spawnPlayerMilitant(client, 'MERCS', true)
 			else
-				Game.ExecuteCommand('say Nexpharma is out of tickets - no more respawns!')
-				Game.ExecuteCommand('kill ' .. character.Info.Name)
+				messageAllClients('text-game', 'Nexpharma is out of tickets - no more respawns!')
+				character.Kill(CauseOfDeathType.Unknown)
 			end
 		end
 	end

@@ -1,8 +1,8 @@
 -- Get Team Distribution
 function roleDistribution (amount)
 
-	print('...')
 	if table.size(global_spectators) > 0 then
+		print('...')
 		for player, value in pairs(global_spectators) do
 			print('[!] ' .. player .. ' is a spectator.')
 		end
@@ -29,7 +29,7 @@ function roleDistribution (amount)
 	teamCount['inmate'] = unassigned
 	--]]
 	
-	local roleSequence = 'msiigsmiigsimigsiimg'
+	local roleSequence = 'msiigmisigmisigmisigmisig'
 	for count = 0, unassigned - 1 do
 		local letter = string.sub(roleSequence, count % #roleSequence + 1, count % #roleSequence + 1)
 		if letter == 'm' then
@@ -47,40 +47,74 @@ function roleDistribution (amount)
 end
 
 -- Assign players a Role
-function assignPlayerRole ()
+function assignPlayerRole (amount, preferredRole)
 
-	local teamCount = roleDistribution()
-	local unassignedPlayers = {}
-	for player in Client.ClientList do
-		if not global_spectators[player.Name] then
-			table.insert(unassignedPlayers, player.Name)
+	function jobToRole (job)
+		if job == 'mutatedmantis' or job == 'mutatedcrawler' then
+			return 'monster'
+		elseif job == 'repairmen' or job == 'researcher' then
+			return 'staff'
+		elseif job == 'enforcerguard' then
+			return 'guard'
+		elseif job == 'inmate' then
+			return 'inmate'
+		else
+			return ''
 		end
 	end
+
+	local roles = {'monster', 'staff', 'guard', 'inmate'}
+
+	local teamCount = {}
+	local unassignedPlayers = {}
+	local playerPreferredRole = {}
+	
+	-- regular usage
+	if amount == nil then
+		teamCount = roleDistribution()
+		unassignedPlayers = {}
+		for player in Client.ClientList do
+			if not global_spectators[player.Name] then
+				playerPreferredRole[player.Name] = jobToRole(player.PreferredJob)
+				table.insert(unassignedPlayers, player.Name)
+			end
+		end
+	-- for debugging
+	else
+		teamCount = roleDistribution(amount)
+		unassignedPlayers = {'Alpha', 'Beta', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel', 'India', 'Juliett', 'Kilo', 'Lima', 'Mike', 'November', 'Oscar', 'Papa', 'Quebec', 'Romeo', 'Sierra', 'Tango', 'Uniform', 'Victor', 'Whiskey', 'Xray', 'Yankee', 'Zuku'}
+		for n=1, #unassignedPlayers - amount do
+			table.remove(unassignedPlayers, #unassignedPlayers)
+		end
+		for player in unassignedPlayers do
+			if preferredRole == 'random' then
+				playerPreferredRole[player] = roles[math.random(#roles)]
+			elseif preferredRole == nil then
+				playerPreferredRole[player] = ''
+			else
+				playerPreferredRole[player] = preferredRole
+			end
+		end
+		-- print the player preferred roles
+		table.print(playerPreferredRole)
+	end
+	
 	local playerRole = {}
 	local selectedRole = ''
 	local unsolvedPlayers = {}
+	local player = ''
 	local index = 0
 	
 	-- Give players their preferred role if possible
 	while ((teamCount['monster'] + teamCount['staff'] + teamCount['guard'] + teamCount['inmate']) > 0) and #unassignedPlayers > 0 do
 		index = math.random(#unassignedPlayers)
+		player = unassignedPlayers[index]
 		
 		selectedRole = ''
-		for player in Client.ClientList do
-			if unassignedPlayers[index] == player.Name then
-				if (player.PreferredJob == 'mutatedmantis' or player.PreferredJob == 'mutatedcrawler') and teamCount['monster'] > 0 then
-					selectedRole = 'monster'
-				elseif (player.PreferredJob == 'repairmen' or player.PreferredJob == 'researcher') and teamCount['staff'] > 0 then
-					selectedRole = 'staff'
-				elseif (player.PreferredJob == 'enforcerguard') and teamCount['guard'] > 0 then
-					selectedRole = 'guard'
-				elseif (player.PreferredJob == 'inmate') and teamCount['inmate'] > 0 then
-					selectedRole = 'inmate'
-				else
-					-- Couldn't give preferred role - move to unsolved player list
-					table.insert(unsolvedPlayers, table.remove(unassignedPlayers, index))
-				end
-			end
+		if playerPreferredRole[player] ~= '' and teamCount[playerPreferredRole[player]] > 0 then
+			selectedRole = playerPreferredRole[player]
+		else
+			table.insert(unsolvedPlayers, table.remove(unassignedPlayers, index))
 		end
 		
 		if selectedRole ~= '' then
@@ -113,14 +147,38 @@ function assignPlayerRole ()
 	return playerRole
 end
 
+-- Debug function that counts the amount of each role
+function countRoleAmount (playerRole, extra)
+
+	local teamCount = {}
+	teamCount['total'] = 0
+	teamCount['monster'] = 0
+	teamCount['staff'] = 0
+	teamCount['guard'] = 0
+	teamCount['inmate'] = 0
+	
+	
+	for playerName, role in pairs(playerRole) do
+		teamCount['total'] = teamCount['total'] + 1
+		teamCount[role] = teamCount[role] + 1
+	end
+	
+	if extra then
+		table.print(countRoleAmount(assignPlayerRole(teamCount['total'])))
+	end
+	
+	return teamCount
+end
+
 -- Overrides the jobs the players chose, assuming auto jobs is activated
 Hook.Add("jobsAssigned", "automaticJobAssignment", function ()
-	if CLIENT and Game.IsMultiplayer then return end
 	global_playerRole = {}
 	if not global_autoJob then return end
 	if #Client.ClientList - table.size(global_spectators) <= 1 then print('[!] Only 1 player, will not assign jobs.') return end
 
 	global_playerRole = assignPlayerRole()
+	
+	global_huskPlayers = {}
 	
 	local roleJob = {}
 	roleJob['monster'] = {'mutatedcrawler', 'mutatedmantis'}

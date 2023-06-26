@@ -39,7 +39,7 @@ global_nexpharmaLoadout = {
 	{'batterycell', 1, 16},
 	{'piratebandana', 1, 2},
 	{'securityuniform2', 1, 3},
-	{'pucs', 1, 4},
+	{'nexsuit', 1, 4},
 	{'combatstimulantsyringe', 1, 4},
 	{'oxygentank', 1, 4},
 	{'headset', 1, 1},
