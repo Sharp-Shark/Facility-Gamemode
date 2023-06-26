@@ -58,7 +58,7 @@
       damagerange="100"
       duration="0.25"
       structuredamage="0"
-      itemdamage="12"
+      itemdamage="13"
       structuresoundtype="StructureSlash"
       targetforce="-100"
       severlimbsprobability="0.8"
