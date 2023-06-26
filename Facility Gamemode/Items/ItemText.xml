@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<infotexts language="English" nowhitespace="false" translatedname="English">
+
+<!-- Carbonate Spray -->
+<entityname.carbonatespray>Carbonate Spray</entityname.carbonatespray>
+<entitydescription.carbonatespray>A fire extinguisher can filled with an experimental carbonate that is poisonous to creatures, but safe to humans.</entitydescription.carbonatespray>
+
+<!-- Midazolam -->
+<entityname.midazolam>Midazolam</entityname.midazolam>
+<entitydescription.midazolam>Strong drug with healing properties, but due to it's composition, it causes alcohol poisoning and unconciousness.</entitydescription.midazolam>
+
+<!-- JET Mask -->
+<entityname.jetmask>JET Mask</entityname.jetmask>
+<entitydescription.jetmask>Just a diving mask and a helmet welded together, a standart headgear for the Jovian Elite Troops, or JET. Just seeing one can often provoke profound fear into any Nexpharma personnel.</entitydescription.jetmask>
+
+<!-- NexSuit -->
+<entityname.nexsuit>NexSuit</entityname.nexsuit>
+<entitydescription.nexsuit>Nexpharma proprietary suit exclusive to their elite paramilitary group, the Mobile Emergency Rescue and Combat Squad, or MERCS. In actuality, it's just a PUCS adapted for combat.</entitydescription.nexsuit>
+
+<!-- Terrorist ID Cards -->
+<entityname.idcardjet>JET ID Card</entityname.idcardjet>
+<entitydescription.idcardjet>Nexpharma militant. Admin tier 2 and weapons tier 3.</entitydescription.idcardjet>
+<entityname.idcardinmate>Inmate ID Card</entityname.idcardinmate>
+<entitydescription.idcardinmate>Terrorist civilian. Only useful for regular doors.</entitydescription.idcardinmate>
+<!-- Nexpharma ID Cards -->
+<entityname.idcardmercs>MERCS ID Card</entityname.idcardmercs>
+<entitydescription.idcardmercs>Nexpharma militant. Admin tier 3 and weapons tier 3.</entitydescription.idcardmercs>
+<entityname.idcardenforcerguard>Enforcer Guard ID Card</entityname.idcardenforcerguard>
+<entitydescription.idcardenforcerguard>Nexpharma militant. Admin tier 1 and weapons tier 1.</entitydescription.idcardenforcerguard>
+<entityname.idcardstaff>Staff ID Card</entityname.idcardstaff>
+<entitydescription.idcardstaff>Nexpharma civilian. Admin tier 1.</entitydescription.idcardstaff>
+<!-- Lootable ID Cards -->
+<entityname.idcardoverseer>Overseer ID Card</entityname.idcardoverseer>
+<entitydescription.idcardoverseer>Nexpharma civilian. Admin tier 3.</entitydescription.idcardoverseer>
+<entityname.idcardeliteguard>Elite Guard ID Card</entityname.idcardeliteguard>
+<entitydescription.idcardeliteguard>Nexpharma militant. Admin tier 2 and weapons tier 2.</entitydescription.idcardeliteguard>
+
+</infotexts>

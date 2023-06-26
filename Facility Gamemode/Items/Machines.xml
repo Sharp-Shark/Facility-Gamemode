@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+
+  <!-- Carbonate Spray Bracket -->
+  <Item name="Carbonate Spray Bracket" identifier="carbonatespraybracket" category="Equipment" tags="extinguisherholder" canflipx="false" canflipy="false" scale="0.5" pickdistance="75">
+    <Sprite texture="containers.png" depth="0.84" sourcerect="815,349,72,204" origin="0.5,0.5" />
+    <ItemContainer hideitems="false" drawinventory="true" capacity="1" maxstacksize="1" slotsperrow="1" itempos="35,-130" iteminterval="0,0" itemrotation="0" canbeselected="true" msg="ItemMsgInteractSelect">
+      <GuiFrame relativesize="0.2,0.25" anchor="Center" minsize="140,170" maxsize="280,280" style="ItemUI" />
+      <Containable items="carbonatespray,extinguisher" />
+    </ItemContainer>
+    <Upgrade gameversion="0.10.0.0" scale="*0.5" itempos="35,-130" />
+  </Item>
+  
+  <!-- ID Card Printer -->
+  <Item name="Printer" identifier="printer" tags="printer,donttakeitems,dontsellitems" category="Machine" linkable="true" allowedlinks="deconstructor,locker" description="" scale="0.5"  damagedbyexplosions="true"  explosiondamagemultiplier="0.2">
+
+    <Upgrade gameversion="0.10.4.0">
+      <Repairable Msg="ItemMsgRepairWrench"/>
+    </Upgrade>
+
+    <UpgradePreviewSprite scale="2.5" texture="Content/UI/WeaponUI.png" sourcerect="256,960,64,64" origin="0.5,0.45" />
+    <Sprite texture="idmaker.png" sourcerect="0,0,160,210" depth="0.8"/>
+
+    <LightComponent range="125.0" lightcolor="155,200,255,100" powerconsumption="0" IsOn="true" castshadows="false" alphablend="false" pulsefrequency="0.8" pulseamount="1.0" allowingameediting="false" />
+    
+    <Fabricator canbeselected="true" powerconsumption="0.0" msg="ItemMsgInteractSelect">
+      <GuiFrame relativesize="0.4,0.45" style="ItemUI" anchor="Center" />
+      <sound file="Content/Items/Fabricators/Fabricator.ogg" type="OnActive" range="1000.0" volumeproperty="RelativeVoltage" loop="true"/>
+      <poweronsound file="Content/Items/PowerOnLight1.ogg" range="600" loop="false" />
+      <StatusEffect type="InWater" target="This" condition="-0.5" />
+    </Fabricator>
+
+    <ConnectionPanel selectkey="Action" canbeselected="true" hudpriority="10" msg="ItemMsgRewireScrewdriver">
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel"/>
+      <RequiredSkill identifier="electrical" level="55" />
+      <StatusEffect type="OnFailure" target="Character" targetlimbs="LeftHand,RightHand" AllowWhenBroken="true">
+        <Sound file="Content/Sounds/Damage/Electrocution1.ogg" range="1000" />
+        <Explosion range="100.0" force="1.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
+        <Affliction identifier="stun" strength="4" />
+        <Affliction identifier="burn" strength="5" />
+      </StatusEffect>
+      <RequiredItem items="screwdriver" type="Equipped"/>
+      <input name="power_in" displayname="connection.powerin"/>
+      <output name="condition_out" displayname="connection.conditionout" />
+    </ConnectionPanel>
+
+    <Repairable selectkey="Action" header="mechanicalrepairsheader" deteriorationspeed="0.50" mindeteriorationdelay="60" maxdeteriorationdelay="120" RepairThreshold="80" fixDurationHighSkill="5" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.1,0.27" style="ItemUI"/>
+      <RequiredSkill identifier="mechanical" level="55" />
+      <RequiredItem items="wrench" type="Equipped" />
+      <ParticleEmitter particle="damagebubbles" particleburstamount="2" particleburstinterval="2.0" particlespersecond="2" scalemin="0.5" scalemax="1.5" anglemin="0" anglemax="359" velocitymin="-10" velocitymax="10" mincondition="0.0" maxcondition="50.0" />
+      <ParticleEmitter particle="smoke" particleburstamount="3" particleburstinterval="0.5" particlespersecond="2" scalemin="1" scalemax="2.5" anglemin="0" anglemax="359" velocitymin="-50" velocitymax="50" mincondition="15.0" maxcondition="50.0" />
+      <ParticleEmitter particle="heavysmoke" particleburstinterval="0.25" particlespersecond="2" scalemin="2.5" scalemax="5.0" mincondition="0.0" maxcondition="15.0" />
+      <StatusEffect type="OnFailure" target="Character" targetlimbs="LeftHand,RightHand" AllowWhenBroken="true">
+        <Sound file="Content/Items/MechanicalRepairFail.ogg" range="1000" />
+        <Affliction identifier="lacerations" strength="5" />
+        <Affliction identifier="stun" strength="4" />
+      </StatusEffect>
+    </Repairable>
+
+    <ItemContainer capacity="5" canbeselected="true" hideitems="true" slotsperrow="5" uilabel="" allowuioverlap="true"/>
+    <ItemContainer capacity="1" canbeselected="true" hideitems="true" slotsperrow="1" uilabel="" allowuioverlap="true"/>
+  </Item>
+  
+  <Override>
+  <!-- Wrench Button -->
+  <Item name="Wrench Button" identifier="wrenchbutton" category="Electrical" tags="smallitem,button" allowedlinks="door" linkable="true" cargocontaineridentifier="metalcrate" scale="1.5" impactsoundtag="impact_metal_light" isshootable="true" maxstacksize="8">
+    <Upgrade gameversion="0.10.0.0" scale="0.5" />
+    <Price baseprice="125" minavailable="4">
+      <Price storeidentifier="merchantoutpost" />
+      <Price storeidentifier="merchantcity" sold="false" />
+      <Price storeidentifier="merchantresearch" />
+      <Price storeidentifier="merchantmilitary" />
+      <Price storeidentifier="merchantmine" />
+      <Price storeidentifier="merchantengineering" multiplier="0.9" />
+    </Price>
+	<LightComponent range="15.0" lightcolor="255,200,155,200" powerconsumption="0" IsOn="true" castshadows="false" alphablend="false" pulsefrequency="1.2" pulseamount="0.4" allowingameediting="false" />
+    <Sprite texture="Content/Items/Electricity/signalcomp.png" depth="0.8" sourcerect="199,69,16,32" origin="0.5,0.5" />
+    <Deconstruct time="15">
+      <Item identifier="plastic" amount="2" />
+      <Item identifier="copper" />
+    </Deconstruct>
+    <Fabricate suitablefabricators="fabricator" requiredtime="10">
+      <RequiredSkill identifier="electrical" level="25" />
+      <RequiredItem identifier="fpgacircuit" />
+      <RequiredItem identifier="plastic" />
+    </Fabricate>
+    <Body width="36" height="40" density="20" />
+    <Controller direction="None" canbepicked="true" PickingTime="2.0" msg="ItemMsgPressSelect">
+      <RequiredItem identifier="wrench" type="Equipped" />
+      <sound file="Content/Items/Door/Duct1.ogg" type="OnUse" range="500.0" />
+    </Controller>
+    <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+      <RequiredItem identifier="screwdriver" type="Equipped" />
+      <output name="signal_out" displayname="connection.signalout" />
+    </ConnectionPanel>
+    <Holdable selectkey="Select" pickkey="Use" slots="Any,RightHand,LeftHand" msg="ItemMsgDetachWrench" PickingTime="10.0" aimpos="35,-10" handle1="0,0" attachable="true" attachedbydefault="true" aimable="true">
+      <requireditem identifier="wrench" type="Equipped" />
+    </Holdable>
+  </Item>
+  
+  <!-- Extinguisher Bracket -->
+  <Item name="" identifier="extinguisherbracket" category="Equipment" tags="extinguisherholder" canflipx="false" canflipy="false" scale="0.5" pickdistance="75">
+    <Sprite texture="Content/Items/Containers/containers.png" depth="0.84" sourcerect="815,349,72,204" origin="0.5,0.5" />
+    <ItemContainer hideitems="false" drawinventory="true" capacity="1" maxstacksize="1" slotsperrow="1" itempos="35,-130" iteminterval="0,0" itemrotation="0" canbeselected="true" msg="ItemMsgInteractSelect">
+      <GuiFrame relativesize="0.2,0.25" anchor="Center" minsize="140,170" maxsize="280,280" style="ItemUI" />
+      <Containable items="carbonatespray,extinguisher" />
+    </ItemContainer>
+    <Upgrade gameversion="0.10.0.0" scale="*0.5" itempos="35,-130" />
+  </Item>
+  </Override>
+  
+</Items>
