@@ -1,5 +1,5 @@
 ﻿<HumanhuskSwimFast
-  movementspeed="6"
+  movementspeed="4"
   Flip="True"
   FlipCooldown="0.5"
   FlipDelay="0.2"

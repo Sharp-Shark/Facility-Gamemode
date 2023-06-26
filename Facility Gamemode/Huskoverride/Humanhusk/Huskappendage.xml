@@ -9,16 +9,18 @@
       damagerange="50"
       duration="0.2"
       structuredamage="0"
-      itemdamage="12"
+      itemdamage="15"
       structuresoundtype="StructureSlash"
       targetforce="-10"
       severlimbsprobability="0.8"
       torque="-20"
       force="10"
       applyforceonlimbs="0,6">
-      <Affliction identifier="bitewounds" strength="15" />
-      <Affliction identifier="huskstun" strength="24"/>
-      <Affliction identifier="stun" strength="0.1" />
+      <Affliction identifier="huskinfection" strength="2" />
+      <Affliction identifier="bleeding" strength="10" />
+      <Affliction identifier="bitewounds" strength="20" />
+      <Affliction identifier="huskstun" strength="25"/>
+      <Affliction identifier="stun" strength="0.2" />
     </attack>
   </limb>
   <limb name="Huskappendage 2" id="16" height="10" width="15" ignorecollisions="True" flip="True">

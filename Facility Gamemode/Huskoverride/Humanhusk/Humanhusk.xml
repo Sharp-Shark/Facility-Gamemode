@@ -9,13 +9,13 @@
   <bloodemitter particle="blood" particleamount="5" anglemin="0" anglemax="0" scalemin="1" scalemax="1" velocitymin="0" velocitymax="0" emitinterval="0" particlespersecond="0" highqualitycollisiondetection="False" copyentityangle="False" />
   <bloodemitter particle="waterblood" particleamount="1" anglemin="0" anglemax="0" scalemin="1" scalemax="1" velocitymin="0" velocitymax="0" emitinterval="0" particlespersecond="0" highqualitycollisiondetection="False" copyentityangle="False" />
   <health
-    vitality="100"
-	StunImmunity="false"
+    vitality="80"
+	StunImmunity="true"
 	PoisonImmunity="true"
 	doesbleed="true"
-	bleedingreduction="1"
-	burnreduction="1"
-    constanthealthregeneration="1"
+	bleedingreduction="4"
+	burnreduction="2"
+    constanthealthregeneration="2"
     healthregenerationwheneating="0"
 	applyafflictioncolors="true"
 	UseHealthWindow="False">
@@ -65,7 +65,7 @@
     <target tag="swarmfeeder" state="Idle" priority="0" ignoreinside="True" ignoreoutside="True" ignoreifnotinsamesub="True" ignoreincapacitated="True" />
     <target tag="huskinfected" state="Idle" priority="0" ignoreinside="True" ignoreoutside="True" ignoreifnotinsamesub="True" ignoreincapacitated="True" threshold="1"/>
   </ai>
-  <inventory arrowslot="9" slots="Card, Headset, Head, InnerClothes, OuterClothes, LeftHand, RightHand, Bag, Any, Any, HealthInterface" accessiblewhenalive="True" commonness="1" />
+  <inventory arrowslot="9" slots="Card, Headset, Head, InnerClothes, OuterClothes, LeftHand, RightHand, Bag, Any, HealthInterface" accessiblewhenalive="True" commonness="1" />
 
   <Vars>
     <Var var="GENDER" tags="female,male" />
