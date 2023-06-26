@@ -21,11 +21,76 @@
   </Affliction>
 
   <Affliction
+    name="Fatigue"
+    identifier="fatigue"
+    description="Excessive exercetion. Slow down a bit to catch your breath."
+    type="stun"
+    targets="human"
+    limbspecific="false"
+    indicatorlimb="Torso"
+    showiconthreshold="5"
+    showinhealthscannerthreshold="0"
+    karmachangeonapplied="0"
+    maxstrength="100"
+    WeaponsSkillGain="1.0"
+	iconcolors="250,250,250,255;250,200,200,255;250,50,50,255">
+    <Effect minstrength="0" maxstrength="95" strengthchange="0" />
+    <Effect minstrength="95" maxstrength="100" strengthchange="0" minspeedmultiplier="1.0" maxspeedmultiplier="0.5" />
+    <icon texture="Content/UI/CommandUIAtlas.png" sourcerect="128,0,128,128" origin="0,0"/>
+  </Affliction>
+  
+  <Affliction
+    name="Carbonate Poisoning"
+    identifier="carbonatepoisoning"
+    description="Oxygen diffusion in the blood is lowered, leading to slowness and light headedness."
+    type="debuff"
+    targets="human,crawleradmin,mantisadmin,humanhusk"
+    limbspecific="false"
+    indicatorlimb="Torso"
+    showiconthreshold="0"
+    showinhealthscannerthreshold="0"
+    karmachangeonapplied="-10"
+    maxstrength="100"
+    WeaponsSkillGain="1.0"
+	iconcolors="140,130,160,0;140,130,160,200;140,130,160,255">
+    <Effect minstrength="0" maxstrength="80"
+	  strengthchange="-5"
+	  resistancefor="damage"
+	  minresistance="0.0" maxresistance="0.3"
+      minscreendistort="0.0" maxscreendistort="1.0"
+      minradialdistort="0.0" maxradialdistort="1.0"
+	  minscreenblur="0.0" maxscreenblur="1.0"
+	  minchromaticaberration="0.0" maxchromaticaberration="5.0"
+	  mingrainstrength="0.0" maxgrainstrength="1.00"
+	  minspeedmultiplier="1.0" maxspeedmultiplier="0.3">
+      <StatusEffect target="Character" multiplyafflictionsbymaxvitality="true">
+        <Affliction identifier="oxygenlow" amount="11" />
+      </StatusEffect>
+	</Effect>
+    <Effect minstrength="80" maxstrength="100"
+	  strengthchange="-20"
+	  resistancefor="damage"
+	  minresistance="0.3" maxresistance="0.6"
+      minscreendistort="1.0" maxscreendistort="1.0"
+      minradialdistort="1.0" maxradialdistort="1.0"
+	  minscreenblur="1.0" maxscreenblur="1.0"
+	  minchromaticaberration="5.0" maxchromaticaberration="5.0"
+	  mingrainstrength="1.0" maxgrainstrength="1.00"
+	  minspeedmultiplier="0.3" maxspeedmultiplier="0.1">
+      <StatusEffect target="Character" multiplyafflictionsbymaxvitality="true">
+        <Affliction identifier="oxygenlow" amount="12" />
+      </StatusEffect>
+	  <StatValue stattype="AttackMultiplier" value="-1.0" />
+	</Effect>
+    <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="640,640,128,128" color="106,106,106,255" origin="0,0"/>
+  </Affliction>
+
+  <Affliction
     name="Intoxicated"
     identifier="intoxicated"
     description="Noxious gases in the air tear through armor, skin and organs."
     type="intoxicated"
-    targets="human,crawleradmin,mantisadmin"
+    targets="human,crawleradmin,mantisadmin,humanhusk"
     limbspecific="false"
     indicatorlimb="Torso"
     showiconthreshold="0"
@@ -44,7 +109,7 @@
     identifier="justice"
     description="Lady justice is mad at you for being unsportsmanlike."
     type="justice"
-    targets="human,crawleradmin,mantisadmin"
+    targets="human,crawleradmin,mantisadmin,humanhusk"
     limbspecific="false"
     indicatorlimb="Torso"
     showiconthreshold="15"
@@ -87,7 +152,7 @@
   <Affliction
     name="Husk stun"
     identifier="huskstun"
-    description="Husk neurotoxin and eggs present in the host's blood."
+    description="Husk neurotoxin present in the host's blood."
     type="stun"
     targets="human"
     limbspecific="false"
@@ -98,14 +163,15 @@
     maxstrength="100"
     WeaponsSkillGain="1.0"
 	iconcolors="224,128,64,255">
-    <Effect minstrength="0" maxstrength="90" strengthchange="-5" minspeedmultiplier="1.0" maxspeedmultiplier="0.35" />
-    <Effect minstrength="90" maxstrength="100" strengthchange="-0.5">
+    <Effect minstrength="0" maxstrength="90" strengthchange="-5" minspeedmultiplier="1.0" maxspeedmultiplier="0.0" />
+    <Effect minstrength="90" maxstrength="100" strengthchange="-1">
       <StatusEffect target="Character" setvalue="true">
         <Affliction identifier="stun" amount="1" />
       </StatusEffect>
-      <StatusEffect target="Character" interval="0.1" disabledeltatime="true">
-        <Affliction identifier="huskinfection" amount="10" />
+      <StatusEffect target="Character" setvalue="true">
+        <Affliction identifier="huskinfection" amount="76" />
       </StatusEffect>
+      <AbilityFlag flagtype="CanNotDieToAfflictions" />
     </Effect>
     <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="0,640,128,128" iconcolors="224,128,64,255" origin="0,0"/>
   </Affliction>
@@ -132,7 +198,7 @@
     achievementonremoved="healhusk"
     dormantthreshold="50"
     activethreshold="75"
-    transformthresholdondeath="75"
+    transformthresholdondeath="1"
     transitionthreshold="100"
     IgnoreTreatmentIfAfflictedBy="husktransformimmunity"
     healcostmultiplier="2.5"
@@ -173,18 +239,16 @@
       minstrength="99"
       maxstrength="101"/>
     <Effect minstrength="0" maxstrength="75"
-      maxvitalitydecrease="0"
-      strengthchange="2.5"
+      strengthchange="2.0"
       minbodytint="195,195,195,0"
       maxbodytint="195,195,195,150"/>
     <Effect minstrength="75" maxstrength="100"
-      maxvitalitydecrease="0"
-      strengthchange="0.1"
+      strengthchange="0.5"
       minbodytint="195,195,195,150"
       maxbodytint="195,195,195,200"
       tag="huskinfected">
-      <StatusEffect target="Character" interval="1" disabledeltatime="true">
-        <Affliction identifier="organdamage" amount="1.65" />
+      <StatusEffect target="Character" interval="0.1" disabledeltatime="true">
+        <Affliction identifier="internaldamage" amount="0.02" />
       </StatusEffect>
 	</Effect>
     <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="0,640,128,128" color="60,107,195,255" origin="0,0"/>

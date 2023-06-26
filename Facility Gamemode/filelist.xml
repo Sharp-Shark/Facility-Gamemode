@@ -1,21 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Facility Gamemode" modversion="1.10.1" corepackage="False" steamworkshopid="2915017487" gameversion="1.0.13.2">
+<contentpackage name="Facility Gamemode" modversion="1.13.4" corepackage="False" steamworkshopid="2915017487" gameversion="1.0.21.0">
   <Character file="%ModDir%/Mantisadmin/Mantisadmin.xml" />
   <Character file="%ModDir%/Crawleradmin/Crawleradmin.xml" />
   <Character file="%ModDir%/Huskoverride/Humanhusk/Humanhusk.xml" />
   <Afflictions file="%ModDir%/Afflictions.xml" />
+  <Particles file="%ModDir%/Particles.xml" />
   <Item file="%ModDir%/Items/IdcardExtra.xml" />
   <Item file="%ModDir%/Items/Medical.xml" />
-  <Item file="%ModDir%/Items/Other.xml" />
+  <Item file="%ModDir%/Items/Armor.xml" />
+  <Item file="%ModDir%/Items/Weapons.xml" />
+  <Item file="%ModDir%/Items/Machines.xml" />
   <Text file="%ModDir%/Items/ItemText.xml" />
   <Jobs file="%ModDir%/Jobs/JobsOverride.xml" />
   <Text file="%ModDir%/Jobs/JobText.xml" />
+  <Submarine file="%ModDir%/Submarines/_Facility.sub" />
   <Submarine file="%ModDir%/Submarines/_Monorail128.sub" />
   <Submarine file="%ModDir%/Submarines/_Monorail256.sub" />
   <Submarine file="%ModDir%/Submarines/_Monorail384.sub" />
   <Submarine file="%ModDir%/Submarines/_Monorail512.sub" />
   <Submarine file="%ModDir%/Submarines/_Respawn.sub" />
-  <Submarine file="%ModDir%/Submarines/_Facility.sub" />
   <ItemAssembly file="%ModDir%/Assemblies/FG Ammo.xml" />
   <ItemAssembly file="%ModDir%/Assemblies/FG Armory.xml" />
   <ItemAssembly file="%ModDir%/Assemblies/FG Diving.xml" />
