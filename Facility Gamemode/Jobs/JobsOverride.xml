@@ -424,7 +424,7 @@
       <Item identifier="securityuniform2" equip="true" outfit="true"/>
       <Item identifier="headset" equip="true"/>
       <Item identifier="piratebandana" equip="true"/>
-      <Item identifier="pucs" equip="true">	
+      <Item identifier="nexsuit" equip="true">	
 		<Item identifier="combatstimulantsyringe"/>
 		<Item identifier="oxygentank"/>
 	  </Item>
