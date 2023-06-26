@@ -9,10 +9,10 @@
 	StunImmunity="true"
 	PoisonImmunity="true"
 	doesbleed="false"
-	bleedingreduction="0.2"
-	burnreduction="0.2"
-    constanthealthregeneration="0.2"
-    healthregenerationwheneating="2"/>
+	bleedingreduction="0.3"
+	burnreduction="0.3"
+    constanthealthregeneration="0.3"
+    healthregenerationwheneating="3"/>
 
   <gibemitter particle="gib" particleamount="20" velocitymin="200" velocitymax="700" anglemin="0" anglemax="360"/>
   <gibemitter particle="heavygib" particleamount="10" velocitymin="50" velocitymax="500" anglemin="0" anglemax="360"/>
