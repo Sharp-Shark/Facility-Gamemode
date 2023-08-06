@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ItemAssembly name="FG Trash" description="" hideinmenus="false">
+  <Item name="" identifier="opdeco_trashcan" ID="4080" rect="-32,64,62,102" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" InvulnerableToDamage="False" Tags="outposttrashcan,fg_trash" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.9" HiddenInGame="False" conditionpercentage="100">
+    <ItemContainer ContainableRestrictions="" AutoFill="False" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="ItemMsgInteractSelect" contained=",," />
+  </Item>
+</ItemAssembly>
