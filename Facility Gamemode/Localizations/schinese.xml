@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<infotexts language="Simplified Chinese" nowhitespace="true" translatedname="中文(简体)">
+  <!-- ID Card Printer -->
+  <entityname.printer>打印机</entityname.printer>
+  <entitydescription.printer>用于打印和解构ID卡。</entitydescription.printer>
+  <!-- Wrench Button -->
+  <entityname.wrenchbutton>扳手按钮</entityname.wrenchbutton>
+  <entitydescription.wrenchbutton>当使用扳手拧动机构时将产生一个信号。</entitydescription.wrenchbutton>
+  <!-- Carbonate Spray Holder -->
+  <entityname.carbonatespraybracket>碳酸盐喷雾器支架</entityname.carbonatespraybracket>
+  <entitydescription.carbonatespraybracket>将碳酸盐喷雾器固定在墙面上。</entitydescription.carbonatespraybracket>
+  <!-- Carbonate Spray -->
+  <entityname.carbonatespray>碳酸盐喷雾器</entityname.carbonatespray>
+  <entitydescription.carbonatespray>一种可以填充试验性碳酸盐的灭火器，用作生物毒剂，但对人体无害。</entitydescription.carbonatespray>
+  <!-- Midazolam -->
+  <entityname.midazolam>咪达唑仑</entityname.midazolam>
+  <entitydescription.midazolam>具有治疗作用的强效药物，但由于其成分，它会导致酒精中毒和昏迷。</entitydescription.midazolam>
+  <!-- Goblin Crate -->
+  <entityname.goblincrate>哥布林箱</entityname.goblincrate>
+  <entitydescription.goblincrate>这个箱子对于最灵活的人类来说太小……但也许哥布林可以塞进去？</entitydescription.goblincrate>
+  <!-- Goblin Mask -->
+  <entityname.goblinmask>哥布林面具</entityname.goblinmask>
+  <entitydescription.goblinmask>一副奇怪的绿色面具，散发着迷人的气味。如果戴上它会发生什么？</entitydescription.goblinmask>
+  <!-- Bodybag -->
+  <entityname.bodybag>Bodybag</entityname.bodybag>
+  <entitydescription.bodybag>A plastic bag used to put dead bodies in, or to torture someone by asphyxiation.</entitydescription.bodybag>
+  <!-- JET Mask -->
+  <entityname.jetmask>JET面罩</entityname.jetmask>
+  <entitydescription.jetmask>结合了头盔的潜水面罩，朱庇特精英部队（JET）的标准头部装备，是另Nex制药公司感到极度恐惧的存在。</entitydescription.jetmask>
+  <!-- NexSuit -->
+  <entityname.nexsuit>Nex服装</entityname.nexsuit>
+  <entitydescription.nexsuit>Nex制药公司私下的精英准军事组织—机动紧急救援作战小组（MERCS）的专用套装。实际上，它只是一套适应战斗的PUCS。</entitydescription.nexsuit>
+  <!-- Terrorist Guns -->
+  <entityname.jetrevolver>左轮霰弹枪</entityname.jetrevolver>
+  <entitydescription.jetrevolver>一把老式但仍常见的12号口径左轮手枪。</entitydescription.jetrevolver>
+  <entityname.jetshotgun>战术霰弹枪</entityname.jetshotgun>
+  <entitydescription.jetshotgun>一种为近距离战术行动设计的霰弹枪。</entitydescription.jetshotgun>
+  <entityname.jetrifle>重型步枪</entityname.jetrifle>
+  <entitydescription.jetrifle>一种自动装填的弹鼓式.30口径慢射步枪，制造商未知。</entitydescription.jetrifle>
+  <!-- Nexpharma Guns -->
+  <entityname.mercspistol>手枪</entityname.mercspistol>
+  <entitydescription.mercspistol>Nex制药公司专有的便携式紧凑型.45口径手枪。</entitydescription.mercspistol>
+  <entityname.mercssmg>PDW</entityname.mercssmg>
+  <entitydescription.mercssmg>Nex制药公司专有的射速快但精度低的.45口径冲锋枪。</entitydescription.mercssmg>
+  <entityname.mercsrifle>卡宾枪</entityname.mercsrifle>
+  <entitydescription.mercsrifle>Nex制药公司专有的军用卡宾枪，使用突击步枪弹药。</entitydescription.mercsrifle>
+  <!-- Terrorist ID Cards -->
+  <entityname.idcardjet>朱庇特精英部队ID卡</entityname.idcardjet>
+  <entitydescription.idcardjet>T阵营的武装成员。行政2级，武装3级。</entitydescription.idcardjet>
+  <entityname.idcardinmate>囚禁人员ID卡</entityname.idcardinmate>
+  <entitydescription.idcardinmate>T阵营的文职成员，仅用于打开普通的门。</entitydescription.idcardinmate>
+  <!-- Nexpharma ID Cards -->
+  <entityname.idcardmercs>机动紧急救援作战小组ID卡</entityname.idcardmercs>
+  <entitydescription.idcardmercs>Nex制药公司的武装成员，行政3级，武装3级。</entitydescription.idcardmercs>
+  <entityname.idcardenforcerguard>执行警卫ID卡</entityname.idcardenforcerguard>
+  <entitydescription.idcardenforcerguard>Nex制药公司的武装成员。行政1级，武装1级。</entitydescription.idcardenforcerguard>
+  <entityname.idcardstaff>员工ID卡</entityname.idcardstaff>
+  <entitydescription.idcardstaff>Nex制药公司的文职成员。行政1级。</entitydescription.idcardstaff>
+  <!-- Lootable ID Cards -->
+  <entityname.idcardoverseer>监工ID卡</entityname.idcardoverseer>
+  <entitydescription.idcardoverseer>Nex制药公司的文职成员。行政3级。</entitydescription.idcardoverseer>
+  <entityname.idcardeliteguard>精英卫队ID卡</entityname.idcardeliteguard>
+  <entitydescription.idcardeliteguard>Nex制药公司的武装成员。行政2级，武装2级。</entitydescription.idcardeliteguard>
+  <!-- Corpse Job -->
+  <jobname.corpsejob>尸体</jobname.corpsejob>
+  <jobdescription.corpsejob>一具已老旧的尸体。</jobdescription.corpsejob>
+  <!-- Monster Jobs -->
+  <jobname.monsterjob>怪物</jobname.monsterjob>
+  <jobdescription.monsterjob>怪物是特殊且强大的敌对生物，是它们队伍的一部分，怪物阵营独立于Nex制药公司和T阵营，你变成何种生物取决于正在游玩的游戏模式，为了计划，怪物拥有长距离的“怪物聊天”（仅文本）。</jobdescription.monsterjob>
+  <jobname.mutatedmantisjob>变异螳螂</jobname.mutatedmantisjob>
+  <jobdescription.mutatedmantisjob>属于怪物阵营，杀死所有人类。你拥有 1800 的生命力和缓慢的被动恢复，也可以通过啃食尸体快速回血。每1.5秒发起一次生物攻击，造成45的钝器伤和5出血。在地面上，你的移动速度比人类稍慢，但在水下速度更快并且更灵活。你可以打开普通的门、驾驶电车和快速破开安防门。</jobdescription.mutatedmantisjob>
+  <jobname.mutatedcrawlerjob>变异藻爬</jobname.mutatedcrawlerjob>
+  <jobdescription.mutatedcrawlerjob>属于怪物阵营，杀死所有人类。你拥有 1200 的生命力和被动恢复，也可以通过啃食尸体快速回血。每1.5秒发起一次生物攻击，造成55的咬伤和15出血。在地面上，你的移动速度和人类几乎一样快，但在水下速度更快并且更灵活。你可以打开普通的门、驾驶电车和破门。</jobdescription.mutatedcrawlerjob>
+  <jobname.greenskinjob>绿皮怪物</jobname.greenskinjob>
+  <jobdescription.greenskinjob>属于怪物阵营，杀死所有人类。你是一种灵活的两栖生物，喜欢和猎物玩游戏。被戴上面具的活人会变成哥布林。躲藏在哥布林箱内可以恢复生命。</jobdescription.greenskinjob>
+  <!-- Civie Jobs -->
+  <jobname.overseer>监工</jobname.overseer>
+  <jobdescription.overseer>Nex制药公司的文职成员，与机动紧急救援作战小组（MERCS）和警卫合作并逃离设施。作为高层人员，配备了左轮手枪和监工ID卡（行政3级）。</jobdescription.overseer>
+  <jobname.researcher>研究员</jobname.researcher>
+  <jobdescription.researcher>Nex制药公司的文职成员，与机动紧急救援作战小组（MERCS）和警卫合作并逃离设施。一名低级研究人员, 身上携带着研究报告和员工ID卡（行政1级）。</jobdescription.researcher>
+  <jobname.repairmen>修理工</jobname.repairmen>
+  <jobdescription.repairmen>Nex制药公司的文职成员，与机动紧急救援作战小组（MERCS）和警卫合作并逃离设施。基础维护人员, 配备了维修物资和员工ID卡（行政1级）。</jobdescription.repairmen>
+  <jobname.inmate>囚禁人员</jobname.inmate>
+  <jobdescription.inmate>T阵营的文职成员，与其他T阵营成员合作并逃离设施。遭受压迫、忍受考验、视为卑微的存在——兄弟们，今夜，我们要挣脱束缚！配备了一些违禁物品。</jobdescription.inmate>
+  <!-- Militant Jobs -->
+  <jobname.jet>朱庇特</jobname.jet>
+  <jobdescription.jet>T阵营的武装成员，消灭怪物和Nex制药公司人员，帮助囚禁人员逃离设施。朱庇特精英部队（JET），给他们点颜色瞧瞧！装备了重武器、药物和JET设备（行政2级、武装3级）。</jobdescription.jet>
+  <jobname.mercs>救援队</jobname.mercs>
+  <jobdescription.mercs>Nex制药公司的武装成员，消灭怪物和T阵营，帮助员工逃离设施。机动紧急救援作战小组（MERCS）报告！装备了重武器、药物和MERCS'ID卡（行政3级、武装3级）。</jobdescription.mercs>
+  <jobname.eliteguard>精英卫队</jobname.eliteguard>
+  <jobdescription.eliteguard>Nex制药公司的武装成员，消灭怪物和囚禁人员，帮助员工逃离设施。高级别安保人员，主要负责指挥其他警卫，配备了手枪、防弹衣和精英警卫ID卡（行政2级、武装2级）。</jobdescription.eliteguard>
+  <jobname.enforcerguard>执行警卫</jobname.enforcerguard>
+  <jobdescription.enforcerguard>Nex制药公司的武装成员，消灭怪物和囚禁人员，帮助员工逃离设施。现场安保人员，只负责控制囚禁人员，配备了PWD、防弹衣和执行警卫钥匙卡（行政1级、武装1级）。</jobdescription.enforcerguard>
+  <!-- Speed Affliction -->
+  <afflictionname.speed>Speed</afflictionname.speed>
+  <!-- Fatigue Affliction -->
+  <afflictionname.fatigue>疲乏</afflictionname.fatigue>
+  <afflictiondescription.fatigue>运动过度，放慢节奏，稍作休息。</afflictiondescription.fatigue>
+  <!-- Reloading Affliction -->
+  <afflictionname.reloading>装弹中</afflictionname.reloading>
+  <afflictiondescription.reloading>双手暂时用于重新装填。</afflictiondescription.reloading>
+  <!-- Carbonate Poisoning Affliction -->
+  <afflictionname.carbonatepoisoning>碳酸盐中毒</afflictionname.carbonatepoisoning>
+  <afflictiondescription.carbonatepoisoning>氧气在血液中的扩散变慢，导致行动迟缓和头晕。.</afflictiondescription.carbonatepoisoning>
+  <!-- Intoxicated Affliction -->
+  <afflictionname.intoxicated>中毒</afflictionname.intoxicated>
+  <afflictiondescription.intoxicated>空气中的有害气体穿透防护装备、皮肤和器官。</afflictiondescription.intoxicated>
+  <afflictioncauseofdeath.intoxicated>中毒而亡。</afflictioncauseofdeath.intoxicated>
+  <afflictioncauseofdeathself.intoxicated>中毒而亡。</afflictioncauseofdeathself.intoxicated>
+  <!-- Justice's Rage Affliction -->
+  <afflictionname.justice>公正的怒火</afflictionname.justice>
+  <afflictiondescription.justice>由于你的不正当行为，正义女神对你感到愤怒和不满。</afflictiondescription.justice>
+  <afflictioncauseofdeath.justice>接受神罚</afflictioncauseofdeath.justice>
+  <afflictioncauseofdeathself.justice>你受到了神的惩罚。</afflictioncauseofdeathself.justice>
+  <!-- Stimulated Affliction -->
+  <afflictionname.stimulated>兴奋</afflictionname.stimulated>
+  <afflictiondescription.stimulated>治疗能力提升。</afflictiondescription.stimulated>
+  <!-- Husk Stun Affliction -->
+  <afflictionname.huskstun>躯壳眩晕</afflictionname.huskstun>
+  <afflictiondescription.huskstun>宿主血液中有躯壳神经毒素。</afflictiondescription.huskstun>
+</infotexts>

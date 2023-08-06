@@ -1,0 +1,578 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Jobs>
+  <Override>
+    <Job identifier="captain" uicolor="0.8,0.8,0.8" vitalitymodifier="0" pricemultiplier="1.0" maxnumber="0" idlebehavior="Active"></Job>
+    <Job identifier="engineer" uicolor="0.8,0.8,0.8" vitalitymodifier="0" pricemultiplier="1.0" maxnumber="0" idlebehavior="Active"></Job>
+    <Job identifier="mechanic" uicolor="0.8,0.8,0.8" vitalitymodifier="0" pricemultiplier="1.0" maxnumber="0" idlebehavior="Active"></Job>
+    <Job identifier="securityofficer" uicolor="0.8,0.8,0.8" vitalitymodifier="0" pricemultiplier="1.0" maxnumber="0" idlebehavior="Active"></Job>
+    <Job identifier="medicaldoctor" uicolor="0.8,0.8,0.8" vitalitymodifier="0" pricemultiplier="1.0" maxnumber="0" idlebehavior="Active"></Job>
+    <Job identifier="assistant" uicolor="0.8,0.8,0.8" vitalitymodifier="0" pricemultiplier="1.0" maxnumber="0" idlebehavior="Active"></Job>
+  </Override>
+  <!-- Job for Loot Corpses -->
+  <Job identifier="corpsejob" uicolor="0.6,0.6,0.6" vitalitymodifier="0" pricemultiplier="1.0" maxnumber="0" idlebehavior="Active">
+    <Jobicon>
+      <sprite texture="Content/UI/MainIconsAtlas.png" sourcerect="768,0,128,128" origin="0.5,0.5" />
+    </Jobicon>
+    <JobiconSmall>
+      <sprite texture="Content/UI/CommandUIAtlas.png" sourcerect="612,698,28,28" origin="0.5,0.5" />
+    </JobiconSmall>
+    <Skills>
+      <Skill identifier="helm" level="60,60" />
+      <Skill identifier="weapons" level="60,60" />
+      <Skill identifier="mechanical" level="60,60" />
+      <Skill identifier="electrical" level="60,60" />
+      <Skill identifier="medical" level="60,60" />
+    </Skills>
+    <ItemSet>
+    </ItemSet>
+    <AutonomousObjectives>
+      <Order identifier="fightintruders" prioritymodifier="1" />
+      <Order identifier="rescue" prioritymodifier="0.5" />
+    </AutonomousObjectives>
+    <AppropriateOrders>
+      <Order identifier="fightintruders" />
+      <Order identifier="rescue" />
+      <Order identifier="requestfirstaid" />
+    </AppropriateOrders>
+  </Job>
+  <!-- Monster Jobs -->
+  <!--General Monster Role-->
+  <Job identifier="monsterjob" uicolor="0.65,0.2,0.2" vitalitymodifier="0" pricemultiplier="1.0" idlebehavior="Active">
+    <Jobicon>
+      <sprite texture="Content/UI/MainIconsAtlas.png" sourcerect="512,256,128,128" origin="0.5,0.5" />
+    </Jobicon>
+    <JobiconSmall>
+      <sprite texture="Content/UI/CommandUIAtlas.png" sourcerect="612,698,28,28" origin="0.5,0.5" />
+    </JobiconSmall>
+    <Skills>
+      <Skill identifier="helm" level="60,60" />
+      <Skill identifier="weapons" level="60,60" />
+      <Skill identifier="mechanical" level="60,60" />
+      <Skill identifier="electrical" level="60,60" />
+      <Skill identifier="medical" level="60,60" />
+    </Skills>
+    <ItemSet>
+      <Item identifier="clowncostume" equip="true" outfit="true" />
+      <Item identifier="clownmask" equip="true" />
+      <Item identifier="handcuffs" equip="true" />
+    </ItemSet>
+    <AutonomousObjectives>
+      <Order identifier="fightintruders" prioritymodifier="1" />
+      <Order identifier="rescue" prioritymodifier="0.5" />
+    </AutonomousObjectives>
+    <AppropriateOrders>
+      <Order identifier="fightintruders" />
+      <Order identifier="rescue" />
+      <Order identifier="requestfirstaid" />
+    </AppropriateOrders>
+  </Job>
+  <!--Mutant Mantis (hidden in menu for now)-->
+  <Job identifier="mutatedmantisjob" uicolor="0.6,0.25,0.2" vitalitymodifier="0" pricemultiplier="1.0" maxnumber="0" idlebehavior="Active">
+    <Jobicon>
+      <sprite texture="Content/UI/MainIconsAtlas.png" sourcerect="512,256,128,128" origin="0.5,0.5" />
+    </Jobicon>
+    <JobiconSmall>
+      <sprite texture="Content/UI/CommandUIAtlas.png" sourcerect="612,698,28,28" origin="0.5,0.5" />
+    </JobiconSmall>
+    <Skills>
+      <Skill identifier="helm" level="60,60" />
+      <Skill identifier="weapons" level="60,60" />
+      <Skill identifier="mechanical" level="60,60" />
+      <Skill identifier="electrical" level="60,60" />
+      <Skill identifier="medical" level="60,60" />
+    </Skills>
+    <ItemSet>
+      <Item identifier="clowncostume" equip="true" outfit="true" />
+      <Item identifier="clownmask" equip="true" />
+      <Item identifier="handcuffs" equip="true" />
+    </ItemSet>
+    <AutonomousObjectives>
+      <Order identifier="fightintruders" prioritymodifier="1" />
+      <Order identifier="rescue" prioritymodifier="0.5" />
+    </AutonomousObjectives>
+    <AppropriateOrders>
+      <Order identifier="fightintruders" />
+      <Order identifier="rescue" />
+      <Order identifier="requestfirstaid" />
+    </AppropriateOrders>
+  </Job>
+  <!--Mutated Crawler (hidden in menu for now)-->
+  <Job identifier="mutatedcrawlerjob" uicolor="0.6,0.2,0.25" vitalitymodifier="0" pricemultiplier="1.0" maxnumber="0" idlebehavior="Active">
+    <Jobicon>
+      <sprite texture="Content/UI/MainIconsAtlas.png" sourcerect="512,256,128,128" origin="0.5,0.5" />
+    </Jobicon>
+    <JobiconSmall>
+      <sprite texture="Content/UI/CommandUIAtlas.png" sourcerect="612,698,28,28" origin="0.5,0.5" />
+    </JobiconSmall>
+    <Skills>
+      <Skill identifier="helm" level="60,60" />
+      <Skill identifier="weapons" level="60,60" />
+      <Skill identifier="mechanical" level="60,60" />
+      <Skill identifier="electrical" level="60,60" />
+      <Skill identifier="medical" level="60,60" />
+    </Skills>
+    <ItemSet>
+      <Item identifier="clowncostume" equip="true" outfit="true" />
+      <Item identifier="clownmask" equip="true" />
+      <Item identifier="handcuffs" equip="true" />
+    </ItemSet>
+    <AutonomousObjectives>
+      <Order identifier="fightintruders" prioritymodifier="1" />
+      <Order identifier="rescue" prioritymodifier="0.5" />
+    </AutonomousObjectives>
+    <AppropriateOrders>
+      <Order identifier="fightintruders" />
+      <Order identifier="rescue" />
+      <Order identifier="requestfirstaid" />
+    </AppropriateOrders>
+  </Job>
+  <!-- Greenskin (hidden in menu for now) -->
+  <Job identifier="greenskinjob" uicolor="0.25,0.6,0.2" vitalitymodifier="0" pricemultiplier="1.0" maxnumber="0" idlebehavior="Active">
+    <Jobicon>
+      <sprite texture="Content/UI/MainIconsAtlas.png" sourcerect="512,256,128,128" origin="0.5,0.5" />
+    </Jobicon>
+    <JobiconSmall>
+      <sprite texture="Content/UI/CommandUIAtlas.png" sourcerect="612,698,28,28" origin="0.5,0.5" />
+    </JobiconSmall>
+    <Skills>
+      <Skill identifier="helm" level="60,60" />
+      <Skill identifier="weapons" level="60,60" />
+      <Skill identifier="mechanical" level="60,60" />
+      <Skill identifier="electrical" level="60,60" />
+      <Skill identifier="medical" level="60,60" />
+    </Skills>
+    <ItemSet>
+      <Item identifier="clowncostume" equip="true" outfit="true" />
+      <Item identifier="clownmask" equip="true" />
+      <Item identifier="handcuffs" equip="true" />
+    </ItemSet>
+    <AutonomousObjectives>
+      <Order identifier="fightintruders" prioritymodifier="1" />
+      <Order identifier="rescue" prioritymodifier="0.5" />
+    </AutonomousObjectives>
+    <AppropriateOrders>
+      <Order identifier="fightintruders" />
+      <Order identifier="rescue" />
+      <Order identifier="requestfirstaid" />
+    </AppropriateOrders>
+  </Job>
+  <!-- Civie Jobs -->
+  <!--Overseer-->
+  <Job identifier="overseer" uicolor="0.6,0.4,0.8" initialcount="1" vitalitymodifier="0" pricemultiplier="1.0" idlebehavior="Active">
+    <Jobicon>
+      <sprite texture="Content/UI/MainIconsAtlas.png" sourcerect="384,256,128,128" origin="0.5,0.5" />
+    </Jobicon>
+    <JobiconSmall>
+      <sprite texture="Content/UI/CommandUIAtlas.png" sourcerect="612,669,28,28" origin="0.5,0.5" />
+    </JobiconSmall>
+    <Skills>
+      <Skill identifier="helm" level="60,60" />
+      <Skill identifier="weapons" level="60,60" />
+      <Skill identifier="mechanical" level="60,60" />
+      <Skill identifier="electrical" level="60,60" />
+      <Skill identifier="medical" level="60,60" />
+    </Skills>
+    <ItemSet>
+      <Item identifier="administratorclothes" equip="true" outfit="true" />
+      <Item identifier="idcardoverseer" equip="true" />
+      <!--<Item identifier="idcardmercs" equip="true"/>-->
+      <Item identifier="jetrevolver">
+        <!--4 Rounds-->
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <!--End-->
+      </Item>
+      <!--6 Rounds-->
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <!--End-->
+      <Item identifier="divingmask">
+        <Item identifier="oxygentank" />
+      </Item>
+      <Item identifier="antibleeding2" />
+    </ItemSet>
+    <AutonomousObjectives>
+      <Order identifier="fightintruders" prioritymodifier="1" />
+      <Order identifier="rescue" prioritymodifier="0.5" />
+    </AutonomousObjectives>
+    <AppropriateOrders>
+      <Order identifier="fightintruders" />
+      <Order identifier="rescue" />
+      <Order identifier="requestfirstaid" />
+    </AppropriateOrders>
+  </Job>
+  <!--Staff Researcher-->
+  <Job identifier="researcher" uicolor="0.3,1.0,0.3" initialcount="1" vitalitymodifier="0" pricemultiplier="1.0" idlebehavior="Active">
+    <Jobicon>
+      <sprite texture="Content/UI/MainIconsAtlas.png" sourcerect="768,256,128,128" origin="0.5,0.5" />
+    </Jobicon>
+    <JobiconSmall>
+      <sprite texture="Content/UI/CommandUIAtlas.png" sourcerect="612,727,28,28" origin="0.5,0.5" />
+    </JobiconSmall>
+    <Skills>
+      <Skill identifier="helm" level="60,60" />
+      <Skill identifier="weapons" level="60,60" />
+      <Skill identifier="mechanical" level="60,60" />
+      <Skill identifier="electrical" level="60,60" />
+      <Skill identifier="medical" level="60,60" />
+    </Skills>
+    <ItemSet>
+      <Item identifier="medicalofficerclothes" equip="true" outfit="true" />
+      <Item identifier="idcardstaff" equip="true" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="combatstimulantsyringe" />
+      <Item identifier="opium" />
+      <Item identifier="midazolam" />
+    </ItemSet>
+    <AutonomousObjectives>
+      <Order identifier="fightintruders" prioritymodifier="1" />
+      <Order identifier="rescue" prioritymodifier="0.5" />
+    </AutonomousObjectives>
+    <AppropriateOrders>
+      <Order identifier="fightintruders" />
+      <Order identifier="rescue" />
+      <Order identifier="requestfirstaid" />
+    </AppropriateOrders>
+  </Job>
+  <!--Staff Mechanic-->
+  <Job identifier="repairmen" uicolor="0.0,1.0,0.6" initialcount="1" vitalitymodifier="0" pricemultiplier="1.0" idlebehavior="Active">
+    <Jobicon>
+      <sprite texture="Content/UI/MainIconsAtlas.png" sourcerect="896,256,128,128" origin="0.5,0.5" />
+    </Jobicon>
+    <JobiconSmall>
+      <sprite texture="Content/UI/CommandUIAtlas.png" sourcerect="641,640,28,28" origin="0.5,0.5" />
+    </JobiconSmall>
+    <Skills>
+      <Skill identifier="helm" level="60,60" />
+      <Skill identifier="weapons" level="60,60" />
+      <Skill identifier="mechanical" level="60,60" />
+      <Skill identifier="electrical" level="60,60" />
+      <Skill identifier="medical" level="60,60" />
+    </Skills>
+    <ItemSet>
+      <Item identifier="bluejumpsuit1" equip="true" outfit="true" />
+      <Item identifier="ironhelmet" equip="true" />
+      <Item identifier="idcardstaff" equip="true" />
+      <Item identifier="toolbelt" equip="true" />
+      <Item identifier="divingmask">
+        <Item identifier="oxygentank" />
+      </Item>
+      <Item identifier="weldingtool">
+        <Item identifier="weldingfueltank" />
+      </Item>
+      <Item identifier="underwaterscooter">
+        <Item identifier="batterycell" />
+      </Item>
+      <Item identifier="wrench" />
+      <Item identifier="antibleeding2" />
+    </ItemSet>
+    <AutonomousObjectives>
+      <Order identifier="fightintruders" prioritymodifier="1" />
+      <Order identifier="rescue" prioritymodifier="0.5" />
+    </AutonomousObjectives>
+    <AppropriateOrders>
+      <Order identifier="fightintruders" />
+      <Order identifier="rescue" />
+      <Order identifier="requestfirstaid" />
+    </AppropriateOrders>
+  </Job>
+  <!--Inmate-->
+  <Job identifier="inmate" uicolor="0.8,0.8,0.0" initialcount="4" vitalitymodifier="0" pricemultiplier="1.0" idlebehavior="Active">
+    <Jobicon>
+      <sprite texture="Content/UI/MainIconsAtlas.png" sourcerect="640,256,128,128" origin="0.5,0.5" />
+    </Jobicon>
+    <JobiconSmall>
+      <sprite texture="Content/UI/CommandUIAtlas.png" sourcerect="641,669,28,28" origin="0.5,0.5" />
+    </JobiconSmall>
+    <Skills>
+      <Skill identifier="helm" level="60,60" />
+      <Skill identifier="weapons" level="60,60" />
+      <Skill identifier="mechanical" level="60,60" />
+      <Skill identifier="electrical" level="60,60" />
+      <Skill identifier="medical" level="60,60" />
+    </Skills>
+    <ItemSet>
+      <Item identifier="prisonerclothes" equip="true" outfit="true" />
+      <Item identifier="piratebandana" equip="true" />
+      <Item identifier="idcardinmate" equip="true" />
+      <Item identifier="divingknife" />
+      <Item identifier="antibleeding1" />
+      <Item identifier="antibleeding1" />
+      <Item identifier="antidama2" />
+    </ItemSet>
+    <AutonomousObjectives>
+      <Order identifier="fightintruders" prioritymodifier="1" />
+      <Order identifier="rescue" prioritymodifier="0.5" />
+    </AutonomousObjectives>
+    <AppropriateOrders>
+      <Order identifier="fightintruders" />
+      <Order identifier="rescue" />
+      <Order identifier="requestfirstaid" />
+    </AppropriateOrders>
+  </Job>
+  <!-- Militant Jobs -->
+  <!--JET-->
+  <Job identifier="jet" uicolor="1.0,0.5,0.25" vitalitymodifier="1" pricemultiplier="1.0" idlebehavior="Active">
+    <Jobicon>
+      <sprite texture="Content/UI/MainIconsAtlas.png" sourcerect="256,256,128,128" origin="0.5,0.5" />
+    </Jobicon>
+    <JobiconSmall>
+      <sprite texture="Content/UI/CommandUIAtlas.png" sourcerect="612,640,28,28" origin="0.5,0.5" />
+    </JobiconSmall>
+    <Skills>
+      <Skill identifier="helm" level="60,60" />
+      <Skill identifier="weapons" level="60,60" />
+      <Skill identifier="mechanical" level="60,60" />
+      <Skill identifier="electrical" level="60,60" />
+      <Skill identifier="medical" level="60,60" />
+    </Skills>
+    <ItemSet>
+      <Item identifier="pirateclothes" equip="true" outfit="true" />
+      <Item identifier="autoinjectorheadset" equip="true">
+        <Item identifier="combatstimulantsyringe" />
+      </Item>
+      <Item identifier="jetmask" equip="true" />
+      <Item identifier="piratebodyarmor" equip="true" />
+      <!--<Item identifier="idcardjet" equip="true"/>-->
+      <Item identifier="jetrifle">
+        <!--12 Rounds-->
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <!--End-->
+      </Item>
+      <Item identifier="jetrevolver">
+        <!--4 Rounds-->
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <!--End-->
+      </Item>
+      <!--12 Rounds-->
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <!--12 Rounds-->
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <!--12 Rounds-->
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <!--End-->
+      <Item identifier="crowbar" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="opium" />
+      <Item identifier="flashlight">
+        <Item identifier="batterycell" />
+      </Item>
+      <Item identifier="oxygentank" />
+    </ItemSet>
+    <AutonomousObjectives>
+      <Order identifier="fightintruders" prioritymodifier="1" />
+      <Order identifier="rescue" prioritymodifier="0.5" />
+    </AutonomousObjectives>
+    <AppropriateOrders>
+      <Order identifier="fightintruders" />
+      <Order identifier="rescue" />
+      <Order identifier="requestfirstaid" />
+    </AppropriateOrders>
+  </Job>
+  <!--MERCS-->
+  <Job identifier="mercs" uicolor="0.3,0.3,1.0" vitalitymodifier="1" pricemultiplier="1.0" idlebehavior="Active">
+    <Jobicon>
+      <sprite texture="Content/UI/MainIconsAtlas.png" sourcerect="256,256,128,128" origin="0.5,0.5" />
+    </Jobicon>
+    <JobiconSmall>
+      <sprite texture="Content/UI/CommandUIAtlas.png" sourcerect="612,640,28,28" origin="0.5,0.5" />
+    </JobiconSmall>
+    <Skills>
+      <Skill identifier="helm" level="60,60" />
+      <Skill identifier="weapons" level="60,60" />
+      <Skill identifier="mechanical" level="60,60" />
+      <Skill identifier="electrical" level="60,60" />
+      <Skill identifier="medical" level="60,60" />
+    </Skills>
+    <ItemSet>
+      <Item identifier="securityuniform2" equip="true" outfit="true" />
+      <Item identifier="headset" equip="true" />
+      <Item identifier="piratebandana" equip="true" />
+      <Item identifier="nexsuit" equip="true">
+        <Item identifier="combatstimulantsyringe" />
+        <Item identifier="oxygentank" />
+      </Item>
+      <!--<Item identifier="idcardmercs" equip="true"/>-->
+      <Item identifier="mercsrifle">
+        <Item identifier="assaultriflemagazine" />
+      </Item>
+      <Item identifier="mercspistol">
+        <Item identifier="smgmagazine" />
+      </Item>
+      <Item identifier="assaultriflemagazine" />
+      <Item identifier="assaultriflemagazine" />
+      <Item identifier="assaultriflemagazine" />
+      <Item identifier="assaultriflemagazine" />
+      <Item identifier="smgmagazine" />
+      <Item identifier="smgmagazine" />
+      <Item identifier="divingknife" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="opium" />
+      <Item identifier="flashlight">
+        <Item identifier="batterycell" />
+      </Item>
+    </ItemSet>
+    <AutonomousObjectives>
+      <Order identifier="fightintruders" prioritymodifier="1" />
+      <Order identifier="rescue" prioritymodifier="0.5" />
+    </AutonomousObjectives>
+    <AppropriateOrders>
+      <Order identifier="fightintruders" />
+      <Order identifier="rescue" />
+      <Order identifier="requestfirstaid" />
+    </AppropriateOrders>
+  </Job>
+  <!--Elite Guard-->
+  <Job identifier="eliteguard" uicolor="0.4,0.6,0.9" initialcount="1" vitalitymodifier="0" pricemultiplier="1.0" idlebehavior="Active">
+    <Jobicon>
+      <sprite texture="Content/UI/MainIconsAtlas.png" sourcerect="384,256,128,128" origin="0.5,0.5" />
+    </Jobicon>
+    <JobiconSmall>
+      <sprite texture="Content/UI/CommandUIAtlas.png" sourcerect="612,669,28,28" origin="0.5,0.5" />
+    </JobiconSmall>
+    <Skills>
+      <Skill identifier="helm" level="60,60" />
+      <Skill identifier="weapons" level="60,60" />
+      <Skill identifier="mechanical" level="60,60" />
+      <Skill identifier="electrical" level="60,60" />
+      <Skill identifier="medical" level="60,60" />
+    </Skills>
+    <ItemSet>
+      <Item identifier="captainsuniform2" equip="true" outfit="true" />
+      <Item identifier="captainscap3" equip="true" />
+      <Item identifier="headset" equip="true" />
+      <Item identifier="bodyarmor" equip="true" />
+      <Item identifier="idcardeliteguard" equip="true" />
+      <Item identifier="mercspistol">
+        <Item identifier="smgmagazine" />
+      </Item>
+      <Item identifier="smgmagazine" />
+      <Item identifier="ceremonialsword" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="opium" />
+      <Item identifier="flashlight">
+        <Item identifier="batterycell" />
+      </Item>
+      <Item identifier="handcuffs" />
+    </ItemSet>
+    <AutonomousObjectives>
+      <Order identifier="fightintruders" prioritymodifier="1" />
+      <Order identifier="rescue" prioritymodifier="0.5" />
+    </AutonomousObjectives>
+    <AppropriateOrders>
+      <Order identifier="fightintruders" />
+      <Order identifier="rescue" />
+      <Order identifier="requestfirstaid" />
+    </AppropriateOrders>
+  </Job>
+  <!--Enforcer Guard-->
+  <Job identifier="enforcerguard" uicolor="0.25,0.85,0.75" initialcount="1" vitalitymodifier="0" pricemultiplier="1.0" idlebehavior="Active">
+    <Jobicon>
+      <sprite texture="Content/UI/MainIconsAtlas.png" sourcerect="256,256,128,128" origin="0.5,0.5" />
+    </Jobicon>
+    <JobiconSmall>
+      <sprite texture="Content/UI/CommandUIAtlas.png" sourcerect="612,640,28,28" origin="0.5,0.5" />
+    </JobiconSmall>
+    <Skills>
+      <Skill identifier="helm" level="0,0" />
+      <Skill identifier="weapons" level="60,60" />
+      <Skill identifier="mechanical" level="60,60" />
+      <Skill identifier="electrical" level="60,60" />
+      <Skill identifier="medical" level="60,60" />
+    </Skills>
+    <ItemSet>
+      <Item identifier="securityuniform2" equip="true" outfit="true" />
+      <Item identifier="headset" equip="true" />
+      <Item identifier="baseballcap" equip="true" />
+      <Item identifier="bodyarmor" equip="true" />
+      <Item identifier="idcardenforcerguard" equip="true" />
+      <Item identifier="mercssmg">
+        <Item identifier="smgmagazine" />
+      </Item>
+      <Item identifier="smgmagazine" />
+      <Item identifier="smgmagazine" />
+      <Item identifier="stunbaton">
+        <Item identifier="batterycell" />
+      </Item>
+      <Item identifier="antibleeding1" />
+      <Item identifier="antibleeding1" />
+      <Item identifier="antidama1" />
+      <Item identifier="flashlight">
+        <Item identifier="batterycell" />
+      </Item>
+      <Item identifier="handcuffs" />
+    </ItemSet>
+    <AutonomousObjectives>
+      <Order identifier="fightintruders" prioritymodifier="1" />
+      <Order identifier="rescue" prioritymodifier="0.5" />
+    </AutonomousObjectives>
+    <AppropriateOrders>
+      <Order identifier="fightintruders" />
+      <Order identifier="rescue" />
+      <Order identifier="requestfirstaid" />
+    </AppropriateOrders>
+  </Job>
+</Jobs>

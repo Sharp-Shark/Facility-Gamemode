@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<infotexts language="English" nowhitespace="false" translatedname="English">
+  <!-- ID Card Printer -->
+  <entityname.printer>Printer</entityname.printer>
+  <entitydescription.printer>Used to print and deconstruct ID cards.</entitydescription.printer>
+  <!-- Wrench Button -->
+  <entityname.wrenchbutton>Wrench Button</entityname.wrenchbutton>
+  <entitydescription.wrenchbutton>Produces a signal when the mechanism is twisted with a wrench.</entitydescription.wrenchbutton>
+  <!-- Carbonate Spray Holder -->
+  <entityname.carbonatespraybracket>Carbonate Spray Bracket</entityname.carbonatespraybracket>
+  <entitydescription.carbonatespraybracket>Holds a carbonate spray to the wall.</entitydescription.carbonatespraybracket>
+  <!-- Carbonate Spray -->
+  <entityname.carbonatespray>Carbonate Spray</entityname.carbonatespray>
+  <entitydescription.carbonatespray>A fire extinguisher can filled with an experimental carbonate that is poisonous to creatures, but safe to humans.</entitydescription.carbonatespray>
+  <!-- Midazolam -->
+  <entityname.midazolam>Midazolam</entityname.midazolam>
+  <entitydescription.midazolam>Strong drug with healing properties, but due to it's composition, it causes alcohol poisoning and unconciousness.</entitydescription.midazolam>
+  <!-- Goblin Crate -->
+  <entityname.goblincrate>Goblin Crate</entityname.goblincrate>
+  <entitydescription.goblincrate>Too small for even the most nimble of humans... but maybe a goblin could fit in there.</entitydescription.goblincrate>
+  <!-- Goblin Mask -->
+  <entityname.goblinmask>Goblin Mask</entityname.goblinmask>
+  <entitydescription.goblinmask>A strange green mask that emanates a magical aura. What happens if it is put on?</entitydescription.goblinmask>
+  <!-- Bodybag -->
+  <entityname.bodybag>Bodybag</entityname.bodybag>
+  <entitydescription.bodybag>A plastic bag used to put dead bodies in, or to torture someone by asphyxiation.</entitydescription.bodybag>
+  <!-- JET Mask -->
+  <entityname.jetmask>JET Mask</entityname.jetmask>
+  <entitydescription.jetmask>Just a diving mask and a helmet welded together, a standart headgear for the Jovian Elite Troops, or JET. Just seeing one can often provoke profound fear into any Nexpharma personnel.</entitydescription.jetmask>
+  <!-- NexSuit -->
+  <entityname.nexsuit>NexSuit</entityname.nexsuit>
+  <entitydescription.nexsuit>Nexpharma proprietary suit exclusive to their elite paramilitary group, the Mobile Emergency Rescue and Combat Squad, or MERCS. In actuality, it's just a PUCS adapted for combat.</entitydescription.nexsuit>
+  <!-- Terrorist Guns -->
+  <entityname.jetrevolver>Buckshot</entityname.jetrevolver>
+  <entitydescription.jetrevolver>An old but still common 12 gauge revolver.</entitydescription.jetrevolver>
+  <entityname.jetshotgun>Tactical Shotgun</entityname.jetshotgun>
+  <entitydescription.jetshotgun>A shotgun designed for close-quarters tactical operation.</entitydescription.jetshotgun>
+  <entityname.jetrifle>Heavy Rifle</entityname.jetrifle>
+  <entitydescription.jetrifle>An autoloading slow firing drum mag .30 rifle, unknow manufacturer.</entitydescription.jetrifle>
+  <!-- Nexpharma Guns -->
+  <entityname.mercspistol>Pistol</entityname.mercspistol>
+  <entitydescription.mercspistol>A nexpharma proprietary portable and compact pistol which uses .45 cal.</entitydescription.mercspistol>
+  <entityname.mercssmg>PDW</entityname.mercssmg>
+  <entitydescription.mercssmg>A nexpharma proprietary fast firing and low accuracy .45 cal SMG.</entitydescription.mercssmg>
+  <entityname.mercsrifle>Rifle Carbine</entityname.mercsrifle>
+  <entitydescription.mercsrifle>A nexpharma proprietary military carbine that uses assault rifle ammo.</entitydescription.mercsrifle>
+  <!-- Terrorist ID Cards -->
+  <entityname.idcardjet>JET ID Card</entityname.idcardjet>
+  <entitydescription.idcardjet>Terrorist militant. Admin tier 2 and weapons tier 3.</entitydescription.idcardjet>
+  <entityname.idcardinmate>Inmate ID Card</entityname.idcardinmate>
+  <entitydescription.idcardinmate>Terrorist civilian. Only useful for regular doors.</entitydescription.idcardinmate>
+  <!-- Nexpharma ID Cards -->
+  <entityname.idcardmercs>MERCS ID Card</entityname.idcardmercs>
+  <entitydescription.idcardmercs>Nexpharma militant. Admin tier 3 and weapons tier 3.</entitydescription.idcardmercs>
+  <entityname.idcardenforcerguard>Enforcer Guard ID Card</entityname.idcardenforcerguard>
+  <entitydescription.idcardenforcerguard>Nexpharma militant. Admin tier 1 and weapons tier 1.</entitydescription.idcardenforcerguard>
+  <entityname.idcardstaff>Staff ID Card</entityname.idcardstaff>
+  <entitydescription.idcardstaff>Nexpharma civilian. Admin tier 1.</entitydescription.idcardstaff>
+  <!-- Lootable ID Cards -->
+  <entityname.idcardoverseer>Overseer ID Card</entityname.idcardoverseer>
+  <entitydescription.idcardoverseer>Nexpharma civilian. Admin tier 3.</entitydescription.idcardoverseer>
+  <entityname.idcardeliteguard>Elite Guard ID Card</entityname.idcardeliteguard>
+  <entitydescription.idcardeliteguard>Nexpharma militant. Admin tier 2 and weapons tier 2.</entitydescription.idcardeliteguard>
+  <!-- Corpse Job -->
+  <jobname.corpsejob>Corpse</jobname.corpsejob>
+  <jobdescription.corpsejob>A now old dead body.</jobdescription.corpsejob>
+  <!-- Monster Jobs -->
+  <jobname.monsterjob>Monster</jobname.monsterjob>
+  <jobdescription.monsterjob>Monsters are special powerful hostile creatures that are part of their own team, the Monster team, a team separate from the Nexpharma and Terrorist teams. The specific creature you will be depends on the gamemode that is being played! Monsters have a long range "monster chat" for planning (text only).</jobdescription.monsterjob>
+  <jobname.mutatedmantisjob>Mutated Mantis</jobname.mutatedmantisjob>
+  <jobdescription.mutatedmantisjob>Member of the Monsters team, kill all humans. You have 1800 vitality and slowly and passively regen, but can gain lots of HP by feasting on corpses. You attack each 1.5 seconds, dealing 45 blunt trauma and 5 bleeding. On land, you move slightly slower than a human, but on water, you're quick and nimble. You can open regular doors, use trams and rapidly break secure doors.</jobdescription.mutatedmantisjob>
+  <jobname.mutatedcrawlerjob>Mutated Crawler</jobname.mutatedcrawlerjob>
+  <jobdescription.mutatedcrawlerjob>Member of the Monsters team, kill all humans. You have 1200 vitality and passively regen, but can gain lots of HP by feasting on corpses. You attack each 1.5 seconds, dealing around 55 bite wounds and 15 bleeding. On land, you move as fast as a human, and on water, you're quick and nimble. You can open regular doors, use trams and slowly break secure doors.</jobdescription.mutatedcrawlerjob>
+  <jobname.greenskinjob>Greenskin</jobname.greenskinjob>
+  <jobdescription.greenskinjob>Member of the Monster team, kill all humans. You are a kind of amphibious nimble critter that like playing games with their prey. Put masks on living humans to turn them into goblins. Hide in goblin crates to regenerate.</jobdescription.greenskinjob>
+  <!-- Civie Jobs -->
+  <jobname.overseer>Overseer</jobname.overseer>
+  <jobdescription.overseer>Civilian Member of the Nexpharma team, escape the facility and collaborate with the MERCS and Guards. High-level personnel equipped with a brought-from-home revolver and overseer keycard (Admin Tier 3).</jobdescription.overseer>
+  <jobname.researcher>Researcher</jobname.researcher>
+  <jobdescription.researcher>Civilian Member of the Nexpharma team, escape the facility and collaborate with the MERCS and Guards. A low-level researcher, equipped with your research and your staff keycard (Admin Tier 1).</jobdescription.researcher>
+  <jobname.repairmen>Repairmen</jobname.repairmen>
+  <jobdescription.repairmen>Civilian Member of the Nexpharma team, escape the facility and collaborate with the MERCS and Guards. Basic maintenance personnel, equipped with maintancen supplies and your staff keycard (Admin Tier 1).</jobdescription.repairmen>
+  <jobname.inmate>Inmate</jobname.inmate>
+  <jobdescription.inmate>Civilian Member of the Terrorist team, escape the facility and collaborate with the Terrorists. Subjucated, tested on and treated like scum - tonight we escape brothers! Equipped with some contraband.</jobdescription.inmate>
+  <!-- Militant Jobs -->
+  <jobname.jet>JET</jobname.jet>
+  <jobdescription.jet>Militant Member of the Terrorist team, kill monsters and nexpharma personnel, but help inmates escape. Jovian Elite Troops, give 'em hell! Equipped with heavy weaponry, medicine and a JET device (Admin Tier 2 and Weapon Tier 3).</jobdescription.jet>
+  <jobname.mercs>MERCS</jobname.mercs>
+  <jobdescription.mercs>Militant Member of the Nexpharma team, kill monsters and terrorists, but help staff escape. Mobile Emergency Rescue and Combat Squad reporting for duty! Equipped with heavy weaponry, medicine and a MERCS keycard (Admin Tier 3 and Weapon Tier 3).</jobdescription.mercs>
+  <jobname.eliteguard>Elite Guard</jobname.eliteguard>
+  <jobdescription.eliteguard>Armed Member of the Nexpharma team, kill monsters and inmates, but help staff to escape. Senior security, mostly tasked with commanding the other guards, equipped with a pistol, body armor and an elite guard keycard (Admin Tier 2 and Weapon Tier 2).</jobdescription.eliteguard>
+  <jobname.enforcerguard>Enforcer Guard</jobname.enforcerguard>
+  <jobdescription.enforcerguard>Armed Member of the Nexpharma team, kill monsters and inmates, but help staff to escape. On-site security personnel only meant to keep the inmates in check, equipped with a PWD, body armor and an enforcer guard keycard (Admin Tier 1 and Weapon Tier 1).</jobdescription.enforcerguard>
+  <!-- Speed Affliction -->
+  <afflictionname.speed>Speed</afflictionname.speed>
+  <!-- Fatigue Affliction -->
+  <afflictionname.fatigue>Fatigue</afflictionname.fatigue>
+  <afflictiondescription.fatigue>Excessive exercetion. Slow down a bit to catch your breath.</afflictiondescription.fatigue>
+  <!-- Reloading Affliction -->
+  <afflictionname.reloading>Reloading</afflictionname.reloading>
+  <afflictiondescription.reloading>Hands temporarily being used for reloading.</afflictiondescription.reloading>
+  <!-- Carbonate Poisoning Affliction -->
+  <afflictionname.carbonatepoisoning>Carbonate poisoning</afflictionname.carbonatepoisoning>
+  <afflictiondescription.carbonatepoisoning>Oxygen diffusion in the blood is lowered, leading to slowness and light headedness.</afflictiondescription.carbonatepoisoning>
+  <!-- Intoxicated Affliction -->
+  <afflictionname.intoxicated>Intoxicated</afflictionname.intoxicated>
+  <afflictiondescription.intoxicated>Noxious gases in the air tear through armor, skin and organs.</afflictiondescription.intoxicated>
+  <afflictioncauseofdeath.intoxicated>Intoxicated until death.</afflictioncauseofdeath.intoxicated>
+  <afflictioncauseofdeathself.intoxicated>Intoxicated until death.</afflictioncauseofdeathself.intoxicated>
+  <!-- Justice's Rage Affliction -->
+  <afflictionname.justice>Justice's rage</afflictionname.justice>
+  <afflictiondescription.justice>Lady justice is mad at you for being unsportsmanlike.</afflictiondescription.justice>
+  <afflictioncauseofdeath.justice>Received divine punishment</afflictioncauseofdeath.justice>
+  <afflictioncauseofdeathself.justice>You were divinely punished.</afflictioncauseofdeathself.justice>
+  <!-- Stimulated Affliction -->
+  <afflictionname.stimulated>Stimulated</afflictionname.stimulated>
+  <afflictiondescription.stimulated>Healing capabilities are increased.</afflictiondescription.stimulated>
+  <!-- Husk Stun Affliction -->
+  <afflictionname.huskstun>Husk stun</afflictionname.huskstun>
+  <afflictiondescription.huskstun>Husk neurotoxin present in the host's blood.</afflictiondescription.huskstun>
+</infotexts>

@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<infotexts language="Russian" nowhitespace="false" translatedname="Русский">
+  <!-- ID Card Printer -->
+  <entityname.printer>Принтер</entityname.printer>
+  <entitydescription.printer>Используется для печати и деконструкции удостоверений личности.</entitydescription.printer>
+  <!-- Wrench Button -->
+  <entityname.wrenchbutton>Кнопка гаечного ключа</entityname.wrenchbutton>
+  <entitydescription.wrenchbutton>Вырабатывает сигнал при закручивании механизма гаечным ключом.</entitydescription.wrenchbutton>
+  <!-- Carbonate Spray Holder -->
+  <entityname.carbonatespraybracket>Стойка для огнетушителя</entityname.carbonatespraybracket>
+  <entitydescription.carbonatespraybracket>Прижимает к стене огнетушитель с углекислотой.</entitydescription.carbonatespraybracket>
+  <!-- Carbonate Spray -->
+  <entityname.carbonatespray>Углекислотный Огнетушитель</entityname.carbonatespray>
+  <entitydescription.carbonatespray>Огнетушитель заполнен экспериментальной углекислотой, ядовитой для монстров, но безопасной для человека.</entitydescription.carbonatespray>
+  <!-- Midazolam -->
+  <entityname.midazolam>Мидазолам</entityname.midazolam>
+  <entitydescription.midazolam>Сильнодействующий препарат с лечебными свойствами, но из-за своего состава вызывает алкогольное опьянение и бессознательное состояние.</entitydescription.midazolam>
+  <!-- Goblin Crate -->
+  <entityname.goblincrate>Гоблинский ящик</entityname.goblincrate>
+  <entitydescription.goblincrate>Слишком маленький даже для самого маленького человека... но, возможно, гоблин сможет в нем поместиться.</entitydescription.goblincrate>
+  <!-- Goblin Mask -->
+  <entityname.goblinmask>Гоблинская маска</entityname.goblinmask>
+  <entitydescription.goblinmask>Странная зеленая маска, от которой исходит магическая аура. Что произойдет, если ее надеть?</entitydescription.goblinmask>
+  <!-- Bodybag -->
+  <entityname.bodybag>Сумка для трупов</entityname.bodybag>
+  <entitydescription.bodybag>Полиэтиленовый мешок, используемый для помещения в него трупов или для пытки удушением.</entitydescription.bodybag>
+  <!-- JET Mask -->
+  <entityname.jetmask>ЭВД Маска</entityname.jetmask>
+  <entitydescription.jetmask>Просто водолазная маска и шлем, сваренные вместе, - стандартный головной убор для Элитных Войск Джовиан, или ЭВД. Одна только встреча с ней может вызвать глубокий страх у любого сотрудника Nexpharma.</entitydescription.jetmask>
+  <!-- NexSuit -->
+  <entityname.nexsuit>NexКостюм</entityname.nexsuit>
+  <entitydescription.nexsuit>Костюм собственной разработки компании Nexpharma, предназначенный исключительно для элитной военизированной группировки - Мобильного Аварийно-Спасательного и Боевого Отряда, или МАСБО.</entitydescription.nexsuit>
+  <!-- Terrorist Guns -->
+  <entityname.jetrevolver>Старый Картечный Револьвер</entityname.jetrevolver>
+  <entitydescription.jetrevolver>Картечный, старый, но все еще распространенный револьвер 12-го калибра.</entitydescription.jetrevolver>
+  <entityname.jetshotgun>Тактический дробовик</entityname.jetshotgun>
+  <entitydescription.jetshotgun>Дробовик, предназначенный для тактических действий в условиях ближнего боя.</entitydescription.jetshotgun>
+  <entityname.jetrifle>Тяжелая винтовка</entityname.jetrifle>
+  <entitydescription.jetrifle>Автоматическая винтовка .30 калибра с барабанным магазином, изготовитель неизвестен.</entitydescription.jetrifle>
+  <!-- Nexpharma Guns -->
+  <entityname.mercspistol>Пистолет</entityname.mercspistol>
+  <entitydescription.mercspistol>Портативный и компактный пистолет .45 калибра собственной разработки компании Nexpharma, использующий патроны для ПП 45 калибра.</entitydescription.mercspistol>
+  <entityname.mercssmg>ОПЗ</entityname.mercssmg>
+  <entitydescription.mercssmg>Скорострельный пистолет-пулемет .45-го калибра, разработанный компанией Nexpharma для обеспечения персональной защиты носителю.</entitydescription.mercssmg>
+  <entityname.mercsrifle>Карабин</entityname.mercsrifle>
+  <entitydescription.mercsrifle>Боевой карабин собственной разработки компании Nexpharma, использующий патроны 6.8 калибра для штурмовых винтовок.</entitydescription.mercsrifle>
+  <!-- Terrorist ID Cards -->
+  <entityname.idcardjet>Удостоверение личности ЭВД</entityname.idcardjet>
+  <entitydescription.idcardjet>Террорист-боец. Обычный доступ 2-го уровня и Оружейный доступ 3-го уровня.</entitydescription.idcardjet>
+  <entityname.idcardinmate>Удостоверение личности заключенного</entityname.idcardinmate>
+  <entitydescription.idcardinmate>Удостоверение личности гражданского террористов. Полезно только для открытия обычных дверей.</entitydescription.idcardinmate>
+  <!-- Nexpharma ID Cards -->
+  <entityname.idcardmercs>Удостоверение личности МАСБО</entityname.idcardmercs>
+  <entitydescription.idcardmercs>Боец Nexpharma. Обычный доступ 3-го уровня и Оружейный доступ 3-го уровня.</entitydescription.idcardmercs>
+  <entityname.idcardenforcerguard>Удостоверение личности охранника</entityname.idcardenforcerguard>
+  <entitydescription.idcardenforcerguard>Боец Nexpharma. Обычный доступ 1-го уровня и Оружейный доступ 1-го уровня.</entitydescription.idcardenforcerguard>
+  <entityname.idcardstaff>Удостоверение личности персонала</entityname.idcardstaff>
+  <entitydescription.idcardstaff>Гражданский Nexpharma. Обычный доступ 1-го уровня.</entitydescription.idcardstaff>
+  <!-- Lootable ID Cards -->
+  <entityname.idcardoverseer>Удостоверение личности надзирателя</entityname.idcardoverseer>
+  <entitydescription.idcardoverseer>Надзиратель Nexpharma. Обычный доступ 3-го уровня.</entitydescription.idcardoverseer>
+  <entityname.idcardeliteguard>Удостоверение личности элитного охранника</entityname.idcardeliteguard>
+  <entitydescription.idcardeliteguard>Боец Nexpharma. Обычный доступ 2-го уровня и Оружейный доступ 2-го уровня.</entitydescription.idcardeliteguard>
+  <!-- Corpse Job -->
+  <jobname.corpsejob>Труп</jobname.corpsejob>
+  <jobdescription.corpsejob>Просто труп.</jobdescription.corpsejob>
+  <!-- Monster Jobs -->
+  <jobname.monsterjob>Монстр</jobname.monsterjob>
+  <jobdescription.monsterjob>Монстры - это особые сильные враждебные существа, которые входят в свою собственную команду - команду монстров, отдельную от команд Nexpharma и Террористов. То, каким именно существом вы будете, зависит от режима игры! Монстры имеют дальний "монстр-чат" для планирования (только текст).</jobdescription.monsterjob>
+  <jobname.mutatedmantisjob>Мутировавший Мантис</jobname.mutatedmantisjob>
+  <jobdescription.mutatedmantisjob>Участник команды Монстров, убивающий всех людей. У вас 1800 очков HP, вы медленно и пассивно восстанавливаете здоровье, но можете набрать много HP, питаясь трупами. Вы атакуете каждые 1,5 секунды, нанося 45 тупых травм и 5 кровотечений. На суше вы передвигаетесь чуть медленнее человека, но на воде вы быстры и проворны. Вы можете открывать обычные двери, пользоваться трамваями и быстро взламывать защищенные двери.</jobdescription.mutatedmantisjob>
+  <jobname.mutatedcrawlerjob>Мутировавший ползун</jobname.mutatedcrawlerjob>
+  <jobdescription.mutatedcrawlerjob>Участник команды Монстров, убивающий всех людей. У вас 1200 очков HP и пассивная регенерация, но вы можете набрать много HP, питаясь трупами. Вы атакуете каждые 1,5 секунды, нанося около 55 ран от укусов и 15 кровотечений. На суше вы передвигаетесь так же быстро, как человек, а на воде - быстро и проворно. Вы можете открывать обычные двери, пользоваться трамваями и медленно ломать защищенные двери.</jobdescription.mutatedcrawlerjob>
+  <jobname.greenskinjob>Зеленокожий</jobname.greenskinjob>
+  <jobdescription.greenskinjob>Участник команды монстров, убивающий всех людей. Вы - земноводное проворное животное, которое любит играть со своей жертвой. Надевайте маски на живых людей, чтобы превратить их в гоблинов. Прячьтесь в ящиках гоблинов, чтобы регенерировать.</jobdescription.greenskinjob>
+  <!-- Civie Jobs -->
+  <jobname.overseer>Надзиратель</jobname.overseer>
+  <jobdescription.overseer>Гражданское лицо команды Nexpharma, пытается сбежать с объекта и сотрудничает с МАСБО и Охраной. Высокопоставленный персонал, оснащенный принесенным из дома револьвером и ключ-картой надзирателя ("Обычный доступ 3").</jobdescription.overseer>
+  <jobname.researcher>Ученый</jobname.researcher>
+  <jobdescription.researcher>Гражданское лицо команды Nexpharma, пытается сбежать с объекта и сотрудничает с МАСБО и охранниками. Научный сотрудник с низким уровнем доступа, оснащенный своими исследованиями и ключ-картой персонала ("Обычный доступ 1").</jobdescription.researcher>
+  <jobname.repairmen>Ремонтник</jobname.repairmen>
+  <jobdescription.repairmen>Гражданское лицо команды Nexpharma, пытается сбежать с объекта и сотрудничает с МАСБО и охранниками. Основной обслуживающий персонал, снабженный расходными припасами и ключ-картой персонала ("Обычный доступ 1").'</jobdescription.repairmen>
+  <jobname.inmate>Заключенный</jobname.inmate>
+  <jobdescription.inmate>Гражданское лицо команды террористов, пытается сбежать с объекта и сотрудничает с террористами. Подверглись пыткам, испытаниям и обращению как с отбросами - сегодня мы бежим, братья! Оснащен некоторым контрабандным снаряжением.</jobdescription.inmate>
+  <!-- Militant Jobs -->
+  <jobname.jet>ЭВД</jobname.jet>
+  <jobdescription.jet>Боец, член команды террористов, убивает монстров и персонал Nexpharma, но помогает заключенным сбежать. Элитные Войска Джовиана, устройте для них ад! Оснащены тяжелым оружием, медикаментами и устройством ЭВД ("Обычный доступ 2 и Оружейный доступ 3").</jobdescription.jet>
+  <jobname.mercs>МАСБО</jobname.mercs>
+  <jobdescription.mercs>Боец команды Nexpharma, убивает монстров и террористов, а сотрудникам помогает спастись. Мобильный Аварийно-Спасательный и Боевой Отряд выходит на дежурство! Оснащен тяжелым оружием, медикаментами и ключ-картой МАСБО ("Обычный доступ 3 и Оружейный доступ 3").</jobdescription.mercs>
+  <jobname.eliteguard>Элитный охранник</jobname.eliteguard>
+  <jobdescription.eliteguard>Боец команды Nexpharma, убивает монстров и заключенных, но помогает персоналу сбежать. Старший охранник, в основном командует другими охранниками. Имеет пистолет, бронежилет и ключ-карту элитного охранника. ("Обычный доступ 2 и Оружейный доступ 2").</jobdescription.eliteguard>
+  <jobname.enforcerguard>Охранник-силовик</jobname.enforcerguard>
+  <jobdescription.enforcerguard>Боец команды Nexpharma, убивает монстров и заключенных, но помогает персоналу сбежать. Сотрудник службы безопасности, предназначенный только для того, чтобы держать заключенных под контролем. Имеет ОПЗ, бронежилет и ключ-карту охранника-силовика. ("Обычный доступ 1 и Оружейный доступ 1").</jobdescription.enforcerguard>
+  <!-- Speed Affliction -->
+  <afflictionname.speed>Скорость</afflictionname.speed>
+  <!-- Fatigue Affliction -->
+  <afflictionname.fatigue>Усталость</afflictionname.fatigue>
+  <afflictiondescription.fatigue>Чрезмерная физическая нагрузка. Немного сбавьте скорость, чтобы отдышаться.</afflictiondescription.fatigue>
+  <!-- Reloading Affliction -->
+  <afflictionname.reloading>Перезарядка</afflictionname.reloading>
+  <afflictiondescription.reloading>Руки временно используются для перезарядки.</afflictiondescription.reloading>
+  <!-- Carbonate Poisoning Affliction -->
+  <afflictionname.carbonatepoisoning>Отравление углекислотами</afflictionname.carbonatepoisoning>
+  <afflictiondescription.carbonatepoisoning>Снижается диффузия кислорода в крови, что приводит к медлительности и слабости в голове.</afflictiondescription.carbonatepoisoning>
+  <!-- Intoxicated Affliction -->
+  <afflictionname.intoxicated>В состоянии алкогольного опьянения</afflictionname.intoxicated>
+  <afflictiondescription.intoxicated>Вредные газы, содержащиеся в воздухе, пробивают броню, кожу и органы.</afflictiondescription.intoxicated>
+  <afflictioncauseofdeath.intoxicated>Опьянение до смерти.</afflictioncauseofdeath.intoxicated>
+  <afflictioncauseofdeathself.intoxicated>Опьянение до смерти.</afflictioncauseofdeathself.intoxicated>
+  <!-- Justice's Rage Affliction -->
+  <afflictionname.justice>Гнев правосудия</afflictionname.justice>
+  <afflictiondescription.justice>Госпожа правосудие сердится на вас за неспортивное поведение.</afflictiondescription.justice>
+  <afflictioncauseofdeath.justice>Получил божественную кару</afflictioncauseofdeath.justice>
+  <afflictioncauseofdeathself.justice>Вы были наказаны Богом.</afflictioncauseofdeathself.justice>
+  <!-- Stimulated Affliction -->
+  <afflictionname.stimulated>Стимулирование</afflictionname.stimulated>
+  <afflictiondescription.stimulated>Повышены лечебные свойства организма.</afflictiondescription.stimulated>
+  <!-- Husk Stun Affliction -->
+  <afflictionname.huskstun>Оглушение хаском</afflictionname.huskstun>
+  <afflictiondescription.huskstun>Нейротоксин хаска, присутствует в крови хозяина.</afflictiondescription.huskstun>
+</infotexts>

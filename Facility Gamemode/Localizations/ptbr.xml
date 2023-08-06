@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<infotexts language="Brazilian Portuguese" nowhitespace="false" translatedname="English">
+  <!-- ID Card Printer -->
+  <entityname.printer>Impressora</entityname.printer>
+  <entitydescription.printer>Utilizada para criar e destruir cartões de ID.</entitydescription.printer>
+  <!-- Wrench Button -->
+  <entityname.wrenchbutton>Botão de Chave</entityname.wrenchbutton>
+  <entitydescription.wrenchbutton>Produz um sinal ao ser ativado usando uma chave-inglesa.</entitydescription.wrenchbutton>
+  <!-- Carbonate Spray Holder -->
+  <entityname.carbonatespraybracket>Suporte de Spray de Carbonato</entityname.carbonatespraybracket>
+  <entitydescription.carbonatespraybracket>Acopla um spray de carbonato à parede.</entitydescription.carbonatespraybracket>
+  <!-- Carbonate Spray -->
+  <entityname.carbonatespray>Spray de Carbonato</entityname.carbonatespray>
+  <entitydescription.carbonatespray>Uma lata de extintor de incêndio com uma substância experimental. Tóxica para monstros, inofensiva para humanos.</entitydescription.carbonatespray>
+  <!-- Midazolam -->
+  <entityname.midazolam>Midazolam</entityname.midazolam>
+  <entitydescription.midazolam>Uma forte droga com propriedades de cura, porém devido a sua composição, leva também ao desmaio.</entitydescription.midazolam>
+  <!-- Goblin Crate -->
+  <entityname.goblincrate>Caixa de Goblin</entityname.goblincrate>
+  <entitydescription.goblincrate>Pequeno demais para uma pessoa... mas talvez para um goblin.</entitydescription.goblincrate>
+  <!-- Goblin Mask -->
+  <entityname.goblinmask>Máscara de Goblin</entityname.goblinmask>
+  <entitydescription.goblinmask>Uma máscara verde com uma aura éterea. O que aconteceria se alguém a vestisse?</entitydescription.goblinmask>
+  <!-- Bodybag -->
+  <entityname.bodybag>Saco de Cadáver</entityname.bodybag>
+  <entitydescription.bodybag>Uma forma de armazenar defuntos, ou uma forma de torturar alguém por asfixiação.</entitydescription.bodybag>
+  <!-- JET Mask -->
+  <entityname.jetmask>Máscara JET</entityname.jetmask>
+  <entitydescription.jetmask>Apenas uma máscara de mergulho e capacete militar soldados juntos, equipamento padrão dos JET. O vislumbre de um muitas vezes basta para causas pânico em empregados da Nexpharma Inc.</entitydescription.jetmask>
+  <!-- NexSuit -->
+  <entityname.nexsuit>NexSuit</entityname.nexsuit>
+  <entitydescription.nexsuit>Vestimento patentiada da Nexpharma Inc. e exclusivo ao seu grupo paramilitar de elite, os MERCS. Na verdade é so um PUCS de combate.</entitydescription.nexsuit>
+  <!-- Terrorist Guns -->
+  <entityname.jetrevolver>Chumbo grosso</entityname.jetrevolver>
+  <entitydescription.jetrevolver>Velho mas confiável, alta potência. Dispara calibre 12.</entitydescription.jetrevolver>
+  <entityname.jetshotgun>Escopeta Táctica</entityname.jetshotgun>
+  <entitydescription.jetshotgun>Uma escopeta projetada para uso militar em espaços apertados.</entitydescription.jetshotgun>
+  <entityname.jetrifle>Rifle Pesaod</entityname.jetrifle>
+  <entitydescription.jetrifle>Um rifle .30 pesado de fogo automático mas lento, alta capacidade.</entitydescription.jetrifle>
+  <!-- Nexpharma Guns -->
+  <entityname.mercspistol>Pistola</entityname.mercspistol>
+  <entitydescription.mercspistol>Uma pistola patenteada da Nexpharma Inc., portátil e de alta cadência, dispara .45 ACP.</entitydescription.mercspistol>
+  <entityname.mercssmg>PDW</entityname.mercssmg>
+  <entitydescription.mercssmg>Altíssima cadência, esvazia carregadores inteiros num piscar de olhos.</entitydescription.mercssmg>
+  <entityname.mercsrifle>Carabina-Rifle</entityname.mercsrifle>
+  <entitydescription.mercsrifle>Uma carabina que dispara munição de rifle, ou um rifle com tamanho de carabina?</entitydescription.mercsrifle>
+  <!-- Terrorist ID Cards -->
+  <entityname.idcardjet>Cartão ID JET</entityname.idcardjet>
+  <entitydescription.idcardjet>Militante terrorista. Admin nível 2 e weapons nível 3.</entitydescription.idcardjet>
+  <entityname.idcardinmate>Cartão ID Detento</entityname.idcardinmate>
+  <entitydescription.idcardinmate>Civil terrorista. Só serve para abrir portas simples.</entitydescription.idcardinmate>
+  <!-- Nexpharma ID Cards -->
+  <entityname.idcardmercs>Cartão ID MERCS</entityname.idcardmercs>
+  <entitydescription.idcardmercs>Militante nexpharma. Admin nível 3 e weapons nível 3.</entitydescription.idcardmercs>
+  <entityname.idcardenforcerguard>Cartão ID Guarda Pacificador</entityname.idcardenforcerguard>
+  <entitydescription.idcardenforcerguard>Militante nexpharma. Admin nível 1 e weapons nível 1.</entitydescription.idcardenforcerguard>
+  <entityname.idcardstaff>Cartão ID Empregado</entityname.idcardstaff>
+  <entitydescription.idcardstaff>Civil nexpharma. Admin nível 1.</entitydescription.idcardstaff>
+  <!-- Lootable ID Cards -->
+  <entityname.idcardoverseer>Cartão ID Supervisor</entityname.idcardoverseer>
+  <entitydescription.idcardoverseer>Civil nexpharma. Admin nível 3.</entitydescription.idcardoverseer>
+  <entityname.idcardeliteguard>Cartão ID Guarda Elite</entityname.idcardeliteguard>
+  <entitydescription.idcardeliteguard>Militante nexpharma. Admin nível 2 e weapons nível 2.</entitydescription.idcardeliteguard>
+  <!-- Corpse Job -->
+  <jobname.corpsejob>Defunto</jobname.corpsejob>
+  <jobdescription.corpsejob>Um corpo morto e frio.</jobdescription.corpsejob>
+  <!-- Monster Jobs -->
+  <jobname.monsterjob>Monstro</jobname.monsterjob>
+  <jobdescription.monsterjob>Monstros são criatures especiais hostis que fazem parte de seu próprio time, o time dos monstros. Um time separado do time Nexpharma e do time Terrorista. O monstro especifíco que jogará como depende do modo de jogo e da sua sorte! Monstros tem um chat de texto com alcançe ilimitado e exclusivo a eles.</jobdescription.monsterjob>
+  <jobname.mutatedmantisjob>Louva-A-Deus Mutante</jobname.mutatedmantisjob>
+  <jobdescription.mutatedmantisjob>Member of the Monsters team, kill all humans. You have 1800 vitality and slowly and passively regen, but can gain lots of HP by feasting on corpses. You attack each 1.5 seconds, dealing 45 blunt trauma and 5 bleeding. On land, you move slightly slower than a human, but on water, you're quick and nimble. You can open regular doors, use trams and rapidly break secure doors.</jobdescription.mutatedmantisjob>
+  <jobname.mutatedcrawlerjob>Reptante Mutante</jobname.mutatedcrawlerjob>
+  <jobdescription.mutatedcrawlerjob>Member of the Monsters team, kill all humans. You have 1200 vitality and passively regen, but can gain lots of HP by feasting on corpses. You attack each 1.5 seconds, dealing around 55 bite wounds and 15 bleeding. On land, you move as fast as a human, and on water, you're quick and nimble. You can open regular doors, use trams and slowly break secure doors.</jobdescription.mutatedcrawlerjob>
+  <jobname.greenskinjob>Pele Verde</jobname.greenskinjob>
+  <jobdescription.greenskinjob>Member of the Monster team, kill all humans. You are a kind of amphibious nimble critter that like playing games with their prey. Put masks on living humans to turn them into goblins. Hide in goblin crates to regenerate.</jobdescription.greenskinjob>
+  <!-- Civie Jobs -->
+  <jobname.overseer>Supervisor</jobname.overseer>
+  <jobdescription.overseer>Membro civil do time Nexpharma, fuja do complexo e colabore com os MERCS e Guardas. Pessoal de alta importância, equipados com revolveres deles e um cartão de alto nível (Admin Nível 3).</jobdescription.overseer>
+  <jobname.researcher>Pesquisador</jobname.researcher>
+  <jobdescription.researcher>Membro civil do time Nexpharma, fuja do complexo e colabore com os MERCS e Guardas. Um pesquisador de baixo nível, equipado com um pouco de medicina e um cartão de empregado (Admin Nível 1).</jobdescription.researcher>
+  <jobname.repairmen>Reparador</jobname.repairmen>
+  <jobdescription.repairmen>Membro civil do time Nexpharma, fuja do complexo e colabore os MERCS e Guardas. Pessoal de manutenção, equipado com algumas ferramentas e um cartão de empregado (Admin Nível 1).</jobdescription.repairmen>
+  <jobname.inmate>Detento</jobname.inmate>
+  <jobdescription.inmate>Membro civil do time Terrorista, fuja do complexo e colabore com os JET. Subjulgado e tratado como lixo subumano, hoje nós escaparemos! Apenas equipados com um pouco de contrabando.</jobdescription.inmate>
+  <!-- Militant Jobs -->
+  <jobname.jet>JET</jobname.jet>
+  <jobdescription.jet>Membro militante do time Terrorista, mate monstros em todos aqueles associados a Nexpharma Inc, mas também ajude na fuga dos detentos. Tropas Jovianas de Elite, caralho! Armado até o dente e com um dispositivo JET (Admin Nível 2 e Weapon Nível 3).</jobdescription.jet>
+  <jobname.mercs>MERCS</jobname.mercs>
+  <jobdescription.mercs>Membro militante do time Nexpharma, mate monstros e os terroristas, mas também resgate os empregados. Esquadrão Militar de Emergência, atendendo o chamado do dever! Armado até o dente e com um cartão ID MERCS (Admin Nível 3 e Weapon Nível 3).</jobdescription.mercs>
+  <jobname.eliteguard>Guarda Elite</jobname.eliteguard>
+  <jobdescription.eliteguard>Membro militante do time Nexpharma, mate monstros e os terroristas, mas também resgate os empregados. Ocupa um cargo de supervisão dos outros guardas, equipado com uma pistola e um cartão de alto nível (Admin Nível 2 e Weapon Nível 2).</jobdescription.eliteguard>
+  <jobname.enforcerguard>Guarda Pacificador</jobname.enforcerguard>
+  <jobdescription.enforcerguard>Membro militante do time Nexpharma, mate monstros e os terroristas, mas também resgate os empregados. A 1ª linha de defesa numa emergêcia, porém apenas equipados com uma submetralhadora e um cartão de guarda comun (Admin Nível 1 e Weapon Nível 1).</jobdescription.enforcerguard>
+  <!-- Speed Affliction -->
+  <afflictionname.speed>Velocidade</afflictionname.speed>
+  <!-- Fatigue Affliction -->
+  <afflictionname.fatigue>Fadiga</afflictionname.fatigue>
+  <afflictiondescription.fatigue>Exerção excessiva. Pare um pouco para dar uma respirada.</afflictiondescription.fatigue>
+  <!-- Reloading Affliction -->
+  <afflictionname.reloading>Recarregando</afflictionname.reloading>
+  <afflictiondescription.reloading>Mãos ocupadas com recarregamento.</afflictiondescription.reloading>
+  <!-- Carbonate Poisoning Affliction -->
+  <afflictionname.carbonatepoisoning>Envenenamento por carbonato</afflictionname.carbonatepoisoning>
+  <afflictiondescription.carbonatepoisoning>Difusão de oxigênio é diminuida, levando a lentidão e tontura.</afflictiondescription.carbonatepoisoning>
+  <!-- Intoxicated Affliction -->
+  <afflictionname.intoxicated>Intoxicado</afflictionname.intoxicated>
+  <afflictiondescription.intoxicated>Gases nocivos no ar destroem armadura, tecido, pele e orgãos.</afflictiondescription.intoxicated>
+  <afflictioncauseofdeath.intoxicated>Morte por intoxicamento.</afflictioncauseofdeath.intoxicated>
+  <afflictioncauseofdeathself.intoxicated>Morte por intoxicamento.</afflictioncauseofdeathself.intoxicated>
+  <!-- Justice's Rage Affliction -->
+  <afflictionname.justice>Ira da justiça</afflictionname.justice>
+  <afflictiondescription.justice>A justiça está com raiva devido as suas atividades anti-competitivas.</afflictiondescription.justice>
+  <afflictioncauseofdeath.justice>Recebeu castigo divino.</afflictioncauseofdeath.justice>
+  <afflictioncauseofdeathself.justice>Tu recebeste castigo divino.</afflictioncauseofdeathself.justice>
+  <!-- Stimulated Affliction -->
+  <afflictionname.stimulated>Estimulado</afflictionname.stimulated>
+  <afflictiondescription.stimulated>Capacidades de regeneração aumentadas.</afflictiondescription.stimulated>
+  <!-- Husk Stun Affliction -->
+  <afflictionname.huskstun>Atordoamento de husk</afflictionname.huskstun>
+  <afflictiondescription.huskstun>Neurotoxina de husk presente no sangue.</afflictiondescription.huskstun>
+</infotexts>
