@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<ItemAssembly name="FG Med1" description="" hideinmenus="false">
-  <Structure name="Label Icon Medical" identifier="labelsiconmedical" ID="4083" rect="-11,10,64,64" MaxHealth="100" CrushDepth="0" SpriteColor="55,65,55,255" UseDropShadow="False" DropShadowOffset="0,0" Scale="0.1" TextureScale="1,1" TextureOffset="0,0" NoAITarget="False" DisallowedUpgrades="" SpriteDepth="0.75" HiddenInGame="False" />
-  <Item name="" identifier="opdeco_medcompartment3" ID="4084" rect="-19,43,40,64" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="200,215,200,255" InventoryIconColor="200,215,200,255" ContainerColor="200,215,200,255" InvulnerableToDamage="False" Tags="suppliescontainer,container,fg_med1" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.84" HiddenInGame="False" conditionpercentage="100">
-    <ItemContainer ContainableRestrictions="" AutoFill="False" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="ItemMsgInteractSelect" contained=",,,,," />
-  </Item>
-  <Structure name="Instruction Sign" identifier="opdeco_instructionsign" ID="4085" rect="-4,-3,47,31" MaxHealth="100" CrushDepth="0" SpriteColor="255,255,255,55" UseDropShadow="False" DropShadowOffset="0,0" Scale="0.20000002" TextureScale="1,1" TextureOffset="0,0" NoAITarget="False" DisallowedUpgrades="" SpriteDepth="0.77" HiddenInGame="False" />
-</ItemAssembly>
