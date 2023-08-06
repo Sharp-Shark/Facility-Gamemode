@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<ItemAssembly name="FG Med2" description="" hideinmenus="false">
-  <Item name="" identifier="mediumsteelcabinet" ID="4081" rect="-31,86,87,187" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.4" SpriteColor="255,255,255,15" InventoryIconColor="255,255,255,15" ContainerColor="255,255,255,15" InvulnerableToDamage="False" Tags="container,locker,fg_med2" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.73999995" HiddenInGame="False" conditionpercentage="100">
-    <ItemContainer ContainableRestrictions="" AutoFill="False" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="ItemMsgInteractSelect" contained=",,,,,,,,,,,,,," />
-  </Item>
-  <Item name="" identifier="medcabinet" ID="4080" rect="-47,96,104,173" NonInteractable="True" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" InvulnerableToDamage="False" Tags="container,medcontainer" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.84" HiddenInGame="False" conditionpercentage="100">
-    <ItemContainer ContainableRestrictions="" AutoFill="False" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="ItemMsgInteractSelect" contained=",,,,,,,,,,,,,,,,,,,,,,,,,,,,," />
-  </Item>
-</ItemAssembly>

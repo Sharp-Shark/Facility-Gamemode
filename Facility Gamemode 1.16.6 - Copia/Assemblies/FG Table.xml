@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<ItemAssembly name="FG Table" description="" hideinmenus="false">
-  <Structure name="Platform Basic" identifier="platform" ID="4080" rect="-58,53,123,27" MaxHealth="100" CrushDepth="0" SpriteColor="255,255,255,55" UseDropShadow="False" DropShadowOffset="0,0" Scale="1" TextureScale="1,1" TextureOffset="0,0" NoAITarget="False" DisallowedUpgrades="" SpriteDepth="0.79999995" HiddenInGame="False" />
-  <Item name="" identifier="op_cafeteriatable" ID="4081" rect="-58,48,126,86" NonInteractable="True" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.5" SpriteColor="255,255,255,255" InventoryIconColor="255,255,255,255" ContainerColor="255,255,255,255" InvulnerableToDamage="False" Tags="" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.9" HiddenInGame="False" conditionpercentage="100" />
-</ItemAssembly>
