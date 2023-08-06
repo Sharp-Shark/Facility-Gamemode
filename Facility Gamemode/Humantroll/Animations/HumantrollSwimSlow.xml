@@ -1,0 +1,2 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GoblinSwimSlow footrotatestrength="15" type="Goblin" LegMoveAmount="0.61132693" LegCycleLength="5.9674172" HandMoveAmount="0.656177,-0.17196049" HandCycleSpeed="2.624708" HandMoveOffset="0,0" FootAngle="65" ArmMoveStrength="2" HandMoveStrength="0.5" FixedHeadAngle="False" SteerTorque="2" LegTorque="12" MovementSpeed="2" CycleSpeed="3.640148" HeadAngle="28" TorsoAngle="0" HeadTorque="10" TorsoTorque="20" FootTorque="1" AnimationType="SwimSlow" ArmIKStrength="3" HandIKStrength="10" />
