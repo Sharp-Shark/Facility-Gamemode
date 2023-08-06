@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Afflictions>
+  <!-- Speed affliction does nothing, it only exists so items that affect speed can have it listed in it's stats -->
+  <Affliction name="Speed" identifier="speed" description="-" type="speed" targets="human" limbspecific="false" indicatorlimb="Torso" showiconthreshold="0" showinhealthscannerthreshold="0" karmachangeonapplied="-10" maxstrength="1" WeaponsSkillGain="1.0" iconcolors="128,224,64,255">
+    <Effect minstrength="0" maxstrength="1" strengthchange="-1" />
+    <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="640,640,128,128" color="106,106,106,255" origin="0,0" />
+  </Affliction>
+  <!-- Terror Radius -->
+  <Affliction name="Terror" identifier="terrorradius" description="An awful sensation that something lurks nearby." type="terrorradius" targets="human" limbspecific="false" indicatorlimb="Torso" showiconthreshold="101" showinhealthscannerthreshold="101" karmachangeonapplied="0" maxstrength="100" WeaponsSkillGain="1.0" iconcolors="160,40,80,0;160,40,80,255">
+	<Effect minstrength="0" maxstrength="10" strengthchange="0" graincolor="155,75,75,255" mingrainstrength="0.0" maxgrainstrength="0.25">
+      <StatusEffect target="Character">
+        <Conditional IsLocalPlayer="True"/>
+        <Sound file="%ModDir%/Misc/terrorradius.ogg" loop="true" volume="0.4" />
+	  </StatusEffect>
+	</Effect>
+	<Effect minstrength="10" maxstrength="20" strengthchange="0" graincolor="155,75,75,255" mingrainstrength="0.25" maxgrainstrength="0.5">
+      <StatusEffect target="Character">
+        <Conditional IsLocalPlayer="True"/>
+        <Sound file="%ModDir%/Misc/terrorradius.ogg" loop="true" volume="0.8" />
+	  </StatusEffect>
+	</Effect>
+	<Effect minstrength="20" maxstrength="30" strengthchange="0" graincolor="155,75,75,255" mingrainstrength="0.5" maxgrainstrength="0.75">
+      <StatusEffect target="Character">
+        <Conditional IsLocalPlayer="True"/>
+        <Sound file="%ModDir%/Misc/terrorradius.ogg" loop="true" volume="1.2000000000000002" />
+	  </StatusEffect>
+	</Effect>
+	<Effect minstrength="30" maxstrength="40" strengthchange="0" graincolor="155,75,75,255" mingrainstrength="0.75" maxgrainstrength="1.0">
+      <StatusEffect target="Character">
+        <Conditional IsLocalPlayer="True"/>
+        <Sound file="%ModDir%/Misc/terrorradius.ogg" loop="true" volume="1.6" />
+	  </StatusEffect>
+	</Effect>
+	<Effect minstrength="40" maxstrength="50" strengthchange="0" graincolor="155,75,75,255" mingrainstrength="1.0" maxgrainstrength="1.25">
+      <StatusEffect target="Character">
+        <Conditional IsLocalPlayer="True"/>
+        <Sound file="%ModDir%/Misc/terrorradius.ogg" loop="true" volume="2.0" />
+	  </StatusEffect>
+	</Effect>
+	<Effect minstrength="50" maxstrength="60" strengthchange="0" graincolor="155,75,75,255" mingrainstrength="1.25" maxgrainstrength="1.5">
+      <StatusEffect target="Character">
+        <Conditional IsLocalPlayer="True"/>
+        <Sound file="%ModDir%/Misc/terrorradius.ogg" loop="true" volume="2.4000000000000004" />
+	  </StatusEffect>
+	</Effect>
+	<Effect minstrength="60" maxstrength="70" strengthchange="0" graincolor="155,75,75,255" mingrainstrength="1.5" maxgrainstrength="1.75">
+      <StatusEffect target="Character">
+        <Conditional IsLocalPlayer="True"/>
+        <Sound file="%ModDir%/Misc/terrorradius.ogg" loop="true" volume="2.8000000000000003" />
+	  </StatusEffect>
+	</Effect>
+	<Effect minstrength="70" maxstrength="80" strengthchange="0" graincolor="155,75,75,255" mingrainstrength="1.75" maxgrainstrength="2.0">
+      <StatusEffect target="Character">
+        <Conditional IsLocalPlayer="True"/>
+        <Sound file="%ModDir%/Misc/terrorradius.ogg" loop="true" volume="3.2" />
+	  </StatusEffect>
+	</Effect>
+	<Effect minstrength="80" maxstrength="90" strengthchange="0" graincolor="155,75,75,255" mingrainstrength="2.0" maxgrainstrength="2.25">
+      <StatusEffect target="Character">
+        <Conditional IsLocalPlayer="True"/>
+        <Sound file="%ModDir%/Misc/terrorradius.ogg" loop="true" volume="3.6" />
+	  </StatusEffect>
+	</Effect>
+	<Effect minstrength="90" maxstrength="100" strengthchange="0" graincolor="155,75,75,255" mingrainstrength="2.25" maxgrainstrength="2.5">
+      <StatusEffect target="Character">
+        <Conditional IsLocalPlayer="True"/>
+        <Sound file="%ModDir%/Misc/terrorradius.ogg" loop="true" volume="4.0" />
+	  </StatusEffect>
+	</Effect>
+    <icon texture="Content/UI/CommandUIAtlas.png" sourcerect="768,896,128,128" origin="0,0" />
+  </Affliction>
+  <!-- Fatigue -->
+  <Affliction name="Fatigue" identifier="fatigue" description="Excessive exercetion. Slow down a bit to catch your breath." type="stun" targets="human" limbspecific="false" indicatorlimb="Torso" showiconthreshold="5" showinhealthscannerthreshold="0" karmachangeonapplied="0" maxstrength="100" WeaponsSkillGain="1.0" iconcolors="250,250,250,255;250,200,200,255;250,50,50,255">
+    <Effect minstrength="0" maxstrength="95" strengthchange="0" />
+    <Effect minstrength="95" maxstrength="100" strengthchange="0" minspeedmultiplier="1.0" maxspeedmultiplier="0.5" />
+    <icon texture="Content/UI/CommandUIAtlas.png" sourcerect="128,0,128,128" origin="0,0" />
+  </Affliction>
+  <!-- Reloading -->
+  <Affliction name="Reloading" identifier="reloading" description="Hands temporarily being used for reloading." type="reload" limbspecific="false" indicatorlimb="Torso" showiconthreshold="0" showinhealthscannerthreshold="0" karmachangeonapplied="0" maxstrength="4" WeaponsSkillGain="1.0" iconcolors="150,125,175,255">
+    <Effect minstrength="0" maxstrength="100" strengthchange="-1">
+	  <StatusEffect target="Character" LockHands="true" />
+	</Effect>
+    <icon texture="Content/UI/CommandUIAtlas.png" sourcerect="768,640,128,128" origin="0,0" />
+  </Affliction>
+  <!-- Offsetted stun -->
+  <Affliction name="Stun Offset" identifier="stunoffset" description="Stunned." type="stun" targets="human" limbspecific="false" indicatorlimb="Torso" showiconthreshold="101" showinhealthscannerthreshold="101" karmachangeonapplied="0" maxstrength="31" WeaponsSkillGain="1.0" iconcolors="250,250,150,255">
+    <Effect minstrength="0" maxstrength="2" strengthchange="-0.5"></Effect>
+    <Effect minstrength="2" maxstrength="31" strengthchange="-1">
+      <StatusEffect target="Character" setvalue="true">
+        <Affliction identifier="stun" amount="1" />
+      </StatusEffect>
+    </Effect>
+  </Affliction>
+  <!-- Stun vulnerability -->
+  <Affliction name="Stun Vulnerability" identifier="stunvulnerability" description="General feeling of weakness, unbalance and lightheadedness makes any stun more intense." type="debuff" targets="human" limbspecific="false" indicatorlimb="Torso" showiconthreshold="101" showinhealthscannerthreshold="101" karmachangeonapplied="0" maxstrength="100" WeaponsSkillGain="1.0" iconcolors="250,250,150,255">
+    <Effect minstrength="1" maxstrength="100" strengthchange="-10" minresistance="0.0" maxresistance="-2.0" resistancefor="stun"></Effect>
+  </Affliction>
+  <!-- Carbonate poisoning -->
+  <Affliction name="Carbonate poisoning" identifier="carbonatepoisoning" description="Oxygen diffusion in the blood is lowered, leading to slowness and light headedness." type="debuff" targets="human,crawleradmin,mantisadmin,humanhusk,humangoblin,humantroll" limbspecific="false" indicatorlimb="Torso" showiconthreshold="0" showinhealthscannerthreshold="0" karmachangeonapplied="-10" maxstrength="100" WeaponsSkillGain="1.0" iconcolors="140,130,160,0;140,130,160,200;140,130,160,255">
+    <Effect minstrength="0" maxstrength="80" strengthchange="-5" resistancefor="damage" minresistance="0.0" maxresistance="0.3" minscreendistort="0.0" maxscreendistort="1.0" minradialdistort="0.0" maxradialdistort="1.0" minscreenblur="0.0" maxscreenblur="1.0" minchromaticaberration="0.0" maxchromaticaberration="5.0" mingrainstrength="0.0" maxgrainstrength="1.00" minspeedmultiplier="1.0" maxspeedmultiplier="0.3">
+      <StatusEffect target="Character" multiplyafflictionsbymaxvitality="true">
+        <Affliction identifier="oxygenlow" amount="11" />
+      </StatusEffect>
+    </Effect>
+    <Effect minstrength="80" maxstrength="100" strengthchange="-20" resistancefor="damage" minresistance="0.3" maxresistance="0.6" minscreendistort="1.0" maxscreendistort="1.0" minradialdistort="1.0" maxradialdistort="1.0" minscreenblur="1.0" maxscreenblur="1.0" minchromaticaberration="5.0" maxchromaticaberration="5.0" mingrainstrength="1.0" maxgrainstrength="1.00" minspeedmultiplier="0.3" maxspeedmultiplier="0.1">
+      <StatusEffect target="Character" multiplyafflictionsbymaxvitality="true">
+        <Affliction identifier="oxygenlow" amount="12" />
+      </StatusEffect>
+      <StatValue stattype="AttackMultiplier" value="-1.0" />
+    </Effect>
+    <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="640,640,128,128" color="106,106,106,255" origin="0,0" />
+  </Affliction>
+  <!-- Intoxicated (from decon) -->
+  <Affliction name="Intoxicated" identifier="intoxicated" description="Noxious gases in the air tear through armor, skin and organs." type="intoxicated" targets="human,crawleradmin,mantisadmin,humanhusk,humangoblin,humantroll" limbspecific="false" indicatorlimb="Torso" showiconthreshold="0" showinhealthscannerthreshold="0" karmachangeonapplied="-10" maxstrength="75" WeaponsSkillGain="1.0" iconcolors="128,224,64,255">
+    <Effect minstrength="0" maxstrength="60" strengthchange="-1" minvitalitydecrease="0" maxvitalitydecrease="1" multiplybymaxvitality="true" />
+    <Effect minstrength="60" maxstrength="75" strengthchange="-1" minvitalitydecrease="1" maxvitalitydecrease="2" multiplybymaxvitality="true" />
+    <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="640,640,128,128" color="106,106,106,255" origin="0,0" />
+  </Affliction>
+  <!-- Justice's rage, anti-camping -->
+  <Affliction name="Justice's rage" identifier="justice" description="Lady justice is mad at you for being unsportsmanlike." type="justice" targets="human,crawleradmin,mantisadmin,humanhusk,humangoblin,humantroll" limbspecific="false" indicatorlimb="Torso" showiconthreshold="100" showinhealthscannerthreshold="100" karmachangeonapplied="-10" maxstrength="200" WeaponsSkillGain="1.0" iconcolors="60,0,195,255">
+    <Effect minstrength="0" maxstrength="150" strengthchange="-1" />
+    <Effect minstrength="150" maxstrength="195" strengthchange="-1" minvitalitydecrease="0" maxvitalitydecrease="1" multiplybymaxvitality="true" />
+    <Effect minstrength="195" maxstrength="200" strengthchange="-1" minvitalitydecrease="1" maxvitalitydecrease="2" multiplybymaxvitality="true" />
+    <icon texture="Content/UI/CommandUIAtlas.png" sourcerect="768,896,128,128" origin="0,0" />
+  </Affliction>
+  <!-- Stimulated (minor regen) -->
+  <Affliction name="Stimulated" identifier="stimulated" description="Healing capabilities are increased." type="stimulated" isbuff="true" targets="human,humangoblin,humanhusk,humantroll" limbspecific="false" indicatorlimb="Torso" showiconthreshold="0" showinhealthscannerthreshold="0" karmachangeonapplied="-10" maxstrength="120" WeaponsSkillGain="1.0" iconcolors="68,157,198,255">
+    <Effect minstrength="0" maxstrength="60" strengthchange="-1">
+      <StatusEffect target="Character" interval="1.5" disabledeltatime="true">
+        <ReduceAffliction type="damage" amount="1.5" />
+        <ReduceAffliction type="burn" amount="1.5" />
+        <ReduceAffliction type="bloodloss" amount="1.5" />
+      </StatusEffect>
+    </Effect>
+    <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="0,896,128,128" color="68,157,198,255" origin="0,0" />
+  </Affliction>
+  <!-- Husk stun -->
+  <Affliction name="Husk stun" identifier="huskstun" description="Husk neurotoxin present in the host's blood." type="stun" targets="human" limbspecific="false" indicatorlimb="Torso" showiconthreshold="0" showinhealthscannerthreshold="0" karmachangeonapplied="-10" maxstrength="100" WeaponsSkillGain="1.0" iconcolors="224,128,64,255">
+    <Effect minstrength="0" maxstrength="90" strengthchange="-5" minspeedmultiplier="1.0" maxspeedmultiplier="0.0" />
+    <Effect minstrength="90" maxstrength="100" strengthchange="-1">
+      <StatusEffect target="Character" setvalue="true">
+        <Affliction identifier="stun" amount="1" />
+      </StatusEffect>
+      <StatusEffect target="Character" setvalue="true">
+        <Affliction identifier="huskinfection" amount="76" />
+      </StatusEffect>
+      <AbilityFlag flagtype="CanNotDieToAfflictions" />
+    </Effect>
+    <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="0,640,128,128" iconcolors="224,128,64,255" origin="0,0" />
+  </Affliction>
+  <!-- Overrides -->
+  <Override>
+	<!-- Husk infection -->
+    <AfflictionHusk name="Husk infection" identifier="huskinfection" description="Something dark and unpleasant moves in the mouth. They are rendered completely mute, save for occasional clicking sounds apparently emanating from deep within the throat." type="alieninfection" targets="human,crawler" huskedspeciesname="husk" causeofdeathdescription="Taken over by a husk parasite" selfcauseofdeathdescription="You have been taken over by the husk parasite." limbspecific="false" indicatorlimb="Torso" activationthreshold="0" showiconthreshold="75" showinhealthscannerthreshold="75" sendmessages="false" karmachangeonapplied="-1" maxstrength="100" transferbuffs="true" achievementonremoved="healhusk" dormantthreshold="50" activethreshold="75" transformthresholdondeath="1" transitionthreshold="100" IgnoreTreatmentIfAfflictedBy="husktransformimmunity" healcostmultiplier="2.5" basehealcost="200" iconcolors="60,140,195,255;60,107,195,255;60,0,195,255">
+      <Description textidentifier="afflictiondescription.huskinfection.dormant.self" target="Self" minstrength="0" maxstrength="50" />
+      <Description textidentifier="afflictiondescription.huskinfection.transition.self" target="Self" minstrength="50" maxstrength="75" />
+      <Description textidentifier="afflictiondescription.huskinfection.active.self" target="Self" minstrength="75" maxstrength="99" />
+      <Description textidentifier="afflictiondescription.huskinfection.dormant.other" target="OtherCharacter" minstrength="0" maxstrength="50" />
+      <Description textidentifier="afflictiondescription.huskinfection.transition.other" target="OtherCharacter" minstrength="50" maxstrength="75" />
+      <Description textidentifier="afflictiondescription.huskinfection.active.other" target="OtherCharacter" minstrength="75" maxstrength="99" />
+      <Description textidentifier="afflictiondescription.huskinfection.final" minstrength="99" maxstrength="101" />
+      <Effect minstrength="0" maxstrength="75" strengthchange="2.0" minbodytint="195,195,195,0" maxbodytint="195,195,195,150" />
+      <Effect minstrength="75" maxstrength="100" strengthchange="0.5" minbodytint="195,195,195,150" maxbodytint="195,195,195,200" tag="huskinfected">
+        <StatusEffect target="Character" interval="0.1" disabledeltatime="true">
+          <Affliction identifier="internaldamage" amount="0.02" />
+        </StatusEffect>
+      </Effect>
+      <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="0,640,128,128" color="60,107,195,255" origin="0,0" />
+    </AfflictionHusk>
+    <!-- Husk infection resistance -->
+    <Affliction name="Husk Infection Resistance" identifier="huskinfectionresistance" description="Husk be gone." type="resistance" isbuff="true" limbspecific="false" maxstrength="600" affectmachines="false">
+      <Effect minstrength="0" maxstrength="600" strengthchange="-1.0" resistancefor="huskinfection" minresistance="0" maxresistance="1.00" />
+      <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="384,896,128,128" color="10,193,114,255" origin="0,0" />
+    </Affliction>
+  </Override>
+</Afflictions>
