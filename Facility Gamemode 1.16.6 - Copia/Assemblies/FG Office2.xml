@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ItemAssembly name="FG Office2" description="" hideinmenus="false">
+  <Item name="" identifier="mediumsteelcabinet" ID="4080" rect="-27,77,87,187" NonInteractable="False" NonPlayerTeamInteractable="False" AllowSwapping="True" Rotation="0" Scale="0.4" SpriteColor="255,255,255,15" InventoryIconColor="255,255,255,15" ContainerColor="255,255,255,15" InvulnerableToDamage="False" Tags="container,locker,fg_office2" DisplaySideBySideWhenLinked="False" DisallowedUpgrades="" SpriteDepth="0.84" HiddenInGame="False" conditionpercentage="100">
+    <ItemContainer ContainableRestrictions="" AutoFill="False" PickingTime="0" CanBePicked="False" AllowInGameEditing="True" Msg="ItemMsgInteractSelect" contained=",,,,,,,,,,,,,," />
+  </Item>
+  <Structure name="Medium Shelf" identifier="opdeco_shelfmedium" ID="4081" rect="-32,78,79,142" MaxHealth="100" CrushDepth="0" SpriteColor="255,255,255,255" UseDropShadow="False" DropShadowOffset="0,0" Scale="0.5" TextureScale="1,1" TextureOffset="0,0" NoAITarget="False" DisallowedUpgrades="" SpriteDepth="0.97" HiddenInGame="False" />
+</ItemAssembly>
