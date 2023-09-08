@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Items>
+  <!--
   <Override>
     <Item name="" identifier="plastic" category="Material" maxstacksize="12" Tags="smallitem" canbepicked="true" cargocontaineridentifier="metalcrate" scale="0.4" impactsoundtag="impact_metal_light">
       <PreferredContainer primary="storagecab" />
@@ -20,38 +21,20 @@
         <Item identifier="silicon" copycondition="true" />
         <Item identifier="carbon" copycondition="true" />
       </Deconstruct>
-      <Fabricate suitablefabricators="printer" requiredtime="4" amount="1">
-        <RequiredItem identifier="idcardinmate" />
-      </Fabricate>
-      <Fabricate suitablefabricators="printer" requiredtime="8" amount="2">
-        <RequiredItem identifier="idcardstaff" />
-      </Fabricate>
-      <Fabricate suitablefabricators="printer" requiredtime="12" amount="3">
-        <RequiredItem identifier="idcardenforcerguard" />
-      </Fabricate>
-      <Fabricate suitablefabricators="printer" requiredtime="20" amount="5">
-        <RequiredItem identifier="idcardeliteguard" />
-      </Fabricate>
-      <Fabricate suitablefabricators="printer" requiredtime="16" amount="4">
-        <RequiredItem identifier="idcardoverseer" />
-      </Fabricate>
-      <Fabricate suitablefabricators="printer" requiredtime="28" amount="7">
-        <RequiredItem identifier="idcardmercs" />
-      </Fabricate>
       <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="896,128,64,64" />
       <Sprite texture="Content/Items/Materials/minerals.png" sourcerect="202,100,43,30" depth="0.55" origin="0.5,0.5" />
       <Body width="40" height="27" density="12" />
       <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
-        <!-- Remove the item when fully used -->
         <StatusEffect type="OnBroken" target="This">
           <Remove />
         </StatusEffect>
       </Holdable>
     </Item>
   </Override>
+  -->
   <!-- Terrorist ID Cards -->
-  <!-- JET A2W3 -->
-  <Item name="" identifier="idcardjet" category="Equipment" Tags="smallitem,identitycard,a1,a2,w1,w2,w3,idcard" scale="0.35" inventoryiconcolor="255,255,255,255" spritecolor="255,255,255" cargocontaineridentifier="metalcrate">
+  <!-- JET A3W3 (BEST) -->
+  <Item name="" identifier="idcardjet" category="Equipment" Tags="smallitem,identitycard,a1,a2,a3,w1,w2,w3,idcard" scale="0.35" inventoryiconcolor="255,255,255,255" spritecolor="255,255,255" cargocontaineridentifier="metalcrate">
     <PreferredContainer primary="crewcab" />
     <Price baseprice="10">
       <Price storeidentifier="merchantoutpost" minavailable="4" />
@@ -73,14 +56,13 @@
     <Sprite texture="idcard.png" depth="0.5" sourcerect="0,0,16,16" />
     <Body width="16" height="12" density="20" />
     <IdCard slots="Card,Any" msg="ItemMsgPickUpSelect" />
-    <Fabricate suitablefabricators="printer" requiredtime="8">
-      <!-- 1 Plastic -->
+    <Fabricate suitablefabricators="printer" requiredtime="16">
       <RequiredItem identifier="plastic" />
     </Fabricate>
   </Item>
   <!-- Nexpharma ID Cards -->
-  <!-- MERCS A3W3 -->
-  <Item name="" identifier="idcardmercs" category="Equipment" Tags="smallitem,identitycard,a1,a2,a3,w1,w2,w3,idcard" inventoryiconcolor="155,155,255,255" spritecolor="155,155,255" cargocontaineridentifier="metalcrate">
+  <!-- MERCS A2W3 -->
+  <Item name="" identifier="idcardmercs" category="Equipment" Tags="smallitem,identitycard,a1,a2,w1,w2,w3,idcard" inventoryiconcolor="155,155,255,255" spritecolor="155,155,255" cargocontaineridentifier="metalcrate">
     <PreferredContainer primary="crewcab" />
     <Price baseprice="10">
       <Price storeidentifier="merchantoutpost" minavailable="4" />
@@ -90,15 +72,9 @@
     <Sprite texture="idcard.png" depth="0.5" sourcerect="0,0,16,16" />
     <Body width="16" height="12" density="20" />
     <IdCard slots="Card,Any" msg="ItemMsgPickUpSelect" />
-    <Fabricate suitablefabricators="printer" requiredtime="56">
-      <!-- 7 Plastic -->
-      <RequiredItem identifier="plastic" />
-      <RequiredItem identifier="plastic" />
-      <RequiredItem identifier="plastic" />
-      <RequiredItem identifier="plastic" />
-      <RequiredItem identifier="plastic" />
-      <RequiredItem identifier="plastic" />
-      <RequiredItem identifier="plastic" />
+    <Fabricate suitablefabricators="printer" requiredtime="16">
+      <RequiredItem identifier="idcardeliteguard" />
+      <RequiredItem identifier="idcardeliteguard" />
     </Fabricate>
   </Item>
   <!-- Enforcer Guard A1W1 -->
@@ -112,11 +88,9 @@
     <Sprite texture="idcard.png" depth="0.5" sourcerect="0,0,16,16" />
     <Body width="16" height="12" density="20" />
     <IdCard slots="Card,Any" msg="ItemMsgPickUpSelect" />
-    <Fabricate suitablefabricators="printer" requiredtime="24">
-      <!-- 3 Plastic -->
-      <RequiredItem identifier="plastic" />
-      <RequiredItem identifier="plastic" />
-      <RequiredItem identifier="plastic" />
+    <Fabricate suitablefabricators="printer" requiredtime="16">
+      <RequiredItem identifier="idcardstaff" />
+      <RequiredItem identifier="idcardstaff" />
     </Fabricate>
   </Item>
   <!-- Staff A1W0 -->
@@ -130,10 +104,9 @@
     <Sprite texture="idcard.png" depth="0.5" sourcerect="0,0,16,16" />
     <Body width="16" height="12" density="20" />
     <IdCard slots="Card,Any" msg="ItemMsgPickUpSelect" />
-    <Fabricate suitablefabricators="printer" requiredtime="12">
-      <!-- 2 Plastic -->
-      <RequiredItem identifier="plastic" />
-      <RequiredItem identifier="plastic" />
+    <Fabricate suitablefabricators="printer" requiredtime="16">
+      <RequiredItem identifier="idcardinmate" />
+      <RequiredItem identifier="idcardinmate" />
     </Fabricate>
   </Item>
   <!-- Lootable ID Cards -->
@@ -148,12 +121,9 @@
     <Sprite texture="idcard.png" depth="0.5" sourcerect="0,0,16,16" />
     <Body width="16" height="12" density="20" />
     <IdCard slots="Card,Any" msg="ItemMsgPickUpSelect" />
-    <Fabricate suitablefabricators="printer" requiredtime="32">
-      <!-- 4 Plastic -->
-      <RequiredItem identifier="plastic" />
-      <RequiredItem identifier="plastic" />
-      <RequiredItem identifier="plastic" />
-      <RequiredItem identifier="plastic" />
+    <Fabricate suitablefabricators="printer" requiredtime="16">
+      <RequiredItem identifier="idcardstaff" />
+      <RequiredItem identifier="idcardstaff" />
     </Fabricate>
   </Item>
   <!-- Elite Guard A2W2 -->
@@ -167,13 +137,9 @@
     <Sprite texture="idcard.png" depth="0.5" sourcerect="0,0,16,16" />
     <Body width="16" height="12" density="20" />
     <IdCard slots="Card,Any" msg="ItemMsgPickUpSelect" />
-    <Fabricate suitablefabricators="printer" requiredtime="40">
-      <!-- 5 Plastic -->
-      <RequiredItem identifier="plastic" />
-      <RequiredItem identifier="plastic" />
-      <RequiredItem identifier="plastic" />
-      <RequiredItem identifier="plastic" />
-      <RequiredItem identifier="plastic" />
+    <Fabricate suitablefabricators="printer" requiredtime="16">
+      <RequiredItem identifier="idcardenforcerguard" />
+      <RequiredItem identifier="idcardoverseer" />
     </Fabricate>
   </Item>
 </Items>
