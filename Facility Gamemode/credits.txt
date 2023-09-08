@@ -1,9 +1,11 @@
 Facility Gamemode mostly made and developed by Sharp-Shark. Anything not by me will be listed below.
 Bodybag taken from Neurotrauma and BTE, which were respectively made by Mannatu and Chiko Eduardo.
-Many thanks to Evergreen, Evil Factory, the Undertow server and the Luatrauma server for helping!
+Many thanks to Evergreen, Terragen, Evil Factory, the Undertow server and the Luatrauma server for helping!
+Suggestion credits to Barry Ballast, BlueDragon, Gordon Rammy, SonicHegehodge, Wyvern, Harnley, Trooperm151, Frank, Dylan and more.
 
 Map "FG Facility" by Sharp-Shark.
-Map "FG Ship" by Sharp-Shark.
+Map "FG Docking" by Sharp-Shark.
+Map "FG Jetpack" by Sharp-Shark.
 
 English Localization by Sharp-Shark.
 Brazilean Portuguese Localization by Sharp-Shark.

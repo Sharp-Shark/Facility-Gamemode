@@ -1,14 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Facility Gamemode" modversion="1.16.6" corepackage="False" steamworkshopid="2915017487" gameversion="1.0.21.0">
+<contentpackage name="Facility Gamemode" modversion="1.17.26" corepackage="False" steamworkshopid="2915017487" gameversion="1.0.21.0">
   <Text file="%ModDir%/Localizations/english.xml" />
   <Text file="%ModDir%/Localizations/ptbr.xml" />
   <Text file="%ModDir%/Localizations/russian.xml" />
   <Text file="%ModDir%/Localizations/schinese.xml" />
-  <Character file="%ModDir%/Mantisadmin/Mantisadmin.xml" />
-  <Character file="%ModDir%/Crawleradmin/Crawleradmin.xml" />
-  <Character file="%ModDir%/Huskoverride/Humanhusk/Humanhusk.xml" />
-  <Character file="%ModDir%/Humantroll/Humantroll.xml" />
-  <Character file="%ModDir%/Humangoblin/Humangoblin.xml" />
+  <Character file="%ModDir%/Characters/Mantisadmin/Mantisadmin.xml" />
+  <Character file="%ModDir%/Characters/Crawleradmin/Crawleradmin.xml" />
+  <Character file="%ModDir%/Characters/Mantisadmin_hatchling/Mantisadmin_hatchling.xml" />
+  <Character file="%ModDir%/Characters/Crawleradmin_hatchling/Crawleradmin_hatchling.xml" />
+  <Character file="%ModDir%/Characters/Humanhusk/Humanhusk.xml" />
+  <Character file="%ModDir%/Characters/Humantroll/Humantroll.xml" />
+  <Character file="%ModDir%/Characters/Humangoblin/Humangoblin.xml" />
+  <Character file="%ModDir%/Characters/Humanghost/Humanghost.xml" />
   <Afflictions file="%ModDir%/Misc/Afflictions.xml" />
   <Particles file="%ModDir%/Misc/Particles.xml" />
   <Item file="%ModDir%/Items/IdcardExtra.xml" />
@@ -43,6 +46,7 @@
   <Submarine file="%ModDir%/Submarines/FG Monorail256.sub" />
   <Submarine file="%ModDir%/Submarines/FG Monorail512.sub" />
   <Submarine file="%ModDir%/Submarines/FG Monorail384.sub" />
-  <Submarine file="%ModDir%/Submarines/FG Ship.sub" />
+  <Submarine file="%ModDir%/Submarines/FG Jetpack.sub" />
   <Submarine file="%ModDir%/Submarines/FG Facility.sub" />
+  <Submarine file="%ModDir%/Submarines/FG Docking.sub" />
 </contentpackage>
