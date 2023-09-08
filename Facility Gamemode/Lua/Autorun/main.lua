@@ -102,7 +102,7 @@ print('...')
 print('[!] Running lua serverside code.')
 
 -- Load other files
-expectFiles('autoJob', 'commands', 'death', 'loadoutTables', 'lootTables', 'spawning', 'utilities', 'settings', 'items')
+expectFiles('autoJob', 'commands', 'death', 'loadoutTables', 'lootTables', 'spawning', 'utilities', 'settings', 'items', 'ghost')
 require 'json'
 require 'autoJob'
 require 'commands'
@@ -113,6 +113,7 @@ require 'spawning'
 require 'utilities'
 require 'settings'
 require 'items'
+require 'ghost'
 if SERVER then
 	expectFiles('discord')
 	require 'discord'
@@ -182,6 +183,10 @@ FG.monsterPlayers = {}
 FG.terroristTickets = FG.settings.terroristTickets
 FG.nexpharmaTickets = FG.settings.nexpharmaTickets
 
+-- Keeps track of the subclass to be given
+FG.terroristSubclassCount = 1
+FG.nexpharmaSubclassCount = 1
+
 -- For the /vote command
 FG.democracy = {
 	options = {}, -- All the options one can vote on
@@ -240,10 +245,7 @@ FG.democracy.endVoting = function (clients)
 	if FG.democracy.gamemode then
 		local presetName = winners[math.random(#winners)]
 		if FG.settingsPresets[presetName] ~= nil then
-			FG.settings = table.copy(FG.settingsDefault)
-			for settingName, settingValue in pairs(FG.settingsPresets[presetName]) do
-				FG.settings[settingName] = settingValue
-			end
+			loadSettingsPreset(FG.settingsPresets[presetName])
 			--text = text .. table.print(FG.settings, true, true)
 			-- Sets the flag to true
 			FG.democracy.gamemodeChosen = true
@@ -264,7 +266,10 @@ function promoteEscapee (client)
 	client.Character.Revive(true)
 
 	-- Spawn escapee as militant
-	if (isCharacterTerrorist(client.Character) and not client.Character.IsArrested) or (isCharacterNexpharma(client.Character) and client.Character.IsArrested) then
+	if isCharacterGuard(client.Character) and (not client.Character.IsArrested) then
+		-- Spawns MERCS
+		spawnPlayerMilitant(client, 'MERCS', {free = true, subclass = 4})
+	elseif (isCharacterTerrorist(client.Character) and not client.Character.IsArrested) or (isCharacterNexpharma(client.Character) and client.Character.IsArrested) then
 		-- Update ticket count
 		if client.Character.IsArrested then
 			FG.terroristTickets = FG.terroristTickets + 1.5
@@ -274,7 +279,7 @@ function promoteEscapee (client)
 			messageAllClients('text-game', {'ticketsInmateEscape', {tickets = FG.terroristTickets}})
 		end
 		-- Spawns JET
-		spawnPlayerMilitant(client, 'JET', {free = true})
+		spawnPlayerMilitant(client, 'JET', {free = true, subclass = 4})
 	elseif (isCharacterNexpharma(client.Character) and not client.Character.IsArrested) or (isCharacterTerrorist(client.Character) and client.Character.IsArrested) then
 		-- Update ticket count
 		if client.Character.IsArrested then
@@ -285,7 +290,7 @@ function promoteEscapee (client)
 			messageAllClients('text-game', {'ticketsStaffEscape', {tickets = FG.terroristTickets}})
 		end
 		-- Spawns MERCS
-		spawnPlayerMilitant(client, 'MERCS', {free = true})
+		spawnPlayerMilitant(client, 'MERCS', {free = true, subclass = 4})
 	end
 
 end
@@ -392,7 +397,7 @@ Hook.Add("think", "thinkCheck", function ()
 		-- Terror radius
 		if SERVER and Game.RoundStarted and (not ((FG.settings.gamemode == 'greenskin') and (FG.settings.monsterSpawn == 'staff'))) then
 			for client in Client.ClientList do
-				if (client.Character ~= nil) and (not client.Character.IsDead) and (not client.UsingFreeCam) and (not isCharacterMonster(client.Character)) then
+				if (client.Character ~= nil) and (client.Character.CharacterHealth ~= nil) and (not client.Character.IsDead) and (not client.UsingFreeCam) and (not isCharacterMonster(client.Character)) then
 					local nearest = 999999
 					for character in Character.CharacterList do
 						if (not character.IsDead) and isCharacterMonster(character) then
@@ -403,8 +408,10 @@ Hook.Add("think", "thinkCheck", function ()
 					if client.Character.CharacterHealth.GetAffliction('terrorradius', true) == nil then
 						giveAfflictionCharacter(client.Character, 'terrorradius', 1)
 					end
-					local amount = math.min(100, math.max(0, 130 - math.sqrt(nearest)*2.5))
-					client.Character.CharacterHealth.GetAffliction('terrorradius', true).SetStrength(amount)
+					if client.Character.CharacterHealth.GetAffliction('terrorradius', true) ~= nil then
+						local amount = math.min(100, math.max(0, 130 - math.sqrt(nearest)*2.5))
+						client.Character.CharacterHealth.GetAffliction('terrorradius', true).SetStrength(amount)
+					end
 				end
 			end
 		end
@@ -434,23 +441,26 @@ Hook.Add("think", "thinkCheck", function ()
 			end
 		end
 		
+		-- Update ghost
+		FG.paranormal.update()
+		
 		-- Respawn timer
 		if FG.respawnTimer > 0 then
 			-- Count dead players
 			local dead = 0
 			local total = 0
 			for player in Client.ClientList do
-				if (player.Character == nil or player.Character.IsDead) and not FG.spectators[player.Name] and not player.UsingFreeCam then
-					dead = dead + 1
-				end
-				if not FG.spectators[player.Name] then
+				if (not FG.spectators[player.Name]) and (not FG.paranormal.noRespawn[client]) then
+					if (player.Character == nil or player.Character.IsDead) and not player.UsingFreeCam then
+						dead = dead + 1
+					end
 					total = total + 1
 				end
 			end
 			if total == 0 then total = 1 end
 			local deadPercentage = dead/total
 			-- Decrement timer
-			local rate = (FG.settings.respawnSpeed) / #Client.ClientList * deadPercentage
+			local rate = (FG.settings.respawnSpeed) / total * deadPercentage
 			if table.size(Client.ClientList) == 0 then rate = 0 end
 			FG.respawnTimer = FG.respawnTimer - rate
 			-- Update Estimated Time of Arrival
@@ -474,13 +484,16 @@ Hook.Add("think", "thinkCheck", function ()
 			-- Display respawn timer
 			if FG.respawnTimerUpdate then
 				for player in Client.ClientList do
-					if (player.Character == nil or player.Character.IsDead) and not FG.spectators[player.Name] and not player.UsingFreeCam then
+					if canClientRespawn(player) then
 						respawnInfo(player)
 					end
 				end
 				FG.respawnTimerUpdate = false
 			end
 		elseif not FG.endGame and not Game.ServerSettings['AllowRespawn'] then
+			-- Reset subclass setter for next wave
+			FG.terroristSubclassCount = 1
+			FG.nexpharmaSubclassCount = 1
 			-- Default respawn system where everyone who respawns in the same team (the team is decided based on which team has more tickets)
 			if FG.settings.respawnType == 'default' then
 				-- Respawn dead players
@@ -489,18 +502,18 @@ Hook.Add("think", "thinkCheck", function ()
 				if FG.terroristTickets == FG.nexpharmaTickets then balance = math.random(2) - 1 end
 				-- Respawn/spawn dead/new players in a random order
 				for player in shuffleArray(Client.ClientList) do
-					if (player.Character == nil or player.Character.IsDead) and not FG.spectators[player.Name] and not player.UsingFreeCam then
+					if canClientRespawn(player) then
 						if balance == 1 then
 							if FG.terroristTickets >= 1 then
 								spawnPlayerMilitant(player, 'JET')
 							else
-								messageClient(player, 'text-game', text.localize('ticketsTerroristsOutOfTickets'), nil, player.Language)
+								messageClient(player, 'text-game', string.localize('ticketsTerroristsOutOfTickets'), nil, player.Language)
 							end
 						elseif balance == 0 then
 							if FG.nexpharmaTickets >= 1 then
 								spawnPlayerMilitant(player, 'MERCS')
 							else
-								messageClient(player, 'text-game', text.localize('ticketsNexpharmaOutOfTickets'), nil, player.Language)
+								messageClient(player, 'text-game', string.localize('ticketsNexpharmaOutOfTickets'), nil, player.Language)
 							end
 						end
 					end
@@ -509,7 +522,7 @@ Hook.Add("think", "thinkCheck", function ()
 			elseif FG.settings.respawnType == 'split' then
 				local balance = (FG.terroristTickets > FG.nexpharmaTickets) and 1 or 0
 				for player in shuffleArray(Client.ClientList) do
-					if (player.Character == nil or player.Character.IsDead) and not FG.spectators[player.Name] and not player.UsingFreeCam then
+					if canClientRespawn(player) then
 						if (FG.playerRole[player.Name] ==  'inmate' or FG.playerRole[player.Name] == 'jet' or FG.playerRole[player.Name] == 'monster') and FG.terroristTickets >= 1 then
 							spawnPlayerMilitant(player, 'JET')
 						elseif (FG.playerRole[player.Name] == 'overseer' or FG.playerRole[player.Name] == 'staff' or FG.playerRole[player.Name] == 'guard' or FG.playerRole[player.Name] == 'elite' or FG.playerRole[player.Name] == 'mercs') and FG.nexpharmaTickets >= 1 then
@@ -530,8 +543,21 @@ Hook.Add("think", "thinkCheck", function ()
 			-- Everyone respawns as guard in a guard spawnpoint regardless of tickets
 			elseif FG.settings.respawnType == 'infiniteguards' then
 				for player in Client.ClientList do
-					if (player.Character == nil or player.Character.IsDead) and not FG.spectators[player.Name] and not player.UsingFreeCam then
-						spawnHuman(player, 'enforcerguard', findRandomWaypointByJob('enforcerguard').WorldPosition)
+					if canClientRespawn(player) then
+						local spawnPosition = findRandomWaypointByJob('enforcerguard')
+						if spawnPosition == nil then spawnPosition = findRandomWaypointByJob('') end
+						spawnPosition = spawnPosition.WorldPosition
+						spawnHuman(player, 'enforcerguard', spawnPosition)
+					end
+				end
+			-- Everyone respawns as inmates in a inmate spawnpoint regardless of tickets
+			elseif FG.settings.respawnType == 'infiniteinmates' then
+				for player in Client.ClientList do
+					if canClientRespawn(player) then
+						local spawnPosition = findRandomWaypointByJob('enforcerguard')
+						if spawnPosition == nil then spawnPosition = findRandomWaypointByJob('') end
+						spawnPosition = spawnPosition.WorldPosition
+						spawnHuman(player, 'inmate', spawnPosition)
 					end
 				end
 			end
@@ -586,7 +612,7 @@ Hook.Add("think", "thinkCheck", function ()
 		-- Check for escapees
 		for item in findItemsByTag('fg_extractionpoint') do
 			for player in Client.ClientList do
-				if (player.Character ~= nil) and isCharacterCivilian(player.Character) and
+				if (player.Character ~= nil) and (isCharacterCivilian(player.Character) or isCharacterGuard(player.Character)) and
 				distance(item.WorldPosition, player.Character.WorldPosition) < 200 then
 					promoteEscapee(player)
 				end
@@ -614,7 +640,7 @@ Hook.Add("think", "thinkCheck", function ()
 			local message = Networking.Start("updateGUI")
 			local txtInMessage
 			-- Add respawn timer text
-			if (FG.respawnTimerSeconds ~= -1) and ((FG.terroristTickets >= 1) or (FG.nexpharmaTickets >= 1)) then
+			if (FG.respawnTimerSeconds ~= -1) then
 				txtInMessage = string.localize('GUIRespawnTime', {time = numberToTime(FG.respawnTimerSeconds, 1)}, client.Language)
 				if FG.settings.respawnType == 'default' then
 					if FG.terroristTickets > FG.nexpharmaTickets then
@@ -624,10 +650,16 @@ Hook.Add("think", "thinkCheck", function ()
 					else
 						txtInMessage = txtInMessage .. string.localize('GUIRespawnTimeRandom', nil, client.Language)
 					end
+					if (FG.terroristTickets < 1) and (FG.nexpharmaTickets < 1) then
+						txtInMessage = ''
+					end
 				elseif FG.settings.respawnType == 'split' then
-					txtInMessage = ''
+					txtInMessage = txtInMessage .. ''
+					if (FG.terroristTickets < 1) and (FG.nexpharmaTickets < 1) then
+						txtInMessage = ''
+					end
 				elseif FG.settings.respawnType == 'infiniteguards' then
-					txtInMessage = ''
+					txtInMessage = txtInMessage .. ''
 				end
 			else
 				txtInMessage = ''
@@ -650,6 +682,15 @@ Hook.Add("think", "thinkCheck", function ()
 			message.WriteDouble(FG.decontaminationTimer)
 			-- If client, just write it, no networking needed
 			if CLIENT then textBoxDeconTimer.Text = txtInMessage end
+			-- Add ghost text
+			local txtInMessage
+			txtInMessage = ''
+			if (client.SpectatePos ~= nil) and (FG.settings.ghosts ~= 'disabled') then
+				txtInMessage = 'Type "/boo" in chat.\nlvl:' .. tostring(FG.paranormal.clients[client].level) .. '/5\nxp:' .. tostring(math.floor(FG.paranormal.clients[client].xp)) .. '/' .. tostring(FG.paranormal.clients[client].getXpNeeded()) .. '\n' .. numberAddZeroInFront(tostring(math.floor(FG.paranormal.clients[client].power)), #tostring(FG.paranormal.clients[client].getPowerCap())) .. ' ' .. FG.paranormal.powerTextBar(FG.paranormal.clients[client].power, FG.paranormal.clients[client].getPowerCap()) .. ' ' .. tostring(FG.paranormal.clients[client].getPowerCap())
+			end
+			message.WriteString(txtInMessage)
+			-- If client, just write it, no networking needed
+			if CLIENT then textBoxGhostInfo.Text = txtInMessage end
 			-- Send net message
 			if SERVER then
 				Networking.Send(message, client.Connection)
@@ -658,6 +699,12 @@ Hook.Add("think", "thinkCheck", function ()
 				textBoxDeconTimer.TextPos = Vector2(240, 20)
 			end
 		end
+	end
+	
+	-- Only execute once every 30 seconds for performance
+	-- Functions placed here should be triggered by events, but will also be triggered periodically just to be safe
+	if FG.thinkCounter % (60 * 30) == 0 then
+		checkForGameEnd()
 	end
 	
 	return true
@@ -676,12 +723,16 @@ Hook.Add("roundStart", "prepareMatch", function (createdCharacter)
 		-- Disables friendly fire
 		Game.ServerSettings['AllowFriendlyFire'] = FG.settings.friendlyFire
 	end
+	-- Clear up table to avoid unecessary memory usage
+	FG.lastGunReloaded = {}
 	-- Resets any voting
 	FG.democracy.started = false
 	-- Resets safe positions
 	FG.clientLastSafePos = {}
 	-- Resets round end
 	FG.endGame = false
+	-- Reset ghost data
+	FG.paranormal.reset()
 	-- Reset decon timer to 12m15s
 	FG.decontaminationTimer = FG.settings.decontaminationTimer
 	-- Resets respawn timer
@@ -691,12 +742,17 @@ Hook.Add("roundStart", "prepareMatch", function (createdCharacter)
 	FG.respawnTimerLastUpdate = -1
 	-- Refresh think call counter
 	FG.thinkCounter = 0
-	-- Refresh light color keeping variables
+	-- Reset light color keeping variables to avoid memory leaking
 	FG.lightColors = {}
 	FG.lightColorsLatest = {}
+	-- Reset gun reload data to avoid memory leaking
+	FG.lastGunReloaded = {}
 	-- Refresh Tickets
 	FG.terroristTickets = FG.settings.terroristTickets
 	FG.nexpharmaTickets = FG.settings.nexpharmaTickets
+	-- Refresh subclass cycling
+	FG.terroristSubclassCount = 1
+	FG.nexpharmaSubclassCount = 1
 	-- Enabling cheats is necessary for ExecuteCommand method
 	Game.ExecuteCommand('enablecheats')
 	-- Helps with trams not getting stuck
@@ -809,7 +865,7 @@ Hook.Add("goblinMask.wear", "turnHumanIntoGoblin", function (effect, deltaTime, 
 	local slotItems = {}
 	for itemCount = 0, character.Inventory.Capacity do
 		local item = character.Inventory.GetItemAt(itemCount)
-		if (table.has({0, 1, 3, 4, 5, 6, 7}, itemCount) and (not isTroll)) or (table.has({0, 1, 3, 4, 7}, itemCount) and isTroll) then
+		if ((item == nil) or ((tostring(item.Prefab.Identifier.Value) ~= 'handcuffs') and (tostring(item.Prefab.Identifier.Value) ~= 'bodybag'))) and ((table.has({0, 1, 3, 4, 5, 6, 7}, itemCount) and (not isTroll)) or (table.has({0, 1, 3, 4, 7}, itemCount) and isTroll)) then
 			local conversion = {[0] = 0, [1] = 1, [3] = 2, [4] = 3, [5] = 4, [6] = 6, [7] = 6}
 			slotItems[conversion[itemCount]] = item
 		end
@@ -870,7 +926,7 @@ FG.serverSettings = {
     AllowModeVoting = false,
     AllowRagdollButton = true,
     AllowRespawn = false,--Using custom respawn
-    AllowRewiring = false,
+    AllowRewiring = true,
     AllowSpectating = true,
     AllowSubVoting = false,
     BotCount = 0,

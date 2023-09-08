@@ -29,6 +29,7 @@ Discord: https://discord.gg/c7Qnp8S4yB]],
 	commandRoundNotStarted = '巡回还未开始。',
 	commandAdminOnly = '仅管理员命令！',
 	commandHelp = [[/help - 查看命令列表。
+/boo - 我是一个令人毛骨悚然的鬼魂！
 /vote - 发起一个游戏模式的投票。
 /admin - 引起管理员的注意。
 /admin <text> - 发送文本给管理员。
@@ -63,6 +64,14 @@ Nex制药公司拥有 {nexpharmaTickets} 张入场券。
 	commandDeconTime = '在 {time} 之后净化',
 	commandDeconStart = '净化已开始',
 	
+	booGainedXP = '/boo: you have gained {xp} xp.',
+	booLevelUp = '/boo: ascended to level {level}.',
+	booPowerNeeded = '/boo: {power} needed.',
+	booPowerLeft = '/boo: {power} power left.',
+	booActionFailed = '/boo: ghost action failed.',
+	booRespawnEnabled = '/boo: respawning enabled.',
+	booRespawnDisabled = '/boo: respawning disabled.',
+	
 	deconTimeStart = '设施净化已经开始。',
 	deconTimeTenSeconds = '还剩 10 秒完成设施净化。',
 	deconTimeCountdown = '还剩 {time} 秒...',
@@ -76,17 +85,17 @@ Nex制药公司拥有 {nexpharmaTickets} 张入场券。
 	ticketsStaffEscape = 'Nex制药公司赢得了 1 张入场券 — 文职成员逃脱了！剩余 {tickets} 张入场券！',
 	ticketsStaffCuffedEscape = 'T阵营赢得了 1.5 张入场券 — 已经逮捕了！剩余 {tickets} 张入场券！',
 	ticketsInmateCuffedEscape = 'Nex制药公司赢得了 1.5 张入场券 — 已经逮捕了！剩余 {tickets} 张入场券！',
-	ticketsTerroristInfectedDown = 'T阵营赢得了 0.5 张入场券— 杀害感染体！剩余 {tickets} 张入场券！',
-	ticketsNexpharmaInfectedDown = 'Nex制药公司赢得了 0.5 张入场券— 杀害感染体！剩余 {tickets} 张入场券！',
-	ticketsTerroristMonsterDown = 'T阵营赢得了 2 张入场券— 杀害怪物！剩余 {tickets} 张入场券！',
-	ticketsNexpharmaMonsterDown = 'Nex制药公司赢得了 2 张入场券— 杀害怪物！剩余 {tickets} 张入场券！',
-	ticketsTerroristHumanDownByInmate = 'T阵营赢得了 1 张入场券— 囚禁人员杀害人类！剩余 {tickets} 张入场券！',
-	ticketsTerroristHumanDown = 'T阵营赢得了 0.5 张入场券— 杀害人类目标！剩余 {tickets} 张入场券！',
-	ticketsNexpharmaHumanDown = 'Nex制药公司赢得了 0.5 张入场券— 杀害人类目标！剩余 {tickets} 张入场券！',
-	ticketsTerroristGoblinDown = 'T阵营赢得了 0.5 张入场券— 杀害哥布林！剩余 {tickets} 张入场券！',
-	ticketsNexpharmaGoblinDown = 'Nex制药公司赢得了 0.5 张入场券— 杀害哥布林！剩余 {tickets} 张入场券！',
-	ticketsTerroristTrollDown = 'T阵营赢得了 1.5 张入场券— 杀害巨魔！剩余 {tickets} 张入场券！',
-	ticketsNexpharmaTrollDown = 'Nex制药公司赢得了 1.5 张入场券— 杀害巨魔！剩余 {tickets} 张入场券！',
+	ticketsTerroristInfectedDown = 'T阵营赢得了 0.5 张入场券 — 杀害感染体！剩余 {tickets} 张入场券！',
+	ticketsNexpharmaInfectedDown = 'Nex制药公司赢得了 0.5 张入场券 — 杀害感染体！剩余 {tickets} 张入场券！',
+	ticketsTerroristMonsterDown = 'T阵营赢得了 2 张入场券 — 杀害怪物！剩余 {tickets} 张入场券！',
+	ticketsNexpharmaMonsterDown = 'Nex制药公司赢得了 2 张入场券 — 杀害怪物！剩余 {tickets} 张入场券！',
+	ticketsTerroristHumanDownByInmate = 'T阵营赢得了 1 张入场券 — 囚禁人员杀害人类！剩余 {tickets} 张入场券！',
+	ticketsTerroristHumanDown = 'T阵营赢得了 0.5 张入场券 — 杀害人类目标！剩余 {tickets} 张入场券！',
+	ticketsNexpharmaHumanDown = 'Nex制药公司赢得了 0.5 张入场券 — 杀害人类目标！剩余 {tickets} 张入场券！',
+	ticketsTerroristGoblinDown = 'T阵营赢得了 0.5 张入场券 — 杀害哥布林！剩余 {tickets} 张入场券！',
+	ticketsNexpharmaGoblinDown = 'Nex制药公司赢得了 0.5 张入场券 — 杀害哥布林！剩余 {tickets} 张入场券！',
+	ticketsTerroristTrollDown = 'T阵营赢得了 1.5 张入场券 — 杀害巨魔！剩余 {tickets} 张入场券！',
+	ticketsNexpharmaTrollDown = 'Nex制药公司赢得了 1.5 张入场券 — 杀害巨魔！剩余 {tickets} 张入场券！',
 	
 	castVote = '你已为 "{option}" 投票，不能更改！',
 	castVoteCount = '当前，有 {total} 分之 {current} 的玩家投票。',
@@ -111,6 +120,7 @@ Nex制药公司拥有 {nexpharmaTickets} 张入场券。
 	endTerrorist = '巡回结束，T阵营获胜 — 已铲除所有其他队伍。',
 	endNexpharma = '巡回结束，Nex制药公司获胜 — 已铲除所有其他队伍。',
 	endMonster = '巡回结束，怪物获胜 — 已铲除所有其他队伍。',
+	endPlayer = '巡回结束，{name} 获胜 — 所有其他玩家被淘汰。',
 	
 	settingsReceived = '您的预设设置在服务器提交列表中。',
 	settingsApplied = '您的预设设置已被服务器加载。',

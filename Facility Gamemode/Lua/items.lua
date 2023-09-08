@@ -28,6 +28,60 @@ Hook.Add("signalReceived.fgcomponent", "fgcomponent.receive", function(signal, c
     end
 end)
 
+Hook.Add("wifiSignalTransmitted", "wifiModifyChannel", function (wifiComponent, signal, sentFromChat)
+	local item = wifiComponent.Item
+	local character
+	if item.ParentInventory ~= nil then character = wifiComponent.Item.ParentInventory.Owner end
+	
+	if (not sentFromChat) or (item.ParentInventory == nil) or (character == nil) or (character.SpeciesName ~= 'Human') then return end
+	
+	if isCharacterTerrorist(character) then
+		wifiComponent.Channel = 10
+	elseif isCharacterNexpharma(character) then
+		wifiComponent.Channel = 11
+	else
+		wifiComponent.Channel = 12
+	end
+	if SERVER then
+		local prop = item.GetComponentString('WifiComponent').SerializableProperties[Identifier("Channel")]
+		Networking.CreateEntityEvent(item, Item.ChangePropertyEventData(prop, item.GetComponentString('WifiComponent')))
+	end
+end)
+
+Hook.Add("handheldTrigger.use", "handheldTriggerUse", function (effect, deltaTime, item, targets, worldPosition)
+	if (effect.user ~= nil) then
+		local headset = effect.user.Inventory.GetItemAt(1)
+		if headset == nil then
+			headset = effect.user.Inventory.GetItemAt(8)
+		end
+		if (headset ~= nil) and (headset.GetComponentString('WifiComponent') ~= nil) then
+			item.GetComponentString('WifiComponent').Channel = 0
+			--item.GetComponentString('WifiComponent').Channel = headset.GetComponentString('WifiComponent').Channel
+			if SERVER then
+				local prop = item.GetComponentString('WifiComponent').SerializableProperties[Identifier("Channel")]
+				Networking.CreateEntityEvent(item, Item.ChangePropertyEventData(prop, item.GetComponentString('WifiComponent')))
+			end
+		else
+			item.GetComponentString('WifiComponent').Channel = 0
+			if SERVER then
+				local prop = item.GetComponentString('WifiComponent').SerializableProperties[Identifier("Channel")]
+				Networking.CreateEntityEvent(item, Item.ChangePropertyEventData(prop, item.GetComponentString('WifiComponent')))
+			end
+		end
+		--print('[!] Channel is ' .. tonumber(item.GetComponentString('WifiComponent').Channel))
+		item.GetComponentString('WifiComponent').TransmitSignal(Signal('true'), false)
+		-- Wifi explosion activation is done via lua
+		for explosive in Item.ItemList do
+			if (tostring(explosive.Prefab.Identifier) == 'wifiexplosive') and (explosive.ParentInventory == nil) and (not explosive.PhysicsBodyActive) and
+			(explosive.GetComponentString('WifiComponent').Channel == item.GetComponentString('WifiComponent').Channel) and
+			(distance(explosive.WorldPosition, item.WorldPosition) <= item.GetComponentString('WifiComponent').Range) then
+				explosive.Condition = item.Condition - 101
+			end
+		end
+	end
+	
+end)
+
 --[[
 Hook.Add("item.combine", "combineTime", function (item, deconstructor, characterUser, allowRemove)
 	if characterUser == nil then return end
@@ -55,10 +109,14 @@ Hook.Add("inventoryPutItem", "reloadTime", function (inventory, item, characterU
 	if FG.lastGunReloaded == nil then FG.lastGunReloaded = {} end
 	
 	local reloadTimes = {
+		jetlmg = 3.0 / 12,
 		jetrifle = 2.5 / 12,
+		jetsmgcompact = 1.5 / 1,
+		jetsmg = 1.8 / 1,
 		jetshotgun = 1.5 / 6,
 		jetrevolver = 1.0 / 4,
 		mercsrifle = 1.8 / 1,
+		mercssniper = 1.8 / 4,
 		mercssmg = 1.2 / 1,
 		mercspistol = 0.6 / 1,
 		stungun = 2.0 / 2

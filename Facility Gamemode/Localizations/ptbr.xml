@@ -24,25 +24,47 @@
   <!-- Bodybag -->
   <entityname.bodybag>Saco de Cadáver</entityname.bodybag>
   <entitydescription.bodybag>Uma forma de armazenar defuntos, ou uma forma de torturar alguém por asfixiação.</entitydescription.bodybag>
+  <!-- Wifi Explosive -->
+  <entityname.wifiexplosive>Explosivo Wifi</entityname.wifiexplosive>
+  <entitydescription.wifiexplosive>Um explosive plástico poderoso de ativação remota. Ele pode ser detonado, por exemplo, usando um sinal de wifi.</entitydescription.wifiexplosive>
+  <!-- Wifi Trigger -->
+  <entityname.handheldtrigger>Ativador Wifi</entityname.handheldtrigger>
+  <entitydescription.handheldtrigger>Um dispositivo capaz de enviar um sinal de wifi por uma pequena distância. O canal é o mesmo do "headset", porém se não houver um headset, o canal será o canal 0.</entitydescription.handheldtrigger>
+  <!-- Officer's Radio -->
+  <entityname.backpackradio>Rádio de Oficial</entityname.backpackradio>
+  <entitydescription.backpackradio>Um pesado rádio portátil carregado nas costas usado por oficiais para se comunicar com o seu esquadrão atráves de longas distâncias.</entitydescription.backpackradio>
+  <!-- Separatist Officer Outfit -->
+  <entityname.pirateclothesofficer>Fantasia de Oficial Separatista</entityname.pirateclothesofficer>
+  <entitydescription.pirateclothesofficer>É exatamente como a Fantasia de Separatista comun, porém tem uma pequena proteção e um braçadeira para diferenciar os oficiais dos soldados.</entitydescription.pirateclothesofficer>
   <!-- JET Mask -->
-  <entityname.jetmask>Máscara JET</entityname.jetmask>
+  <entityname.jetmask>Máscara JET T</entityname.jetmask>
   <entitydescription.jetmask>Apenas uma máscara de mergulho e capacete militar soldados juntos, equipamento padrão dos JET. O vislumbre de um muitas vezes basta para causas pânico em empregados da Nexpharma Inc.</entitydescription.jetmask>
+  <entityname.jetmaskother>Máscara JET S</entityname.jetmaskother>
+  <entitydescription.jetmaskother>Apenas uma máscara de mergulho e capacete militar soldados juntos, equipamento padrão dos JET. O vislumbre de um muitas vezes basta para causas pânico em empregados da Nexpharma Inc.</entitydescription.jetmaskother>
   <!-- NexSuit -->
   <entityname.nexsuit>NexSuit</entityname.nexsuit>
-  <entitydescription.nexsuit>Vestimento patentiada da Nexpharma Inc. e exclusivo ao seu grupo paramilitar de elite, os MERCS. Na verdade é so um PUCS de combate.</entitydescription.nexsuit>
+  <entitydescription.nexsuit>Vestimenta patentiada da Nexpharma Inc. e exclusivo ao seu grupo paramilitar de elite, os MERCS. Na verdade é so um PUCS de combate.</entitydescription.nexsuit>
   <!-- Terrorist Guns -->
-  <entityname.jetrevolver>Chumbo grosso</entityname.jetrevolver>
+  <entityname.jetrevolver>Chumbo Grosso</entityname.jetrevolver>
   <entitydescription.jetrevolver>Velho mas confiável, alta potência. Dispara calibre 12.</entitydescription.jetrevolver>
   <entityname.jetshotgun>Escopeta Táctica</entityname.jetshotgun>
   <entitydescription.jetshotgun>Uma escopeta projetada para uso militar em espaços apertados.</entitydescription.jetshotgun>
-  <entityname.jetrifle>Rifle Pesaod</entityname.jetrifle>
+  <entityname.jetsmg>Carabina</entityname.jetsmg>
+  <entitydescription.jetsmg>Uma velha carabina que dispara munição de pistola, a mesma munição que as armas da Nexpharma.</entitydescription.jetsmg>
+  <entityname.jetsmgcompact>Carabina Compacta</entityname.jetsmgcompact>
+  <entitydescription.jetsmgcompact>Uma versão modificada da carabina que sacrifica precisão por portabilidade.</entitydescription.jetsmgcompact>
+  <entityname.jetrifle>Rifle Pesado</entityname.jetrifle>
   <entitydescription.jetrifle>Um rifle .30 pesado de fogo automático mas lento, alta capacidade.</entitydescription.jetrifle>
+  <entityname.jetlmg>Espingarda de Invasão</entityname.jetlmg>
+  <entitydescription.jetlmg>Uma espingarda de fogo automático com um tamanho e poder descomunal, porém recarregar é um tanto quanto trabalhoso.</entitydescription.jetlmg>
   <!-- Nexpharma Guns -->
   <entityname.mercspistol>Pistola</entityname.mercspistol>
   <entitydescription.mercspistol>Uma pistola patenteada da Nexpharma Inc., portátil e de alta cadência, dispara .45 ACP.</entitydescription.mercspistol>
   <entityname.mercssmg>PDW</entityname.mercssmg>
   <entitydescription.mercssmg>Altíssima cadência, esvazia carregadores inteiros num piscar de olhos.</entitydescription.mercssmg>
-  <entityname.mercsrifle>Carabina-Rifle</entityname.mercsrifle>
+  <entityname.mercssniper>Rifle de Batedor</entityname.mercssniper>
+  <entitydescription.mercssniper>Um rifle patenteado da Nexpharma Inc., usa ação de ferrolho e tem um barril dobrável para portabilidade.</entitydescription.mercssniper>
+  <entityname.mercsrifle>Rifle de Combate</entityname.mercsrifle>
   <entitydescription.mercsrifle>Uma carabina que dispara munição de rifle, ou um rifle com tamanho de carabina?</entitydescription.mercsrifle>
   <!-- Terrorist ID Cards -->
   <entityname.idcardjet>Cartão ID JET</entityname.idcardjet>

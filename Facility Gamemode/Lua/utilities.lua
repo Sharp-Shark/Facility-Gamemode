@@ -147,12 +147,12 @@ string.replace = function(str, tbl)
 				formatted = formatted .. 'true'
 			elseif tbl[build] == false then
 				formatted = formatted .. 'false'
-			elseif type(tbl[build]) == 'number' then
-				formatted = formatted .. tonumber(tbl[build])
 			elseif type(tbl[build]) == 'table' then
 				formatted = formatted .. table.print(tbl[build], true)
-			else
+			elseif type(tbl[build]) == 'string' then
 				formatted = formatted .. tbl[build]
+			else
+				formatted = formatted .. tostring(tbl[build])
 			end
 			build = ''
 		elseif open then
@@ -249,6 +249,21 @@ function numberToTime (n, spacing, showH, showM, showS)
 	return text
 end
 
+-- Adds 0s in front of a number so it has the desired length
+function numberAddZeroInFront (n, length)
+	local str = tostring(n)
+	
+	if (length - #str) > 0 then
+		if string.sub(str, 1, 1) == '-' then
+			str = '-' .. string.rep('0', length - #str) .. string.sub(str, 2)
+		else
+			str = string.rep('0', length - #str) .. str
+		end
+	end
+	
+	return str
+end
+
 -- Shuffles a table (assumes it has an array-like structure)
 function shuffleArray (array)
 	local shuffledArray = {}
@@ -262,9 +277,14 @@ function shuffleArray (array)
 	return shuffledArray
 end
 
--- Checks distance between two vectors
+-- Checks distance between two vectors (circle collision check)
 function distance (v2a, v2b)
 	return ((v2a.x-v2b.x)^2 + (v2a.y-v2b.y)^2)^0.5
+end
+
+-- Checks distance between two vectors with horizontal and vertical multipliers (ellipse collision check)
+function distanceEllipse (v2a, v2b, mult)
+	return (( (v2a.x-v2b.x)*mult.x )^2 + ( (v2a.y-v2b.y)*mult.y )^2)^0.5
 end
 
 -- Gives a certain amount of an item to a character
@@ -288,16 +308,17 @@ function giveItem (username, identifier, amount)
 	giveItemCharacter(findClientByUsername(username).Character, identifier, amount, nil)
 end
 
--- Checks wheter a character is a monster
+-- Checks whether a character is a monster
 function isCharacterMonster (character)
-	if character.SpeciesName == 'Mantisadmin' or character.SpeciesName == 'Crawleradmin' or character.SpeciesName == 'Humanhusk' or character.SpeciesName == 'Humangoblin' or character.SpeciesName == 'Humantroll' then
+	--if character.SpeciesName == 'Mantisadmin' or character.SpeciesName == 'Crawleradmin' or character.SpeciesName == 'Mantisadmin_hatchling' or character.SpeciesName == 'Crawleradmin_hatchling' or character.SpeciesName == 'Humanhusk' or character.SpeciesName == 'Humangoblin' or character.SpeciesName == 'Humantroll' then
+	if character.SpeciesName ~= 'human' then
 		return true
 	else
 		return false
 	end
 end
 
--- Checks wheter a character is part of Terrorist Faction
+-- Checks whether a character is part of Terrorist Faction
 function isCharacterTerrorist (character)
 	if character.SpeciesName == 'human' and (character.HasJob('inmate') or character.HasJob('jet')) then
 		return true
@@ -306,7 +327,7 @@ function isCharacterTerrorist (character)
 	end
 end
 
--- Checks wheter a character is part of Nexpharma Corporation
+-- Checks whether a character is part of Nexpharma Corporation
 function isCharacterNexpharma (character)
 	if character.SpeciesName == 'human' and (character.HasJob('overseer') or character.HasJob('repairmen') or character.HasJob('researcher') or character.HasJob('enforcerguard') or character.HasJob('eliteguard') or character.HasJob('mercs')) then
 		return true
@@ -315,7 +336,7 @@ function isCharacterNexpharma (character)
 	end
 end
 
--- Checks wheter a character is part of staff
+-- Checks whether a character is part of staff
 function isCharacterStaff (character)
 	if character.SpeciesName == 'human' and (character.HasJob('overseer') or character.HasJob('repairmen') or character.HasJob('researcher')) then
 		return true
@@ -324,9 +345,27 @@ function isCharacterStaff (character)
 	end
 end
 
--- Checks wheter a character is a civilian
+-- Checks whether a character is a guard
+function isCharacterGuard (character)
+	if character.SpeciesName == 'human' and (character.HasJob('enforcerguard') or character.HasJob('eliteguard')) then
+		return true
+	else
+		return false
+	end
+end
+
+-- Checks whether a character is a civilian
 function isCharacterCivilian (character)
 	if character.SpeciesName == 'human' and (isCharacterStaff(character) or character.HasJob('inmate')) then
+		return true
+	else
+		return false
+	end
+end
+
+-- Checks whether a client can or cannot respawn
+function canClientRespawn (client)
+	if (client.Character == nil or client.Character.IsDead) and (not FG.spectators[client.Name]) and (not client.UsingFreeCam) and (not FG.paranormal.noRespawn[client]) then
 		return true
 	else
 		return false
@@ -351,6 +390,14 @@ function findWaypointsByJob (job)
 		if (waypoint.AssignedJob ~= nil) and (waypoint.AssignedJob.Identifier == job) then
 			table.insert(waypoints, waypoint)
 		end
+	end
+	if (job == '') and (table.size(waypoints) < 1) then
+		for waypoint in Submarine.MainSub.GetWaypoints(false) do
+			if waypoint.SpawnType == SpawnType.Human then
+				table.insert(waypoints, waypoint)
+			end
+		end
+		
 	end
 	return waypoints
 end
@@ -394,8 +441,11 @@ end
 -- Messages a message to a client
 function messageClient (client, msgType, text, sender)
 	if CLIENT then return end
+	-- Ignore means don't say anything
+	if msgType == 'ignore' then
+		return
 	-- For other stuff
-	if msgType == 'text-general' then
+	elseif msgType == 'text-general' then
 		local chatMessage = ChatMessage.Create('[General Info]', text, ChatMessageType.Server, nil, nil)
 		chatMessage.Color = Color(180, 180, 200, 255)
 		Game.SendDirectChatMessage(chatMessage, client)
@@ -413,6 +463,11 @@ function messageClient (client, msgType, text, sender)
 	elseif msgType == 'text-command' then
 		local chatMessage = ChatMessage.Create('[Chat Command]', text, ChatMessageType.Server, nil, nil)
 		chatMessage.Color = Color(190, 215, 255, 255)
+		Game.SendDirectChatMessage(chatMessage, client)
+	-- Ghost chat
+	elseif msgType == 'chat-ghost' then
+		local chatMessage = ChatMessage.Create(sender, text, ChatMessageType.Server, nil, nil)
+		chatMessage.Color = Color(155, 200, 255, 255)
 		Game.SendDirectChatMessage(chatMessage, client)
 	-- Monster chat
 	elseif msgType == 'chat-monster' then
@@ -454,7 +509,7 @@ end
 
 
 -- Spawns a human with a job somewhere
-function spawnHuman (client, job, pos, name)
+function spawnHuman (client, job, pos, name, subclass)
 	local info
 	if name ~= nil then
 		info = CharacterInfo('human', name)
@@ -465,7 +520,16 @@ function spawnHuman (client, job, pos, name)
 	else
 		info = client.CharacterInfo
 	end
-	info.Job = Job(JobPrefab.Get(job))
+	
+	local jobPrefab = JobPrefab.Get(job)
+	if subclass == nil then
+		info.Job = Job(jobPrefab)
+		info.Job.Variant = math.random(jobPrefab.Variants) - 1
+	else
+		info.Job = Job(jobPrefab)
+		info.Job.Variant = subclass
+	end
+	if info.Job.Variant > (jobPrefab.Variants - 1) then info.Job.Variant = (jobPrefab.Variants - 1) end
 	
 	local character
 	if client == nil then
@@ -500,6 +564,40 @@ function spawnHumangoblin (client, pos, name, isTroll)
 		info = CharacterInfo(speciesName, client.Name)
 	end
 	info.Job = Job(JobPrefab.Get('greenskinjob'))
+	
+	local character
+	if client == nil then
+		character = Character.Create(speciesName, pos, info.Name, info, 0, false, true)
+	else
+		character = Character.Create(speciesName, pos, info.Name, info, 0, true, false)
+	end
+	
+	--character.GiveJobItems()
+	if client ~= nil then
+		client.SetClientCharacter(character)
+	end
+	
+	return character
+end
+
+-- Spawns a goblin with a job somewhere
+function spawnHumanghost (client, pos, name)
+	-- Is a troll?
+	local speciesName = 'Humanghost'
+	--if isTroll then speciesName = 'Humantroll' end
+	
+	local info
+	if name ~= nil then
+		info = CharacterInfo(speciesName, name)
+	elseif client == nil then
+		info = CharacterInfo(speciesName, CharacterInfo(speciesName, 'John Doe').GetRandomName(1))
+	elseif client.CharacterInfo == nil then
+		info = CharacterInfo(speciesName, client.Name)
+	else
+		--info = client.CharacterInfo
+		info = CharacterInfo(speciesName, client.Name)
+	end
+	info.Job = Job(JobPrefab.Get('spiritjob'))
 	
 	local character
 	if client == nil then
@@ -604,6 +702,13 @@ function resetLightsSmooth (time)
 	end
 end
 
+-- Function currently crashes the game! Do not use!
+function changeDescription(item, description)
+	item.Description = description
+	local prop = item.SerializableProperties[Identifier("Description")]
+	Networking.CreateEntityEvent(item, Item.ChangePropertyEventData(prop, item))
+end
+
 -- Set non-surface zone lights to a specific color (with linear interpolation)
 function setNonSurfaceLightsSmooth (color, time)
 	findLights()
@@ -683,6 +788,15 @@ function resetSurfaceLightsSmooth (time)
 	end
 end
 
+-- Enables or disables a light
+function setLightState (item, state)
+	item.GetComponentString('LightComponent').isOn = state
+	if SERVER then
+		local prop = item.GetComponentString('LightComponent').SerializableProperties[Identifier("IsOn")]
+		Networking.CreateEntityEvent(item, Item.ChangePropertyEventData(prop, item.GetComponentString('LightComponent')))
+	end
+end
+
 -- Opens or closes a door
 function setDoorState (item, state)
 	item.GetComponentString('Door').isOpen = state
@@ -702,9 +816,11 @@ function setHullWater (hull, amount)
 	end
 end
 
--- Just here for fun, it really isn't used at all
-function patchLuaFunction (func, prefix, suffix)
+-- Wraps a function like in Python
+function wrapFunction (func, prefix, suffix)
 	local toWrap = func
+	local prefix = prefix or (function () return end)
+	local suffix = suffix or (function () return end)
 	return function (...) prefix() toWrap(...) suffix() end
 end
 

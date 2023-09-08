@@ -24,9 +24,23 @@
   <!-- Bodybag -->
   <entityname.bodybag>Сумка для трупов</entityname.bodybag>
   <entitydescription.bodybag>Полиэтиленовый мешок, используемый для помещения в него трупов или для пытки удушением.</entitydescription.bodybag>
+  <!-- Wifi Explosive -->
+  <entityname.wifiexplosive>Wifi Взрывчатка</entityname.wifiexplosive>
+  <entitydescription.wifiexplosive>Мощная беспроводная пластиковая взрывчатка дистанционного действия. Может быть приведена в действие, например, сигналом Wi-Fi.</entitydescription.wifiexplosive>
+  <!-- Wifi Trigger -->
+  <entityname.handheldtrigger>Wifi Устройство</entityname.handheldtrigger>
+  <entitydescription.handheldtrigger>Устройство, позволяющее посылать сигнал wifi на небольшое расстояние. Частота будет соответствовать частоте гарнитуры, но если гарнитуры нет, то частота будет выставлена на 0.</entitydescription.handheldtrigger>
+  <!-- Officer's Radio -->
+  <entityname.backpackradio>Офицерская рация</entityname.backpackradio>
+  <entitydescription.backpackradio>Увесистая переносная рация с возможностью крепления на рюкзак, используемая офицерами для дальней связи со своим отрядом.</entitydescription.backpackradio>
+  <!-- Separatist Officer Outfit -->
+  <entityname.pirateclothesofficer>Снаряжение Офицера-Сепаратиста</entityname.pirateclothesofficer>
+  <entitydescription.pirateclothesofficer>Это точно такое же обмундирование, как и обычное снаряжение сепаратистов, за исключением дополнительной легкой брони и нарукавной повязки, отличающей офицеров от обычных солдат.</entitydescription.pirateclothesofficer>
   <!-- JET Mask -->
-  <entityname.jetmask>ЭВД Маска</entityname.jetmask>
+  <entityname.jetmask>ЭВД Маска T</entityname.jetmask>
   <entitydescription.jetmask>Просто водолазная маска и шлем, сваренные вместе, - стандартный головной убор для Элитных Войск Джовиан, или ЭВД. Одна только встреча с ней может вызвать глубокий страх у любого сотрудника Nexpharma.</entitydescription.jetmask>
+  <entityname.jetmaskother>ЭВД Маска S</entityname.jetmaskother>
+  <entitydescription.jetmaskother>Просто водолазная маска и шлем, сваренные вместе, - стандартный головной убор для Элитных Войск Джовиан, или ЭВД. Одна только встреча с ней может вызвать глубокий страх у любого сотрудника Nexpharma.</entitydescription.jetmaskother>
   <!-- NexSuit -->
   <entityname.nexsuit>NexКостюм</entityname.nexsuit>
   <entitydescription.nexsuit>Костюм собственной разработки компании Nexpharma, предназначенный исключительно для элитной военизированной группировки - Мобильного Аварийно-Спасательного и Боевого Отряда, или МАСБО.</entitydescription.nexsuit>
@@ -35,14 +49,22 @@
   <entitydescription.jetrevolver>Картечный, старый, но все еще распространенный револьвер 12-го калибра.</entitydescription.jetrevolver>
   <entityname.jetshotgun>Тактический дробовик</entityname.jetshotgun>
   <entitydescription.jetshotgun>Дробовик, предназначенный для тактических действий в условиях ближнего боя.</entitydescription.jetshotgun>
+  <entityname.jetsmg>Карабин</entityname.jetsmg>
+  <entitydescription.jetsmg>Старый карабин, стреляющий пистолетными патронами, такими же, как и оружие Nexpharma.</entitydescription.jetsmg>
+  <entityname.jetsmgcompact>Компактный карабин</entityname.jetsmgcompact>
+  <entitydescription.jetsmgcompact>Модифицированная версия карабина, жертвующая точностью ради мобильности.</entitydescription.jetsmgcompact>
   <entityname.jetrifle>Тяжелая винтовка</entityname.jetrifle>
   <entitydescription.jetrifle>Автоматическая винтовка .30 калибра с барабанным магазином, изготовитель неизвестен.</entitydescription.jetrifle>
+  <entityname.jetlmg>Бронебойный дробовик</entityname.jetlmg>
+  <entitydescription.jetlmg>Невероятно большой автоматический дробовик с огромной огневой мощью, хотя перезарядка его несколько затруднена.</entitydescription.jetlmg>
   <!-- Nexpharma Guns -->
   <entityname.mercspistol>Пистолет</entityname.mercspistol>
   <entitydescription.mercspistol>Портативный и компактный пистолет .45 калибра собственной разработки компании Nexpharma, использующий патроны для ПП 45 калибра.</entitydescription.mercspistol>
   <entityname.mercssmg>ОПЗ</entityname.mercssmg>
   <entitydescription.mercssmg>Скорострельный пистолет-пулемет .45-го калибра, разработанный компанией Nexpharma для обеспечения персональной защиты носителю.</entitydescription.mercssmg>
-  <entityname.mercsrifle>Карабин</entityname.mercsrifle>
+  <entityname.mercssniper>Разведывательная винтовка</entityname.mercssniper>
+  <entitydescription.mercssniper>Патентованная портативная винтовка фирмы nexpharma со складным стволом .30 калибра.</entitydescription.mercssniper>
+  <entityname.mercsrifle>боевая винтовка</entityname.mercsrifle>
   <entitydescription.mercsrifle>Боевой карабин собственной разработки компании Nexpharma, использующий патроны 6.8 калибра для штурмовых винтовок.</entitydescription.mercsrifle>
   <!-- Terrorist ID Cards -->
   <entityname.idcardjet>Удостоверение личности ЭВД</entityname.idcardjet>

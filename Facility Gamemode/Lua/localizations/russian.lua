@@ -29,6 +29,7 @@ Discord: https://discord.gg/c7Qnp8S4yB]],
 	commandRoundNotStarted = 'Раунд ещё не начался.',
 	commandAdminOnly = 'Команда только для админов!',
 	commandHelp = [[/help - для списка команд.
+/boo - Я страшный призрак!
 /vote - запускает голосование за режим.
 /admin - вызывает админа.
 /admin <text> - отправляет сообщение админу.
@@ -62,6 +63,14 @@ Discord: https://discord.gg/c7Qnp8S4yB]],
 Команда с большим количеством очков возрождается. В случае равенства очков - случайным образом.]],
 	commandDeconTime = 'Обеззараживание через {time}',
 	commandDeconStart = 'Начато обеззараживание',
+	
+	booGainedXP = '/boo: you have gained {xp} xp.',
+	booLevelUp = '/boo: ascended to level {level}.',
+	booPowerNeeded = '/boo: {power} needed.',
+	booPowerLeft = '/boo: {power} power left.',
+	booActionFailed = '/boo: ghost action failed.',
+	booRespawnEnabled = '/boo: respawning enabled.',
+	booRespawnDisabled = '/boo: respawning disabled.',
 	
 	deconTimeStart = 'Начато полное обеззараживание объекта.',
 	deconTimeTenSeconds = 'T-10 секунд до полного обеззараживания объекта.',
@@ -111,6 +120,7 @@ Discord: https://discord.gg/c7Qnp8S4yB]],
 	endTerrorist = 'Матч закончился ПОБЕДОЙ ТЕРРОРИСТОВ - все остальные команды уничтожены.',
 	endNexpharma = 'Матч закончился ПОБЕДОЙ КОРПОРАЦИИ NEXPHARMA - все остальные команды уничтожены.',
 	endMonster = 'Матч закончился ПОБЕДОЙ МОНСТРОВ - все остальные команды уничтожены.',
+	endPlayer = 'Матч окончился победой {name} - Остальные игроки были уничтожены.',
 	
 	settingsReceived = 'Ваша предустановка настроек находится в списке отправки сервера.',
 	settingsApplied = 'Ваша предварительная настройка была загружена сервером.',

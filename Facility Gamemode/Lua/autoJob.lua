@@ -78,6 +78,9 @@ end
 function assignPlayerRole (amount, preferredRole, disableAutoJob)
 
 	function jobToRole (job)
+		if FG.settings.autoJobIgnorePreference then
+			return ''
+		end
 		if job == 'monsterjob' or job == 'mutatedmantisjob' or job == 'mutatedcrawlerjob' or job == 'greenskinjob' then
 			return 'monster'
 		elseif job == 'overseer' then
@@ -111,7 +114,11 @@ function assignPlayerRole (amount, preferredRole, disableAutoJob)
 		unassignedPlayers = {}
 		for player in Client.ClientList do
 			if not FG.spectators[player.Name] then
-				playerPreferredRole[player.Name] = jobToRole(player.PreferredJob)
+				if jobToRole(player.PreferredJob) == '' then
+					playerPreferredRole[player.Name] = roles[math.random(#roles)]
+				else
+					playerPreferredRole[player.Name] = jobToRole(player.PreferredJob)
+				end
 				table.insert(unassignedPlayers, player.Name)
 			end
 		end
@@ -256,6 +263,10 @@ Hook.Add("jobsAssigned", "automaticJobAssignment", function ()
 	roleJob['inmate'] = {'inmate'}
 	roleJob['jet'] = {'jet'}
 	roleJob['mercs'] = {'mercs'}
+	
+	-- Reset subclass setter for initial wave
+	FG.terroristSubclassCount = 1
+	FG.nexpharmaSubclassCount = 1
 
 	for playerName, role in pairs(FG.playerRole) do
 		for player in Client.ClientList do
@@ -267,15 +278,27 @@ Hook.Add("jobsAssigned", "automaticJobAssignment", function ()
 						FG.monsterPlayers[playerName] = 'husk'
 					-- Greenskin
 					elseif FG.settings.gamemode == 'greenskin' then
-						player.AssignedJob = JobVariant(JobPrefab.Get('greenskinjob'), 0)
+						player.AssignedJob = JobVariant(JobPrefab.Get('monsterjob'), 0)
 						FG.monsterPlayers[playerName] = 'greenskin'
+					-- Brood
+					elseif FG.settings.gamemode == 'brood' then
+						if player.PreferredJob == 'mutatedmantisjob' then
+							player.AssignedJob = JobVariant(JobPrefab.Get('monsterjob'), 0)
+							FG.monsterPlayers[playerName] = 'mutatedmantishatchling'
+						elseif player.PreferredJob == 'mutatedcrawlerjob' then
+							player.AssignedJob = JobVariant(JobPrefab.Get('monsterjob'), 0)
+							FG.monsterPlayers[playerName] = 'mutatedcrawlerhatchling'
+						else
+							player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), 0)
+							FG.monsterPlayers[playerName] = 'random'
+						end
 					-- Default
 					elseif FG.settings.gamemode == 'default' then
 						if player.PreferredJob == 'mutatedmantisjob' then
-							player.AssignedJob = JobVariant(JobPrefab.Get('mutatedmantisjob'), 0)
+							player.AssignedJob = JobVariant(JobPrefab.Get('monsterjob'), 0)
 							FG.monsterPlayers[playerName] = 'mutatedmantis'
 						elseif player.PreferredJob == 'mutatedcrawlerjob' then
-							player.AssignedJob = JobVariant(JobPrefab.Get('mutatedcrawlerjob'), 0)
+							player.AssignedJob = JobVariant(JobPrefab.Get('monsterjob'), 0)
 							FG.monsterPlayers[playerName] = 'mutatedcrawler'
 						else
 							player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), 0)
@@ -290,6 +313,14 @@ Hook.Add("jobsAssigned", "automaticJobAssignment", function ()
 					else
 						player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), 0)
 					end
+				elseif role == 'jet' then
+					player.AssignedJob = JobVariant(JobPrefab.Get('jet'), tonumber(string.sub(FG.settings.terroristSquadSequence, FG.terroristSubclassCount, FG.terroristSubclassCount)))
+					FG.terroristSubclassCount = FG.terroristSubclassCount + 1
+					if FG.terroristSubclassCount > #FG.settings.terroristSquadSequence then FG.terroristSubclassCount = 1 end
+				elseif role == 'mercs' then
+					player.AssignedJob = JobVariant(JobPrefab.Get('mercs'), tonumber(string.sub(FG.settings.nexpharmaSquadSequence, FG.nexpharmaSubclassCount, FG.nexpharmaSubclassCount)))
+					FG.nexpharmaSubclassCount = FG.nexpharmaSubclassCount + 1
+					if FG.nexpharmaSubclassCount > #FG.settings.nexpharmaSquadSequence then FG.nexpharmaSubclassCount = 1 end
 				else
 					player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), 0)
 				end

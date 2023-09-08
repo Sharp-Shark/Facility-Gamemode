@@ -23,8 +23,7 @@
       <Skill identifier="electrical" level="60,60" />
       <Skill identifier="medical" level="60,60" />
     </Skills>
-    <ItemSet>
-    </ItemSet>
+    <ItemSet></ItemSet>
     <AutonomousObjectives>
       <Order identifier="fightintruders" prioritymodifier="1" />
       <Order identifier="rescue" prioritymodifier="0.5" />
@@ -156,6 +155,36 @@
       <Order identifier="requestfirstaid" />
     </AppropriateOrders>
   </Job>
+  <!-- Spirit (hidden in menu for now) -->
+  <Job identifier="spiritjob" uicolor="0.2,0.4,0.6" vitalitymodifier="0" pricemultiplier="1.0" maxnumber="0" idlebehavior="Active">
+    <Jobicon>
+      <sprite texture="Content/UI/MainIconsAtlas.png" sourcerect="768,0,128,128" origin="0.5,0.5" />
+    </Jobicon>
+    <JobiconSmall>
+      <sprite texture="Content/UI/CommandUIAtlas.png" sourcerect="612,698,28,28" origin="0.5,0.5" />
+    </JobiconSmall>
+    <Skills>
+      <Skill identifier="helm" level="60,60" />
+      <Skill identifier="weapons" level="60,60" />
+      <Skill identifier="mechanical" level="60,60" />
+      <Skill identifier="electrical" level="60,60" />
+      <Skill identifier="medical" level="60,60" />
+    </Skills>
+    <ItemSet>
+      <Item identifier="clowncostume" equip="true" outfit="true" />
+      <Item identifier="clownmask" equip="true" />
+      <Item identifier="handcuffs" equip="true" />
+    </ItemSet>
+    <AutonomousObjectives>
+      <Order identifier="fightintruders" prioritymodifier="1" />
+      <Order identifier="rescue" prioritymodifier="0.5" />
+    </AutonomousObjectives>
+    <AppropriateOrders>
+      <Order identifier="fightintruders" />
+      <Order identifier="rescue" />
+      <Order identifier="requestfirstaid" />
+    </AppropriateOrders>
+  </Job>
   <!-- Civie Jobs -->
   <!--Overseer-->
   <Job identifier="overseer" uicolor="0.6,0.4,0.8" initialcount="1" vitalitymodifier="0" pricemultiplier="1.0" idlebehavior="Active">
@@ -228,8 +257,8 @@
       <Item identifier="antibleeding2" />
       <Item identifier="antibleeding2" />
       <Item identifier="combatstimulantsyringe" />
-      <Item identifier="opium" />
       <Item identifier="midazolam" />
+      <Item identifier="antibloodloss2" />
     </ItemSet>
     <AutonomousObjectives>
       <Order identifier="fightintruders" prioritymodifier="1" />
@@ -305,7 +334,8 @@
       <Item identifier="divingknife" />
       <Item identifier="antibleeding1" />
       <Item identifier="antibleeding1" />
-      <Item identifier="antidama2" />
+      <Item identifier="antidama1" />
+      <Item identifier="meth" />
     </ItemSet>
     <AutonomousObjectives>
       <Order identifier="fightintruders" prioritymodifier="1" />
@@ -333,13 +363,18 @@
       <Skill identifier="electrical" level="60,60" />
       <Skill identifier="medical" level="60,60" />
     </Skills>
+    <!-- Trooper -->
     <ItemSet>
       <Item identifier="pirateclothes" equip="true" outfit="true" />
       <Item identifier="autoinjectorheadset" equip="true">
         <Item identifier="combatstimulantsyringe" />
       </Item>
-      <Item identifier="jetmask" equip="true" />
-      <Item identifier="piratebodyarmor" equip="true" />
+      <Item identifier="jetmask" equip="true">
+        <Item identifier="oxygentank" />
+      </Item>
+      <Item identifier="piratebodyarmor" equip="true">
+        <Item identifier="handcuffs" />
+      </Item>
       <!--<Item identifier="idcardjet" equip="true"/>-->
       <Item identifier="jetrifle">
         <!--12 Rounds-->
@@ -414,7 +449,308 @@
       <Item identifier="flashlight">
         <Item identifier="batterycell" />
       </Item>
-      <Item identifier="oxygentank" />
+    </ItemSet>
+    <!-- Breacher -->
+    <ItemSet>
+      <Item identifier="pirateclothes" equip="true" outfit="true" />
+      <Item identifier="autoinjectorheadset" equip="true">
+        <Item identifier="combatstimulantsyringe" />
+      </Item>
+      <Item identifier="jetmaskother" equip="true">
+        <Item identifier="oxygentank" />
+      </Item>
+      <Item identifier="bandolier" equip="true">
+        <!--12 Rounds-->
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <!-- End -->
+        <!--12 Rounds-->
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <!-- End -->
+        <!--12 Rounds-->
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <!-- End -->
+        <!--4 Grenades-->
+        <Item identifier="fraggrenade" />
+        <Item identifier="fraggrenade" />
+        <Item identifier="fraggrenade" />
+        <Item identifier="fraggrenade" />
+        <!-- End -->
+        <Item identifier="handcuffs" />
+      </Item>
+      <Item identifier="jetlmg">
+        <!--12 Rounds-->
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <Item identifier="shotgunshell" />
+        <!--End-->
+      </Item>
+      <!--12 Rounds-->
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <!-- End -->
+      <!--12 Rounds-->
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <Item identifier="shotgunshell" />
+      <!-- End -->
+      <Item identifier="handheldtrigger" />
+      <!--8 Explosives-->
+      <Item identifier="wifiexplosive" />
+      <Item identifier="wifiexplosive" />
+      <Item identifier="wifiexplosive" />
+      <Item identifier="wifiexplosive" />
+      <Item identifier="wifiexplosive" />
+      <Item identifier="wifiexplosive" />
+      <Item identifier="wifiexplosive" />
+      <Item identifier="wifiexplosive" />
+      <!-- End -->
+      <Item identifier="crowbar" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="opium" />
+      <Item identifier="flashlight">
+        <Item identifier="batterycell" />
+      </Item>
+    </ItemSet>
+    <!-- Officer -->
+    <ItemSet>
+      <Item identifier="pirateclothesofficer" equip="true" outfit="true" />
+      <Item identifier="autoinjectorheadset" equip="true">
+        <Item identifier="combatstimulantsyringe" />
+      </Item>
+      <Item identifier="jetmaskother" equip="true">
+        <Item identifier="oxygentank" />
+      </Item>
+      <Item identifier="backpackradio" equip="true" />
+      <Item identifier="bandolier" equip="true">
+        <!--8 Plastiseal-->
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <!-- End -->
+        <!--8 Midazolam-->
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <!-- End -->
+        <Item identifier="antibloodloss2" />
+        <!--4 Combat Stims-->
+        <Item identifier="combatstimulantsyringe" />
+        <Item identifier="combatstimulantsyringe" />
+        <Item identifier="combatstimulantsyringe" />
+        <Item identifier="combatstimulantsyringe" />
+        <!-- End -->
+        <Item identifier="handcuffs" />
+      </Item>
+      <Item identifier="jetsmgcompact">
+        <Item identifier="smgmagazine" />
+      </Item>
+      <Item identifier="smgmagazine" />
+      <Item identifier="smgmagazine" />
+      <Item identifier="smgmagazine" />
+      <Item identifier="smgmagazine" />
+      <Item identifier="smgmagazine" />
+      <Item identifier="crowbar" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="antibloodloss2" />
+      <Item identifier="flashlight">
+        <Item identifier="batterycell" />
+      </Item>
+    </ItemSet>
+    <!-- Jetpacker -->
+    <ItemSet>
+      <Item identifier="prisonerclothes" equip="true" outfit="true" />
+      <Item identifier="autoinjectorheadset" equip="true">
+        <Item identifier="combatstimulantsyringe" />
+      </Item>
+      <Item identifier="jetmaskother" equip="true">
+        <Item identifier="oxygentank" />
+      </Item>
+      <Item identifier="backpackradio" equip="true" />
+      <Item identifier="bodyarmor" equip="true">
+        <Item identifier="handcuffs" />
+      </Item>
+      <Item identifier="jetpackjoyride" />
+      <Item identifier="crowbar" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="opium" />
+      <Item identifier="opium" />
+      <Item identifier="opium" />
+      <Item identifier="opium" />
+      <Item identifier="opium" />
+      <Item identifier="opium" />
+      <Item identifier="opium" />
+      <Item identifier="opium" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="flashlight">
+        <Item identifier="batterycell" />
+      </Item>
+    </ItemSet>
+    <!-- Conscript -->
+    <ItemSet>
+      <Item identifier="pirateclothes" equip="true" outfit="true" />
+      <Item identifier="autoinjectorheadset" equip="true">
+        <Item identifier="combatstimulantsyringe" />
+      </Item>
+      <Item identifier="jetmask" equip="true">
+        <Item identifier="oxygentank" />
+      </Item>
+      <Item identifier="piratebodyarmor" equip="true">
+        <Item identifier="handcuffs" />
+      </Item>
+      <!--<Item identifier="idcardjet" equip="true"/>-->
+      <Item identifier="jetrifle">
+        <!--12 Rounds-->
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <!--End-->
+      </Item>
+      <Item identifier="jetsmgcompact">
+        <Item identifier="smgmagazine" />
+      </Item>
+      <!--12 Rounds-->
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <!--12 Rounds-->
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="smgmagazine" />
+      <Item identifier="smgmagazine" />
+      <Item identifier="smgmagazine" />
+      <Item identifier="crowbar" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="opium" />
+      <Item identifier="opium" />
+      <Item identifier="flashlight">
+        <Item identifier="batterycell" />
+      </Item>
     </ItemSet>
     <AutonomousObjectives>
       <Order identifier="fightintruders" prioritymodifier="1" />
@@ -441,13 +777,16 @@
       <Skill identifier="electrical" level="60,60" />
       <Skill identifier="medical" level="60,60" />
     </Skills>
+    <!-- Trooper -->
     <ItemSet>
-      <Item identifier="securityuniform2" equip="true" outfit="true" />
-      <Item identifier="headset" equip="true" />
-      <Item identifier="piratebandana" equip="true" />
-      <Item identifier="nexsuit" equip="true">
+      <Item identifier="securityuniform2" equip="true" />
+      <Item identifier="autoinjectorheadset" equip="true">
         <Item identifier="combatstimulantsyringe" />
+      </Item>
+      <Item identifier="piratebandana" equip="true" />
+      <Item identifier="nexsuit" equip="true" outfit="true">
         <Item identifier="oxygentank" />
+        <Item identifier="handcuffs" />
       </Item>
       <!--<Item identifier="idcardmercs" equip="true"/>-->
       <Item identifier="mercsrifle">
@@ -467,6 +806,217 @@
       <Item identifier="antibleeding2" />
       <Item identifier="midazolam" />
       <Item identifier="midazolam" />
+      <Item identifier="opium" />
+      <Item identifier="flashlight">
+        <Item identifier="batterycell" />
+      </Item>
+    </ItemSet>
+    <!-- Sniper -->
+    <ItemSet>
+      <Item identifier="securityuniform2" equip="true" />
+      <Item identifier="autoinjectorheadset" equip="true">
+        <Item identifier="combatstimulantsyringe" />
+      </Item>
+      <Item identifier="thermalgoggles" equip="true" />
+      <Item identifier="nexsuit" equip="true" outfit="true">
+        <Item identifier="oxygentank" />
+        <Item identifier="handcuffs" />
+      </Item>
+      <Item identifier="carbonatespray" equip="true" />
+      <!--<Item identifier="idcardmercs" equip="true"/>-->
+      <Item identifier="mercssniper">
+        <!--6 Rounds-->
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <!--End-->
+      </Item>
+      <Item identifier="mercspistol">
+        <Item identifier="smgmagazine" />
+      </Item>
+      <!--12 Rounds-->
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <!--End-->
+      <!--12 Rounds-->
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <!--End-->
+      <Item identifier="smgmagazine" />
+      <Item identifier="smgmagazine" />
+      <Item identifier="divingknife" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="opium" />
+      <Item identifier="flashlight">
+        <Item identifier="batterycell" />
+      </Item>
+    </ItemSet>
+    <!-- Officer -->
+    <ItemSet>
+      <Item identifier="securityuniform2" equip="true" />
+      <Item identifier="autoinjectorheadset" equip="true">
+        <Item identifier="combatstimulantsyringe" />
+      </Item>
+      <Item identifier="piratebandana" equip="true" />
+      <Item identifier="nexsuit" equip="true" outfit="true">
+        <Item identifier="oxygentank" />
+        <Item identifier="handcuffs" />
+        <Item identifier="antibloodloss2" />
+      </Item>
+      <Item identifier="backpackradio" equip="true" />
+      <!--<Item identifier="idcardmercs" equip="true"/>-->
+      <Item identifier="mercssmg">
+        <Item identifier="smgmagazine" />
+      </Item>
+      <Item identifier="smgmagazine" />
+      <Item identifier="smgmagazine" />
+      <Item identifier="smgmagazine" />
+      <Item identifier="smgmagazine" />
+      <Item identifier="smgmagazine" />
+      <Item identifier="divingknife" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="antibloodloss2" />
+      <Item identifier="combatstimulantsyringe" />
+      <Item identifier="combatstimulantsyringe" />
+      <Item identifier="combatstimulantsyringe" />
+      <Item identifier="combatstimulantsyringe" />
+      <Item identifier="flashlight">
+        <Item identifier="batterycell" />
+      </Item>
+    </ItemSet>
+    <!-- Jetpacker -->
+    <ItemSet>
+      <Item identifier="assistantclothes" equip="true" outfit="true" />
+      <Item identifier="autoinjectorheadset" equip="true">
+        <Item identifier="combatstimulantsyringe" />
+      </Item>
+      <Item identifier="jetmaskother" equip="true">
+        <Item identifier="oxygentank" />
+      </Item>
+      <Item identifier="backpackradio" equip="true" />
+      <Item identifier="bodyarmor" equip="true">
+        <Item identifier="handcuffs" />
+      </Item>
+      <Item identifier="jetpackjoyride" />
+      <Item identifier="crowbar" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="opium" />
+      <Item identifier="opium" />
+      <Item identifier="opium" />
+      <Item identifier="opium" />
+      <Item identifier="opium" />
+      <Item identifier="opium" />
+      <Item identifier="opium" />
+      <Item identifier="opium" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="flashlight">
+        <Item identifier="batterycell" />
+      </Item>
+    </ItemSet>
+    <!-- Conscript -->
+    <ItemSet>
+      <Item identifier="securityuniform2" equip="true" />
+      <Item identifier="autoinjectorheadset" equip="true">
+        <Item identifier="combatstimulantsyringe" />
+      </Item>
+      <Item identifier="piratebandana" equip="true" />
+      <Item identifier="nexsuit" equip="true" outfit="true">
+        <Item identifier="oxygentank" />
+        <Item identifier="handcuffs" />
+      </Item>
+      <!--<Item identifier="idcardmercs" equip="true"/>-->
+      <Item identifier="mercsrifle">
+        <Item identifier="assaultriflemagazine" />
+      </Item>
+      <Item identifier="mercssniper">
+        <!--6 Rounds-->
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <Item identifier="riflebullet" />
+        <!--End-->
+      </Item>
+      <Item identifier="assaultriflemagazine" />
+      <Item identifier="assaultriflemagazine" />
+      <Item identifier="assaultriflemagazine" />
+      <Item identifier="assaultriflemagazine" />
+      <!--12 Rounds-->
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <Item identifier="riflebullet" />
+      <!--End-->
+      <Item identifier="divingknife" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="antibleeding2" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="midazolam" />
+      <Item identifier="opium" />
       <Item identifier="opium" />
       <Item identifier="flashlight">
         <Item identifier="batterycell" />
@@ -501,11 +1051,14 @@
       <Item identifier="captainsuniform2" equip="true" outfit="true" />
       <Item identifier="captainscap3" equip="true" />
       <Item identifier="headset" equip="true" />
-      <Item identifier="bodyarmor" equip="true" />
+      <Item identifier="bodyarmor" equip="true">
+        <Item identifier="handcuffs" />
+      </Item>
       <Item identifier="idcardeliteguard" equip="true" />
-      <Item identifier="mercspistol">
+      <Item identifier="mercssmg">
         <Item identifier="smgmagazine" />
       </Item>
+      <Item identifier="smgmagazine" />
       <Item identifier="smgmagazine" />
       <Item identifier="ceremonialsword" />
       <Item identifier="antibleeding2" />
@@ -516,7 +1069,6 @@
       <Item identifier="flashlight">
         <Item identifier="batterycell" />
       </Item>
-      <Item identifier="handcuffs" />
     </ItemSet>
     <AutonomousObjectives>
       <Order identifier="fightintruders" prioritymodifier="1" />
@@ -547,7 +1099,9 @@
       <Item identifier="securityuniform2" equip="true" outfit="true" />
       <Item identifier="headset" equip="true" />
       <Item identifier="baseballcap" equip="true" />
-      <Item identifier="bodyarmor" equip="true" />
+      <Item identifier="bodyarmor" equip="true">
+        <Item identifier="handcuffs" />
+      </Item>
       <Item identifier="idcardenforcerguard" equip="true" />
       <Item identifier="mercssmg">
         <Item identifier="smgmagazine" />
@@ -563,7 +1117,6 @@
       <Item identifier="flashlight">
         <Item identifier="batterycell" />
       </Item>
-      <Item identifier="handcuffs" />
     </ItemSet>
     <AutonomousObjectives>
       <Order identifier="fightintruders" prioritymodifier="1" />

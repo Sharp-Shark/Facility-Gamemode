@@ -17,6 +17,20 @@ Hook.Add("chatMessage", "monsterChat", function (message, client)
 end)
 
 -- User Commands
+-- Gets the credits for the mod
+Hook.Add("chatMessage", "creditCommand", function (message, client)
+    if message ~= '/credits' then return end
+	
+	local text = ''
+	if not Game.RoundStarted then text = text .. '\n' end
+	
+	text = text .. File.Read(FG.path .. '/credits.txt')
+	
+	messageClient(client, 'text-command', text)
+
+    return true
+end)
+
 -- Lists and explains user commands
 Hook.Add("chatMessage", "helpCommand", function (message, client)
     if message ~= '/help' then return end
@@ -80,9 +94,9 @@ Hook.Add("chatMessage", "livePlayerList", function (message, client)
 				elseif isCharacterNexpharma(player.Character) then
 					text = text .. player.Name .. string.localize('commandPlayersNexpharmaMilitant', nil, client.Language) .. '\n'
 				end
-			elseif player.Character.SpeciesName == 'Mantisadmin' then
+			elseif (player.Character.SpeciesName == 'Mantisadmin') or (player.Character.SpeciesName == 'Mantisadmin_hatchling') then
 				text = text .. player.Name .. string.localize('commandPlayersMutatedMantis', nil, client.Language) .. '\n'
-			elseif player.Character.SpeciesName == 'Crawleradmin' then
+			elseif (player.Character.SpeciesName == 'Crawleradmin') or (player.Character.SpeciesName == 'Crawleradmin_hatchling') then
 				text = text .. player.Name .. string.localize('commandPlayersMutatedCrawler', nil, client.Language) .. '\n'
 			elseif player.Character.SpeciesName == 'Humanhusk' then
 				text = text .. player.Name .. string.localize('commandPlayersHusk', nil, client.Language) .. '\n'
@@ -184,6 +198,88 @@ Hook.Add("chatMessage", "viewgamemode", function (message, client)
 		text = text .. table.print(FG.settingsPresets[string.sub(message, 11, #message)], true, true)
 		messageClient(client, 'text-command', text)
 	end
+
+    return true
+end)
+
+-- SCP-079 & Paranormal Activity
+Hook.Add("chatMessage", "ghostActivity", function (message, client)
+    if (string.sub(message, 1, 4) ~= '/boo') or (FG.settings.ghosts == 'disabled') then return end
+	if client.SpectatePos == nil then return end
+	if not Game.RoundStarted then
+		messageClient(client, 'text-command', '\n' .. string.localize('commandRoundNotStarted', nil, client.Language))
+		return true
+	end
+	
+	-- Breaks down message into words
+	local msgTxt = message
+	local words = {}
+	local word = ''
+	local letter = ''
+	for count = 1, #msgTxt do
+		letter = string.sub(msgTxt, count, count)
+		if (letter ~= ' ') or (count == #msgTxt) then
+			word = word .. letter
+		end
+		if ((letter == ' ') or (count == #msgTxt)) and (word ~= '') then
+			table.insert(words, word)
+			word = ''
+		end
+	end
+	
+	-- Remove the first word (which should be /boo)
+	table.remove(words, 1)
+	
+	-- Joins all words after an index
+	local function joinAllWordsAfterIndex (index, spacing)
+		local joined = ''
+		for n = index, #words do
+			joined = joined .. table.remove(words, index) .. string.rep(' ', spacing or 0)
+		end
+		joined = string.sub(joined, 1, #joined - spacing)
+		words[index] = joined
+	end
+	
+	local level = 1
+	if (FG.paranormal.clients[client] ~= nil) and (FG.paranormal.clients[client].level ~= nil) then level = FG.paranormal.clients[client].level end
+	
+	local actionSelected
+	
+	for actionName, action in pairs(FG.paranormal.actions) do
+		if (action.name == words[1]) and (not action.hide) and ((not action.poltergeistOnly) or FG.settings.ghosts == 'poltergeist') and (level >= action.levelNeeded) then
+			actionSelected = action
+			break
+		end
+	end
+
+	if actionSelected ~= nil then
+		joinAllWordsAfterIndex(2, 1)
+		FG.paranormal.doAction(client, actionSelected, {text = words[2]})
+	else
+		local text = ''
+		for actionName, action in pairs(FG.paranormal.actions) do
+			if (not action.hide) and ((not action.poltergeistOnly) or FG.settings.ghosts == 'poltergeist') and (level >= action.levelNeeded) then
+				local cost = action.cost
+				if action.free then cost = 0 end
+				text = text .. '/boo: ' .. action.name .. ' (' .. tostring(cost) .. '), '
+			end
+		end
+		text = string.sub(text, 1, #text - 2) .. '.'
+		
+		messageClient(client, 'text-command', text)
+	end
+
+	return true
+end)
+
+-- Enable poltergeist (ADMIN ONLY)
+Hook.Add("chatMessage", "enablePoltergeist", function (message, client)
+    if message ~= '/poltergeist' then return end
+	if not client.HasPermission(ClientPermissions.ConsoleCommands) then messageClient(client, 'text-warning', string.localize('commandAdminOnly', nil, client.Language)) return true end
+	
+	FG.settings.ghosts = 'poltergeist'
+	
+	messageClient(client, 'text-command', 'Poltergeist has been enabled.')
 
     return true
 end)
@@ -328,8 +424,10 @@ Hook.Add("chatMessage", "democracyInterface", function (message, client)
 			FG.democracy.gamemodeChosen = false
 			text = text ..  string.localize('voteStartHeader', nil, client.Language)
 			for presetName, presetSettings in pairs(FG.settingsPresets) do
-				text = text .. presetName .. ', '
-				table.insert(FG.democracy.options, presetName)
+				if not presetSettings.hide then
+					text = text .. presetName .. ', '
+					table.insert(FG.democracy.options, presetName)
+				end
 			end
 			text = string.sub(text, 1, #text - 2) .. '.\n' ..  string.localize('voteStartFooter', nil, client.Language)
 			for player in Client.ClientList do
@@ -392,8 +490,10 @@ Hook.Add("chatMessage", "democracyInterface", function (message, client)
 		table.remove(words, 1)
 		text = text .. 'Democracy time! Please vote for one of these: '
 		for presetName, presetSettings in pairs(FG.settingsPresets) do
-			text = text .. presetName .. ', '
-			table.insert(FG.democracy.options, presetName)
+			if not presetSettings.hide then
+				text = text .. presetName .. ', '
+				table.insert(FG.democracy.options, presetName)
+			end
 		end
 		text = string.sub(text, 1, #text - 2) .. '.\nTo vote just type what you want in chat.'
 		for player in Client.ClientList do
@@ -600,15 +700,13 @@ Hook.Add("chatMessage", "settingsInterface", function (message, client)
 	elseif words[1] == 'pload' then
 		if FG.settingsPresets[words[2]] == nil then messageClient(client, 'text-warning', 'Preset does not exist!') return true end
 		joinAllWordsAfterIndex(2, 1)
-		FG.settings = table.copy(FG.settingsDefault)
-		for settingName, settingValue in pairs(FG.settingsPresets[words[2]]) do
-			FG.settings[settingName] = settingValue
-		end
+		loadSettingsPreset(FG.settingsPresets[words[2]])
 		text = text .. table.print(FG.settings, true, true)
 		messageClient(client, 'text-general', text)
 	-- Saves to an existing preset
 	elseif words[1] == 'psave' then
 		joinAllWordsAfterIndex(2, 1)
+		local allowSave = true
 		-- Only save all the settings that differ from the default
 		local settingsPreset = {}
 		for settingName, settingValue in pairs(FG.settings) do
@@ -621,12 +719,18 @@ Hook.Add("chatMessage", "settingsInterface", function (message, client)
 			text = text .. 'Your settings preset is just the default settings!' 
 			messageClient(client, 'text-warning', text)
 			text = ''
+			
+			allowSave = false
 		end
 		-- Make sure the setting exists and isn't a default preset
-		if FG.settingsPresetsDefault[words[2]] then
-			text = text .. words[2] .. ' is a default preset and must not be overwritten.' 
-			messageClient(client, 'text-warning', text)
-		else
+		--if FG.settingsPresetsDefault[words[2]] then
+		--	text = text .. words[2] .. ' is a default preset and must not be overwritten.' 
+		--	messageClient(client, 'text-warning', text)
+		--	
+		--	allowSave = false
+		--end
+		-- Do the saving
+		if allowSave then
 			FG.settingsPresets[words[2]] = settingsPreset
 			text = text .. 'Your settings have been saved successfully to ' .. words[2] .. '.'
 			messageClient(client, 'text-command', text)
@@ -676,10 +780,7 @@ Hook.Add("chatMessage", "settingsInterface", function (message, client)
 	elseif words[1] == 'rload' then
 		if table.getValues(FG.settingsPresetsReceived[words[2]])[1] == nil then messageClient(client, 'text-warning', 'Preset does not exist!') return true end
 		joinAllWordsAfterIndex(2, 1)
-		FG.settings = table.copy(FG.settingsDefault)
-		for settingName, settingValue in pairs(table.getValues(FG.settingsPresetsReceived[words[2]])[1]) do
-			FG.settings[settingName] = settingValue
-		end
+		loadSettingsPreset(table.getValues(FG.settingsPresetsReceived[words[2]])[1])
 		text = text .. table.print(FG.settings, true, true)
 		messageClient(client, 'text-command', text)
 		-- Notifies client who sent the preset that it has been loaded

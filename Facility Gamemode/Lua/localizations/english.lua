@@ -19,7 +19,7 @@ _If you are a militant, kill the other teams and help the civilians from your te
 _Your preferred job may be overriden by the gamemode's autobalance script, but the script will try and give you your desired job if possible. Also, only the 1st job in your preferred jobs list matters.
 	
 _Do /help for a list of commands.]],
-	dieMessageText = [[You have died. Do /respawn to get an estimated time until respawn and amount of tickets. If more people die, it will go down faster.
+	dieMessageText = [[You have died. Do /respawn to get an estimated time until respawn and amount of tickets. Do /boo to haunt the living. If more people die, it will go down faster.
 
 If you belive your death is a bug or was caused by someone breaking the rules, say so in our discord.
 Discord: https://discord.gg/c7Qnp8S4yB]],
@@ -28,7 +28,9 @@ Discord: https://discord.gg/c7Qnp8S4yB]],
 
 	commandRoundNotStarted = 'Round has not started yet.',
 	commandAdminOnly = 'Admin only command!',
-	commandHelp = [[/help - gives command list.
+	commandHelp = [[/credits - see who contributed to the creation of this mod.
+/help - gives command list.
+/boo - I'm a spooky ghost!
 /vote - starts a gamemode poll.
 /admin - calls admin attention.
 /admin <text> - sends text to admin.
@@ -62,6 +64,14 @@ Nexpharma has {nexpharmaTickets} tickets left.
 The team with more tickets respawns. In case of a tie, it's randomized.]],
 	commandDeconTime = 'Decontamination in {time}',
 	commandDeconStart = 'Decontamination initiated',
+	
+	booGainedXP = '/boo: you have gained {xp} xp.',
+	booLevelUp = '/boo: ascended to level {level}.',
+	booPowerNeeded = '/boo: {power} needed.',
+	booPowerLeft = '/boo: {power} power left.',
+	booActionFailed = '/boo: ghost action failed.',
+	booRespawnEnabled = '/boo: respawning enabled.',
+	booRespawnDisabled = '/boo: respawning disabled.',
 	
 	deconTimeStart = 'Complete facility decontamination has been initiated.',
 	deconTimeTenSeconds = 'T-10 seconds until complete facility decontamination.',
@@ -111,6 +121,7 @@ The team with more tickets respawns. In case of a tie, it's randomized.]],
 	endTerrorist = 'The match has ended in a TERRORIST WIN - all other teams have been eliminated.',
 	endNexpharma = 'The match has ended in a NEXPHARMA WIN - all other teams have been eliminated.',
 	endMonster = 'The match has ended in a MONSTER WIN - all other teams have been eliminated.',
+	endPlayer = 'The match has ended in a {name} WIN - all other players have been eliminated.',
 	
 	settingsReceived = 'Your settings preset is in the server submission list.',
 	settingsApplied = 'Your settings preset has been loaded in by the server.',

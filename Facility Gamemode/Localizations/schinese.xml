@@ -22,11 +22,25 @@
   <entityname.goblinmask>哥布林面具</entityname.goblinmask>
   <entitydescription.goblinmask>一副奇怪的绿色面具，散发着迷人的气味。如果戴上它会发生什么？</entitydescription.goblinmask>
   <!-- Bodybag -->
-  <entityname.bodybag>Bodybag</entityname.bodybag>
-  <entitydescription.bodybag>A plastic bag used to put dead bodies in, or to torture someone by asphyxiation.</entitydescription.bodybag>
+  <entityname.bodybag>尸体袋</entityname.bodybag>
+  <entitydescription.bodybag>用来装尸体的塑料袋，或用窒息的手段折磨人。</entitydescription.bodybag>
+  <!-- Wifi Explosive -->
+  <entityname.wifiexplosive>Wifi炸药</entityname.wifiexplosive>
+  <entitydescription.wifiexplosive>远程引爆的烈性塑胶炸药，可以通过wifi信号触发。</entitydescription.wifiexplosive>
+  <!-- Wifi Trigger -->
+  <entityname.handheldtrigger>Wifi触发器</entityname.handheldtrigger>
+  <entitydescription.handheldtrigger>一种能够发送短距离WiFi信号的设备。如果拥有耳机，则信道与耳机相同；否则信道将被设置为0。</entitydescription.handheldtrigger>
+  <!-- Officer's Radio -->
+  <entityname.backpackradio>军官无线电</entityname.backpackradio>
+  <entitydescription.backpackradio>一个便携却笨重的背负式无线电收发机，被军官用于与他们的分队进行远距离通信。</entitydescription.backpackradio>
+  <!-- Separatist Officer Outfit -->
+  <entityname.pirateclothesofficer>分离主义军官服装</entityname.pirateclothesofficer>
+  <entitydescription.pirateclothesofficer>除了附加的轻型装甲板和用以将士官从常规士兵中区分出来的臂章之外，它与常规分离主义者的服装完全一样。</entitydescription.pirateclothesofficer>
   <!-- JET Mask -->
-  <entityname.jetmask>JET面罩</entityname.jetmask>
+  <entityname.jetmask>JET T 面罩</entityname.jetmask>
   <entitydescription.jetmask>结合了头盔的潜水面罩，朱庇特精英部队（JET）的标准头部装备，是另Nex制药公司感到极度恐惧的存在。</entitydescription.jetmask>
+  <entityname.jetmaskother>JET S 面罩</entityname.jetmaskother>
+  <entitydescription.jetmaskother>结合了头盔的潜水面罩，朱庇特精英部队（JET）的标准头部装备，是另Nex制药公司感到极度恐惧的存在。</entitydescription.jetmaskother>
   <!-- NexSuit -->
   <entityname.nexsuit>Nex服装</entityname.nexsuit>
   <entitydescription.nexsuit>Nex制药公司私下的精英准军事组织—机动紧急救援作战小组（MERCS）的专用套装。实际上，它只是一套适应战斗的PUCS。</entitydescription.nexsuit>
@@ -35,14 +49,20 @@
   <entitydescription.jetrevolver>一把老式但仍常见的12号口径左轮手枪。</entitydescription.jetrevolver>
   <entityname.jetshotgun>战术霰弹枪</entityname.jetshotgun>
   <entitydescription.jetshotgun>一种为近距离战术行动设计的霰弹枪。</entitydescription.jetshotgun>
+  <entityname.jetsmg>卡宾枪</entityname.jetsmg>
+  <entitydescription.jetsmg>一支发射手枪弹的老式卡宾枪，和Nex制药公司的武器一样。</entitydescription.jetsmg>
+  <entityname.jetsmgcompact>紧凑型卡宾枪</entityname.jetsmgcompact>
+  <entitydescription.jetsmgcompact>一种卡宾枪的改版，为了提高便携性而牺牲了精确度。</entitydescription.jetsmgcompact>
   <entityname.jetrifle>重型步枪</entityname.jetrifle>
   <entitydescription.jetrifle>一种自动装填的弹鼓式.30口径慢射步枪，制造商未知。</entitydescription.jetrifle>
+  <entityname.jetlmg>突破型霰弹枪</entityname.jetlmg>
+  <entitydescription.jetlmg>一把荒唐的大型霰弹枪，拥有疯狂的自动火力，尽管装弹有些麻烦。</entitydescription.jetlmg>
   <!-- Nexpharma Guns -->
   <entityname.mercspistol>手枪</entityname.mercspistol>
   <entitydescription.mercspistol>Nex制药公司专有的便携式紧凑型.45口径手枪。</entitydescription.mercspistol>
   <entityname.mercssmg>PDW</entityname.mercssmg>
   <entitydescription.mercssmg>Nex制药公司专有的射速快但精度低的.45口径冲锋枪。</entitydescription.mercssmg>
-  <entityname.mercsrifle>卡宾枪</entityname.mercsrifle>
+  <entityname.mercsrifle>战斗步枪</entityname.mercsrifle>
   <entitydescription.mercsrifle>Nex制药公司专有的军用卡宾枪，使用突击步枪弹药。</entitydescription.mercsrifle>
   <!-- Terrorist ID Cards -->
   <entityname.idcardjet>朱庇特精英部队ID卡</entityname.idcardjet>
@@ -92,7 +112,7 @@
   <jobname.enforcerguard>执行警卫</jobname.enforcerguard>
   <jobdescription.enforcerguard>Nex制药公司的武装成员，消灭怪物和囚禁人员，帮助员工逃离设施。现场安保人员，只负责控制囚禁人员，配备了PWD、防弹衣和执行警卫钥匙卡（行政1级、武装1级）。</jobdescription.enforcerguard>
   <!-- Speed Affliction -->
-  <afflictionname.speed>Speed</afflictionname.speed>
+  <afflictionname.speed>速度</afflictionname.speed>
   <!-- Fatigue Affliction -->
   <afflictionname.fatigue>疲乏</afflictionname.fatigue>
   <afflictiondescription.fatigue>运动过度，放慢节奏，稍作休息。</afflictiondescription.fatigue>

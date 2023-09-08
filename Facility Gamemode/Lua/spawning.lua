@@ -23,10 +23,25 @@ end
 
 -- General code for when respawning a player as militant
 function spawnPlayerMilitant (client, team, data)
-	if (data ~= nil) and data['old'] then
-		spawnPlayerMilitant_OLD(client, team)
+	local character
+	local subclass
+	if (data ~= nil) and data['subclass'] then
+		subclass = data['subclass']
 	else
-		spawnPlayerMilitant_NEW(client, team)
+		if team == 'JET' then
+			subclass = tonumber(string.sub(FG.settings.terroristSquadSequence, FG.terroristSubclassCount, FG.terroristSubclassCount))
+			FG.terroristSubclassCount = FG.terroristSubclassCount + 1
+			if FG.terroristSubclassCount > #FG.settings.terroristSquadSequence then FG.terroristSubclassCount = 1 end
+		elseif team == 'MERCS' then
+			subclass = tonumber(string.sub(FG.settings.nexpharmaSquadSequence, FG.nexpharmaSubclassCount, FG.nexpharmaSubclassCount))
+			FG.nexpharmaSubclassCount = FG.nexpharmaSubclassCount + 1
+			if FG.nexpharmaSubclassCount > #FG.settings.nexpharmaSquadSequence then FG.nexpharmaSubclassCount = 1 end
+		end
+	end
+	if (data ~= nil) and data['old'] then
+		character = spawnPlayerMilitant_OLD(client, team)
+	else
+		character = spawnPlayerMilitant_NEW(client, team, subclass)
 	end
 	if team == 'JET' then
 		FG.playerRole[client.Name] = 'jet'
@@ -41,21 +56,31 @@ function spawnPlayerMilitant (client, team, data)
 			FG.nexpharmaTickets = FG.nexpharmaTickets - 1
 		end
 	end
+	if (data == nil) or (not data['noprotection']) then
+		giveAfflictionCharacter(character, 'spawnprotection', 9)
+	end
+	return character
 end
 
 -- Spawns a human who is a militant and sets it to the client's character, distinct from SpawnPlayerMilitant_OLD
-function spawnPlayerMilitant_NEW (client, team)
+function spawnPlayerMilitant_NEW (client, team, subclass)
 	if (client.Character ~= nil) and not client.Character.IsDead then
 		client.Character.Kill(CauseOfDeathType.Unknown)
 		client.Character.TeleportTo(findRandomWaypointByJob(team).WorldPosition)
 	end
 	local character
 	if team == 'JET' then
-		character = spawnHuman(client, 'jet', findRandomWaypointByJob('jet').WorldPosition)
+		local spawnPosition = findRandomWaypointByJob('jet')
+		if spawnPosition == nil then spawnPosition = findRandomWaypointByJob('') end
+		spawnPosition = spawnPosition.WorldPosition
+		character = spawnHuman(client, 'jet', spawnPosition, nil, subclass)
 		client.Character.SetOriginalTeam(CharacterTeamType.Team2)
 		client.Character.UpdateTeam()
 	elseif team == 'MERCS' then
-		character = spawnHuman(client, 'mercs', findRandomWaypointByJob('mercs').WorldPosition)
+		local spawnPosition = findRandomWaypointByJob('mercs')
+		if spawnPosition == nil then spawnPosition = findRandomWaypointByJob('') end
+		spawnPosition = spawnPosition.WorldPosition
+		character = spawnHuman(client, 'mercs', spawnPosition, nil, subclass)
 		client.Character.SetOriginalTeam(CharacterTeamType.Team1)
 		client.Character.UpdateTeam()
 	end
@@ -67,6 +92,7 @@ function spawnPlayerMilitant_NEW (client, team)
 		Networking.CreateEntityEvent(idcard, Item.ChangePropertyEventData(property, idcard))
 	end, 1*1000)
 	--]]
+	return character
 end
 
 -- Removes the items of respawnees, gives them their proper loadout (be it JET or MERCS) and teleports them to their spawn area
@@ -94,7 +120,10 @@ function spawnPlayerMilitant_OLD (client, team)
 			itemCount = itemCount + 1
 		end
 		-- Teleport player into battlefield
-		character.TeleportTo(findRandomWaypointByJob('jet').WorldPosition)
+		local spawnPosition = findRandomWaypointByJob('jet')
+		if spawnPosition == nil then spawnPosition = findRandomWaypointByJob('') end
+		spawnPosition = spawnPosition.WorldPosition
+		character.TeleportTo(spawnPosition)
 	elseif team == 'MERCS' then
 		-- Give items
 		local itemCount = 1
@@ -107,10 +136,13 @@ function spawnPlayerMilitant_OLD (client, team)
 			itemCount = itemCount + 1
 		end
 		-- Teleport player into battlefield
-		character.TeleportTo(findRandomWaypointByJob('mercs').WorldPosition)
+		local spawnPosition = findRandomWaypointByJob('mercs')
+		if spawnPosition == nil then spawnPosition = findRandomWaypointByJob('') end
+		spawnPosition = spawnPosition.WorldPosition
+		character.TeleportTo(spawnPosition)
 	end
 
-	return true
+	return character
 end
 
 -- Execute when players job item are given - be it a respawn wave, or the start of the match
@@ -207,7 +239,9 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (character)
 		elseif FG.settings.monsterSpawn == 'corpse' then
 			jobs = {'corpsejob'}
 		end
-		local spawnPosition = findRandomWaypointByJob(jobs[math.random(#jobs)]).WorldPosition
+		local spawnPosition = findRandomWaypointByJob(jobs[math.random(#jobs)])
+		if spawnPosition == nil then spawnPosition = findRandomWaypointByJob('') end
+		spawnPosition = spawnPosition.WorldPosition
 		local monster = 'random'
 		-- Player monster spawning
 		if FG.monsterPlayers[client.Name] ~= nil then
@@ -219,6 +253,12 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (character)
 						monster = 'mutatedmantis'
 					else
 						monster = 'mutatedcrawler'
+					end
+				elseif FG.settings.gamemode == 'brood' then
+					if math.random(2) == 1 then
+						monster = 'mutatedmantishatchling'
+					else
+						monster = 'mutatedcrawlerhatchling'
 					end
 				elseif FG.settings.gamemode == 'husk' then
 					monster = 'husk'
@@ -233,6 +273,14 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (character)
 				messageClient(client, 'info', string.localize('mutatedMantisInfo', nil, client.Language))
 			elseif monster == 'mutatedcrawler' then
 				spawnCharacterMonster(character, 'crawleradmin', client, spawnPosition)
+				
+				messageClient(client, 'info', string.localize('mutatedCrawlerInfo', nil, client.Language))
+			elseif monster == 'mutatedmantishatchling' then
+				spawnCharacterMonster(character, 'mantisadmin_hatchling', client, spawnPosition)
+				
+				messageClient(client, 'info', string.localize('mutatedMantisInfo', nil, client.Language))
+			elseif monster == 'mutatedcrawlerhatchling' then
+				spawnCharacterMonster(character, 'crawleradmin_hatchling', client, spawnPosition)
 				
 				messageClient(client, 'info', string.localize('mutatedCrawlerInfo', nil, client.Language))
 			elseif monster == 'husk' then

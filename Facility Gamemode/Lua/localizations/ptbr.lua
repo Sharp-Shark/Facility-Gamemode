@@ -19,16 +19,18 @@ _Se você for um militante, mate os inimigos e ajude os civis do seu time no obj
 _O seu trabalho preferido não necessariamente será o que você será, porém o código priorizará dar-lo a você. Acaso, o resto da sua lista de preferência não importa, só o 1º item..
 	
 _Faça /help no chat para uma lista de comandos.]],
-	dieMessageText = [[Você morreu. Faça /respawn para saber o tempo até o respawn e a quantia de tickets. Se mais pessoas morrerem, ele irá diminuar significativamente.
+	dieMessageText = [[Você morreu. Faça /respawn para saber o tempo até o respawn e a quantia de tickets. Faça /boo para assombrar os vivos. Se mais pessoas morrerem, ele irá diminuar significativamente.
 
 Se acredita que a sua morte foi um bug ou causado por alguém violar as regras, nos fale no discord.
 Discord: https://discord.gg/c7Qnp8S4yB]],
 
 	gamemodeInfo = 'Informação do gamemode: {text}',
 
-	commandRoundNotStarted = '\nPartida ainda não começou.',
+	commandRoundNotStarted = 'Partida ainda não começou.',
 	commandAdminOnly = 'Comando restrito a administradores!',
-	commandHelp = [[/help - gives command list.
+	commandHelp = [[/credits - veja quem contribuiu para a criação deste mod.
+/help - gives command list.
+/boo - eu sou um fantasma!
 /vote - começa uma votação.
 /admin - chama o(s) administrador(es).
 /admin <text> - envia uma mensagem ao(s) administrador(es).
@@ -62,6 +64,14 @@ Nexpharma tem {nexpharmaTickets} tickets sobrando.
 O time com mais tickets respawnará. Em caso de empate, será aleatório.]],
 	commandDeconTime = 'Descontaminação em {time}',
 	commandDeconStart = 'Descontaminação iniciada.',
+	
+	booGainedXP = '/boo: você ganhou {xp} xp.',
+	booLevelUp = '/boo: você subiu ao nível {level}.',
+	booPowerNeeded = '/boo: {power} necessário.',
+	booPowerLeft = '/boo: {power} de poder sobrando.',
+	booActionFailed = '/boo: ação de fantasma falhou.',
+	booRespawnEnabled = '/boo: respawnar abilitado.',
+	booRespawnDisabled = '/boo: respawnar desabilitado.',
 	
 	deconTimeStart = 'Descontaminação total do complexo iniciado.',
 	deconTimeTenSeconds = 'T-10 segundos até a descontaminação total do complexo.',
@@ -111,6 +121,7 @@ O time com mais tickets respawnará. Em caso de empate, será aleatório.]],
 	endTerrorist = 'A partida acabou em VITÓRIA DOS TERRORISTA - todos os outros times foram eliminados',
 	endNexpharma = 'A partida acabou em VITÓRIA DA NEXPHARMA - todos os outros times foram eliminados',
 	endMonster = 'A partida acabou em VITÓRIA DOS MONSTROS - todos os outros times foram eliminados',
+	endPlayer = 'A partida acabou em VITÓRIA DO {name} - todos os outros jogadores foram eliminados.',
 	
 	settingsReceived = 'Your settings preset is in the server submission list.',
 	settingsApplied = 'Your settings preset has been loaded in by the server.',

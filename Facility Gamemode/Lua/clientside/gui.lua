@@ -83,22 +83,25 @@ local function setupConfigMenu()
 		
 		local row = GUI.LayoutGroup(GUI.RectTransform(Vector2(1, 0.05), configList.Content.RectTransform), nil)
 		row.isHorizontal = true
-		local itemsInRow = 4
+		local itemsInRow = 3
+		if Game.IsMultiplayer then
+			itemsInRow = 4
 		
-		-- Button for applying
-		local button = GUI.Button(GUI.RectTransform(Vector2(1/itemsInRow, 0.05), row.RectTransform), "Apply this preset", GUI.Alignment.Center, "GUITextBox")
-		button.OnClicked = function ()
-			local preset = presetName
-			FG.settings = table.copy(FG.settingsPresets[preset])
-			if CLIENT and Game.IsMultiplayer then
-				print('[!] Settings preset has been sent to the server.')
-				local message = Networking.Start("loadClientPreset")
-				message.WriteString(json.serialize(FG.settings))
-				message.WriteString(preset)
-				Networking.Send(message)
-			end
+			-- Button for applying
+			local button = GUI.Button(GUI.RectTransform(Vector2(1/itemsInRow, 0.05), row.RectTransform), "Apply this preset", GUI.Alignment.Center, "GUITextBox")
+			button.OnClicked = function ()
+				local preset = presetName
+				FG.settings = table.copy(FG.settingsPresets[preset])
+				if CLIENT and Game.IsMultiplayer then
+					print('[!] Settings preset has been sent to the server.')
+					local message = Networking.Start("loadClientPreset")
+					message.WriteString(json.serialize(FG.settings))
+					message.WriteString(preset)
+					Networking.Send(message)
+				end
 			
-			menuContent.Flash(Color(150, 200, 150))
+				menuContent.Flash(Color(150, 200, 150))
+			end
 		end
 
 		-- Button for copying to clipboard
@@ -123,12 +126,14 @@ local function setupConfigMenu()
 			menuContent.Flash(Color(50, 100, 50))
 		end
 		-- Disable this button for default settings
+		--[[
 		if FG.settingsPresetsDefault[presetName] ~= nil then
 			button.CanBeFocused = false
 			button.OnClicked = function () end
 			button.TextColor = Color(140, 155, 140)
 			button.Color = Color(100, 100, 100)
 		end
+		--]]
 		
 		-- Button for deleting preset
 		local button = GUI.Button(GUI.RectTransform(Vector2(1/itemsInRow, 0.05), row.RectTransform), "Delete this preset", GUI.Alignment.Center, "GUITextBox")
@@ -153,15 +158,27 @@ local function setupConfigMenu()
 		button.Color = Color(255, 100, 100)
 		button.HoverColor = Color(255, 150, 150)
 		button.PressedColor = Color(200, 50, 50)
-		-- Disable this button for default settings
+		-- Make this button reset things in default gamemodes
 		if FG.settingsPresetsDefault[presetName] ~= nil then
-			button.CanBeFocused = false
-			button.OnClicked = function () end
+			--button.CanBeFocused = false
+			button.Text = 'Reset this preset'
+			button.OnClicked = function ()
+				local name = presetName
+				FG.settingsPresets[name] = table.copy(FG.settingsPresetsDefault[name])
+				
+				loadPreset(name)
+				
+				saveSettingsPresets()
+				
+				menuContent.Flash(Color(150, 75, 75))
+			end
+			--[[
 			button.TextColor = Color(200, 50, 50)
 			button.Color = Color(150, 100, 100)
+			--]]
 		end
 			
-		if (FG.settingsPresetsDefault[presetName] == nil) and (table.size(activeSettings) < table.size(FG.settingsDefault)) then
+		if (table.size(activeSettings) < table.size(FG.settingsDefault)) then
 			-- Spacing
 			local text = GUI.TextBlock(GUI.RectTransform(Vector2(1, 0.04), configList.Content.RectTransform), '', nil, nil, GUI.Alignment.BottomLeft)
 			text.CanBeFocused = false
@@ -203,8 +220,8 @@ local function setupConfigMenu()
 				local row = GUI.LayoutGroup(GUI.RectTransform(Vector2(1, 0.085), configList.Content.RectTransform), nil)
 				row.isHorizontal = true
 				local buttonSize = 0.13
-				-- If it's a default setting preset, only add box as display
-				if FG.settingsPresetsDefault[presetName] ~= nil then
+				-- (THIS HAS BEEN DISABLED) If it's a default setting preset, only add box as display
+				if false and FG.settingsPresetsDefault[presetName] ~= nil then
 					local input = GUI.TextBox(GUI.RectTransform(Vector2(1 - buttonSize, 0.05), row.RectTransform), settingValue, nil, nil, GUI.Alignment.CenterLeft)
 					input.CanBeFocused = false
 					input.TextColor = Color(140, 155, 140)
@@ -320,12 +337,14 @@ local function setupConfigMenu()
 				button.HoverColor = Color(255, 150, 150)
 				button.PressedColor = Color(200, 50, 50)
 				-- Disable this button for default settings
+				--[[
 				if FG.settingsPresetsDefault[presetName] ~= nil then
 					button.CanBeFocused = false
 					button.OnClicked = function () end
 					button.TextColor = Color(200, 50, 50)
 					button.Color = Color(150, 100, 100)
 				end
+				--]]
 			end
 		end
 		-- Spacing
@@ -392,8 +411,28 @@ local function setupConfigMenu()
 	local text = GUI.TextBlock(GUI.RectTransform(Vector2(1, 0.015), menuList.Content.RectTransform), '', nil, nil, GUI.Alignment.BottomLeft)
 	text.CanBeFocused = false
 	
+	-- Apply button (to be done)
+	if CLIENT and Game.IsMultiplayer then
+		local button = GUI.Button(GUI.RectTransform(Vector2(1, 0.05), menuList.Content.RectTransform), "Overwrite server config", GUI.Alignment.Center, "GUITextBox")
+		button.OnClicked = function ()
+			saveSettingsPresets()
+		
+			local message = Networking.Start("loadClientConfig")
+			message.WriteString(File.Read(FG.path .. '/config.json'))
+			Networking.Send(message)
+			
+			print('[!] Config has been sent to the server.')
+			
+			menuContent.Flash(Color(150, 200, 150))
+		end
+		
+		-- Text
+		local text = GUI.TextBlock(GUI.RectTransform(Vector2(1, 0.05), menuList.Content.RectTransform), "Uploads your config to the server to overwrite its config. Admin only and cannot be undone!", nil, nil, GUI.Alignment.Center)
+		text.CanBeFocused = false
+	end
+	
 	-- Reset button
-	local button = GUI.Button(GUI.RectTransform(Vector2(1, 0.05), menuList.Content.RectTransform), "Reset to default", GUI.Alignment.Center, "GUITextBox")
+	local button = GUI.Button(GUI.RectTransform(Vector2(1, 0.05), menuList.Content.RectTransform), "Reset all presets", GUI.Alignment.Center, "GUITextBox")
 	button.OnClicked = function ()
 		FG.settingsPresets = table.copy(FG.settingsPresetsDefault)
 		
@@ -417,7 +456,7 @@ local function setupConfigMenu()
 	button.PressedColor = Color(200, 50, 50)
 	
 	-- Text
-	local text = GUI.TextBlock(GUI.RectTransform(Vector2(1, 0.05), menuList.Content.RectTransform), 'Resets your config to the default permanently. Cannot be undone!', nil, nil, GUI.Alignment.Center)
+	local text = GUI.TextBlock(GUI.RectTransform(Vector2(1, 0.05), menuList.Content.RectTransform), 'Resets your config thus deleting all the changes you did to it. Cannot be undone!', nil, nil, GUI.Alignment.Center)
 	text.CanBeFocused = false
 	
 	-- Spacing
@@ -441,6 +480,12 @@ textBoxDeconTimer = GUI.TextBlock(GUI.RectTransform(Vector2(0.05, 0.05), frame.R
 textBoxDeconTimer.CanBeFocused = false
 textBoxDeconTimer.TextColor = Color(250, 125, 75)
 
+-- ghost info
+textBoxGhostInfo = GUI.TextBlock(GUI.RectTransform(Vector2(0, 0.05), frame.RectTransform, GUI.Anchor.BottomCenter), '', nil, nil, GUI.Alignment.BottomCenter)
+textBoxGhostInfo.CanBeFocused = false
+textBoxGhostInfo.TextColor = Color(210, 200, 250)
+textBoxGhostInfo.TextScale = 1.5
+
 -- Show button to open menu
 Hook.Patch("Barotrauma.GUI", "TogglePauseMenu", {}, function ()
     if GUI.GUI.PauseMenuOpen then
@@ -462,9 +507,11 @@ Hook.Add("think", "thinkCheck", function ()
 	if Game.RoundStarted then
 		textBoxRespawnTimer.Visible = true
 		textBoxDeconTimer.Visible = true
+		textBoxGhostInfo.Visible = true
 	else
 		textBoxRespawnTimer.Visible = false
 		textBoxDeconTimer.Visible = false
+		textBoxGhostInfo.Visible = false
 	end
 end)
 
@@ -505,6 +552,8 @@ Networking.Receive("updateGUI", function (message, client)
 		FG.decontaminationTimer = message.ReadDouble()
 		textBoxRespawnTimer.Text = respawnTimer
 		textBoxDeconTimer.Text = deconTimer
+		local ghostInfo = message.ReadString()
+		textBoxGhostInfo.Text = ghostInfo
 	end
 end)
 

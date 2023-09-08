@@ -3,51 +3,77 @@ function checkForGameEnd ()
 	if not Game.RoundStarted then return end
 	-- Add a 5 second delay before checking for end conditions just to be sure
 	Timer.Wait(function ()
-		if #Client.ClientList - table.size(FG.spectators) < FG.settings.allowEndMinPlayers then print('[!] Only ' .. (#Client.ClientList - table.size(FG.spectators)) .. ' player, will not end round.') return end
+		if not FG.settings.allowEnd then return end
+		if #Client.ClientList - table.size(FG.spectators) < FG.settings.allowEndMinPlayers then return end --print('[!] Only ' .. (#Client.ClientList - table.size(FG.spectators)) .. ' player, will not end round.') return end
 		
 		-- Make sure the game isn't already ending
 		if FG.endGame then return end
 		-- Count live players
+		local totalPlayersAlive = 0
 		local terroristPlayersAlive = 0
 		local nexpharmaPlayersAlive = 0
 		local monsterPlayersAlive = 0
 		for player in Client.ClientList do
-			if  player.Character ~= nil and not player.Character.IsDead then
-				if isCharacterMonster(player.Character) then
+			if player.Character ~= nil and not player.Character.IsDead then
+				if isCharacterMonster(player.Character) and (player.Character.SpeciesName ~= 'Humanghost') then
 					monsterPlayersAlive = monsterPlayersAlive + 1
 				elseif isCharacterTerrorist(player.Character) then
 					terroristPlayersAlive = terroristPlayersAlive + 1
 				elseif isCharacterNexpharma(player.Character) then
 					nexpharmaPlayersAlive = nexpharmaPlayersAlive + 1
 				end
+				if (player.Character.SpeciesName == 'human') and (player.Character.CharacterHealth.GetAffliction('huskinfection', true) ~= nil) then
+					monsterPlayersAlive = monsterPlayersAlive + 1
+				end
+				totalPlayersAlive = totalPlayersAlive + 1
 			end
 		end
 		-- End message
 		local messageType = 'popup'
 		if not FG.settings.allowEnd then
-			messageType = 'text-general'
+			messageType = 'ignore'
 		end
 		local endGame = false
-		if (terroristPlayersAlive + nexpharmaPlayersAlive + monsterPlayersAlive) == 0 then
-			for player in Client.ClientList do
-				messageClient(player, messageType, string.localize('endStalemate', nil, player.Language))
+		if FG.settings.endType == 'default' then
+			if totalPlayersAlive == 0 then
+				for player in Client.ClientList do
+					messageClient(player, messageType, string.localize('endStalemate', nil, player.Language))
+				end
+				endGame = true
+			elseif terroristPlayersAlive > 0 and (nexpharmaPlayersAlive + monsterPlayersAlive) == 0 then
+				for player in Client.ClientList do
+					messageClient(player, messageType, string.localize('endTerrorist', nil, player.Language))
+				end
+				endGame = true
+			elseif nexpharmaPlayersAlive > 0 and (terroristPlayersAlive + monsterPlayersAlive) == 0 then
+				for player in Client.ClientList do
+					messageClient(player, messageType, string.localize('endNexpharma', nil, player.Language))
+				end
+				endGame = true
+			elseif monsterPlayersAlive > 0 and (terroristPlayersAlive + nexpharmaPlayersAlive) == 0 then
+				for player in Client.ClientList do
+					messageClient(player, messageType, string.localize('endMonster', nil, player.Language))
+				end
+				endGame = true
 			end
-			endGame = true
-		elseif terroristPlayersAlive > 0 and (nexpharmaPlayersAlive + monsterPlayersAlive) == 0 then
-			for player in Client.ClientList do
-				messageClient(player, messageType, string.localize('endTerrorist', nil, player.Language))
+		elseif FG.settings.endType == 'battleroyale' then
+			if totalPlayersAlive == 0 then
+				for player in Client.ClientList do
+					messageClient(player, messageType, string.localize('endStalemate', nil, player.Language))
+				end
+				endGame = true
+			elseif totalPlayersAlive == 1 then
+				local lastPlayer
+				for player in Client.ClientList do
+					if player.Character ~= nil and not player.Character.IsDead then
+						lastPlayer = player
+					end
+				end
+				for player in Client.ClientList do
+					messageClient(player, messageType, string.localize('endPlayer', {name = string.upper(lastPlayer.Name)}, player.Language))
+				end
+				endGame = true
 			end
-			endGame = true
-		elseif nexpharmaPlayersAlive > 0 and (terroristPlayersAlive + monsterPlayersAlive) == 0 then
-			for player in Client.ClientList do
-				messageClient(player, messageType, string.localize('endNexpharma', nil, player.Language))
-			end
-			endGame = true
-		elseif monsterPlayersAlive > 0 and (terroristPlayersAlive + nexpharmaPlayersAlive) == 0 then
-			for player in Client.ClientList do
-				messageClient(player, messageType, string.localize('endMonster', nil, player.Language))
-			end
-			endGame = true
 		end
 		-- The Final Countdown
 		if endGame and FG.settings.allowEnd then
@@ -100,6 +126,10 @@ Hook.Add("character.death", "characterDied", function (character)
 			if (client == nil) or FG.endGame or not character.IsPlayer then return end
 			-- Do death message to deceased
 			messageClient(client, 'info', string.localize('dieMessageText', nil, client.Language))
+			-- Increase kill count
+			if character.LastAttacker ~= nil then
+				giveAfflictionCharacter(character.LastAttacker, 'killcount', 1)
+			end
 			-- Reward a team for target elimination
 			if character.LastAttacker ~= nil and character.LastAttacker.SpeciesName == 'human' then
 				-- If dead is husk and...

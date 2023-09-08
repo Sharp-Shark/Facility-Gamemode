@@ -24,9 +24,23 @@
   <!-- Bodybag -->
   <entityname.bodybag>Bodybag</entityname.bodybag>
   <entitydescription.bodybag>A plastic bag used to put dead bodies in, or to torture someone by asphyxiation.</entitydescription.bodybag>
+  <!-- Wifi Explosive -->
+  <entityname.wifiexplosive>Wifi Explosive</entityname.wifiexplosive>
+  <entitydescription.wifiexplosive>A powerful remotely triggered plastic explosive. It can be triggered by, for example, a wifi signal.</entitydescription.wifiexplosive>
+  <!-- Wifi Trigger -->
+  <entityname.handheldtrigger>Wifi Trigger</entityname.handheldtrigger>
+  <entitydescription.handheldtrigger>A device capable to send a wifi signal to a small distance away. The channel will be the same as the headset, but if there is no headset, then the channel will be set to 0.</entitydescription.handheldtrigger>
+  <!-- Officer's Radio -->
+  <entityname.backpackradio>Officer's Radio</entityname.backpackradio>
+  <entitydescription.backpackradio>A hefty backpack-mounted portable radio transceiver used by officers for long range communication with their squad.</entitydescription.backpackradio>
+  <!-- Separatist Officer Outfit -->
+  <entityname.pirateclothesofficer>Separatist Officer Outfit</entityname.pirateclothesofficer>
+  <entitydescription.pirateclothesofficer>It's exactly like a regular separatist outfit save for added light armor plating and an armband meant to distinguish the officers from the regular troopers.</entitydescription.pirateclothesofficer>
   <!-- JET Mask -->
-  <entityname.jetmask>JET Mask</entityname.jetmask>
-  <entitydescription.jetmask>Just a diving mask and a helmet welded together, a standart headgear for the Jovian Elite Troops, or JET. Just seeing one can often provoke profound fear into any Nexpharma personnel.</entitydescription.jetmask>
+  <entityname.jetmask>JET T Mask</entityname.jetmask>
+  <entitydescription.jetmask>Just a diving mask and a helmet welded together, a standard headgear for the Jovian Elite Troops, or JET. Just seeing one can often provoke profound fear into any Nexpharma personnel.</entitydescription.jetmask>
+  <entityname.jetmaskother>JET S Mask</entityname.jetmaskother>
+  <entitydescription.jetmaskother>Just a diving mask and a helmet welded together, a standard headgear for the Jovian Elite Troops, or JET. Just seeing one can often provoke profound fear into any Nexpharma personnel.</entitydescription.jetmaskother>
   <!-- NexSuit -->
   <entityname.nexsuit>NexSuit</entityname.nexsuit>
   <entitydescription.nexsuit>Nexpharma proprietary suit exclusive to their elite paramilitary group, the Mobile Emergency Rescue and Combat Squad, or MERCS. In actuality, it's just a PUCS adapted for combat.</entitydescription.nexsuit>
@@ -35,14 +49,22 @@
   <entitydescription.jetrevolver>An old but still common 12 gauge revolver.</entitydescription.jetrevolver>
   <entityname.jetshotgun>Tactical Shotgun</entityname.jetshotgun>
   <entitydescription.jetshotgun>A shotgun designed for close-quarters tactical operation.</entitydescription.jetshotgun>
+  <entityname.jetsmg>Carbine</entityname.jetsmg>
+  <entitydescription.jetsmg>An old carbine that fires pistol rounds, the same kind Nexpharma weapons do.</entitydescription.jetsmg>
+  <entityname.jetsmgcompact>Compact Carbine</entityname.jetsmgcompact>
+  <entitydescription.jetsmgcompact>A modified version of the carbine that sacrifices accuracy for portability.</entitydescription.jetsmgcompact>
   <entityname.jetrifle>Heavy Rifle</entityname.jetrifle>
   <entitydescription.jetrifle>An autoloading slow firing drum mag .30 rifle, unknow manufacturer.</entitydescription.jetrifle>
+  <entityname.jetlmg>Breaching Shotgun</entityname.jetlmg>
+  <entitydescription.jetlmg>An absurdly large automatic fire shotgun with insane fire power, although reloading is a bit cumbersome.</entitydescription.jetlmg>
   <!-- Nexpharma Guns -->
   <entityname.mercspistol>Pistol</entityname.mercspistol>
   <entitydescription.mercspistol>A nexpharma proprietary portable and compact pistol which uses .45 cal.</entitydescription.mercspistol>
   <entityname.mercssmg>PDW</entityname.mercssmg>
   <entitydescription.mercssmg>A nexpharma proprietary fast firing and low accuracy .45 cal SMG.</entitydescription.mercssmg>
-  <entityname.mercsrifle>Rifle Carbine</entityname.mercsrifle>
+  <entityname.mercssniper>Scout Rifle</entityname.mercssniper>
+  <entitydescription.mercssniper>A nexpharma proprietary portable .30 bolt-action rifle with a foldable barrel.</entitydescription.mercssniper>
+  <entityname.mercsrifle>Combat Rifle</entityname.mercsrifle>
   <entitydescription.mercsrifle>A nexpharma proprietary military carbine that uses assault rifle ammo.</entitydescription.mercsrifle>
   <!-- Terrorist ID Cards -->
   <entityname.idcardjet>JET ID Card</entityname.idcardjet>
