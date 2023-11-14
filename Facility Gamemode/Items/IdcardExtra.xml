@@ -56,13 +56,13 @@
     <Sprite texture="idcard.png" depth="0.5" sourcerect="0,0,16,16" />
     <Body width="16" height="12" density="20" />
     <IdCard slots="Card,Any" msg="ItemMsgPickUpSelect" />
-    <Fabricate suitablefabricators="printer" requiredtime="16">
+    <Fabricate suitablefabricators="printer" requiredtime="10">
       <RequiredItem identifier="plastic" />
     </Fabricate>
   </Item>
   <!-- Nexpharma ID Cards -->
-  <!-- MERCS A2W3 -->
-  <Item name="" identifier="idcardmercs" category="Equipment" Tags="smallitem,identitycard,a1,a2,w1,w2,w3,idcard" inventoryiconcolor="155,155,255,255" spritecolor="155,155,255" cargocontaineridentifier="metalcrate">
+  <!-- MERCS A3W3 (BEST) -->
+  <Item name="" identifier="idcardmercs" category="Equipment" Tags="smallitem,identitycard,a1,a2,a3,w1,w2,w3,idcard" inventoryiconcolor="155,155,255,255" spritecolor="155,155,255" cargocontaineridentifier="metalcrate">
     <PreferredContainer primary="crewcab" />
     <Price baseprice="10">
       <Price storeidentifier="merchantoutpost" minavailable="4" />
@@ -72,9 +72,9 @@
     <Sprite texture="idcard.png" depth="0.5" sourcerect="0,0,16,16" />
     <Body width="16" height="12" density="20" />
     <IdCard slots="Card,Any" msg="ItemMsgPickUpSelect" />
-    <Fabricate suitablefabricators="printer" requiredtime="16">
+    <Fabricate suitablefabricators="printer" requiredtime="10">
       <RequiredItem identifier="idcardeliteguard" />
-      <RequiredItem identifier="idcardeliteguard" />
+      <RequiredItem identifier="idcardoverseer" />
     </Fabricate>
   </Item>
   <!-- Enforcer Guard A1W1 -->
@@ -88,9 +88,9 @@
     <Sprite texture="idcard.png" depth="0.5" sourcerect="0,0,16,16" />
     <Body width="16" height="12" density="20" />
     <IdCard slots="Card,Any" msg="ItemMsgPickUpSelect" />
-    <Fabricate suitablefabricators="printer" requiredtime="16">
+    <Fabricate suitablefabricators="printer" requiredtime="10">
       <RequiredItem identifier="idcardstaff" />
-      <RequiredItem identifier="idcardstaff" />
+      <RequiredItem identifier="idcardinmate" />
     </Fabricate>
   </Item>
   <!-- Staff A1W0 -->
@@ -104,7 +104,7 @@
     <Sprite texture="idcard.png" depth="0.5" sourcerect="0,0,16,16" />
     <Body width="16" height="12" density="20" />
     <IdCard slots="Card,Any" msg="ItemMsgPickUpSelect" />
-    <Fabricate suitablefabricators="printer" requiredtime="16">
+    <Fabricate suitablefabricators="printer" requiredtime="10">
       <RequiredItem identifier="idcardinmate" />
       <RequiredItem identifier="idcardinmate" />
     </Fabricate>
@@ -121,7 +121,7 @@
     <Sprite texture="idcard.png" depth="0.5" sourcerect="0,0,16,16" />
     <Body width="16" height="12" density="20" />
     <IdCard slots="Card,Any" msg="ItemMsgPickUpSelect" />
-    <Fabricate suitablefabricators="printer" requiredtime="16">
+    <Fabricate suitablefabricators="printer" requiredtime="10">
       <RequiredItem identifier="idcardstaff" />
       <RequiredItem identifier="idcardstaff" />
     </Fabricate>
@@ -137,9 +137,9 @@
     <Sprite texture="idcard.png" depth="0.5" sourcerect="0,0,16,16" />
     <Body width="16" height="12" density="20" />
     <IdCard slots="Card,Any" msg="ItemMsgPickUpSelect" />
-    <Fabricate suitablefabricators="printer" requiredtime="16">
+    <Fabricate suitablefabricators="printer" requiredtime="10">
       <RequiredItem identifier="idcardenforcerguard" />
-      <RequiredItem identifier="idcardoverseer" />
+      <RequiredItem identifier="idcardinmate" />
     </Fabricate>
   </Item>
 </Items>

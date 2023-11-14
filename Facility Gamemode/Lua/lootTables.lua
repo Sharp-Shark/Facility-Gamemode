@@ -9,6 +9,15 @@ FG.lootTables = {
 		{'meth', 0.1, 1, 1},
 		{'antidama1', 0.3, 1, 2}
 	},
+	fg_food = {
+		{'tonicliquid', 0.6, 5, 1},
+		{'ethanol', 0.4, 4, 1},
+		{'energydrink', 0.4, 4, 1},
+		{'proteinbar', 0.6, 5, 1},
+		{'banana', 0.4, 4, 1},
+		{'creepingorange', 0.4, 4, 1},
+		{'cigar', 0.5, 2, 1},
+	},
 	fg_office1 = {
 		{'midazolam', 0.35, 1, 1},
 		{'batterycell', 0.3, 1, 1},
@@ -157,6 +166,14 @@ FG.lootTables = {
 		{'batterycell', 0.3, 3, 1},
 		{'flare', 0.2, 2, 2},
 		{'idcardoverseer', 0.4, 1, 1}
+	},
+	fg_supplycab = {
+		{'weldingfueltank', 0.75, 1, 1},
+		{'antibleeding1', 0.5, 3, 1},
+		{'wrench', 0.75, 1, 1},
+		{'smgmagazine', 0.5, 2, 1},
+		{'mercspistol', 0.25, 1, 1},
+		{'flare', 0.75, 1, 1}
 	},
 	fg_armory = {
 		{'carbonatespray', 0.6, 1, 1},

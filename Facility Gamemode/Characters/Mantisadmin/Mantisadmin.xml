@@ -2,7 +2,7 @@
 <Character speciesname="Mantisadmin" displayname="Mutant Mantis" usebosshealthbar="true" humanoid="false" caninteract="True" canspeak="True" blooddecal="blood" noise="200" visibility="100" eatingspeed="15">
   <ragdolls folder="default" />
   <animations folder="default" />
-  <health vitality="1650" StunImmunity="true" PoisonImmunity="true" doesbleed="false" bleedingreduction="0.5" burnreduction="0.5" constanthealthregeneration="0.5" healthregenerationwheneating="2.5" />
+  <health vitality="1800" StunImmunity="true" PoisonImmunity="true" doesbleed="false" bleedingreduction="0.5" burnreduction="0.5" constanthealthregeneration="0.5" healthregenerationwheneating="2.5" />
   <gibemitter particle="gib" particleamount="20" velocitymin="200" velocitymax="700" anglemin="0" anglemax="360" />
   <gibemitter particle="heavygib" particleamount="10" velocitymin="50" velocitymax="500" anglemin="0" anglemax="360" />
   <sound file="%ModDir%/Characters/Mantisadmin/attack1.ogg" state="Attack" range="500" />

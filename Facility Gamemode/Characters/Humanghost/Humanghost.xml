@@ -91,8 +91,8 @@
     <sound file="Content/Sounds/Damage/Implode.ogg" range="1500" volume="1" selectionmode="Random" />
     <Explosion range="300" force="50" flash="true" shockwave="true" sparks="true" flames="false" smoke="true" underwaterbubble="false" structuredamage="3000" itemdamage="3000" flashrange="400" flashduration="0.4">
       <Affliction identifier="stun" strength="6" />
-      <Affliction identifier="stun" strength="1" probability="0.5" />
-      <Affliction identifier="stun" strength="1" probability="0.5" />
+	  <Affliction identifier="stun" strength="1" probability="0.5" />
+	  <Affliction identifier="stun" strength="1" probability="0.5" />
       <Affliction identifier="explosiondamage" strength="40" />
       <Affliction identifier="haunted" strength="10" />
       <Affliction identifier="haunttrauma" strength="2" />

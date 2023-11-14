@@ -28,25 +28,29 @@ Hook.Add("signalReceived.fgcomponent", "fgcomponent.receive", function(signal, c
     end
 end)
 
+--[[
 Hook.Add("wifiSignalTransmitted", "wifiModifyChannel", function (wifiComponent, signal, sentFromChat)
 	local item = wifiComponent.Item
 	local character
 	if item.ParentInventory ~= nil then character = wifiComponent.Item.ParentInventory.Owner end
 	
-	if (not sentFromChat) or (item.ParentInventory == nil) or (character == nil) or (character.SpeciesName ~= 'Human') then return end
+	if (not sentFromChat) or (item.ParentInventory == nil) or (character == nil) then return end
 	
 	if isCharacterTerrorist(character) then
 		wifiComponent.Channel = 10
 	elseif isCharacterNexpharma(character) then
 		wifiComponent.Channel = 11
-	else
+	elseif isCharacterMonster(character) then
 		wifiComponent.Channel = 12
+	else
+		wifiComponent.Channel = 13
 	end
 	if SERVER then
 		local prop = item.GetComponentString('WifiComponent').SerializableProperties[Identifier("Channel")]
 		Networking.CreateEntityEvent(item, Item.ChangePropertyEventData(prop, item.GetComponentString('WifiComponent')))
 	end
 end)
+--]]
 
 Hook.Add("handheldTrigger.use", "handheldTriggerUse", function (effect, deltaTime, item, targets, worldPosition)
 	if (effect.user ~= nil) then
@@ -54,6 +58,7 @@ Hook.Add("handheldTrigger.use", "handheldTriggerUse", function (effect, deltaTim
 		if headset == nil then
 			headset = effect.user.Inventory.GetItemAt(8)
 		end
+		--[[
 		if (headset ~= nil) and (headset.GetComponentString('WifiComponent') ~= nil) then
 			item.GetComponentString('WifiComponent').Channel = 0
 			--item.GetComponentString('WifiComponent').Channel = headset.GetComponentString('WifiComponent').Channel
@@ -67,6 +72,13 @@ Hook.Add("handheldTrigger.use", "handheldTriggerUse", function (effect, deltaTim
 				local prop = item.GetComponentString('WifiComponent').SerializableProperties[Identifier("Channel")]
 				Networking.CreateEntityEvent(item, Item.ChangePropertyEventData(prop, item.GetComponentString('WifiComponent')))
 			end
+		end
+		--]]
+		-- Temporarily just always have it use radio channel 0 until I add GUI to change the radio channel
+		item.GetComponentString('WifiComponent').Channel = 0
+		if SERVER then
+			local prop = item.GetComponentString('WifiComponent').SerializableProperties[Identifier("Channel")]
+			Networking.CreateEntityEvent(item, Item.ChangePropertyEventData(prop, item.GetComponentString('WifiComponent')))
 		end
 		--print('[!] Channel is ' .. tonumber(item.GetComponentString('WifiComponent').Channel))
 		item.GetComponentString('WifiComponent').TransmitSignal(Signal('true'), false)

@@ -6,33 +6,39 @@ table.size = function (t)
 end
 
 -- Custom method for nicely printing tables
-table.print = function(t, output, long, depthN)
+table.print = function(t, output, long, depth, chars)
 	if t == nil then
 		out = 'nil'
 		if not output then print(out) end
 		return out
 	end
-
-	local depth = depthN or 0
+	
+	local chars = chars or {}
+	local quoteChar = chars['quote'] or '"'
+	local lineChar = chars['line'] or '\n'
+	local spaceChar = chars['space'] or '    '
+	local depth = depth or 0
+	local long = long or -1
+	
 	local out = '{'
-	if long then
-		out = out .. '\n'
+	if long >= 0 then
+		out = out .. lineChar
 	else
 		out = out .. ' '
 	end
 	local first = true
 	for key, value in pairs(t) do
 		if not first then
-			if long then
-				out = out .. ',\n'
+			if long >= 0 then
+				out = out .. ',' .. lineChar
 			else
 				out = out .. ', '
 			end
 		else
 			first = false
 		end
-		if long then
-			out = out .. string.rep('    ', depth + 1)
+		if long >= 0 then
+			out = out .. string.rep(spaceChar, (depth + 1) * long)
 		end
 		if type(key) == 'function' then
 			out = out .. 'FUNCTION'
@@ -53,9 +59,9 @@ table.print = function(t, output, long, depthN)
 				end
 			end
 		elseif type(key) == 'table' then
-			out = out .. table.print(key, true, long, depth + 1)
+			out = out .. table.print(key, true, long, depth + 1, chars)
 		elseif type(key) == 'string' then
-			out = out .. '"' .. key .. '"'
+			out = out .. quoteChar .. key .. quoteChar
 		else
 			out = out .. key
 		end
@@ -79,15 +85,15 @@ table.print = function(t, output, long, depthN)
 				end
 			end
 		elseif type(value) == 'table' then
-			out = out .. table.print(value, true, long, depth + 1)
+			out = out .. table.print(value, true, long, depth + 1, chars)
 		elseif type(value) == 'string' then
-			out = out .. '"' .. value .. '"'
+			out = out .. quoteChar .. value .. quoteChar
 		else
 			out = out .. value
 		end
 	end
-	if long then
-		out = out .. '\n' .. string.rep('    ', depth) .. '}'
+	if long >= 0 then
+		out = out .. lineChar .. string.rep(spaceChar, depth * long) .. '}'
 	else
 		out = out .. ' }'
 	end
@@ -130,6 +136,30 @@ string.has = function(strMain, strSub)
 		end
 	end
 	return false
+end
+
+-- Is like python's split
+string.split = function(strMain, separator)
+	local tbl = {}
+	local build = ''
+	local letter = ''
+	local match = ''
+	for letterCount = 1, #strMain do
+		letter = string.sub(strMain, letterCount, letterCount)
+		build = build .. letter
+		if string.sub(separator, #match + 1, #match + 1) == letter then
+			match = match .. letter
+		else
+			match = ''
+		end
+		if (match == separator) or (letter == separator) then
+			table.insert(tbl, string.sub(build, 1, #build - #separator))
+			build = ''
+			match = ''
+		end
+	end
+	table.insert(tbl, build)
+	return tbl
 end
 
 -- My version of string.format
@@ -707,6 +737,36 @@ function changeDescription(item, description)
 	item.Description = description
 	local prop = item.SerializableProperties[Identifier("Description")]
 	Networking.CreateEntityEvent(item, Item.ChangePropertyEventData(prop, item))
+end
+
+-- Set non-surface zone lights to a specific color
+function setNonSurfaceLights (color)
+	findLights()
+	-- Find which items are in surface
+	local items = {}
+	for item in findItemsByTag('fg_surface') do
+		rect = item.WorldRect
+		for item, lightColor in pairs(FG.lightColors) do
+			-- Item center is at its top left corner
+			if math.abs(item.WorldPosition.X - rect.X - rect.Width/2) <= rect.Width/2 and math.abs(item.WorldPosition.Y - rect.Y + rect.Height/2) <= rect.Height/2 then
+				items[item] = true
+			elseif not items[item] then
+				items[item] = false
+			end
+		end
+	end
+	
+	local color = color or Color()
+	for item, lightColor in pairs(FG.lightColors) do
+		if (not items[item]) and (item.Submarine == Submarine.MainSub) then
+			item.GetComponentString('LightComponent').lightColor = color
+			if SERVER then
+				local prop = item.GetComponentString('LightComponent').SerializableProperties[Identifier("LightColor")]
+				Networking.CreateEntityEvent(item, Item.ChangePropertyEventData(prop, item.GetComponentString('LightComponent')))
+			end
+			FG.lightColorsLatest[item] = color
+		end
+	end
 end
 
 -- Set non-surface zone lights to a specific color (with linear interpolation)

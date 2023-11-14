@@ -3,13 +3,13 @@
   <!-- Door with Card Reader -->
   <Item name="Door with Card Reader" identifier="doorwcardreader" tags="door,weldable" scale="0.5" health="150" requirebodyinsidetrigger="false" damagedbyrepairtools="true" damagedbymonsters="true" damagedbyprojectiles="true" damagedbymeleeweapons="true" damagedbyexplosions="true" ShowNameInHealthBar="false" explosiondamagemultiplier="0.1" allowrotatingineditor="false" allowedlinks="structure,item" ondamagedthreshold="10" linkable="true">
     <Sprite texture="Content/Items/Door/door.png" sourcerect="0,0,49,416" depth="0.51" origin="0.5,0.5" />
-    <DecorativeSprite texture="Content/Items/Door/door.png" sourcerect="49,0,49,416" depth="0.89" origin="0.5,0.5" />
+    <DecorativeSprite texture="Content/Items/Door/door.png" sourcerect="49,0,49,416" depth="0.89" origin="0.5,0.5"/>
     <DecorativeSprite texture="button.png" sourcerect="28,70,34,51" depth="0.75" origin="1.65,0.76" />
     <DecorativeSprite texture="button.png" sourcerect="28,70,34,51" depth="0.75" origin="-0.65,0.76" />
     <Door canbeselected="true" canbepicked="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="7.5" shadowscale="0.7,1" hasintegratedbuttons="true">
       <Upgrade gameversion="0.22.0.0" PickingTime="7.5" />
-      <RequiredItem items="crowbar" type="Equipped" optional="true" />
-      <Requireditem items="idcard" type="Picked" optional="true" />
+      <RequiredItem items="crowbar" type="Equipped" optional="true"/>
+      <Requireditem items="idcard" type="Picked" optional="true"/>
       <Sprite texture="Content/Items/Door/door.png" sourcerect="158,0,42,416" depth="0.05" origin="0.5,0.0" />
       <WeldedSprite texture="Content/Items/Door/door.png" sourcerect="203,0,65,377" depth="0.0" origin="0.5,0.5" />
       <BrokenSprite texture="Content/Items/Door/door.png" sourcerect="271,0,121,416" depth="0.509" origin="0.5,0.0" scale="true" />
@@ -28,7 +28,7 @@
       </StatusEffect>
     </Door>
     <trigger x="-60" y="-140" width="170" height="85" />
-    <AiTarget sightrange="1500.0" static="True" />
+    <AiTarget sightrange="1500.0" static="True"/>
     <Repairable selectkey="Action" header="mechanicalrepairsheader" fixDurationHighSkill="10" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
       <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
       <RequiredSkill identifier="mechanical" level="40" />
@@ -39,22 +39,65 @@
       <RequiredItem items="screwdriver" type="Equipped" />
       <input name="toggle" displayname="connection.togglestate" />
       <input name="set_state" displayname="connection.setstate" />
-      <output name="state_out" displayname="connection.stateout" fallbackdisplayname="connection.signalout" />
+      <output name="state_out" displayname="connection.stateout" fallbackdisplayname="connection.signalout"/>
+      <output name="condition_out" displayname="connection.conditionout" />
+    </ConnectionPanel>
+  </Item>
+  <!-- Windowed Door with Card Reader -->
+  <Item name="Windowed Door with Card Reader" identifier="windoweddoorwcardreader" tags="door,weldable" scale="0.5" health="150" requirebodyinsidetrigger="false" damagedbyrepairtools="true" damagedbymonsters="true" damagedbyprojectiles="true" damagedbymeleeweapons="true" damagedbyexplosions="true" ShowNameInHealthBar="false" explosiondamagemultiplier="0.1" allowrotatingineditor="false" allowedlinks="structure,item" ondamagedthreshold="10" linkable="true">
+     <Sprite texture="door.png" sourcerect="0,0,49,416" depth="0.51" origin="0.5,0.5" />
+    <DecorativeSprite texture="Content/Items/Door/door.png" sourcerect="49,0,49,416" depth="0.89" origin="0.5,0.5"/>
+    <DecorativeSprite texture="button.png" sourcerect="28,70,34,51" depth="0.75" origin="1.65,0.76" />
+    <DecorativeSprite texture="button.png" sourcerect="28,70,34,51" depth="0.75" origin="-0.65,0.76" />
+    <Door window="0,-76,50,153" canbeselected="true" canbepicked="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="7.5" shadowscale="0.7,1" hasintegratedbuttons="true">
+      <Upgrade gameversion="0.22.0.0" PickingTime="7.5" />
+      <RequiredItem items="crowbar" type="Equipped" optional="true"/>
+      <Requireditem items="idcard" type="Picked" optional="true"/>
+      <Sprite texture="door.png" sourcerect="106,0,50,416" depth="0.05" origin="0.5,0.0" />
+      <WeldedSprite texture="door.png" sourcerect="203,0,65,377" depth="0.0" origin="0.5,0.5" />
+      <BrokenSprite texture="door.png" sourcerect="392,0,120,416" depth="0.509" origin="0.5,0.0" scale="true" />
+      <sound file="Content/Items/Door/Door1.ogg" type="OnUse" range="500.0" />
+      <sound file="Content/Items/Door/Door2.ogg" type="OnUse" range="500.0" />
+      <sound file="Content/Items/Door/Door3.ogg" type="OnUse" range="500.0" />
+      <sound file="Content/Items/Door/Door4.ogg" type="OnUse" range="500.0" />
+      <sound file="Content/Items/Tools/Crowbar.ogg" type="OnPicked" range="2000.0" onlyinsamesub="true" />
+      <sound file="Content/Items/Door/Duct1.ogg" type="OnFailure" selectionmode="Random" range="300" />
+      <sound file="Content/Items/Door/Duct2.ogg" type="OnFailure" range="300" />
+      <sound file="Content/Items/Door/DoorBreak1.ogg" type="OnBroken" selectionmode="Random" range="2000" />
+      <sound file="Content/Items/Door/DoorBreak2.ogg" type="OnBroken" range="2000" />
+      <StatusEffect type="OnDamaged" target="This">
+        <sound file="Content/Items/Door/DoorBreak1.ogg" selectionmode="Random" range="800" />
+        <sound file="Content/Items/Door/DoorBreak2.ogg" range="800" />
+      </StatusEffect>
+    </Door>
+    <trigger x="-60" y="-140" width="170" height="85" />
+    <AiTarget sightrange="1500.0" static="True"/>
+    <Repairable selectkey="Action" header="mechanicalrepairsheader" fixDurationHighSkill="10" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
+      <RequiredSkill identifier="mechanical" level="40" />
+      <RequiredItem items="wrench" type="equipped" />
+    </Repairable>
+    <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <input name="toggle" displayname="connection.togglestate" />
+      <input name="set_state" displayname="connection.setstate" />
+      <output name="state_out" displayname="connection.stateout" fallbackdisplayname="connection.signalout"/>
       <output name="condition_out" displayname="connection.conditionout" />
     </ConnectionPanel>
   </Item>
   <!-- Secure Door with Card Reader -->
   <Item name="Secure Door with Card Reader" identifier="securedoorwcardreader" tags="door,weldable" scale="0.5" health="500" requirebodyinsidetrigger="false" damagedbyrepairtools="true" damagedbymonsters="true" damagedbyprojectiles="true" damagedbymeleeweapons="true" damagedbyexplosions="true" ShowNameInHealthBar="false" explosiondamagemultiplier="0.1" allowrotatingineditor="false" allowedlinks="structure,item" ondamagedthreshold="10" linkable="true">
     <Sprite texture="door.png" sourcerect="0,0,49,416" depth="0.51" origin="0.5,0.5" />
-    <DecorativeSprite texture="Content/Map/Outposts/Art/Storage.png" sourcerect="1968,1120,80,416" depth="0.9" premultiplyalpha="false" origin="0.2,0.5" />
-    <DecorativeSprite texture="SupportBeamVerticalFlip.png" sourcerect="1968,1120,80,416" depth="0.9" premultiplyalpha="false" origin="0.8,0.5" />
-    <DecorativeSprite texture="door.png" sourcerect="49,0,49,416" depth="0.89" origin="0.5,0.5" />
+	<DecorativeSprite texture="Content/Map/Outposts/Art/Storage.png" sourcerect="1968,1120,80,416" depth="0.9" premultiplyalpha="false" origin="0.2,0.5" />
+	<DecorativeSprite texture="SupportBeamVerticalFlip.png" sourcerect="1968,1120,80,416" depth="0.9" premultiplyalpha="false" origin="0.8,0.5" />
+    <DecorativeSprite texture="door.png" sourcerect="49,0,49,416" depth="0.89" origin="0.5,0.5"/>
     <DecorativeSprite texture="button.png" sourcerect="28,70,34,51" depth="0.75" origin="1.65,0.76" />
     <DecorativeSprite texture="button.png" sourcerect="28,70,34,51" depth="0.75" origin="-0.65,0.76" />
     <Door canbeselected="true" canbepicked="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="7.5" shadowscale="0.7,1" hasintegratedbuttons="true">
       <Upgrade gameversion="0.22.0.0" PickingTime="7.5" />
       <!--<RequiredItem items="crowbar" type="Equipped" optional="true"/>-->
-      <Requireditem items="idcard" type="Picked" optional="true" />
+      <Requireditem items="idcard" type="Picked" optional="true"/>
       <Sprite texture="door.png" sourcerect="158,0,42,416" depth="0.05" origin="0.5,0.0" />
       <WeldedSprite texture="door.png" sourcerect="203,0,65,377" depth="0.0" origin="0.5,0.5" />
       <BrokenSprite texture="door.png" sourcerect="271,0,121,416" depth="0.509" origin="0.5,0.0" scale="true" />
@@ -73,7 +116,7 @@
       </StatusEffect>
     </Door>
     <trigger x="-60" y="-140" width="170" height="85" />
-    <AiTarget sightrange="1500.0" static="True" />
+    <AiTarget sightrange="1500.0" static="True"/>
     <Repairable selectkey="Action" header="mechanicalrepairsheader" fixDurationHighSkill="10" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
       <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
       <RequiredSkill identifier="mechanical" level="40" />
@@ -84,7 +127,50 @@
       <RequiredItem items="screwdriver" type="Equipped" />
       <input name="toggle" displayname="connection.togglestate" />
       <input name="set_state" displayname="connection.setstate" />
-      <output name="state_out" displayname="connection.stateout" fallbackdisplayname="connection.signalout" />
+      <output name="state_out" displayname="connection.stateout" fallbackdisplayname="connection.signalout"/>
+      <output name="condition_out" displayname="connection.conditionout" />
+    </ConnectionPanel>
+  </Item>
+  <!-- Secure Door -->
+  <Item name="Custom Secure Door" identifier="securedoor" tags="door,weldable" scale="0.5" health="500" requirebodyinsidetrigger="false" damagedbyrepairtools="true" damagedbymonsters="true" damagedbyprojectiles="true" damagedbymeleeweapons="true" damagedbyexplosions="true" ShowNameInHealthBar="false" explosiondamagemultiplier="0.1" allowrotatingineditor="false" allowedlinks="structure,item" ondamagedthreshold="10" linkable="true">
+    <Sprite texture="door.png" sourcerect="0,0,49,416" depth="0.51" origin="0.5,0.5" />
+	<DecorativeSprite texture="Content/Map/Outposts/Art/Storage.png" sourcerect="1968,1120,80,416" depth="0.9" premultiplyalpha="false" origin="0.2,0.5" />
+	<DecorativeSprite texture="SupportBeamVerticalFlip.png" sourcerect="1968,1120,80,416" depth="0.9" premultiplyalpha="false" origin="0.8,0.5" />
+    <DecorativeSprite texture="door.png" sourcerect="49,0,49,416" depth="0.89" origin="0.5,0.5"/>
+    <Door canbeselected="true" canbepicked="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="7.5" shadowscale="0.7,1" hasintegratedbuttons="false">
+      <Upgrade gameversion="0.22.0.0" PickingTime="7.5" />
+      <!--<RequiredItem items="crowbar" type="Equipped" optional="true"/>-->
+      <Requireditem items="idcard" type="Picked" optional="true"/>
+      <Sprite texture="door.png" sourcerect="158,0,42,416" depth="0.05" origin="0.5,0.0" />
+      <WeldedSprite texture="door.png" sourcerect="203,0,65,377" depth="0.0" origin="0.5,0.5" />
+      <BrokenSprite texture="door.png" sourcerect="271,0,121,416" depth="0.509" origin="0.5,0.0" scale="true" />
+      <sound file="Content/Items/Door/Door1.ogg" type="OnUse" range="500.0" />
+      <sound file="Content/Items/Door/Door2.ogg" type="OnUse" range="500.0" />
+      <sound file="Content/Items/Door/Door3.ogg" type="OnUse" range="500.0" />
+      <sound file="Content/Items/Door/Door4.ogg" type="OnUse" range="500.0" />
+      <sound file="Content/Items/Tools/Crowbar.ogg" type="OnPicked" range="2000.0" onlyinsamesub="true" />
+      <sound file="Content/Items/Door/Duct1.ogg" type="OnFailure" selectionmode="Random" range="300" />
+      <sound file="Content/Items/Door/Duct2.ogg" type="OnFailure" range="300" />
+      <sound file="Content/Items/Door/DoorBreak1.ogg" type="OnBroken" selectionmode="Random" range="2000" />
+      <sound file="Content/Items/Door/DoorBreak2.ogg" type="OnBroken" range="2000" />
+      <StatusEffect type="OnDamaged" target="This">
+        <sound file="Content/Items/Door/DoorBreak1.ogg" selectionmode="Random" range="800" />
+        <sound file="Content/Items/Door/DoorBreak2.ogg" range="800" />
+      </StatusEffect>
+    </Door>
+    <trigger x="-60" y="-140" width="170" height="85" />
+    <AiTarget sightrange="1500.0" static="True"/>
+    <Repairable selectkey="Action" header="mechanicalrepairsheader" fixDurationHighSkill="10" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
+      <RequiredSkill identifier="mechanical" level="40" />
+      <RequiredItem items="wrench" type="equipped" />
+    </Repairable>
+    <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <input name="toggle" displayname="connection.togglestate" />
+      <input name="set_state" displayname="connection.setstate" />
+      <output name="state_out" displayname="connection.stateout" fallbackdisplayname="connection.signalout"/>
       <output name="condition_out" displayname="connection.conditionout" />
     </ConnectionPanel>
   </Item>

@@ -1,12 +1,14 @@
 -- All the Settings and their default values
 FG.settingsDefault = {
 	inherit = 'default',
-	hide = false,
-	info = 'the default classic PvPvE Facility Gamemode settings.',
+	hide = true,
+	info = 'all other presets inherit from this preset incase a setting value is left unspecified.',
 	author = 'Sharp-Shark',
 	ghosts = 'regular',
 	gamemode = 'default',
 	monsterSpawn = 'default',
+	lighting = 'default',
+	terrorRadius = true,
 	friendlyFire = false,
 	allowEnd = true,
 	allowEndMinPlayers = 2,
@@ -46,13 +48,20 @@ FG.settingsDropdown = {
 		'inmate',
 		'corpse'
 	},
+	lighting = {
+		'default',
+		'greenskin',
+		'emergency',
+		'clown',
+		'blackout'
+	},
 	endType = {
 		'default',
 		'battleroyale'
 	},
 	respawnType = {
 		'default',
-		'split',
+		'classic',
 		'infiniteguards',
 		'infiniteinmates'
 	}
@@ -74,6 +83,8 @@ FG.settingsDescription = {
 	ghosts = 'determines if ghosts are allowed and how powerful they are.',
 	gamemode = 'changes a critical detail about the gamemode.',
 	monsterSpawn = 'determines which spawnpoint the monster will be placed in.',
+	lighting = 'determines the lighting inside the facility - does not change surface.',
+	terrorRadius = 'toggles terror radius which lets humans know if a monster is nearby.',
 	friendlyFire = 'lets people of the same team hurt each other.',
 	allowEnd = 'whether the round can end.',
 	allowEndMinPlayers = 'minimun players for round to end. Takes priority over "allowEnd".',
@@ -96,8 +107,12 @@ FG.settingsDescription = {
 
 -- Prepackaged Settings Presets or "SubGameModes"
 FG.settingsPresetsDefault = {
-	default = FG.settingsDefault,
-	['brood'] = {
+	['default'] = FG.settingsDefault,
+	['regular'] = {
+		info = 'the default classic PvPvE Facility Gamemode settings.',
+		author = 'Sharp-Shark',
+	},
+	['babymode'] = {
 		info = 'monsters are replaced with their hatchling variants.',
 		author = 'Sharp-Shark',
 		gamemode = 'brood',
@@ -112,10 +127,10 @@ FG.settingsPresetsDefault = {
 	['jetinvasion'] = {
 		info = 'a PvP only mode where staff+guards defend agaisnt the JET.',
 		author = 'Sharp-Shark',
-		autoJobRoleSequence = 'jogsi',
+		autoJobRoleSequence = 'jsgiejo',
 		terroristTickets = 1,
 		nexpharmaTickets = 99,
-		respawnType = 'split'
+		respawnType = 'classic'
 	},
 	['prisonescape'] = {
 		info = 'a PvP only mode where the guards must kill all the escapees.',
@@ -123,7 +138,7 @@ FG.settingsPresetsDefault = {
 		autoJobRoleSequence = 'igie',
 		terroristTickets = 4,
 		nexpharmaTickets = 1,
-		respawnType = 'split'
+		respawnType = 'classic'
 	},
 	['scp:cb'] = {
 		info = 'inspired by SCP:CB, JET+inmates fight agaisnt the monsters and people only respawn as MERCS.',
@@ -140,7 +155,7 @@ FG.settingsPresetsDefault = {
 		decontaminationTimer = 60*0.2 + 15,
 		terroristTickets = 1.5,
 		nexpharmaTickets = 1.5,
-		respawnType = 'split',
+		respawnType = 'classic',
 		respawnSpeed = 999,
 		respawnAccel = 1
 	},
@@ -180,6 +195,8 @@ FG.settingsPresetsDefault = {
 		author = 'Sharp-Shark',
 		gamemode = 'greenskin',
 		monsterSpawn = 'staff',
+		lighting = 'greenskin',
+		terrorRadius = false,
 		autoJobRoleSequence = 'jxx',
 		decontaminationTimer = 60*9 + 15,
 		terroristTickets = 1,
@@ -190,6 +207,8 @@ FG.settingsPresetsDefault = {
 		author = 'Sharp-Shark',
 		gamemode = 'greenskin',
 		monsterSpawn = 'staff',
+		lighting = 'greenskin',
+		terrorRadius = false,
 		autoJobRoleSequence = 'mxx',
 		decontaminationTimer = 60*9 + 15,
 		terroristTickets = -99,
@@ -222,6 +241,28 @@ FG.settings = table.copy(FG.settingsDefault)
 -- Settings presets sent by clients
 FG.settingsPresetsReceived = {}
 
+-- Build settings table and returns it for use
+function getSettingsPreset(preset)
+	-- Get default
+	local settings = table.copy(FG.settingsDefault)
+	
+	-- Apply inheritance
+	local inherit = FG.settingsDefault.inherit
+	if preset.inherit ~= nil then inherit = preset.inherit end
+	if FG.settingsPresets[inherit] ~= nil then
+		for settingName, settingValue in pairs(FG.settingsPresets[inherit]) do
+			settings[settingName] = settingValue
+		end
+	end
+	
+	-- Apply setting
+	for key, value in pairs(preset) do
+		settings[key] = value
+	end
+	
+	return settings
+end
+
 -- Saves FG.settingsPresets to the config
 function saveSettingsPresets()
 	if not pcall(function ()
@@ -242,22 +283,7 @@ end
 
 -- Load a settings preset (singular)
 function loadSettingsPreset (preset)
-	-- Load default
-	FG.settings = table.copy(FG.settingsDefault)
-	
-	-- Apply inheritance
-	local inherit = FG.settingsDefault.inherit
-	if preset.inherit ~= nil then inherit = preset.inherit end
-	if FG.settingsPresets[inherit] ~= nil then
-		for settingName, settingValue in pairs(FG.settingsPresets[inherit]) do
-			FG.settings[settingName] = settingValue
-		end
-	end
-	
-	-- Apply setting
-	for key, value in pairs(preset) do
-		FG.settings[key] = value
-	end
+	FG.settings = getSettingsPreset(preset)
 end
 
 -- Load settings presets from config file if it exists or create one
@@ -305,5 +331,7 @@ Networking.Receive("loadClientConfig", function (message, client)
 		messageClient(client, 'text-general', string.localize('settingsApplied', nil, client.Language))
 	end
 end)
+
+if FG.settingsPresetsDefault.regular ~= nil then loadSettingsPreset(FG.settingsPresetsDefault.regular) end
 
 FG.loadedFiles['settings'] = true

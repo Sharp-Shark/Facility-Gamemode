@@ -267,6 +267,9 @@ Hook.Add("jobsAssigned", "automaticJobAssignment", function ()
 	-- Reset subclass setter for initial wave
 	FG.terroristSubclassCount = 1
 	FG.nexpharmaSubclassCount = 1
+	
+	-- Analytics
+	FG.analytics.data.initialCharacters = ''
 
 	for playerName, role in pairs(FG.playerRole) do
 		for player in Client.ClientList do
@@ -276,10 +279,14 @@ Hook.Add("jobsAssigned", "automaticJobAssignment", function ()
 					if FG.settings.gamemode == 'husk' then
 						player.AssignedJob = JobVariant(JobPrefab.Get('inmate'), 0)
 						FG.monsterPlayers[playerName] = 'husk'
+						
+						FG.analytics.data.initialCharacters = FG.analytics.data.initialCharacters .. 'husk '
 					-- Greenskin
 					elseif FG.settings.gamemode == 'greenskin' then
 						player.AssignedJob = JobVariant(JobPrefab.Get('monsterjob'), 0)
 						FG.monsterPlayers[playerName] = 'greenskin'
+						
+						FG.analytics.data.initialCharacters = FG.analytics.data.initialCharacters .. 'greenskin '
 					-- Brood
 					elseif FG.settings.gamemode == 'brood' then
 						if player.PreferredJob == 'mutatedmantisjob' then
@@ -292,6 +299,8 @@ Hook.Add("jobsAssigned", "automaticJobAssignment", function ()
 							player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), 0)
 							FG.monsterPlayers[playerName] = 'random'
 						end
+						
+						FG.analytics.data.initialCharacters = FG.analytics.data.initialCharacters .. 'brood '
 					-- Default
 					elseif FG.settings.gamemode == 'default' then
 						if player.PreferredJob == 'mutatedmantisjob' then
@@ -304,25 +313,39 @@ Hook.Add("jobsAssigned", "automaticJobAssignment", function ()
 							player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), 0)
 							FG.monsterPlayers[playerName] = 'random'
 						end
+						
+						FG.analytics.data.initialCharacters = FG.analytics.data.initialCharacters .. 'monster '
 					end
 				elseif role == 'staff' then
 					if player.PreferredJob == 'repairmen' then
 						player.AssignedJob = JobVariant(JobPrefab.Get('repairmen'), 0)
+						
+						FG.analytics.data.initialCharacters = FG.analytics.data.initialCharacters .. 'repairmen '
 					elseif player.PreferredJob == 'researcher' then
 						player.AssignedJob = JobVariant(JobPrefab.Get('researcher'), 0)
+						
+						FG.analytics.data.initialCharacters = FG.analytics.data.initialCharacters .. 'repairmen '
 					else
 						player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), 0)
+						
+						FG.analytics.data.initialCharacters = FG.analytics.data.initialCharacters .. 'staff '
 					end
 				elseif role == 'jet' then
 					player.AssignedJob = JobVariant(JobPrefab.Get('jet'), tonumber(string.sub(FG.settings.terroristSquadSequence, FG.terroristSubclassCount, FG.terroristSubclassCount)))
 					FG.terroristSubclassCount = FG.terroristSubclassCount + 1
 					if FG.terroristSubclassCount > #FG.settings.terroristSquadSequence then FG.terroristSubclassCount = 1 end
+					
+					FG.analytics.data.initialCharacters = FG.analytics.data.initialCharacters .. 'jet '
 				elseif role == 'mercs' then
 					player.AssignedJob = JobVariant(JobPrefab.Get('mercs'), tonumber(string.sub(FG.settings.nexpharmaSquadSequence, FG.nexpharmaSubclassCount, FG.nexpharmaSubclassCount)))
 					FG.nexpharmaSubclassCount = FG.nexpharmaSubclassCount + 1
 					if FG.nexpharmaSubclassCount > #FG.settings.nexpharmaSquadSequence then FG.nexpharmaSubclassCount = 1 end
+					
+					FG.analytics.data.initialCharacters = FG.analytics.data.initialCharacters .. 'mercs '
 				else
 					player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), 0)
+					
+					FG.analytics.data.initialCharacters = FG.analytics.data.initialCharacters .. roleJob[role][math.random(#roleJob[role])] .. ' '
 				end
 				break
 			end

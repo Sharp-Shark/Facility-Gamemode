@@ -40,21 +40,25 @@ function checkForGameEnd ()
 					messageClient(player, messageType, string.localize('endStalemate', nil, player.Language))
 				end
 				endGame = true
+				FG.analytics.data.winner = 'stalemate'
 			elseif terroristPlayersAlive > 0 and (nexpharmaPlayersAlive + monsterPlayersAlive) == 0 then
 				for player in Client.ClientList do
 					messageClient(player, messageType, string.localize('endTerrorist', nil, player.Language))
 				end
 				endGame = true
+				FG.analytics.data.winner = 'terrorist'
 			elseif nexpharmaPlayersAlive > 0 and (terroristPlayersAlive + monsterPlayersAlive) == 0 then
 				for player in Client.ClientList do
 					messageClient(player, messageType, string.localize('endNexpharma', nil, player.Language))
 				end
 				endGame = true
+				FG.analytics.data.winner = 'nexpharma'
 			elseif monsterPlayersAlive > 0 and (terroristPlayersAlive + nexpharmaPlayersAlive) == 0 then
 				for player in Client.ClientList do
 					messageClient(player, messageType, string.localize('endMonster', nil, player.Language))
 				end
 				endGame = true
+				FG.analytics.data.winner = 'monster'
 			end
 		elseif FG.settings.endType == 'battleroyale' then
 			if totalPlayersAlive == 0 then
@@ -62,6 +66,7 @@ function checkForGameEnd ()
 					messageClient(player, messageType, string.localize('endStalemate', nil, player.Language))
 				end
 				endGame = true
+				FG.analytics.data.winner = 'br stalemate'
 			elseif totalPlayersAlive == 1 then
 				local lastPlayer
 				for player in Client.ClientList do
@@ -73,6 +78,7 @@ function checkForGameEnd ()
 					messageClient(player, messageType, string.localize('endPlayer', {name = string.upper(lastPlayer.Name)}, player.Language))
 				end
 				endGame = true
+				FG.analytics.data.winner = 'br player ' .. lastPlayer.Name
 			end
 		end
 		-- The Final Countdown
@@ -124,6 +130,24 @@ Hook.Add("character.death", "characterDied", function (character)
 			-- This code only executes if it still is a player's character
 			local client = findClientByCharacter(character)
 			if (client == nil) or FG.endGame or not character.IsPlayer then return end
+			-- Analytics
+			if FG.analytics.valid then
+				local obituaryName
+				if character.SpeciesName == 'Human' then
+					obituaryName = tostring(character.JobIdentifier) .. tostring(character.ID)
+				else
+					obituaryName = tostring(character.SpeciesName) .. tostring(character.ID)
+				end
+				local killerName
+				if character.LastAttacker == nil then
+					killerName = 'none'
+				elseif character.LastAttacker.SpeciesName == 'Human' then
+					killerName = tostring(character.LastAttacker.JobIdentifier) .. tostring(character.LastAttacker.ID)
+				else
+					killerName = tostring(character.LastAttacker.SpeciesName) .. tostring(character.LastAttacker.ID)
+				end
+				FG.analytics.data.obituary[obituaryName] = 'TOD:' .. numberToTime(math.floor(Timer.Time - FG.analytics.data.startTime), 1) .. 'BY:' .. killerName
+			end
 			-- Do death message to deceased
 			messageClient(client, 'info', string.localize('dieMessageText', nil, client.Language))
 			-- Increase kill count
@@ -202,6 +226,24 @@ Hook.Add("character.death", "characterDied", function (character)
 					messageAllClients('text-game', {'ticketsNexpharmaTrollDown', {tickets = FG.nexpharmaTickets}})
 				end
 			end
+		end
+		-- Analytics
+		if FG.analytics.valid then
+			local obituaryName
+			if character.SpeciesName == 'Human' then
+				obituaryName = tostring(character.JobIdentifier) .. tostring(character.ID)
+			else
+				obituaryName = tostring(character.SpeciesName) .. tostring(character.ID)
+			end
+			local killerName
+			if character.LastAttacker == nil then
+				killerName = 'none'
+			elseif character.LastAttacker.SpeciesName == 'Human' then
+				killerName = tostring(character.LastAttacker.JobIdentifier) .. tostring(character.LastAttacker.ID)
+			else
+				killerName = tostring(character.LastAttacker.SpeciesName) .. tostring(character.LastAttacker.ID)
+			end
+			FG.analytics.data.obituary[obituaryName] = 'TOD:' .. numberToTime(math.floor(Timer.Time - FG.analytics.data.startTime), 1) .. 'BY:' .. killerName
 		end
 		-- Remove goblin/troll and spawn his mask on the floor
 		Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.GetItemPrefab('goblinmask'), character.WorldPosition)

@@ -62,11 +62,13 @@
   <entitydescription.mercspistol>Nex制药公司专有的便携式紧凑型.45口径手枪。</entitydescription.mercspistol>
   <entityname.mercssmg>PDW</entityname.mercssmg>
   <entitydescription.mercssmg>Nex制药公司专有的射速快但精度低的.45口径冲锋枪。</entitydescription.mercssmg>
+  <entityname.mercssniper>侦察兵步枪</entityname.mercssniper>
+  <entitydescription.mercssniper>Nex制药公司专有的便携式.30带有折叠枪管的栓动步枪。</entitydescription.mercssniper>
   <entityname.mercsrifle>战斗步枪</entityname.mercsrifle>
   <entitydescription.mercsrifle>Nex制药公司专有的军用卡宾枪，使用突击步枪弹药。</entitydescription.mercsrifle>
   <!-- Terrorist ID Cards -->
   <entityname.idcardjet>朱庇特精英部队ID卡</entityname.idcardjet>
-  <entitydescription.idcardjet>T阵营的武装成员。行政2级，武装3级。</entitydescription.idcardjet>
+  <entitydescription.idcardjet>T阵营的武装成员。行政3级，武装3级。</entitydescription.idcardjet>
   <entityname.idcardinmate>囚禁人员ID卡</entityname.idcardinmate>
   <entitydescription.idcardinmate>T阵营的文职成员，仅用于打开普通的门。</entitydescription.idcardinmate>
   <!-- Nexpharma ID Cards -->
@@ -104,7 +106,7 @@
   <jobdescription.inmate>T阵营的文职成员，与其他T阵营成员合作并逃离设施。遭受压迫、忍受考验、视为卑微的存在——兄弟们，今夜，我们要挣脱束缚！配备了一些违禁物品。</jobdescription.inmate>
   <!-- Militant Jobs -->
   <jobname.jet>朱庇特</jobname.jet>
-  <jobdescription.jet>T阵营的武装成员，消灭怪物和Nex制药公司人员，帮助囚禁人员逃离设施。朱庇特精英部队（JET），给他们点颜色瞧瞧！装备了重武器、药物和JET设备（行政2级、武装3级）。</jobdescription.jet>
+  <jobdescription.jet>T阵营的武装成员，消灭怪物和Nex制药公司人员，帮助囚禁人员逃离设施。朱庇特精英部队（JET），给他们点颜色瞧瞧！装备了重武器、药物和JET设备（行政3级、武装3级）。</jobdescription.jet>
   <jobname.mercs>救援队</jobname.mercs>
   <jobdescription.mercs>Nex制药公司的武装成员，消灭怪物和T阵营，帮助员工逃离设施。机动紧急救援作战小组（MERCS）报告！装备了重武器、药物和MERCS'ID卡（行政3级、武装3级）。</jobdescription.mercs>
   <jobname.eliteguard>精英卫队</jobname.eliteguard>

@@ -21,12 +21,12 @@
       <Affliction identifier="concussion" strength="10" probability="0.25" />
     </StatusEffect>
     <attack Context="Any" TargetType="Any" cooldown="1.5" range="75" damagerange="75" duration="0.25" targetforce="0" structuresoundtype="StructureBlunt" force="10" applyforceonlimbs="0, 3, 5" torque="0" hitdetectiontype="Distance" structuredamage="0" itemdamage="12" stun="0" onlyhumans="False" applyforcesonlyonce="False" targetimpulse="10" targetimpulseworld="0,0" targetforceworld="0,0" severlimbsprobability="0" stickchance="0" priority="0" afterattack="FollowThrough" secondarycooldown="0" targetlimbtype="None" afterattackdelay="0" reverse="False" retreat="False" cooldownrandomfactor="0.1" rootforceworldstart="0,0" rootforceworldmiddle="0,0" rootforceworldend="0,0" roottransitioneasing="Linear" fullspeedafterattack="False" levelwalldamage="0" ranged="False" avoidfriendlyfire="False" requiredangle="20" submarineimpactmultiplier="1" blink="False" penetration="1">
-      <StatusEffect type="OnFailure" target="This" disabledeltatime="true">
+	  <StatusEffect type="OnFailure" target="This" disabledeltatime="true">
         <Affliction identifier="internaldamage" strength="1000" />
-      </StatusEffect>
-      <StatusEffect type="OnUse" target="This" disabledeltatime="true">
+	  </StatusEffect>
+	  <StatusEffect type="OnUse" target="This" disabledeltatime="true">
         <Affliction identifier="internaldamage" strength="1000" />
-      </StatusEffect>
+	  </StatusEffect>
     </attack>
   </limb>
   <limb Name="RightArm (2)" ID="2" Type="RightArm" Notes="" Scale="1" Flip="True" MirrorVertically="False" MirrorHorizontally="False" Hide="False" SpriteOrientation="NaN" InheritLimbDepth="None" SteerForce="0" Radius="15" Height="50" Width="0" Density="10" IgnoreCollisions="False" AngularDamping="50" AttackPriority="1" PullPos="0,0" StepOffset="0,0" RefJoint="-1" MouthPos="0,0" ConstantTorque="0" ConstantAngle="0" AttackForceMultiplier="1" MinSeveranceDamage="1" CanBeSeveredAlive="True" SeveredFadeOutTime="60" ApplyTailAngle="False" SineFrequencyMultiplier="1" SineAmplitudeMultiplier="1" BlinkFrequency="0" BlinkDurationIn="0.2" BlinkDurationOut="0.5" BlinkHoldTime="0" BlinkRotationIn="0" BlinkRotationOut="45" BlinkForce="50" OnlyBlinkInWater="False" UseTextureOffsetForBlinking="False" BlinkTextureOffsetIn="0.5,0.5" BlinkTextureOffsetOut="0.5,0.5" BlinkTransitionIn="Linear" BlinkTransitionOut="Linear" HealthIndex="3" Friction="0.3" Restitution="0.05">

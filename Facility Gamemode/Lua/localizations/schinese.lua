@@ -7,7 +7,7 @@ FG.localizations['Simplified Chinese'] = {
 	GUIDeconStart = '净化已开始',
 	
 	serverMessageText = [[模组由 Sharp-Shark 制作！发送 /help 获取命令。
-DISCORD: https://discord.gg/c7Qnp8S4yB
+DISCORD: https://discord.gg/qxXzrVeRHD
 
 ]],
 	joinMessageText = [[_欢迎游玩由Sharp-Shark开发的 Facility Gamemode。请遵循规则。如果你愿意，加入我们的Discord。
@@ -19,16 +19,17 @@ _如果你是武装成员，消灭其他队伍并帮助你队伍中的文职成�
 _你选择的职业可能会被游戏模式的自动平衡脚本覆盖，但脚本仍旧会尝试为你分配所选职业。此外，只有是首选职业才会被脚本考虑。
 	
 _发送 /help 查看命令列表。]],
-	dieMessageText = [[如果你死了。发送 /respawn 查询重生预计时间和入场券的数量。若死去的人越多，重生速度越快。
+	dieMessageText = [[如果你死了。发送 /respawn 查询重生预计时间和入场券的数量。执行 /boo 撞鬼。若死去的人越多，重生速度越快。
 
 如果你认为你的死亡是因bug导致，或者是有人违反规则而造成的，在我们的Discord中反馈。
-Discord: https://discord.gg/c7Qnp8S4yB]],
+Discord: https://discord.gg/qxXzrVeRHD]],
 
 	gamemodeInfo = '游戏模式信息：{text}',
 
 	commandRoundNotStarted = '巡回还未开始。',
 	commandAdminOnly = '仅管理员命令！',
-	commandHelp = [[/help - 查看命令列表。
+	commandHelp = [[/credits - 查看本模组的贡献者。
+/help - 查看命令列表。
 /boo - 我是一个令人毛骨悚然的鬼魂！
 /vote - 发起一个游戏模式的投票。
 /admin - 引起管理员的注意。
@@ -64,13 +65,13 @@ Nex制药公司拥有 {nexpharmaTickets} 张入场券。
 	commandDeconTime = '在 {time} 之后净化',
 	commandDeconStart = '净化已开始',
 	
-	booGainedXP = '/boo: you have gained {xp} xp.',
-	booLevelUp = '/boo: ascended to level {level}.',
-	booPowerNeeded = '/boo: {power} needed.',
-	booPowerLeft = '/boo: {power} power left.',
-	booActionFailed = '/boo: ghost action failed.',
-	booRespawnEnabled = '/boo: respawning enabled.',
-	booRespawnDisabled = '/boo: respawning disabled.',
+	booGainedXP = '/boo: 你已获得 {xp} xp。',
+	booLevelUp = '/boo: 升级到 {level}。',
+	booPowerNeeded = '/boo: 需要 {power}。',
+	booPowerLeft = '/boo: 剩余 {power}。',
+	booActionFailed = '/boo: 鬼魂行动失败。',
+	booRespawnEnabled = '/boo: 允许重生。',
+	booRespawnDisabled = '/boo: 禁止重生。',
 	
 	deconTimeStart = '设施净化已经开始。',
 	deconTimeTenSeconds = '还剩 10 秒完成设施净化。',

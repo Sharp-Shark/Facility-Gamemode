@@ -68,7 +68,7 @@
   <entitydescription.mercsrifle>Uma carabina que dispara munição de rifle, ou um rifle com tamanho de carabina?</entitydescription.mercsrifle>
   <!-- Terrorist ID Cards -->
   <entityname.idcardjet>Cartão ID JET</entityname.idcardjet>
-  <entitydescription.idcardjet>Militante terrorista. Admin nível 2 e weapons nível 3.</entitydescription.idcardjet>
+  <entitydescription.idcardjet>Militante terrorista. Admin nível 3 e weapons nível 3.</entitydescription.idcardjet>
   <entityname.idcardinmate>Cartão ID Detento</entityname.idcardinmate>
   <entitydescription.idcardinmate>Civil terrorista. Só serve para abrir portas simples.</entitydescription.idcardinmate>
   <!-- Nexpharma ID Cards -->
@@ -106,7 +106,7 @@
   <jobdescription.inmate>Membro civil do time Terrorista, fuja do complexo e colabore com os JET. Subjulgado e tratado como lixo subumano, hoje nós escaparemos! Apenas equipados com um pouco de contrabando.</jobdescription.inmate>
   <!-- Militant Jobs -->
   <jobname.jet>JET</jobname.jet>
-  <jobdescription.jet>Membro militante do time Terrorista, mate monstros em todos aqueles associados a Nexpharma Inc, mas também ajude na fuga dos detentos. Tropas Jovianas de Elite, caralho! Armado até o dente e com um dispositivo JET (Admin Nível 2 e Weapon Nível 3).</jobdescription.jet>
+  <jobdescription.jet>Membro militante do time Terrorista, mate monstros em todos aqueles associados a Nexpharma Inc, mas também ajude na fuga dos detentos. Tropas Jovianas de Elite, caralho! Armado até o dente e com um dispositivo JET (Admin Nível 3 e Weapon Nível 3).</jobdescription.jet>
   <jobname.mercs>MERCS</jobname.mercs>
   <jobdescription.mercs>Membro militante do time Nexpharma, mate monstros e os terroristas, mas também resgate os empregados. Esquadrão Militar de Emergência, atendendo o chamado do dever! Armado até o dente e com um cartão ID MERCS (Admin Nível 3 e Weapon Nível 3).</jobdescription.mercs>
   <jobname.eliteguard>Guarda Elite</jobname.eliteguard>

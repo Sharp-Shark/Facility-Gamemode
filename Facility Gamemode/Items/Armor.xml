@@ -2,7 +2,7 @@
 <Items>
   <Override>
     <!-- Handcuffs -->
-    <!-- SpeedMultiplier of 0.85 added -->
+  	<!-- SpeedMultiplier of 0.85 added -->
     <Item name="" identifier="handcuffs" category="Equipment" cargocontaineridentifier="metalcrate" tags="smallitem,handlocker" scale="0.5" impactsoundtag="impact_metal_light" equipconfirmationtext="handcuffequipconfirmation">
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
       <PreferredContainer secondary="wreckarmcab,abandonedarmcab,outpostarmcab" amount="1" spawnprobability="0.05" />
@@ -67,25 +67,25 @@
         <sprite name="Security Vest Wearable" texture="Content/Items/Jobgear/Mechanic/safetyharness.png" limb="Torso" hidelimb="false" inheritscale="true" scale="0.65" inheritorigin="false" origin="0.5,0.5" inheritsourcerect="false" sourcerect="14,45,103,180" />
       </Wearable>
       <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="0,-50" handle1="-10,-20" handle2="10,-20" holdangle="45" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use" />
-      <ItemContainer capacity="2">
+	  <ItemContainer capacity="2">
         <Containable items="smallitem" />
       </ItemContainer>
-    </Item>
-    <!-- Bandolier -->
-    <!-- Stats equal to NexSuit (lower than JET Armor) -->
+	</Item>
+	<!-- Bandolier -->
+	<!-- Stats equal to NexSuit (lower than JET Armor) -->
     <Item name="" identifier="bandolier" category="Equipment" tags="mediumitem,clothing" scale="0.5" cargocontaineridentifier="metalcrate" allowasextracargo="true" description="" impactsoundtag="impact_soft">
-      <PreferredContainer primary="armcab" secondary="secarmcab" />
+      <PreferredContainer primary="armcab" secondary="secarmcab"/>
       <Price baseprice="250" sold="false">
         <Price storeidentifier="merchantoutpost" multiplier="1.3" minavailable="0" maxavailable="1" sold="true">
-          <Reputation faction="separatists" min="50" />
+          <Reputation faction="separatists" min="50"/>
         </Price>
         <Price storeidentifier="merchantcity" multiplier="1.2" minavailable="1" maxavailable="3" sold="true">
-          <Reputation faction="separatists" min="50" />
+          <Reputation faction="separatists" min="50"/>
         </Price>
         <Price storeidentifier="merchantresearch" />
         <Price storeidentifier="merchantmilitary" multiplier="0.9" />
         <Price storeidentifier="merchantmine" />
-      </Price>
+      </Price>   
       <Deconstruct time="30">
         <Item identifier="ballisticfiber" />
         <Item identifier="plastic" />
@@ -112,7 +112,7 @@
       </Wearable>
       <!--<Holdable slots="RightHand+LeftHand" holdpos="0,-70" handle1="0,0-30" handle2="0,-30" holdangle="0" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use" allowswappingwhenpicked="false" />-->
       <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="0,-50" handle1="-10,-20" handle2="10,-20" holdangle="45" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use" />
-      <ItemContainer capacity="6">
+	  <ItemContainer capacity="6">
         <Containable items="smallitem" />
       </ItemContainer>
     </Item>
@@ -146,14 +146,14 @@
         <sprite name="Pirate Armor Wearable" texture="Content/Map/Pirates/PirateEquip.png" limb="Torso" hidelimb="false" inherittexturescale="true" inheritorigin="true" ignorelimbscale="true" scale="0.7" inheritsourcerect="false" sourcerect="14,45,103,158" />
       </Wearable>
       <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="0,-50" handle1="-10,-20" handle2="10,-20" holdangle="45" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use" />
-      <ItemContainer capacity="2">
+	  <ItemContainer capacity="2">
         <Containable items="smallitem" />
       </ItemContainer>
-    </Item>
-    <!-- Headset -->
-    <!-- Smaller range (range is 90% smaller) -->
+	</Item>
+	<!-- Headset -->
+	<!-- Smaller range (range is 90% smaller) -->
     <Item name="" identifier="headset" scale="0.5" category="Equipment" tags="smallitem,mobileradio" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_metal_light">
-      <PreferredContainer primary="crewcab" secondary="divingcab" />
+      <PreferredContainer primary="crewcab" secondary="divingcab"/>
       <Price baseprice="105">
         <Price storeidentifier="merchantoutpost" minavailable="3" />
         <Price storeidentifier="merchantcity" multiplier="0.9" minavailable="10" />
@@ -185,10 +185,10 @@
         <sprite name="Headset Wearable" texture="Content/Items/Jobgear/headgears.png" limb="Head" depth="0.1" hidelimb="false" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.7" hideotherwearables="false" sourcerect="26,317,51,64" origin="0.5,0.6" />
       </Wearable>
     </Item>
-    <!-- Auto-Injector Headset -->
-    <!-- Smaller range (range is 90% smaller) -->
+	<!-- Auto-Injector Headset -->
+	<!-- Smaller range (range is 90% smaller) -->
     <Item name="" identifier="autoinjectorheadset" scale="0.5" category="Equipment,Medical" tags="smallitem,mobileradio" allowasextracargo="true" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_metal_light">
-      <PreferredContainer primary="medcab" />
+      <PreferredContainer primary="medcab"/>
       <Price baseprice="140" sold="false">
         <Price storeidentifier="merchantoutpost" />
         <Price storeidentifier="merchantcity" multiplier="0.9" />
@@ -400,10 +400,10 @@
   <Item name="Separatist Officer Outfit" identifier="pirateclothesofficer" category="Equipment" cargocontaineridentifier="metalcrate" tags="smallitem,clothing,separatists" scale="0.5" impactsoundtag="impact_soft">
     <Price baseprice="225" sold="false">
       <Price storeidentifier="merchantoutpost" minavailable="1" maxavailable="2" sold="true">
-        <Reputation faction="separatists" min="30" />
+        <Reputation faction="separatists" min="30"/>
       </Price>
       <Price storeidentifier="merchantcity" multiplier="1.2" minavailable="2" maxavailable="5" sold="true">
-        <Reputation faction="separatists" min="30" />
+        <Reputation faction="separatists" min="30"/>
       </Price>
       <Price storeidentifier="merchantresearch" />
       <Price storeidentifier="merchantmilitary" multiplier="1.3" />
@@ -594,15 +594,14 @@
       </ItemComponent>
     </Wearable>
     <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="0,-50" handle1="-10,-20" handle2="10,-20" holdangle="45" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" pickkey="Use" />
-    <ItemContainer capacity="0" hideitems="true" containedstateindicatorstyle="tank" containedstateindicatorslot="0">
-      <!-- autoinject="true">-->
+    <ItemContainer capacity="0" hideitems="true" containedstateindicatorstyle="tank" containedstateindicatorslot="0"><!-- autoinject="true">-->
       <Containable items="none" />
       <SlotIcon slotindex="0" texture="Content/UI/ContainerIndicators.png" sourcerect="1,93,120,29" origin="0.5,0.45" />
       <!--<SlotIcon slotindex="1" texture="Content/UI/ContainerIndicators.png" sourcerect="2,155,120,29" origin="0.5,0.5" />-->
       <SubContainer capacity="1" maxstacksize="1">
         <Containable items="oxygensource,weldingtoolfuel" />
       </SubContainer>
-      <!--
+	  <!--
       <SubContainer capacity="1" maxstacksize="1">
         <Containable items="chem,medical" />
       </SubContainer>
@@ -615,7 +614,7 @@
   <!-- Backpack Radio -->
   <!-- Covers whole map but has to be put on the backpack slot -->
   <Item name="Officer's Radio" identifier="backpackradio" scale="0.5" category="Equipment" tags="smallitem,mobileradio" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_metal_light">
-    <PreferredContainer primary="crewcab" secondary="divingcab" />
+    <PreferredContainer primary="crewcab" secondary="divingcab"/>
     <Price baseprice="105">
       <Price storeidentifier="merchantoutpost" minavailable="3" />
       <Price storeidentifier="merchantcity" multiplier="0.9" minavailable="10" />
@@ -691,7 +690,7 @@
     <PreferredContainer primary="medcab" minamount="0" maxamount="4" spawnprobability="0.75" />
     <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="1" spawnprobability="0.15" />
     <InventoryIcon texture="securitygear.png" sourcerect="50,54,32,19" depth="0.6" origin="0.5,0.5" />
-    <Sprite texture="securitygear.png" sourcerect="50,54,32,19" depth="0.6" origin="0.5,0.5" />
+    <Sprite texture="securitygear.png" sourcerect="50,54,32,19" depth="0.6" origin="0.5,0.5"/>
     <Body radius="20" width="67" density="15" />
     <Wearable slots="Any,OuterClothes" msg="ItemMsgEquipSelect" autoequipwhenfull="false">
       <sprite texture="bodybaghelmets.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidelimb="true" hideotherwearables="true" sourcerect="96,88,96,88" origin="0.5,0.5" />
@@ -712,19 +711,19 @@
       <StatusEffect type="OnWearing" target="Character" OxygenAvailable="-100.0" UseHullOxygen="false" />
       <StatusEffect type="OnWearing" target="Character" HideFace="true" ObstructVision="true" LowPassMultiplier="0.2" setvalue="true" disabledeltatime="true" />
       <!-- Slowndown in this line -->
-      <StatusEffect type="OnWearing" target="This,Character" SpeedMultiplier="0.92" setvalue="true" disabledeltatime="true">
+      <StatusEffect type="OnWearing" target="Character" SpeedMultiplier="0.92" setvalue="true" disabledeltatime="true">
         <Conditional speciesname="Humanhusk" />
-      </StatusEffect>
-      <StatusEffect type="OnWearing" target="This,Character" Stun="1" SpeedMultiplier="0.85" lockhands="true" setvalue="true" disabledeltatime="true">
+	  </StatusEffect>
+      <StatusEffect type="OnWearing" target="Character" Stun="1" SpeedMultiplier="0.85" lockhands="true" setvalue="true" disabledeltatime="true">
         <Conditional speciesname="ne Humanhusk" />
-      </StatusEffect>
+	  </StatusEffect>
       <damagemodifier afflictionidentifiers="speed" armorsector="0.0,360.0" damagemultiplier="0.92" />
-      <damagemodifier afflictiontypes="burn" armorsector="0.0,360.0" damagemultiplier="0.9" />
-      <damagemodifier afflictionidentifiers="blunttrauma" armorsector="0.0,360.0" damagemultiplier="0.7" damagesound="LimbArmor" deflectprojectiles="true" />
-      <damagemodifier afflictionidentifiers="lacerations" armorsector="0.0,360.0" damagemultiplier="0.7" damagesound="LimbArmor" deflectprojectiles="true" />
-      <damagemodifier afflictionidentifiers="gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.5" damagesound="LimbArmor" deflectprojectiles="true" />
-      <damagemodifier afflictionidentifiers="bitewounds" armorsector="0.0,360.0" damagemultiplier="0.9" damagesound="LimbArmor" deflectprojectiles="true" />
-      <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.5" damagesound="LimbArmor" deflectprojectiles="true" />
+        <damagemodifier afflictiontypes="burn" armorsector="0.0,360.0" damagemultiplier="0.9" />
+        <damagemodifier afflictionidentifiers="blunttrauma" armorsector="0.0,360.0" damagemultiplier="0.7" damagesound="LimbArmor" deflectprojectiles="true" />
+        <damagemodifier afflictionidentifiers="lacerations" armorsector="0.0,360.0" damagemultiplier="0.7" damagesound="LimbArmor" deflectprojectiles="true" />
+        <damagemodifier afflictionidentifiers="gunshotwound" armorsector="0.0,360.0" damagemultiplier="0.5" damagesound="LimbArmor" deflectprojectiles="true" />
+        <damagemodifier afflictionidentifiers="bitewounds" armorsector="0.0,360.0" damagemultiplier="0.9" damagesound="LimbArmor" deflectprojectiles="true" />
+        <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.5" damagesound="LimbArmor" deflectprojectiles="true" />
     </Wearable>
     <aitarget maxsightrange="50" />
   </Item>

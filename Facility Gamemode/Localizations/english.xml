@@ -68,7 +68,7 @@
   <entitydescription.mercsrifle>A nexpharma proprietary military carbine that uses assault rifle ammo.</entitydescription.mercsrifle>
   <!-- Terrorist ID Cards -->
   <entityname.idcardjet>JET ID Card</entityname.idcardjet>
-  <entitydescription.idcardjet>Terrorist militant. Admin tier 2 and weapons tier 3.</entitydescription.idcardjet>
+  <entitydescription.idcardjet>Terrorist militant. Admin tier 3 and weapons tier 3.</entitydescription.idcardjet>
   <entityname.idcardinmate>Inmate ID Card</entityname.idcardinmate>
   <entitydescription.idcardinmate>Terrorist civilian. Only useful for regular doors.</entitydescription.idcardinmate>
   <!-- Nexpharma ID Cards -->
@@ -106,7 +106,7 @@
   <jobdescription.inmate>Civilian Member of the Terrorist team, escape the facility and collaborate with the Terrorists. Subjucated, tested on and treated like scum - tonight we escape brothers! Equipped with some contraband.</jobdescription.inmate>
   <!-- Militant Jobs -->
   <jobname.jet>JET</jobname.jet>
-  <jobdescription.jet>Militant Member of the Terrorist team, kill monsters and nexpharma personnel, but help inmates escape. Jovian Elite Troops, give 'em hell! Equipped with heavy weaponry, medicine and a JET device (Admin Tier 2 and Weapon Tier 3).</jobdescription.jet>
+  <jobdescription.jet>Militant Member of the Terrorist team, kill monsters and nexpharma personnel, but help inmates escape. Jovian Elite Troops, give 'em hell! Equipped with heavy weaponry, medicine and a JET device (Admin Tier 3 and Weapon Tier 3).</jobdescription.jet>
   <jobname.mercs>MERCS</jobname.mercs>
   <jobdescription.mercs>Militant Member of the Nexpharma team, kill monsters and terrorists, but help staff escape. Mobile Emergency Rescue and Combat Squad reporting for duty! Equipped with heavy weaponry, medicine and a MERCS keycard (Admin Tier 3 and Weapon Tier 3).</jobdescription.mercs>
   <jobname.eliteguard>Elite Guard</jobname.eliteguard>

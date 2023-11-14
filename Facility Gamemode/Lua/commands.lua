@@ -166,15 +166,17 @@ Hook.Add("chatMessage", "listgamemodes", function (message, client)
 	if not Game.RoundStarted then text = text .. '\n' end
 	
 	for presetName, presetSettings in pairs(FG.settingsPresets) do
-		local author = '[UNKNOWN]'
-		if presetSettings.author ~= nil then
-			author = presetSettings.author
+		if not presetSettings.hide then
+			local author = '[UNKNOWN]'
+			if presetSettings.author ~= nil then
+				author = presetSettings.author
+			end
+			local info = 'No information given.'
+			if presetSettings.info ~= nil then
+				info = presetSettings.info
+			end
+			text = text .. '"' .. presetName .. '"' .. ' by ' .. author .. ' - ' .. info ..'\n\n'
 		end
-		local info = 'No information given.'
-		if presetSettings.info ~= nil then
-			info = presetSettings.info
-		end
-		text = text .. '"' .. presetName .. '"' .. ' by ' .. author .. ' - ' .. info ..'\n\n'
 	end
 	messageClient(client, 'text-command', string.sub(text, 1, #text - 2))
 
@@ -189,13 +191,13 @@ Hook.Add("chatMessage", "viewgamemode", function (message, client)
 	if not Game.RoundStarted then text = text .. '\n' end
 	
 	if message == '/gamemode' then
-		text = text .. table.print(FG.settings, true, true)
+		text = text .. table.print(FG.settings, nil, 1)
 		messageClient(client, 'text-command', text)
 	elseif not FG.settingsPresets[string.sub(message, 11, #message)] then
 		text = text .. 'there is no gamemode named ' .. string.sub(message, 11, #message) .. '. Do /gamemodes for a list of gamemodes.'
 		messageClient(client, 'text-command', text)
 	else
-		text = text .. table.print(FG.settingsPresets[string.sub(message, 11, #message)], true, true)
+		text = text .. table.print(FG.settingsPresets[string.sub(message, 11, #message)], nil, 1)
 		messageClient(client, 'text-command', text)
 	end
 
@@ -565,10 +567,19 @@ Hook.Add("chatMessage", "democracyInterface", function (message, client)
 	return true
 end)
 
+--[[
+THE "/CFG" COMMAND IS DEPRECATED, THIS CODE WILL *NOT* BE UPDATED ANY FURTHER AND MAY IN A FUTURE RELEASE OF THIS MOD BE DELETED. USE THE CLIENTSIDE CONFIG EDITOR INSTEAD!
+--]]
+FG['allow cfg command'] = false
 -- Settings interface (ADMIN ONLY)
 Hook.Add("chatMessage", "settingsInterface", function (message, client)
     if string.sub(message, 1, 4) ~= '/cfg' then return end
 	if not client.HasPermission(ClientPermissions.ConsoleCommands) then messageClient(client, 'text-warning', string.localize('commandAdminOnly', nil, client.Language)) return true end
+	
+	if not FG['allow cfg command'] then
+		messageClient(client, 'text-warning', 'The "/cfg" command is deprecated, use the clientside Config Editor instead! If you want to use it regardless, do "' .. "lua FG['allow cfg command'] = true" .. '" in the debug console (F3).')
+		return true
+	end
 	
 	local text = ''
 	if not Game.RoundStarted then text = text .. '\n' end
@@ -634,7 +645,10 @@ Hook.Add("chatMessage", "settingsInterface", function (message, client)
 	-- Sets the value of a key
 	elseif words[1] == 'set' then
 		joinAllWordsAfterIndex(3, 1)
-		if FG.settings[words[2]] ~= nil then
+		if words[2] == 'default' then
+			text = text .. 'Error with user input!'
+			messageClient(client, 'text-warning', text)
+		elseif FG.settings[words[2]] ~= nil then
 			if type(FG.settingsDefault[words[2]]) == 'boolean' then
 				if (words[3] == 'true') and not FG.settings[words[2]] then
 					FG.settings[words[2]] = true

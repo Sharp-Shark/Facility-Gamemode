@@ -68,7 +68,7 @@
   <entitydescription.mercsrifle>Боевой карабин собственной разработки компании Nexpharma, использующий патроны 6.8 калибра для штурмовых винтовок.</entitydescription.mercsrifle>
   <!-- Terrorist ID Cards -->
   <entityname.idcardjet>Удостоверение личности ЭВД</entityname.idcardjet>
-  <entitydescription.idcardjet>Террорист-боец. Обычный доступ 2-го уровня и Оружейный доступ 3-го уровня.</entitydescription.idcardjet>
+  <entitydescription.idcardjet>Террорист-боец. Обычный доступ 3-го уровня и Оружейный доступ 3-го уровня.</entitydescription.idcardjet>
   <entityname.idcardinmate>Удостоверение личности заключенного</entityname.idcardinmate>
   <entitydescription.idcardinmate>Удостоверение личности гражданского террористов. Полезно только для открытия обычных дверей.</entitydescription.idcardinmate>
   <!-- Nexpharma ID Cards -->
@@ -106,7 +106,7 @@
   <jobdescription.inmate>Гражданское лицо команды террористов, пытается сбежать с объекта и сотрудничает с террористами. Подверглись пыткам, испытаниям и обращению как с отбросами - сегодня мы бежим, братья! Оснащен некоторым контрабандным снаряжением.</jobdescription.inmate>
   <!-- Militant Jobs -->
   <jobname.jet>ЭВД</jobname.jet>
-  <jobdescription.jet>Боец, член команды террористов, убивает монстров и персонал Nexpharma, но помогает заключенным сбежать. Элитные Войска Джовиана, устройте для них ад! Оснащены тяжелым оружием, медикаментами и устройством ЭВД ("Обычный доступ 2 и Оружейный доступ 3").</jobdescription.jet>
+  <jobdescription.jet>Боец, член команды террористов, убивает монстров и персонал Nexpharma, но помогает заключенным сбежать. Элитные Войска Джовиана, устройте для них ад! Оснащены тяжелым оружием, медикаментами и устройством ЭВД ("Обычный доступ 3 и Оружейный доступ 3").</jobdescription.jet>
   <jobname.mercs>МАСБО</jobname.mercs>
   <jobdescription.mercs>Боец команды Nexpharma, убивает монстров и террористов, а сотрудникам помогает спастись. Мобильный Аварийно-Спасательный и Боевой Отряд выходит на дежурство! Оснащен тяжелым оружием, медикаментами и ключ-картой МАСБО ("Обычный доступ 3 и Оружейный доступ 3").</jobdescription.mercs>
   <jobname.eliteguard>Элитный охранник</jobname.eliteguard>

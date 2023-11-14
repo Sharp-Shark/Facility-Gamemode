@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Facility Gamemode" modversion="1.17.26" corepackage="False" steamworkshopid="2915017487" gameversion="1.0.21.0">
+<contentpackage name="Facility Gamemode" modversion="1.18.13" corepackage="False" steamworkshopid="2915017487" gameversion="1.1.19.3">
   <Text file="%ModDir%/Localizations/english.xml" />
   <Text file="%ModDir%/Localizations/ptbr.xml" />
   <Text file="%ModDir%/Localizations/russian.xml" />
@@ -42,11 +42,11 @@
   <ItemAssembly file="%ModDir%/Assemblies/FG Trash.xml" />
   <ItemAssembly file="%ModDir%/Assemblies/FG Weaponry.xml" />
   <Submarine file="%ModDir%/Submarines/FG Respawn.sub" />
+  <Submarine file="%ModDir%/Submarines/FG Jetpack.sub" />
   <Submarine file="%ModDir%/Submarines/FG Monorail128.sub" />
   <Submarine file="%ModDir%/Submarines/FG Monorail256.sub" />
   <Submarine file="%ModDir%/Submarines/FG Monorail512.sub" />
   <Submarine file="%ModDir%/Submarines/FG Monorail384.sub" />
-  <Submarine file="%ModDir%/Submarines/FG Jetpack.sub" />
   <Submarine file="%ModDir%/Submarines/FG Facility.sub" />
-  <Submarine file="%ModDir%/Submarines/FG Docking.sub" />
+  <Submarine file="%ModDir%/Submarines/FG Apteekki.sub" />
 </contentpackage>

@@ -98,13 +98,13 @@
   <!-- Wifi Explosive -->
   <!-- It's like Call of Duty C4 (wifi explosion activation is done via lua) -->
   <Item name="Wifi Explosive" identifier="wifiexplosive" description="" maxstacksize="8" category="Equipment,Weapon" Tags="smallitem,detonator,explosive,demolitionsexpert" Scale="0.25" cargocontaineridentifier="explosivecrate" impactsoundtag="impact_metal_light" isshootable="true">
-    <Upgrade gameversion="0.9.3.0" scale="0.5" />
-    <PreferredContainer primary="secarmcab" amount="1" spawnprobability="0.5" notcampaign="true" />
-    <PreferredContainer secondary="wreckarmcab,abandonedarmcab" amount="1" spawnprobability="0.05" />
-    <PreferredContainer secondary="armcab" />
+    <Upgrade gameversion="0.9.3.0" scale="0.5"/>
+    <PreferredContainer primary="secarmcab" amount="1" spawnprobability="0.5" notcampaign="true"/>
+    <PreferredContainer secondary="wreckarmcab,abandonedarmcab" amount="1" spawnprobability="0.05"/>
+    <PreferredContainer secondary="armcab"/>
     <Price baseprice="100">
       <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.4" />
-      <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="1" sold="false" />
+      <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="1" sold="false"/>
       <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
       <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="2" />
       <Price storeidentifier="merchantmine" sold="false" />
@@ -112,7 +112,7 @@
       <Price storeidentifier="merchantengineering" multiplier="1.2" minavailable="1" />
     </Price>
     <Sprite texture="explosives.png" depth="0.55" sourcerect="132,0,132,108" origin="0.5,0.5" />
-    <!--<LightComponent range="25.0" lightcolor="255,55,55,100" powerconsumption="0" IsOn="true" castshadows="false" alphablend="false" pulsefrequency="0.7" pulseamount="1.0" allowingameediting="false" />-->
+	<!--<LightComponent range="25.0" lightcolor="255,55,55,100" powerconsumption="0" IsOn="true" castshadows="false" alphablend="false" pulsefrequency="0.7" pulseamount="1.0" allowingameediting="false" />-->
     <Body width="60" height="40" density="20" />
     <Holdable selectkey="Action" pickkey="Use" characterusable="false" slots="Any,RightHand,LeftHand" attachable="true" aimable="true" canbecombined="true" removeoncombined="true" aimpos="35,-10" msg="ItemMsgDetachWrench">
       <StatusEffect type="OnBroken" target="This">
@@ -121,8 +121,8 @@
         <sound file="Content/Items/Weapons/ExplosionMedium3.ogg" range="8000" />
         <Explosion range="250.0" ballastfloradamage="400" structuredamage="600" itemdamage="1200" force="10" severlimbsprobability="2" decal="explosion" decalsize="0.75" penetration="0.5">
           <Affliction identifier="explosiondamage" strength="120" />
-          <Affliction identifier="burn" strength="15" probability="0.2" dividebylimbcount="false" />
-          <Affliction identifier="bleeding" strength="20" probability="0.05" dividebylimbcount="false" />
+          <Affliction identifier="burn" strength="15" probability="0.2" dividebylimbcount="false"/>
+          <Affliction identifier="bleeding" strength="20" probability="0.05" dividebylimbcount="false"/>
           <Affliction identifier="stun" strength="10" />
         </Explosion>
         <Remove />
@@ -137,17 +137,18 @@
   <!-- Handheld item that when used sends a wifi signal -->
   <Item name="Wifi Trigger" identifier="handheldtrigger" category="Equipment" Tags="smallitem,tool,simpletool,mechanicalrepairtool,wrenchitem,mountableweapon" cargocontaineridentifier="metalcrate" Scale="0.35" impactsoundtag="impact_metal_light" isshootable="true" addedrepairspeedmultiplier="0.6">
     <Sprite texture="explosives.png" sourcerect="56,0,76,96" origin="0.5,0.5" />
-    <Holdable slots="Any,RightHand,LeftHand" aimpos="35,-10" handle1="-25,-20" aimable="true" displaycontainedstatus="true"></Holdable>
-    <WifiComponent drawhudwhenequipped="true" range="1500.0" canbeselected="false" MinChatMessageInterval="1.0" DiscardDuplicateChatMessages="true" characterusable="true" allowuioverlap="true">
+    <Holdable slots="Any,RightHand,LeftHand" aimpos="35,-10" handle1="-25,-20" aimable="true" displaycontainedstatus="true">
+    </Holdable>
+    <WifiComponent drawhudwhenequipped="true" range="1500.0" canbeselected="false" MinChatMessageInterval="1.0" DiscardDuplicateChatMessages="true" characterusable="true" allowuioverlap="true" >
       <StatusEffect type="OnUse" targettype="This,Character" Stackable="false" duration="0.1">
-        <LuaHook name="handheldTrigger.use" />
+		<LuaHook name="handheldTrigger.use" />
       </StatusEffect>
-    </WifiComponent>
+	</WifiComponent>
     <Body width="28" height="26" density="15" />
   </Item>
   <Override>
     <!-- Detonator -->
-    <!-- Set tack size to 8 -->
+	<!-- Set tack size to 8 -->
     <!--
     <Item name="" identifier="detonator" description="" category="Equipment,Weapon" Tags="smallitem,detonator" maxstacksize="8" Scale="0.5" cargocontaineridentifier="explosivecrate" impactsoundtag="impact_metal_light" isshootable="true">
       <Upgrade gameversion="0.9.3.0" scale="0.5"/>
@@ -185,7 +186,7 @@
     </Item>
 	-->
     <!-- Stun Baton -->
-    <!-- More stun, faster attack speed and more damage -->
+	<!-- More stun, faster attack speed and more damage -->
     <Item name="" identifier="stunbaton" category="Weapon" Tags="smallitem,weapon,stunner,gunsmith,mountableweapon" Scale="0.5" cargocontaineridentifier="metalcrate" impactsoundtag="impact_metal_light" RequireAimToUse="True">
       <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.5" />
       <PreferredContainer secondary="wreckarmcab,abandonedarmcab" amount="1" spawnprobability="0.1" />
@@ -315,23 +316,23 @@
       <aitarget sightrange="1000" soundrange="1000" fadeouttime="1" />
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Item>
-    <!-- Welding Tool -->
-    <!-- Faster door welding (3 times faster) -->
+	<!-- Welding Tool -->
+	<!-- Faster door welding (3 times faster) -->
     <Item name="" identifier="weldingtool" category="Equipment" Tags="smallitem,weldingequipment,tool,mountableweapon" cargocontaineridentifier="metalcrate" description="" Scale="0.5" impactsoundtag="impact_metal_light">
-      <PreferredContainer primary="engcab" amount="1" spawnprobability="1" notcampaign="true" />
-      <PreferredContainer secondary="supplycab" amount="1" spawnprobability="0.2" notcampaign="true" />
-      <PreferredContainer primary="outpostsupplycab" amount="1" spawnprobability="0.5" />
-      <PreferredContainer primary="outpostcrewcabinet" amount="1" spawnprobability="0.1" />
-      <PreferredContainer primary="wrecksupplycab,beaconsupplycab" amount="1" spawnprobability="0.05" />
-      <PreferredContainer primary="wreckstoragecab,abandonedstoragecab" amount="1" spawnprobability="0.05" />
-      <PreferredContainer primary="wreckengcab,abandonedengcab,outpostengcab,beaconengcab" amount="1" spawnprobability="0.1" />
+      <PreferredContainer primary="engcab" amount="1" spawnprobability="1" notcampaign="true"/>
+      <PreferredContainer secondary="supplycab" amount="1" spawnprobability="0.2" notcampaign="true"/>
+      <PreferredContainer primary="outpostsupplycab" amount="1" spawnprobability="0.5"/>
+      <PreferredContainer primary="outpostcrewcabinet" amount="1" spawnprobability="0.1"/>
+      <PreferredContainer primary="wrecksupplycab,beaconsupplycab" amount="1" spawnprobability="0.05"/>
+      <PreferredContainer primary="wreckstoragecab,abandonedstoragecab" amount="1" spawnprobability="0.05"/>
+      <PreferredContainer primary="wreckengcab,abandonedengcab,outpostengcab,beaconengcab" amount="1" spawnprobability="0.1"/>
       <Price baseprice="150">
         <Price storeidentifier="merchantoutpost" minavailable="3" />
         <Price storeidentifier="merchantcity" minavailable="2" />
         <Price storeidentifier="merchantresearch" multiplier="1.25" minavailable="2" />
         <Price storeidentifier="merchantmilitary" multiplier="1.25" minavailable="2" />
         <Price storeidentifier="merchantmine" multiplier="0.9" minavailable="10" />
-        <Price storeidentifier="merchantengineering" minavailable="5" multiplier="0.9" />
+        <Price storeidentifier="merchantengineering" minavailable="5" multiplier="0.9"/>
       </Price>
       <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="64,64,64,64" origin="0.5,0.5" />
       <Sprite texture="Content/Items/Tools/tools.png" sourcerect="0,3,152,88" depth="0.55" origin="0.5,0.5" />
@@ -353,7 +354,7 @@
         <!-- the item must contain a welding fuel tank for it to work -->
         <RequiredItems items="weldingtoolfuel,oxygensource" type="Contained" msg="ItemMsgWeldingFuelRequired" />
         <RequiredSkill identifier="mechanical" level="50" />
-        <ParticleEmitter particle="weld" particlespersecond="50" copyentityangle="true" />
+        <ParticleEmitter particle="weld" particlespersecond="50" copyentityangle="true"/>
         <ParticleEmitterHitStructure particle="weldspark" particlespersecond="200" anglemin="-40" anglemax="40" velocitymin="200" velocitymax="800" />
         <ParticleEmitterHitStructure particle="GlowDot" particlespersecond="60" emitinterval="0.7" particleamount="10" scalemin="0.9" scalemax="1.0" anglemin="0" anglemax="360" velocitymin="10" velocitymax="50" />
         <ParticleEmitterHitStructure particle="MistSmoke" particlespersecond="20" anglemin="-10" anglemax="10" velocitymin="0" velocitymax="50" />
@@ -368,7 +369,7 @@
         <StatusEffect type="OnSuccess" targettype="UseTarget" targets="weldable" Stuck="15.0" />
         <!--<StatusEffect type="OnSuccess" targettype="UseTarget" targets="weldable" Condition="5.0" />-->
         <StatusEffect type="OnSuccess" targettype="UseTarget" targets="item" Condition="-3.0">
-          <Conditional HasTag="neq weldable" />
+          <Conditional HasTag="neq weldable"/>
         </StatusEffect>
         <!-- do burn damage to characters -->
         <StatusEffect type="OnSuccess" targettype="Limb">
@@ -378,7 +379,7 @@
           <sound file="Content/Items/Weapons/ExplosionSmall1.ogg" range="2000" />
           <sound file="Content/Items/Weapons/ExplosionSmall2.ogg" range="2000" />
           <sound file="Content/Items/Weapons/ExplosionSmall3.ogg" range="2000" />
-          <Explosion range="150.0" force="3" applyfireeffects="false">
+          <Explosion range="150.0" force="3" applyfireeffects="false" >
             <Affliction identifier="burn" strength="25" />
             <Affliction identifier="stun" strength="5" />
           </Explosion>
@@ -387,7 +388,7 @@
           <sound file="Content/Items/Weapons/ExplosionSmall1.ogg" range="2000" />
           <sound file="Content/Items/Weapons/ExplosionSmall2.ogg" range="2000" />
           <sound file="Content/Items/Weapons/ExplosionSmall3.ogg" range="2000" />
-          <Explosion range="150.0" force="6" applyfireeffects="false">
+          <Explosion range="150.0" force="6" applyfireeffects="false" >
             <Affliction identifier="burn" strength="50" />
             <Affliction identifier="stun" strength="10" />
           </Explosion>
@@ -406,7 +407,7 @@
       </ItemContainer>
       <aitarget sightrange="2000" soundrange="500" fadeouttime="3" />
       <Quality>
-        <QualityStat stattype="RepairToolStructureRepairMultiplier" value="0.1" />
+        <QualityStat stattype="RepairToolStructureRepairMultiplier" value="0.1"/>
       </Quality>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
       <Upgrade gameversion="0.14.0.0">
@@ -415,7 +416,7 @@
         </RepairTool>
       </Upgrade>
       <Upgrade gameversion="0.15.4.0">
-        <ItemContainer itempos="8,-35" />
+        <ItemContainer itempos="8,-35"/>
       </Upgrade>
       <SkillRequirementHint identifier="mechanical" level="50" />
     </Item>
@@ -493,7 +494,7 @@
     <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
       <sprite name="JET LMG Worn" texture="jetlmg.png" canbehiddenbyotherwearables="false" rotation="90" inheritlimbdepth="false" depth="0.6" sourcerect="0,0,224,60" limb="Torso" ignorelimbscale="true" scale="0.58" origin="0.45,0.85" />
     </Wearable>
-    <RangedWeapon barrelpos="75,7" weapondamagemodifier="1.5" penetration="0.0" spread="1" unskilledspread="2" combatPriority="80" reload="0.6" holdtrigger="true" drawhudwhenequipped="true" crosshairscale="0.2">
+    <RangedWeapon barrelpos="75,7" weapondamagemodifier="1.35" penetration="0.35" spread="1" unskilledspread="2" combatPriority="80" reload="0.6" holdtrigger="true" drawhudwhenequipped="true" crosshairscale="0.2">
       <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
       <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
       <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
@@ -550,7 +551,7 @@
     <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
       <sprite name="JET Rifle Worn" texture="jetrifle.png" canbehiddenbyotherwearables="false" rotation="90" inheritlimbdepth="false" depth="0.6" sourcerect="0,0,236,64" limb="Torso" ignorelimbscale="true" scale="0.58" origin="0.45,0.73" />
     </Wearable>
-    <RangedWeapon barrelpos="95,25" weapondamagemodifier="1.4" penetration="0.0" spread="1" unskilledspread="2" combatPriority="80" reload="0.8" holdtrigger="true" drawhudwhenequipped="true" crosshairscale="0.2">
+    <RangedWeapon barrelpos="95,25" weapondamagemodifier="1.4" penetration="0.35" spread="1" unskilledspread="2" combatPriority="80" reload="0.7" holdtrigger="true" drawhudwhenequipped="true" crosshairscale="0.2">
       <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
       <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
       <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
@@ -736,7 +737,7 @@
     <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
       <sprite name="JET Shotgun Worn" texture="jetshotgun.png" canbehiddenbyotherwearables="false" rotation="90" inheritlimbdepth="false" depth="0.6" sourcerect="0,0,216,60" limb="Torso" ignorelimbscale="true" scale="0.58" origin="0.45,0.85" />
     </Wearable>
-    <RangedWeapon barrelpos="70,12" weapondamagemodifier="1.35" penetration="0.35" spread="0.1" unskilledspread="1" combatPriority="80" reload="0.85" drawhudwhenequipped="true" crosshairscale="0.2">
+	<RangedWeapon barrelpos="70,12" weapondamagemodifier="1.35" penetration="0.35" spread="0.1" unskilledspread="1" combatPriority="80" reload="0.85" drawhudwhenequipped="true" crosshairscale="0.2">
       <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
       <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
       <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
@@ -851,7 +852,7 @@
     <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
       <sprite name="MERCS Rifle Worn" texture="mercsrifle.png" canbehiddenbyotherwearables="false" rotation="90" inheritlimbdepth="false" depth="0.6" sourcerect="0,0,224,80" limb="Torso" ignorelimbscale="true" scale="0.52" origin="0.45,0.85" />
     </Wearable>
-    <RangedWeapon barrelpos="68,8" weapondamagemodifier="1.1" penetration="0.0" spread="3" unskilledspread="12" combatPriority="80" reload="0.35" holdtrigger="true" drawhudwhenequipped="true" crosshairscale="0.2">
+    <RangedWeapon barrelpos="68,8" weapondamagemodifier="1.1" penetration="0.35" spread="3" unskilledspread="12" combatPriority="80" reload="0.35" holdtrigger="true" drawhudwhenequipped="true" crosshairscale="0.2">
       <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
       <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
       <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
@@ -906,7 +907,7 @@
       <Item identifier="physicorium" amount="2" />
       <Item identifier="titaniumaluminiumalloy" />
     </Deconstruct>
-    <InventoryIcon texture="mercssniperfolded.png" sourcerect="0,0,124,44" depth="0.55" origin="0.5,0.5" />
+	<InventoryIcon texture="mercssniperfolded.png" sourcerect="0,0,124,44" depth="0.55" origin="0.5,0.5" />
     <Sprite texture="mercssniper.png" sourcerect="20,0,216,44" depth="0.55" origin="0.5,0.5" />
     <Body width="150" height="40" density="25" />
     <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="45,-20" aimpos="60,-5" handle1="-35,-10" handle2="45,-5" holdangle="-30" msg="ItemMsgPickUpSelect" />
@@ -965,7 +966,7 @@
       <Item identifier="plastic" />
       <Item identifier="titaniumaluminiumalloy" />
     </Deconstruct>
-    <InventoryIcon texture="mercssmgfolded.png" sourcerect="56,0,116,64" depth="0.55" origin="0.5,0.5" />
+	<InventoryIcon texture="mercssmgfolded.png" sourcerect="56,0,116,64" depth="0.55" origin="0.5,0.5" />
     <Sprite texture="mercssmg.png" sourcerect="0,0,172,64" depth="0.55" origin="0.5,0.5" />
     <Body width="140" height="60" density="25" />
     <Holdable slots="Any,RightHand+LeftHand" controlpose="true" holdpos="50,-15" aimpos="60,-5" handle1="-5,-15" handle2="5,0" holdangle="-35" msg="ItemMsgPickUpSelect" />
@@ -1094,7 +1095,7 @@
       <LightComponent LightColor="0.5,0.5,0.5,1.0" range="1000" IsOn="true" flicker="0.8" flickerspeed="1.0" pulsefrequency="0.1" pulseamount="0.5">
         <LightTexture texture="Content/Lights/lightcone.png" origin="0.005, 0.485" size="1.0,1.0" />
       </LightComponent>
-    </Holdable>
+	</Holdable>
     <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
       <sprite name="Carbonate Spray Worn" texture="tools.png" canbehiddenbyotherwearables="false" rotation="0" inheritlimbdepth="false" depth="0.6" sourcerect="225,105,64,128" limb="Torso" ignorelimbscale="true" scale="0.65" origin="1.0,0.5" />
     </Wearable>
@@ -1130,7 +1131,7 @@
       </SubContainer>
     </ItemContainer>
     <Propulsion force="-80" usablein="water" particles="bubbles" />
-    <Propulsion force="-60" usablein="air" particles="bubbles" />
+	<Propulsion force="-60" usablein="air" particles="bubbles" />
     <aitarget sightrange="1000" soundrange="1000" fadeouttime="1" />
     <Upgrade gameversion="0.10.0.0" scale="0.5" />
   </Item>

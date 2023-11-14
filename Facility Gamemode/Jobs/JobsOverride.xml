@@ -23,7 +23,8 @@
       <Skill identifier="electrical" level="60,60" />
       <Skill identifier="medical" level="60,60" />
     </Skills>
-    <ItemSet></ItemSet>
+    <ItemSet>
+    </ItemSet>
     <AutonomousObjectives>
       <Order identifier="fightintruders" prioritymodifier="1" />
       <Order identifier="rescue" prioritymodifier="0.5" />
@@ -363,7 +364,7 @@
       <Skill identifier="electrical" level="60,60" />
       <Skill identifier="medical" level="60,60" />
     </Skills>
-    <!-- Trooper -->
+	<!-- Trooper -->
     <ItemSet>
       <Item identifier="pirateclothes" equip="true" outfit="true" />
       <Item identifier="autoinjectorheadset" equip="true">
@@ -373,8 +374,8 @@
         <Item identifier="oxygentank" />
       </Item>
       <Item identifier="piratebodyarmor" equip="true">
-        <Item identifier="handcuffs" />
-      </Item>
+		<Item identifier="handcuffs" />
+	  </Item>
       <!--<Item identifier="idcardjet" equip="true"/>-->
       <Item identifier="jetrifle">
         <!--12 Rounds-->
@@ -450,7 +451,7 @@
         <Item identifier="batterycell" />
       </Item>
     </ItemSet>
-    <!-- Breacher -->
+	<!-- Breacher -->
     <ItemSet>
       <Item identifier="pirateclothes" equip="true" outfit="true" />
       <Item identifier="autoinjectorheadset" equip="true">
@@ -473,7 +474,7 @@
         <Item identifier="shotgunshell" />
         <Item identifier="shotgunshell" />
         <Item identifier="shotgunshell" />
-        <!-- End -->
+	    <!-- End -->
         <!--12 Rounds-->
         <Item identifier="shotgunshell" />
         <Item identifier="shotgunshell" />
@@ -487,7 +488,7 @@
         <Item identifier="shotgunshell" />
         <Item identifier="shotgunshell" />
         <Item identifier="shotgunshell" />
-        <!-- End -->
+	    <!-- End -->
         <!--12 Rounds-->
         <Item identifier="shotgunshell" />
         <Item identifier="shotgunshell" />
@@ -501,16 +502,16 @@
         <Item identifier="shotgunshell" />
         <Item identifier="shotgunshell" />
         <Item identifier="shotgunshell" />
-        <!-- End -->
+	    <!-- End -->
         <!--4 Grenades-->
         <Item identifier="fraggrenade" />
         <Item identifier="fraggrenade" />
         <Item identifier="fraggrenade" />
         <Item identifier="fraggrenade" />
-        <!-- End -->
-        <Item identifier="handcuffs" />
-      </Item>
-      <Item identifier="jetlmg">
+	    <!-- End -->
+		<Item identifier="handcuffs" />
+	  </Item>
+	  <Item identifier="jetlmg">
         <!--12 Rounds-->
         <Item identifier="shotgunshell" />
         <Item identifier="shotgunshell" />
@@ -525,7 +526,7 @@
         <Item identifier="shotgunshell" />
         <Item identifier="shotgunshell" />
         <!--End-->
-      </Item>
+	  </Item>
       <!--12 Rounds-->
       <Item identifier="shotgunshell" />
       <Item identifier="shotgunshell" />
@@ -539,7 +540,7 @@
       <Item identifier="shotgunshell" />
       <Item identifier="shotgunshell" />
       <Item identifier="shotgunshell" />
-      <!-- End -->
+	  <!-- End -->
       <!--12 Rounds-->
       <Item identifier="shotgunshell" />
       <Item identifier="shotgunshell" />
@@ -553,7 +554,7 @@
       <Item identifier="shotgunshell" />
       <Item identifier="shotgunshell" />
       <Item identifier="shotgunshell" />
-      <!-- End -->
+	  <!-- End -->
       <Item identifier="handheldtrigger" />
       <!--8 Explosives-->
       <Item identifier="wifiexplosive" />
@@ -564,7 +565,7 @@
       <Item identifier="wifiexplosive" />
       <Item identifier="wifiexplosive" />
       <Item identifier="wifiexplosive" />
-      <!-- End -->
+	  <!-- End -->
       <Item identifier="crowbar" />
       <Item identifier="antibleeding2" />
       <Item identifier="antibleeding2" />
@@ -575,7 +576,7 @@
         <Item identifier="batterycell" />
       </Item>
     </ItemSet>
-    <!-- Officer -->
+	<!-- Officer -->
     <ItemSet>
       <Item identifier="pirateclothesofficer" equip="true" outfit="true" />
       <Item identifier="autoinjectorheadset" equip="true">
@@ -595,7 +596,7 @@
         <Item identifier="antibleeding2" />
         <Item identifier="antibleeding2" />
         <Item identifier="antibleeding2" />
-        <!-- End -->
+		<!-- End -->
         <!--8 Midazolam-->
         <Item identifier="midazolam" />
         <Item identifier="midazolam" />
@@ -605,24 +606,24 @@
         <Item identifier="midazolam" />
         <Item identifier="midazolam" />
         <Item identifier="midazolam" />
-        <!-- End -->
+		<!-- End -->
         <Item identifier="antibloodloss2" />
         <!--4 Combat Stims-->
-        <Item identifier="combatstimulantsyringe" />
-        <Item identifier="combatstimulantsyringe" />
-        <Item identifier="combatstimulantsyringe" />
-        <Item identifier="combatstimulantsyringe" />
-        <!-- End -->
-        <Item identifier="handcuffs" />
-      </Item>
+		<Item identifier="combatstimulantsyringe" />
+		<Item identifier="combatstimulantsyringe" />
+		<Item identifier="combatstimulantsyringe" />
+		<Item identifier="combatstimulantsyringe" />
+		<!-- End -->
+		<Item identifier="handcuffs" />
+	  </Item>
       <Item identifier="jetsmgcompact">
-        <Item identifier="smgmagazine" />
-      </Item>
-      <Item identifier="smgmagazine" />
-      <Item identifier="smgmagazine" />
-      <Item identifier="smgmagazine" />
-      <Item identifier="smgmagazine" />
-      <Item identifier="smgmagazine" />
+		<Item identifier="smgmagazine" />
+	  </Item>
+	  <Item identifier="smgmagazine" />
+	  <Item identifier="smgmagazine" />
+	  <Item identifier="smgmagazine" />
+	  <Item identifier="smgmagazine" />
+	  <Item identifier="smgmagazine" />
       <Item identifier="crowbar" />
       <Item identifier="antibleeding2" />
       <Item identifier="antibleeding2" />
@@ -633,19 +634,19 @@
         <Item identifier="batterycell" />
       </Item>
     </ItemSet>
-    <!-- Jetpacker -->
+	<!-- Jetpacker -->
     <ItemSet>
       <Item identifier="prisonerclothes" equip="true" outfit="true" />
       <Item identifier="autoinjectorheadset" equip="true">
-        <Item identifier="combatstimulantsyringe" />
-      </Item>
+		<Item identifier="combatstimulantsyringe" />
+	  </Item>
       <Item identifier="jetmaskother" equip="true">
         <Item identifier="oxygentank" />
       </Item>
       <Item identifier="backpackradio" equip="true" />
       <Item identifier="bodyarmor" equip="true">
-        <Item identifier="handcuffs" />
-      </Item>
+		<Item identifier="handcuffs" />
+	  </Item>
       <Item identifier="jetpackjoyride" />
       <Item identifier="crowbar" />
       <Item identifier="antibleeding2" />
@@ -676,7 +677,7 @@
         <Item identifier="batterycell" />
       </Item>
     </ItemSet>
-    <!-- Conscript -->
+	<!-- Conscript -->
     <ItemSet>
       <Item identifier="pirateclothes" equip="true" outfit="true" />
       <Item identifier="autoinjectorheadset" equip="true">
@@ -686,8 +687,8 @@
         <Item identifier="oxygentank" />
       </Item>
       <Item identifier="piratebodyarmor" equip="true">
-        <Item identifier="handcuffs" />
-      </Item>
+		<Item identifier="handcuffs" />
+	  </Item>
       <!--<Item identifier="idcardjet" equip="true"/>-->
       <Item identifier="jetrifle">
         <!--12 Rounds-->
@@ -706,8 +707,8 @@
         <!--End-->
       </Item>
       <Item identifier="jetsmgcompact">
-        <Item identifier="smgmagazine" />
-      </Item>
+		<Item identifier="smgmagazine" />
+	  </Item>
       <!--12 Rounds-->
       <Item identifier="riflebullet" />
       <Item identifier="riflebullet" />
@@ -735,8 +736,8 @@
       <Item identifier="riflebullet" />
       <Item identifier="riflebullet" />
       <Item identifier="smgmagazine" />
-      <Item identifier="smgmagazine" />
-      <Item identifier="smgmagazine" />
+	  <Item identifier="smgmagazine" />
+	  <Item identifier="smgmagazine" />
       <Item identifier="crowbar" />
       <Item identifier="antibleeding2" />
       <Item identifier="antibleeding2" />
@@ -777,7 +778,7 @@
       <Skill identifier="electrical" level="60,60" />
       <Skill identifier="medical" level="60,60" />
     </Skills>
-    <!-- Trooper -->
+	<!-- Trooper -->
     <ItemSet>
       <Item identifier="securityuniform2" equip="true" />
       <Item identifier="autoinjectorheadset" equip="true">
@@ -786,7 +787,7 @@
       <Item identifier="piratebandana" equip="true" />
       <Item identifier="nexsuit" equip="true" outfit="true">
         <Item identifier="oxygentank" />
-        <Item identifier="handcuffs" />
+		<Item identifier="handcuffs" />
       </Item>
       <!--<Item identifier="idcardmercs" equip="true"/>-->
       <Item identifier="mercsrifle">
@@ -811,7 +812,7 @@
         <Item identifier="batterycell" />
       </Item>
     </ItemSet>
-    <!-- Sniper -->
+	<!-- Sniper -->
     <ItemSet>
       <Item identifier="securityuniform2" equip="true" />
       <Item identifier="autoinjectorheadset" equip="true">
@@ -820,7 +821,7 @@
       <Item identifier="thermalgoggles" equip="true" />
       <Item identifier="nexsuit" equip="true" outfit="true">
         <Item identifier="oxygentank" />
-        <Item identifier="handcuffs" />
+		<Item identifier="handcuffs" />
       </Item>
       <Item identifier="carbonatespray" equip="true" />
       <!--<Item identifier="idcardmercs" equip="true"/>-->
@@ -875,7 +876,7 @@
         <Item identifier="batterycell" />
       </Item>
     </ItemSet>
-    <!-- Officer -->
+	<!-- Officer -->
     <ItemSet>
       <Item identifier="securityuniform2" equip="true" />
       <Item identifier="autoinjectorheadset" equip="true">
@@ -884,7 +885,7 @@
       <Item identifier="piratebandana" equip="true" />
       <Item identifier="nexsuit" equip="true" outfit="true">
         <Item identifier="oxygentank" />
-        <Item identifier="handcuffs" />
+		<Item identifier="handcuffs" />
         <Item identifier="antibloodloss2" />
       </Item>
       <Item identifier="backpackradio" equip="true" />
@@ -923,19 +924,19 @@
         <Item identifier="batterycell" />
       </Item>
     </ItemSet>
-    <!-- Jetpacker -->
+	<!-- Jetpacker -->
     <ItemSet>
       <Item identifier="assistantclothes" equip="true" outfit="true" />
       <Item identifier="autoinjectorheadset" equip="true">
-        <Item identifier="combatstimulantsyringe" />
-      </Item>
+		<Item identifier="combatstimulantsyringe" />
+	  </Item>
       <Item identifier="jetmaskother" equip="true">
         <Item identifier="oxygentank" />
       </Item>
       <Item identifier="backpackradio" equip="true" />
       <Item identifier="bodyarmor" equip="true">
-        <Item identifier="handcuffs" />
-      </Item>
+		<Item identifier="handcuffs" />
+	  </Item>
       <Item identifier="jetpackjoyride" />
       <Item identifier="crowbar" />
       <Item identifier="antibleeding2" />
@@ -966,7 +967,7 @@
         <Item identifier="batterycell" />
       </Item>
     </ItemSet>
-    <!-- Conscript -->
+	<!-- Conscript -->
     <ItemSet>
       <Item identifier="securityuniform2" equip="true" />
       <Item identifier="autoinjectorheadset" equip="true">
@@ -975,7 +976,7 @@
       <Item identifier="piratebandana" equip="true" />
       <Item identifier="nexsuit" equip="true" outfit="true">
         <Item identifier="oxygentank" />
-        <Item identifier="handcuffs" />
+		<Item identifier="handcuffs" />
       </Item>
       <!--<Item identifier="idcardmercs" equip="true"/>-->
       <Item identifier="mercsrifle">
@@ -1052,8 +1053,8 @@
       <Item identifier="captainscap3" equip="true" />
       <Item identifier="headset" equip="true" />
       <Item identifier="bodyarmor" equip="true">
-        <Item identifier="handcuffs" />
-      </Item>
+		<Item identifier="handcuffs" />
+	  </Item>
       <Item identifier="idcardeliteguard" equip="true" />
       <Item identifier="mercssmg">
         <Item identifier="smgmagazine" />
@@ -1100,8 +1101,8 @@
       <Item identifier="headset" equip="true" />
       <Item identifier="baseballcap" equip="true" />
       <Item identifier="bodyarmor" equip="true">
-        <Item identifier="handcuffs" />
-      </Item>
+		<Item identifier="handcuffs" />
+	  </Item>
       <Item identifier="idcardenforcerguard" equip="true" />
       <Item identifier="mercssmg">
         <Item identifier="smgmagazine" />

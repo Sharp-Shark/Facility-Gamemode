@@ -11,4 +11,3 @@ English Localization by Sharp-Shark.
 Brazilean Portuguese Localization by Sharp-Shark.
 Russian Localization by D1vect & Kumiho.
 Simplified Chinese Localization by Zhurengong.
-German Localization by Profole.

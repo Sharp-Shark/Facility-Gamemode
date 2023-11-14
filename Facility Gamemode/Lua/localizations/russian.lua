@@ -7,7 +7,7 @@ FG.localizations['Russian'] = {
 	GUIDeconStart = 'Начато обеззараживание',
 	
 	serverMessageText = [[MOD BY Sharp-Shark! Используйте /help для команд.
-DISCORD: https://discord.gg/c7Qnp8S4yB
+DISCORD: https://discord.gg/qxXzrVeRHD
 
 ]],
 	joinMessageText = [[_Добро пожаловать в Facility Gamemode от Sharp-Shark. Веселитесь, и не нарушайте правила. Если вы хотите, то присоединитесь к нашему дискорду.
@@ -22,13 +22,14 @@ _Напишите /help для списка команд.]],
 	dieMessageText = [[Вы мертвы. Напиши /respawn чтобы узнать примерное время до возрождения и количество очков. Если погибнет большое количество людей, то оно уменьшится быстрее.
 
 Если вы уверены, что ваша смерть была вызвана багом или нарушением правил кем-либо, то сообщите об этом в нашем дискорде.
-Discord: https://discord.gg/c7Qnp8S4yB]],
+Discord: https://discord.gg/qxXzrVeRHD]],
 
 	gamemodeInfo = 'Gamemode Info: {text}',
 
 	commandRoundNotStarted = 'Раунд ещё не начался.',
 	commandAdminOnly = 'Команда только для админов!',
-	commandHelp = [[/help - для списка команд.
+	commandHelp = [[/credits - see who contributed to the creation of this mod.
+/help - для списка команд.
 /boo - Я страшный призрак!
 /vote - запускает голосование за режим.
 /admin - вызывает админа.

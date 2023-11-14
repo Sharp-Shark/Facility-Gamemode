@@ -7,7 +7,7 @@ FG.localizations['English'] = {
 	GUIDeconStart = 'Decontamination initiated',
 	
 	serverMessageText = [[MOD BY Sharp-Shark! DO /help FOR COMMANDS.
-DISCORD: https://discord.gg/c7Qnp8S4yB
+DISCORD: https://discord.gg/qxXzrVeRHD
 
 ]],
 	joinMessageText = [[_Welcome to Facility Gamemode by Sharp-Shark. Please have fun and respect the rules. If you want, join our discord.
@@ -22,7 +22,7 @@ _Do /help for a list of commands.]],
 	dieMessageText = [[You have died. Do /respawn to get an estimated time until respawn and amount of tickets. Do /boo to haunt the living. If more people die, it will go down faster.
 
 If you belive your death is a bug or was caused by someone breaking the rules, say so in our discord.
-Discord: https://discord.gg/c7Qnp8S4yB]],
+Discord: https://discord.gg/qxXzrVeRHD]],
 
 	gamemodeInfo = 'Gamemode Info: {text}',
 
