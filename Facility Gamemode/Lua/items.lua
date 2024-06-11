@@ -1,4 +1,4 @@
-Hook.Add("signalReceived.fgcomponent", "fgcomponent.receive", function(signal, connection)
+Hook.Add("signalReceived.fgcomponent", "FG.fgcomponent.receive", function(signal, connection)
     if connection.Name == "input" then
 	
 		local msgTxt = signal.value
@@ -52,7 +52,7 @@ Hook.Add("wifiSignalTransmitted", "wifiModifyChannel", function (wifiComponent, 
 end)
 --]]
 
-Hook.Add("handheldTrigger.use", "handheldTriggerUse", function (effect, deltaTime, item, targets, worldPosition)
+Hook.Add("handheldTrigger.use", "FG.handheldTriggerUse", function (effect, deltaTime, item, targets, worldPosition)
 	if (effect.user ~= nil) then
 		local headset = effect.user.Inventory.GetItemAt(1)
 		if headset == nil then
@@ -95,7 +95,7 @@ Hook.Add("handheldTrigger.use", "handheldTriggerUse", function (effect, deltaTim
 end)
 
 --[[
-Hook.Add("item.combine", "combineTime", function (item, deconstructor, characterUser, allowRemove)
+Hook.Add("item.combine", "FG.combineTime", function (item, deconstructor, characterUser, allowRemove)
 	if characterUser == nil then return end
 	
 	if FG.lastGunReloaded == nil then FG.lastGunReloaded = {} end
@@ -115,7 +115,7 @@ Hook.Add("item.combine", "combineTime", function (item, deconstructor, character
 end)
 --]]
 
-Hook.Add("inventoryPutItem", "reloadTime", function (inventory, item, characterUser, index, removeItemBool)
+Hook.Add("inventoryPutItem", "FG.reloadTime", function (inventory, item, characterUser, index, removeItemBool)
 	if characterUser == nil then return end
 	
 	if FG.lastGunReloaded == nil then FG.lastGunReloaded = {} end
@@ -153,7 +153,7 @@ Hook.Add("inventoryPutItem", "reloadTime", function (inventory, item, characterU
 	
 end)
 
-Hook.Add("item.use", "reloadTimeNoItemUsage", function (item, itemUser, targetLimb)
+Hook.Add("item.use", "FG.reloadTimeNoItemUsage", function (item, itemUser, targetLimb)
 	if itemUser == nil then return end
 	
 	if itemUser.CharacterHealth.GetAffliction('reloading', true) ~= nil then

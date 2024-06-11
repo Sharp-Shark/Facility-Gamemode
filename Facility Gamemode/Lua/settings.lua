@@ -129,24 +129,24 @@ FG.settingsPresetsDefault = {
 		author = 'Sharp-Shark',
 		autoJobRoleSequence = 'jsgiejo',
 		terroristTickets = 1,
-		nexpharmaTickets = 99,
+		nexpharmaTickets = 1,
 		respawnType = 'classic'
 	},
 	['prisonescape'] = {
 		info = 'a PvP only mode where the guards must kill all the escapees.',
 		author = 'Sharp-Shark',
-		autoJobRoleSequence = 'igie',
-		terroristTickets = 4,
+		autoJobRoleSequence = 'ig',
+		terroristTickets = 99,
 		nexpharmaTickets = 1,
 		respawnType = 'classic'
 	},
 	['scp:cb'] = {
 		info = 'inspired by SCP:CB, JET+inmates fight agaisnt the monsters and people only respawn as MERCS.',
 		author = 'SonicHegehodge',
-		autoJobRoleSequence = 'xiiji-xji',
-		terroristTickets = 0,
-		nexpharmaTickets = 3,
-		respawnSpeed = 10
+		autoJobRoleSequence = 'xieji-xigji',--'xiiji-xji',
+		terroristTickets = 1,
+		nexpharmaTickets = 99,
+		respawnType = 'classic'
 	},
 	['surfacetension'] = {
 		info = 'team deathmatch with JET vs MERCS at surface zone.',
@@ -212,7 +212,7 @@ FG.settingsPresetsDefault = {
 		autoJobRoleSequence = 'mxx',
 		decontaminationTimer = 60*9 + 15,
 		terroristTickets = -99,
-		nexpharmaTickets = -1
+		nexpharmaTickets = 1
 	},
 	['jetpack'] = {
 		hide = true,

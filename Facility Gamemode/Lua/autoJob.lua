@@ -293,11 +293,15 @@ Hook.Add("jobsAssigned", "automaticJobAssignment", function ()
 							player.AssignedJob = JobVariant(JobPrefab.Get('monsterjob'), 0)
 							FG.monsterPlayers[playerName] = 'mutatedmantishatchling'
 						elseif player.PreferredJob == 'mutatedcrawlerjob' then
+							--player.AssignedJob = JobVariant(JobPrefab.Get('monsterjob'), 0)
+							--FG.monsterPlayers[playerName] = 'mutatedcrawlerhatchling'
 							player.AssignedJob = JobVariant(JobPrefab.Get('monsterjob'), 0)
-							FG.monsterPlayers[playerName] = 'mutatedcrawlerhatchling'
+							FG.monsterPlayers[playerName] = 'mutatedmantishatchling'
 						else
-							player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), 0)
-							FG.monsterPlayers[playerName] = 'random'
+							--player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), 0)
+							--FG.monsterPlayers[playerName] = 'random'
+							player.AssignedJob = JobVariant(JobPrefab.Get('monsterjob'), 0)
+							FG.monsterPlayers[playerName] = 'mutatedmantishatchling'
 						end
 						
 						FG.analytics.data.initialCharacters = FG.analytics.data.initialCharacters .. 'brood '
@@ -307,11 +311,15 @@ Hook.Add("jobsAssigned", "automaticJobAssignment", function ()
 							player.AssignedJob = JobVariant(JobPrefab.Get('monsterjob'), 0)
 							FG.monsterPlayers[playerName] = 'mutatedmantis'
 						elseif player.PreferredJob == 'mutatedcrawlerjob' then
+							--player.AssignedJob = JobVariant(JobPrefab.Get('monsterjob'), 0)
+							--FG.monsterPlayers[playerName] = 'mutatedcrawler'
 							player.AssignedJob = JobVariant(JobPrefab.Get('monsterjob'), 0)
-							FG.monsterPlayers[playerName] = 'mutatedcrawler'
+							FG.monsterPlayers[playerName] = 'mutatedmantis'
 						else
-							player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), 0)
-							FG.monsterPlayers[playerName] = 'random'
+							--player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), 0)
+							--FG.monsterPlayers[playerName] = 'random'
+							player.AssignedJob = JobVariant(JobPrefab.Get('monsterjob'), 0)
+							FG.monsterPlayers[playerName] = 'mutatedmantis'
 						end
 						
 						FG.analytics.data.initialCharacters = FG.analytics.data.initialCharacters .. 'monster '

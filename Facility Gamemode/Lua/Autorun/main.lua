@@ -1,6 +1,9 @@
 -- Facility Gamemode table
 FG = {}
 
+-- Enable debug mode if: running in singleplayer OR in a private player-hosted server with Sharp-Shark as host
+FG.debug = (CLIENT and (not Game.IsMultiplayer)) or (SERVER and (not Game.IsDedicated) and (not Game.ServerSettings.IsPublic) and ((0 < #Client.ClientList) and (Client.ClientList[1].Name == 'Sharp-Shark')))
+
 -- Set up the mod's path
 FG.path = table.pack(...)[1]
 
@@ -57,8 +60,6 @@ print('...')
 
 -- Client only code
 if CLIENT then
-	print('[!] Running lua clientside code.')
-	
 	-- Load other files
 	expectFiles('utilities', 'settings', 'gui')
 	require 'utilities'
@@ -68,25 +69,23 @@ if CLIENT then
 	-- If it's a client in multiplayer, don't execute the rest
 	if Game.IsMultiplayer then
 		-- Used for debugging other files
-		FG.failedFiles = {}
-		print('...')
-		for name, value in pairs(FG.loadedFiles) do
-			if value then
-				print('[!] File ' .. name .. ' was loaded successfully.')
-			else
-				table.insert(FG.failedFiles, name)
+		if FG.debug then
+			FG.failedFiles = {}
+			for name, value in pairs(FG.loadedFiles) do
+				if value then
+					print('[!] File ' .. name .. ' was loaded successfully.')
+				else
+					table.insert(FG.failedFiles, name)
+				end
 			end
-		end
-		if table.size(FG.failedFiles) > 0 then
+			if table.size(FG.failedFiles) > 0 then
+				print('...')
+				for i, name in pairs(FG.failedFiles) do
+					print('[!] File ' .. name .. ' failed to load!')
+				end
+			end
 			print('...')
-			for i, name in pairs(FG.failedFiles) do
-				print('[!] File ' .. name .. ' failed to load!')
-			end
 		end
-		print('...')
-		
-		print('[!] Will not run serverside code as client in multiplayer.')
-		print('...')
 		
 		-- Sucess Message
 		print('[!] Facility Gamemode by Sharp-Shark!')
@@ -94,12 +93,7 @@ if CLIENT then
 		
 		return
 	end
-else
-	print('[!] Will not run lua clientside code as server.')
 end
-
-print('...')
-print('[!] Running lua serverside code.')
 
 -- Load other files
 expectFiles('autoJob', 'commands', 'death', 'loadoutTables', 'lootTables', 'spawning', 'utilities', 'settings', 'items', 'ghost')
@@ -121,22 +115,23 @@ if SERVER then
 end
 
 -- Used for debugging other files
-FG.failedFiles = {}
-print('...')
-for name, value in pairs(FG.loadedFiles) do
-	if value then
-		print('[!] File ' .. name .. ' was loaded successfully.')
-	else
-		table.insert(FG.failedFiles, name)
+if FG.debug then
+	FG.failedFiles = {}
+	for name, value in pairs(FG.loadedFiles) do
+		if value then
+			print('[!] File ' .. name .. ' was loaded successfully.')
+		else
+			table.insert(FG.failedFiles, name)
+		end
 	end
-end
-if table.size(FG.failedFiles) > 0 then
+	if table.size(FG.failedFiles) > 0 then
+		print('...')
+		for i, name in pairs(FG.failedFiles) do
+			print('[!] File ' .. name .. ' failed to load!')
+		end
+	end
 	print('...')
-	for i, name in pairs(FG.failedFiles) do
-		print('[!] File ' .. name .. ' failed to load!')
-	end
 end
-print('...')
 
 -- Husk Control cuz WHY NOT?!
  Game.EnableControlHusk(true)
@@ -513,8 +508,8 @@ Hook.Add("think", "thinkCheck", function ()
 			if FG.settings.respawnType == 'default' then
 				-- Respawn dead players
 				local balance = (FG.terroristTickets >= FG.nexpharmaTickets) and 1 or 0
-				-- If it's a tie, decide it randomly
-				if FG.terroristTickets == FG.nexpharmaTickets then balance = math.random(2) - 1 end
+				-- If it's a tie, decide it NOT randomly, TERRORISTS GUARANTEED!
+				if FG.terroristTickets == FG.nexpharmaTickets then balance = 1 end--math.random(2) - 1 end
 				-- Respawn/spawn dead/new players in a random order
 				for player in shuffleArray(Client.ClientList) do
 					if canClientRespawn(player) then
@@ -566,7 +561,7 @@ Hook.Add("think", "thinkCheck", function ()
 								
 								FG.analytics.data.respawnWaves = FG.analytics.data.respawnWaves .. 'MERCS '
 							else
-								messageClient(player, 'text-game', text.localize('ticketsEveryoneOutOfTickets'), nil, player.Language)
+								messageClient(player, 'text-game', string.localize('ticketsEveryoneOutOfTickets'), nil, player.Language)
 								
 								FG.analytics.data.respawnWaves = FG.analytics.data.respawnWaves .. 'NO '
 							end
@@ -840,7 +835,7 @@ Hook.Add("roundStart", "prepareMatch", function (arg)
 				end
 			end
 		end
-		-- Fill all hulls tagged with "fg_flooded" with water
+		-- Fill some hulls with water
 		for hull in Submarine.MainSub.GetHulls(false) do
 			if hull.RoomName == 'Tunnels' then
 				hull.WaterVolume = hull.Volume
@@ -1005,10 +1000,9 @@ FG.serverSettings = {
     SelectedSubmarine = 'FG Facility',
     ServerDetailsChanged = true,
     ShowEnemyHealthBars = 0,
-    SubSelectionMode = 0,--Manual
+--    SubSelectionMode = 0,--Manual
 --    TraitorsEnabled = 0,
-    UseRespawnShuttle = true,
-    VoiceChatEnabled = true
+    UseRespawnShuttle = true
 }
 
 -- Applies settings to server

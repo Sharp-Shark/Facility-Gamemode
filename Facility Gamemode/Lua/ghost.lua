@@ -378,7 +378,7 @@ end}
 FG.paranormal.reset()
 
 -- Rewards ghost for dealing damage or assisting in dealing damage
-Hook.Add("character.applyDamage", "ghostRewardHumanDamaged", function (characterHealth, attackResult, hitLimb, allowStacking)
+Hook.Add("character.applyDamage", "FG.ghostRewardHumanDamaged", function (characterHealth, attackResult, hitLimb, allowStacking)
 	local character = characterHealth.Character
 	if (character.SpeciesName == 'Humanghost') or (character.IsDead) or (findClientByCharacter(character) == nil) then return end
 	

@@ -4,8 +4,9 @@ Many thanks to Evergreen, Terragen, Evil Factory, the Undertow server and the Lu
 Suggestion credits to Barry Ballast, BlueDragon, Gordon Rammy, SonicHegehodge, Wyvern, Harnley, Trooperm151, Frank, Dylan and more.
 
 Map "FG Facility" by Sharp-Shark.
-Map "FG Docking" by Sharp-Shark.
+Map "FG Apteekki" by Sharp-Shark.
 Map "FG Jetpack" by Sharp-Shark.
+Map "FG Atlas" by SonicHegehodge.
 
 English Localization by Sharp-Shark.
 Brazilean Portuguese Localization by Sharp-Shark.
