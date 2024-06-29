@@ -262,14 +262,14 @@ function promoteEscapee (client)
 	client.Character.Revive(true)
 
 	-- Spawn escapee as militant
-	if isCharacterGuard(client.Character) and (not client.Character.IsArrested) then
+	if isCharacterGuard(client.Character) and (not client.Character.IsHandcuffed) then
 		-- Spawns MERCS
 		spawnPlayerMilitant(client, 'MERCS', {free = true, subclass = 4})
 		
 		FG.analytics.data.guardEscapes = FG.analytics.data.guardEscapes + 1
-	elseif (isCharacterTerrorist(client.Character) and not client.Character.IsArrested) or (isCharacterNexpharma(client.Character) and client.Character.IsArrested) then
+	elseif (isCharacterTerrorist(client.Character) and not client.Character.IsHandcuffed) or (isCharacterNexpharma(client.Character) and client.Character.IsHandcuffed) then
 		-- Update ticket count
-		if client.Character.IsArrested then
+		if client.Character.IsHandcuffed then
 			FG.terroristTickets = FG.terroristTickets + 1.5
 			messageAllClients('text-game', {'ticketsStaffCuffedEscape', {tickets = FG.terroristTickets}})
 			
@@ -282,9 +282,9 @@ function promoteEscapee (client)
 		end
 		-- Spawns JET
 		spawnPlayerMilitant(client, 'JET', {free = true, subclass = 4})
-	elseif (isCharacterNexpharma(client.Character) and not client.Character.IsArrested) or (isCharacterTerrorist(client.Character) and client.Character.IsArrested) then
+	elseif (isCharacterNexpharma(client.Character) and not client.Character.IsHandcuffed) or (isCharacterTerrorist(client.Character) and client.Character.IsHandcuffed) then
 		-- Update ticket count
-		if client.Character.IsArrested then
+		if client.Character.IsHandcuffed then
 			FG.nexpharmaTickets = FG.nexpharmaTickets + 1.5
 			messageAllClients('text-game', {'ticketsInmateCuffedEscape', {tickets = FG.terroristTickets}})
 			
