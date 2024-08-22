@@ -426,7 +426,7 @@ Hook.Add("think", "thinkCheck", function ()
 	-- Only execute once every 1/2 a second for performance
 	if FG.thinkCounter % 30 == 0 then
 		if SERVER then
-			Game.ServerSettings['AllowRespawn'] = FG.serverSettings['AllowRespawn']
+			Game.ServerSettings['RespawnMode'] = FG.serverSettings['RespawnMode']
 	
 			if string.sub(Game.ServerSettings.ServerMessageText, 1, #string.localize('serverMessageText')) ~= string.localize('serverMessageText') then
 				Game.ServerSettings.ServerMessageText = string.localize('serverMessageText') .. Game.ServerSettings.ServerMessageText
@@ -978,7 +978,8 @@ FG.serverSettings = {
     AllowModDownloads = true,
     AllowModeVoting = false,
 --    AllowRagdollButton = true,
-    AllowRespawn = false,--Using custom respawn
+--    AllowRespawn = false,--Using custom respawn
+	RespawnMode = 1,
     AllowRewiring = true,
     AllowSpectating = true,
     AllowSubVoting = false,
