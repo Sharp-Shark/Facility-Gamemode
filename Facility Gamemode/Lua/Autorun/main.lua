@@ -439,10 +439,10 @@ Hook.Add("think", "thinkCheck", function ()
 		-- Apply affliction to everyone inside of area for anti-camping
 		for item in findItemsByTag('fg_justice') do
 			rect = item.WorldRect
-			for char in Character.CharacterList do
+			for character in Character.CharacterList do
 				-- Item center is at its top left corner
-				if math.abs(char.WorldPosition.X - rect.X - rect.Width/2) <= rect.Width/2 and math.abs(char.WorldPosition.Y - rect.Y + rect.Height/2) <= rect.Height/2 then
-					giveAfflictionCharacter(char, 'justice', char.MaxHealth * 0.01)
+				if math.abs(character.WorldPosition.X - rect.X - rect.Width/2) <= rect.Width/2 and math.abs(character.WorldPosition.Y - rect.Y + rect.Height/2) <= rect.Height/2 then
+					giveAfflictionCharacter(character, 'justice', character.MaxHealth * 0.01)
 				end
 			end
 		end
@@ -496,7 +496,7 @@ Hook.Add("think", "thinkCheck", function ()
 				end
 				FG.respawnTimerUpdate = false
 			end
-		elseif not FG.endGame and not Game.ServerSettings['AllowRespawn'] then
+		elseif not FG.endGame and (Game.ServerSettings['RespawnMode'] == 1) then
 			-- Reset subclass setter for next wave
 			FG.terroristSubclassCount = 1
 			FG.nexpharmaSubclassCount = 1
@@ -627,17 +627,20 @@ Hook.Add("think", "thinkCheck", function ()
 			local chars = {}
 			for item in findItemsByTag('fg_surface') do
 				rect = item.WorldRect
-				for char in Character.CharacterList do
+				for character in Character.CharacterList do
 					-- Item center is at its top left corner
-					if math.abs(char.WorldPosition.X - rect.X - rect.Width/2) <= rect.Width/2 and math.abs(char.WorldPosition.Y - rect.Y + rect.Height/2) <= rect.Height/2 then
-						chars[char] = true
-					elseif not chars[char] then
-						chars[char] = false
+					if math.abs(character.WorldPosition.X - rect.X - rect.Width/2) <= rect.Width/2 and math.abs(character.WorldPosition.Y - rect.Y + rect.Height/2) <= rect.Height/2 then
+						chars[character] = true
+					elseif not chars[character] then
+						chars[character] = false
+					end
+					if character.InWater then
+						chars[character] = false
 					end
 				end
 			end
-			for char, value in pairs(chars) do
-				if not value then giveAfflictionCharacter(char, 'intoxicated', char.MaxHealth * 0.01) end
+			for character, value in pairs(chars) do
+				if not value then giveAfflictionCharacter(character, 'intoxicated', character.MaxHealth * 0.01) end
 			end
 		end
 		
@@ -1038,4 +1041,24 @@ if SERVER then
 		local message = Networking.Start("pingServerToClientAgain")
 		Networking.Send(message)
 	end, 1000)
+end
+
+-- Evil Fix (TM)
+if SERVER then
+local characterInfoDictRedux = {}
+Hook.Patch("Barotrauma.Networking.GameServer", "UpdateCharacterInfo", function(instance, ptable)
+    local sender = ptable["sender"]
+    characterInfoDictRedux[sender] = sender.CharacterInfo
+end, Hook.HookMethodType.After)
+
+Hook.Patch("Barotrauma.Networking.RespawnManager", "DispatchShuttle", function(instance, ptable)
+    -- fix real
+    for client in Client.ClientList do
+        if not client.Character or client.Character.IsDead then
+            if characterInfoDictRedux[client] then
+                client.CharacterInfo = characterInfoDictRedux[client]
+            end
+        end
+    end
+end, Hook.HookMethodType.Before)
 end

@@ -15,7 +15,7 @@ FG.settingsDefault = {
 	endType = 'default',
 	autoJob = true,
 	autoJobMinPlayers = 2,
-	autoJobRoleSequence = 'xsiig-xisig',
+	autoJobRoleSequence = 'xsiig-isxisig',
 	autoJobIgnorePreference = false,
 	terroristSquadSequence = '0210',
 	nexpharmaSquadSequence = '0210',
@@ -241,6 +241,9 @@ FG.settings = table.copy(FG.settingsDefault)
 -- Settings presets sent by clients
 FG.settingsPresetsReceived = {}
 
+-- Save path
+local savePath = 'LocalMods/Facility Gamemode.json'
+
 -- Build settings table and returns it for use
 function getSettingsPreset(preset)
 	-- Get default
@@ -266,7 +269,7 @@ end
 -- Saves FG.settingsPresets to the config
 function saveSettingsPresets()
 	if not pcall(function ()
-		File.Write(FG.path .. '/config.json', json.serialize(FG.settingsPresets))
+		File.Write(savePath, json.serialize(FG.settingsPresets))
 	end) then
 		print('[!] Error when saving settings presets to config!')
 	end
@@ -275,7 +278,7 @@ end
 -- Loads the config to FG.settingsPresets
 function loadSettingsPresets()
 	if not pcall(function ()
-		FG.settingsPresets = json.parse(File.Read(FG.path .. '/config.json'))
+		FG.settingsPresets = json.parse(File.Read(savePath))
 	end) then
 		print('[!] Error when loading settings presets from config!')
 	end
@@ -287,7 +290,7 @@ function loadSettingsPreset (preset)
 end
 
 -- Load settings presets from config file if it exists or create one
-if File.Exists(FG.path .. '/config.json') then
+if File.Exists(savePath) then
 	loadSettingsPresets()
 else
 	print('[!] Settings presets config file missing! Creating one...')
@@ -321,7 +324,7 @@ Networking.Receive("loadClientConfig", function (message, client)
 	if client.HasPermission(ClientPermissions.ConsoleCommands) then
 		print('[!] Received config from a client.')
 		if not pcall(function ()
-			File.Write(FG.path .. '/config.json', message.ReadString())
+			File.Write(savePath, message.ReadString())
 		end) then
 			print('[!] Error when saving settings presets to config!')
 		end
