@@ -98,6 +98,8 @@ Hook.Add("chatMessage", "livePlayerList", function (message, client)
 				text = text .. player.Name .. string.localize('commandPlayersMutatedMantis', nil, client.Language) .. '\n'
 			elseif (player.Character.SpeciesName == 'Crawleradmin') or (player.Character.SpeciesName == 'Crawleradmin_hatchling') then
 				text = text .. player.Name .. string.localize('commandPlayersMutatedCrawler', nil, client.Language) .. '\n'
+			elseif (player.Character.SpeciesName == 'Chimeraadmin') then
+				text = text .. player.Name .. string.localize('commandPlayersMutatedChimera', nil, client.Language) .. '\n'
 			elseif player.Character.SpeciesName == 'Humanhusk' then
 				text = text .. player.Name .. string.localize('commandPlayersHusk', nil, client.Language) .. '\n'
 			elseif player.Character.SpeciesName == 'Humangoblin' then

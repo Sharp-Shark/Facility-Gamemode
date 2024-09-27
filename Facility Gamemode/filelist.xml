@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Facility Gamemode" modversion="1.19.6" corepackage="False" steamworkshopid="2915017487" gameversion="1.5.9.1">
+<contentpackage name="Facility Gamemode" modversion="1.19.7" corepackage="False" steamworkshopid="2915017487" gameversion="1.5.9.2">
   <Text file="%ModDir%/Localizations/english.xml" />
   <Text file="%ModDir%/Localizations/ptbr.xml" />
   <Text file="%ModDir%/Localizations/russian.xml" />
@@ -12,6 +12,7 @@
   <Character file="%ModDir%/Characters/Humantroll/Humantroll.xml" />
   <Character file="%ModDir%/Characters/Humangoblin/Humangoblin.xml" />
   <Character file="%ModDir%/Characters/Humanghost/Humanghost.xml" />
+  <Character file="%ModDir%/Characters/Chimeraadmin/Chimeraadmin.xml" />
   <Afflictions file="%ModDir%/Misc/Afflictions.xml" />
   <Particles file="%ModDir%/Misc/Particles.xml" />
   <Item file="%ModDir%/Items/IdcardExtra.xml" />

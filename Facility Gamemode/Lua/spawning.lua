@@ -231,6 +231,7 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (character)
 		-- Get monster spawnpoint
 		local jobs = {}
 		if FG.settings.monsterSpawn == 'default' then
+			--jobs = {'mutatedmantisjob', 'mutatedcrawlerjob', 'mutatedchimerajob'}
 			jobs = {'mutatedmantisjob', 'mutatedcrawlerjob'}
 		elseif FG.settings.monsterSpawn == 'staff' then
 			jobs = {'researcher', 'repairmen'}
@@ -252,7 +253,8 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (character)
 					if math.random(2) == 1 then
 						monster = 'mutatedmantis'
 					else
-						monster = 'mutatedcrawler'
+						--monster = 'mutatedcrawler'
+						monster = 'mutatedchimera'
 					end
 				elseif FG.settings.gamemode == 'brood' then
 					if math.random(2) == 1 then
@@ -275,6 +277,10 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (character)
 				spawnCharacterMonster(character, 'crawleradmin', client, spawnPosition)
 				
 				messageClient(client, 'info', string.localize('mutatedCrawlerInfo', nil, client.Language))
+			elseif monster == 'mutatedchimera' then
+				spawnCharacterMonster(character, 'chimeraadmin', client, spawnPosition)
+				
+				messageClient(client, 'info', string.localize('mutatedChimeraInfo', nil, client.Language))
 			elseif monster == 'mutatedmantishatchling' then
 				spawnCharacterMonster(character, 'mantisadmin_hatchling', client, spawnPosition)
 				

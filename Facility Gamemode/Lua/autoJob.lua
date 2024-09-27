@@ -81,7 +81,7 @@ function assignPlayerRole (amount, preferredRole, disableAutoJob)
 		if FG.settings.autoJobIgnorePreference then
 			return ''
 		end
-		if job == 'monsterjob' or job == 'mutatedmantisjob' or job == 'mutatedcrawlerjob' or job == 'greenskinjob' then
+		if job == 'monsterjob' or job == 'mutatedmantisjob' or job == 'mutatedcrawlerjob' or job == 'mutatedchimerajob' or job == 'greenskinjob' then
 			return 'monster'
 		elseif job == 'overseer' then
 			return 'overseer'
@@ -255,7 +255,7 @@ Hook.Add("jobsAssigned", "automaticJobAssignment", function ()
 	FG.monsterPlayers = {}
 	
 	local roleJob = {}
-	roleJob['monster'] = {'mutatedcrawlerjob', 'mutatedmantisjob'}
+	roleJob['monster'] = {'mutatedcrawlerjob', 'mutatedmantisjob', 'mutatedchimerajob'}
 	roleJob['overseer'] = {'overseer'}
 	roleJob['staff'] = {'repairmen', 'researcher'}
 	roleJob['elite'] = {'eliteguard'}
@@ -315,11 +315,12 @@ Hook.Add("jobsAssigned", "automaticJobAssignment", function ()
 							--FG.monsterPlayers[playerName] = 'mutatedcrawler'
 							player.AssignedJob = JobVariant(JobPrefab.Get('monsterjob'), 0)
 							FG.monsterPlayers[playerName] = 'mutatedmantis'
-						else
-							--player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), 0)
-							--FG.monsterPlayers[playerName] = 'random'
+						elseif player.PreferredJob == 'mutatedcrawlerjob' then
 							player.AssignedJob = JobVariant(JobPrefab.Get('monsterjob'), 0)
-							FG.monsterPlayers[playerName] = 'mutatedmantis'
+							FG.monsterPlayers[playerName] = 'mutatedchimera'
+						else
+							player.AssignedJob = JobVariant(JobPrefab.Get(roleJob[role][math.random(#roleJob[role])]), 0)
+							FG.monsterPlayers[playerName] = 'random'
 						end
 						
 						FG.analytics.data.initialCharacters = FG.analytics.data.initialCharacters .. 'monster '
