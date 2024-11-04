@@ -553,10 +553,10 @@ function spawnHuman (client, job, pos, name, subclass)
 	
 	local jobPrefab = JobPrefab.Get(job)
 	if subclass == nil then
-		info.Job = Job(jobPrefab)
+		info.Job = Job(jobPrefab, false)
 		info.Job.Variant = math.random(jobPrefab.Variants) - 1
 	else
-		info.Job = Job(jobPrefab)
+		info.Job = Job(jobPrefab, false)
 		info.Job.Variant = subclass
 	end
 	if info.Job.Variant > (jobPrefab.Variants - 1) then info.Job.Variant = (jobPrefab.Variants - 1) end
@@ -568,7 +568,7 @@ function spawnHuman (client, job, pos, name, subclass)
 		character = Character.Create('human', pos, info.Name, info, 0, true, false)
 	end
 	
-	character.GiveJobItems()
+	character.GiveJobItems(false)
 	if client ~= nil then
 		client.SetClientCharacter(character)
 	end
@@ -593,7 +593,7 @@ function spawnHumangoblin (client, pos, name, isTroll)
 		--info = client.CharacterInfo
 		info = CharacterInfo(speciesName, client.Name)
 	end
-	info.Job = Job(JobPrefab.Get('greenskinjob'))
+	info.Job = Job(JobPrefab.Get('greenskinjob'), false)
 	
 	local character
 	if client == nil then
@@ -627,7 +627,7 @@ function spawnHumanghost (client, pos, name)
 		--info = client.CharacterInfo
 		info = CharacterInfo(speciesName, client.Name)
 	end
-	info.Job = Job(JobPrefab.Get('spiritjob'))
+	info.Job = Job(JobPrefab.Get('spiritjob'), false)
 	
 	local character
 	if client == nil then
