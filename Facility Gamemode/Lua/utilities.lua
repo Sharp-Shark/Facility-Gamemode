@@ -602,7 +602,7 @@ function spawnHumangoblin (client, pos, name, isTroll)
 		character = Character.Create(speciesName, pos, info.Name, info, 0, true, false)
 	end
 	
-	--character.GiveJobItems()
+	--character.GiveJobItems(false)
 	if client ~= nil then
 		client.SetClientCharacter(character)
 	end
@@ -636,7 +636,7 @@ function spawnHumanghost (client, pos, name)
 		character = Character.Create(speciesName, pos, info.Name, info, 0, true, false)
 	end
 	
-	--character.GiveJobItems()
+	--character.GiveJobItems(false)
 	if client ~= nil then
 		client.SetClientCharacter(character)
 	end

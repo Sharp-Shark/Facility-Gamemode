@@ -74,14 +74,14 @@ function spawnPlayerMilitant_NEW (client, team, subclass)
 		if spawnPosition == nil then spawnPosition = findRandomWaypointByJob('') end
 		spawnPosition = spawnPosition.WorldPosition
 		character = spawnHuman(client, 'jet', spawnPosition, nil, subclass)
-		client.Character.SetOriginalTeam(CharacterTeamType.Team2)
+		client.Character.SetOriginalTeamAndChangeTeam(CharacterTeamType.Team2, true)
 		client.Character.UpdateTeam()
 	elseif team == 'MERCS' then
 		local spawnPosition = findRandomWaypointByJob('mercs')
 		if spawnPosition == nil then spawnPosition = findRandomWaypointByJob('') end
 		spawnPosition = spawnPosition.WorldPosition
 		character = spawnHuman(client, 'mercs', spawnPosition, nil, subclass)
-		client.Character.SetOriginalTeam(CharacterTeamType.Team1)
+		client.Character.SetOriginalTeamAndChangeTeam(CharacterTeamType.Team1, true)
 		client.Character.UpdateTeam()
 	end
 	--[[
@@ -202,13 +202,13 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (character)
 	local client = findClientByCharacter(character)
 	-- Set up TeamID for player
 	if isCharacterTerrorist(character) then
-		character.SetOriginalTeam(CharacterTeamType.Team2)
+		character.SetOriginalTeamAndChangeTeam(CharacterTeamType.Team2, true)
 		character.UpdateTeam()
 	elseif isCharacterNexpharma(character) then
-		character.SetOriginalTeam(CharacterTeamType.Team1)
+		character.SetOriginalTeamAndChangeTeam(CharacterTeamType.Team1, true)
 		character.UpdateTeam()
 	elseif (client ~= nil) and (FG.monsterPlayers[client.Name] ~= nil) then
-		character.SetOriginalTeam(0)
+		character.SetOriginalTeamAndChangeTeam(0, true)
 		character.UpdateTeam()
 	end
 	-- Spawn JET and MERCS card via LUA due to bug
