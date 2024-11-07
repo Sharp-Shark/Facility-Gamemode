@@ -646,6 +646,7 @@ end
 
 -- Finds lights
 function findLights ()
+	if FG.lightColors == nil then FG.lightColors = {} end
 	if table.size(FG.lightColors) ~= 0 then return end
 	local exemptItemIdentifiers = {'flare', 'alienflare', 'glowstick', 'flashlight', 'underwaterscooter', 'nexsuit', 'pucs'}
 	FG.lightColors = {}

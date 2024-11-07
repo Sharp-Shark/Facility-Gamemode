@@ -100,7 +100,7 @@ FG.paranormal.update = function ()
 				if FG.paranormal.clients[client].xp >= FG.paranormal.clients[client].getXpNeeded() then
 					FG.paranormal.clients[client].level = FG.paranormal.clients[client].level + 1
 					FG.paranormal.clients[client].xp = 0
-					FG.paranormal.clients[client].power = SS079.paranormal.clients[client].getPowerCap()
+					FG.paranormal.clients[client].power = FG.paranormal.clients[client].getPowerCap()
 					messageClient (client, 'text-command', string.localize('booLevelUp', {level = FG.paranormal.clients[client].level}, client.Language), nil)
 				end
 			else
