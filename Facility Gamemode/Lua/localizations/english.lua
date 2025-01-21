@@ -6,10 +6,10 @@ FG.localizations['English'] = {
 	GUIDeconTime = 'Decontamination in {time}',
 	GUIDeconStart = 'Decontamination initiated',
 	
-	serverMessageText = [[MOD BY Sharp-Shark! DO /help FOR COMMANDS.
-DISCORD: https://discord.gg/qxXzrVeRHD
+	serverMessageText = string.replace([[MOD BY Sharp-Shark! DO /help FOR COMMANDS.
+DISCORD: {invite}
 
-]],
+]], {invite = FG.discordInvite}),
 	joinMessageText = [[_Welcome to Facility Gamemode by Sharp-Shark. Please have fun and respect the rules. If you want, join our discord.
 	
 _When the game starts, your objective is to be the last team standing.
@@ -19,10 +19,10 @@ _If you are a militant, kill the other teams and help the civilians from your te
 _Your preferred job may be overriden by the gamemode's autobalance script, but the script will try and give you your desired job if possible. Also, only the 1st job in your preferred jobs list matters.
 	
 _Do /help for a list of commands.]],
-	dieMessageText = [[You have died. Do /respawn to get an estimated time until respawn and amount of tickets. Do /boo to haunt the living. If more people die, it will go down faster.
+	dieMessageText = string.replace([[You have died. Do /respawn to get an estimated time until respawn and amount of tickets. Do /boo to haunt the living. If more people die, it will go down faster.
 
 If you belive your death is a bug or was caused by someone breaking the rules, say so in our discord.
-Discord: https://discord.gg/qxXzrVeRHD]],
+Discord: {invite}]], {invite = FG.discordInvite}),
 
 	gamemodeInfo = 'Gamemode Info: {text}',
 

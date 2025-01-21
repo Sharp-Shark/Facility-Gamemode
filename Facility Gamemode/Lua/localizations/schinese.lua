@@ -6,10 +6,10 @@ FG.localizations['Simplified Chinese'] = {
 	GUIDeconTime = '在 {time} 之后净化',
 	GUIDeconStart = '净化已开始',
 	
-	serverMessageText = [[模组由 Sharp-Shark 制作！发送 /help 获取命令。
-DISCORD: https://discord.gg/qxXzrVeRHD
+	serverMessageText = string.replace([[模组由 Sharp-Shark 制作！发送 /help 获取命令。
+DISCORD: {invite}
 
-]],
+]], {invite = FG.discordInvite}),
 	joinMessageText = [[_欢迎游玩由Sharp-Shark开发的 Facility Gamemode。请遵循规则。如果你愿意，加入我们的Discord。
 	
 _游戏开始时，你的目标是成为最后一支幸存的队伍。
@@ -19,10 +19,10 @@ _如果你是武装成员，消灭其他队伍并帮助你队伍中的文职成�
 _你选择的职业可能会被游戏模式的自动平衡脚本覆盖，但脚本仍旧会尝试为你分配所选职业。此外，只有是首选职业才会被脚本考虑。
 	
 _发送 /help 查看命令列表。]],
-	dieMessageText = [[如果你死了。发送 /respawn 查询重生预计时间和入场券的数量。执行 /boo 撞鬼。若死去的人越多，重生速度越快。
+	dieMessageText = string.replace([[如果你死了。发送 /respawn 查询重生预计时间和入场券的数量。执行 /boo 撞鬼。若死去的人越多，重生速度越快。
 
 如果你认为你的死亡是因bug导致，或者是有人违反规则而造成的，在我们的Discord中反馈。
-Discord: https://discord.gg/qxXzrVeRHD]],
+Discord: {invite}]], {invite = FG.discordInvite}),
 
 	gamemodeInfo = '游戏模式信息：{text}',
 

@@ -6,10 +6,10 @@ FG.localizations['Brazilian Portuguese'] = {
 	GUIDeconTime = 'Descontaminação em {time}',
 	GUIDeconStart = 'Descontaminação iniciada',
 	
-	serverMessageText = [[MOD POR Sharp-Shark! FAÇA /help PARA UMA LISTA DE COMANDOS.
-DISCORD: https://discord.gg/qxXzrVeRHD
+	serverMessageText = string.replace([[MOD POR Sharp-Shark! FAÇA /help PARA UMA LISTA DE COMANDOS.
+DISCORD: {invite}
 
-]],
+]], {invite = FG.discordInvite}),
 	joinMessageText = [[_Bem-vindo ao "Facility Gamemode" de Sharp-Shark. Se divirta e se quiser entre no nosso discord.
 	
 _Quando o jogo começar, o seu objetivo é ser o último time de pé.
@@ -19,10 +19,10 @@ _Se você for um militante, mate os inimigos e ajude os civis do seu time no obj
 _O seu trabalho preferido não necessariamente será o que você será, porém o código priorizará dar-lo a você. Acaso, o resto da sua lista de preferência não importa, só o 1º item..
 	
 _Faça /help no chat para uma lista de comandos.]],
-	dieMessageText = [[Você morreu. Faça /respawn para saber o tempo até o respawn e a quantia de tickets. Faça /boo para assombrar os vivos. Se mais pessoas morrerem, ele irá diminuar significativamente.
+	dieMessageText = string.replace([[Você morreu. Faça /respawn para saber o tempo até o respawn e a quantia de tickets. Faça /boo para assombrar os vivos. Se mais pessoas morrerem, ele irá diminuar significativamente.
 
 Se acredita que a sua morte foi um bug ou causado por alguém violar as regras, nos fale no discord.
-Discord: https://discord.gg/qxXzrVeRHD]],
+Discord: {invite}]], {invite = FG.discordInvite}),
 
 	gamemodeInfo = 'Informação do gamemode: {text}',
 

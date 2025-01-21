@@ -48,6 +48,13 @@ FG.localizations = {}
 FG.language = 'English'
 if CLIENT then FG.language = tostring(Game.Settings.CurrentConfig.language) end
 
+-- Load utilities
+expectFiles('utilities')
+require 'utilities'
+
+-- Load secrets
+require 'secret'
+
 -- Load default languages
 expectFiles('english', 'ptbr', 'russian', 'schinese')
 require 'localizations/english'
@@ -61,8 +68,7 @@ print('...')
 -- Client only code
 if CLIENT then
 	-- Load other files
-	expectFiles('utilities', 'settings', 'gui')
-	require 'utilities'
+	expectFiles('settings', 'gui')
 	require 'settings'
 	require 'clientside/gui'
 	
@@ -96,7 +102,7 @@ if CLIENT then
 end
 
 -- Load other files
-expectFiles('autoJob', 'commands', 'death', 'loadoutTables', 'lootTables', 'spawning', 'utilities', 'settings', 'items', 'ghost')
+expectFiles('autoJob', 'commands', 'death', 'loadoutTables', 'lootTables', 'spawning', 'settings', 'items', 'ghost')
 require 'json'
 require 'autoJob'
 require 'commands'
@@ -104,7 +110,6 @@ require 'death'
 require 'loadoutTables'
 require 'lootTables'
 require 'spawning'
-require 'utilities'
 require 'settings'
 require 'items'
 require 'ghost'
