@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Facility Gamemode" modversion="1.19.11" corepackage="False" steamworkshopid="2915017487" gameversion="1.7.7.0">
+<contentpackage name="Facility Gamemode" modversion="1.19.12" corepackage="False" steamworkshopid="2915017487" gameversion="1.7.7.0">
   <Text file="%ModDir%/Localizations/english.xml" />
   <Text file="%ModDir%/Localizations/ptbr.xml" />
   <Text file="%ModDir%/Localizations/russian.xml" />

@@ -13,7 +13,7 @@ FG.analytics.publish = function ()
 	text = text .. 'data = ' .. table.print(FG.analytics.data, true, 1, nil, {space = '| ', line = '``````'})
 	text = text .. '```'
 	
-	discordChatMessage(text, FG.discordWebHook)
+	discordChatMessage(text, FG.discordWebHookAnalytics)
 	
 	FG.analytics.data = {}
 	
