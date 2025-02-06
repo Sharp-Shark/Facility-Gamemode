@@ -1,12 +1,70 @@
+-- debug guard clause
+FG.expectTypes = function (funcName, values, types)
+	local funcName = funcName or 'funcName'
+	
+	local errorCount = 0
+	local text = ''
+	for key, target in pairs(types) do
+		local value = values[key]
+		
+		-- check if value is not any of the target type(s) and also build a neater string of target types for display ("nil,number,string" becomes "nil, number or string")
+		local bool = true
+		local build = ''
+		local expectedTypes = ''
+		for count = 1, #target do
+			local char = string.sub(target, count, count)
+			if char ~= ',' then
+				build = build .. char
+			end
+			if (char == ',') or (count == #target) then
+				if build == 'notnil' then
+					if value ~= nil then
+						bool = false
+					end
+					build = 'not nil'
+				else
+					if type(value) == build then
+						bool = false
+					end
+				end
+				if expectedTypes == '' then
+					expectedTypes = build
+				else
+					if count == #target then
+						expectedTypes = expectedTypes .. ' or ' .. build
+					else
+						expectedTypes = expectedTypes .. ', ' .. build
+					end
+				end
+				build = ''
+			end
+		end
+		
+		-- build error message if value type is invalid
+		if bool then
+			local index = (type(key) == 'number') and ('#' .. key) or (string.format("'%s'", tostring(key)))
+			text = text .. string.format("bad argument %s to '%s' (%s expected, got %s)\n", index, funcName, expectedTypes, type(value))
+			errorCount = errorCount + 1
+		end
+	end
+	
+	-- error if any value was of an invalid type
+	if errorCount > 0 then
+		if errorCount > 1 then text = '\n' .. text end
+		error(text .. '\n' .. debug.traceback(), 2)
+	end
+end
+
 -- Get the size of a table (for tables that aren't like an array, #t won't work)
 table.size = function (t)
+	FG.expectTypes('table.size', {t}, {'table'})
 	local size = 0
 	for item in t do size = size + 1 end
 	return size
 end
 
 -- Custom method for nicely printing tables
-table.print = function(t, output, long, depth, chars)
+table.print = function(t, output, long, depth, chars)	
 	if t == nil then
 		out = 'nil'
 		if not output then print(out) end
@@ -103,13 +161,15 @@ end
 
 -- Copies a table (clones it)
 table.copy = function(t)
-  local u = { }
-  for key, value in pairs(t) do u[key] = value end
-  return setmetatable(u, getmetatable(t))
+	FG.expectTypes('table.copy', {t}, {'table'})
+	local u = { }
+	for key, value in pairs(t) do u[key] = value end
+	return setmetatable(u, getmetatable(t))
 end
 
 -- Returns a merge of two tables (values of tbl1 take preference)
 table.merge = function(tbl1, tbl2)
+	FG.expectTypes('table.merge', {tbl1, tbl2}, {'table', 'table'})
 	local tbl = {}
 	for key, value in pairs(tbl2) do
 		tbl[key] = value
@@ -122,6 +182,7 @@ end
 
 -- Checks if a string has another string
 string.has = function(strMain, strSub)
+	FG.expectTypes('string.has', {strMain, strSub}, {'string', 'string'})
 	local build = ''
 	local letter = ''
 	for letterCount = 1, #strMain do
@@ -140,6 +201,7 @@ end
 
 -- Is like python's split
 string.split = function(strMain, separator)
+	FG.expectTypes('string.split', {strMain, separator}, {'string', 'string'})
 	local tbl = {}
 	local build = ''
 	local letter = ''
@@ -164,6 +226,7 @@ end
 
 -- My version of string.format
 string.replace = function(str, tbl)
+	FG.expectTypes('string.replace', {str, tbl}, {'string', 'nil,table'})
 	local formatted = ''
 	local build = ''
 	local open = false
@@ -212,6 +275,7 @@ end
 
 -- Checks if a table has an item that matches the one given
 table.has = function(tbl, itemBeingSearched)
+	FG.expectTypes('table.has', {tbl}, {'table'})
 	for item in tbl do
 		if item == itemBeingSearched then
 			return true
@@ -222,6 +286,7 @@ end
 
 -- Returns a table sequence of a table's keys
 table.getKeys = function(tbl)
+	FG.expectTypes('table.getKeys', {tbl}, {'nil,table'})
 	if tbl == nil then return {} end
 	local toReturn = {}
 	for key, value in pairs(tbl) do
@@ -232,6 +297,7 @@ end
 
 -- Returns a table sequence of a table's values
 table.getValues = function(tbl)
+	FG.expectTypes('table.getValues', {tbl}, {'nil,table'})
 	if tbl == nil then return {} end
 	local toReturn = {}
 	for key, value in pairs(tbl) do
@@ -242,16 +308,20 @@ end
 
 -- Linear intepolation
 function lerp (n, a, b)
+	FG.expectTypes('lerp', {n, a, b}, {'number', 'number', 'number'})
 	return a*(1-n) + b*n
 end
 
 -- Lerp colors
 function lerpColor (n, a, b)
+	FG.expectTypes('lerpColor', {n, a, b}, {'userdata', 'userdata', 'userdata'})
 	return Color(Byte(lerp(n, a.R, b.R)), Byte(lerp(n, a.G, b.G)), Byte(lerp(n, a.B, b.B)), Byte(lerp(n, a.A, b.A)))
 end
 
 -- Takes number and returns string
 function numberToTime (n, spacing, showH, showM, showS)
+	FG.expectTypes('numberToTime', {n}, {'number'})
+	
 	local seconds = n
 	if n < 0 then
 		seconds = 0
@@ -296,6 +366,7 @@ end
 
 -- Shuffles a table (assumes it has an array-like structure)
 function shuffleArray (array)
+	FG.expectTypes('shuffleArray', {array}, {'table'})
 	local shuffledArray = {}
 	local originalArray = {}
 	for key, value in pairs(array) do
@@ -319,6 +390,7 @@ end
 
 -- Gives a certain amount of an item to a character
 function giveItemCharacter (character, identifier, amount, slot)
+	FG.expectTypes('giveItemCharacter', {character, identifier, amount, slot}, {'userdata', 'string', 'nil,number', 'nil,number'})
 	-- Give Item
 	for n=1,(amount or 1) do 
 		Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.GetItemPrefab(identifier), character.Inventory, nil, nil, function (spawnedItem)
@@ -330,6 +402,7 @@ end
 
 -- Gives an affliction to a character
 function giveAfflictionCharacter (character, identifier, amount)
+	FG.expectTypes('giveAfflictionCharacter', {character, identifier, amount}, {'userdata', 'string', 'number'})
 	character.CharacterHealth.ApplyAffliction(character.AnimController.MainLimb, AfflictionPrefab.Prefabs[identifier].Instantiate(amount))
 end
 
@@ -340,6 +413,7 @@ end
 
 -- Checks whether a character is a monster
 function isCharacterMonster (character)
+	FG.expectTypes('isCharacterMonster', {character}, {'userdata'})
 	--if character.SpeciesName == 'Mantisadmin' or character.SpeciesName == 'Crawleradmin' or character.SpeciesName == 'Mantisadmin_hatchling' or character.SpeciesName == 'Crawleradmin_hatchling' or character.SpeciesName == 'Humanhusk' or character.SpeciesName == 'Humangoblin' or character.SpeciesName == 'Humantroll' then
 	if character.SpeciesName ~= 'human' then
 		return true
@@ -350,6 +424,7 @@ end
 
 -- Checks whether a character is part of Terrorist Faction
 function isCharacterTerrorist (character)
+	FG.expectTypes('isCharacterTerrorist', {character}, {'userdata'})
 	if character.SpeciesName == 'human' and (character.HasJob('inmate') or character.HasJob('jet')) then
 		return true
 	else
@@ -359,6 +434,7 @@ end
 
 -- Checks whether a character is part of Nexpharma Corporation
 function isCharacterNexpharma (character)
+	FG.expectTypes('isCharacterNexpharma', {character}, {'userdata'})
 	if character.SpeciesName == 'human' and (character.HasJob('overseer') or character.HasJob('repairmen') or character.HasJob('researcher') or character.HasJob('enforcerguard') or character.HasJob('eliteguard') or character.HasJob('mercs')) then
 		return true
 	else
@@ -368,6 +444,7 @@ end
 
 -- Checks whether a character is part of staff
 function isCharacterStaff (character)
+	FG.expectTypes('isCharacterStaff', {character}, {'userdata'})
 	if character.SpeciesName == 'human' and (character.HasJob('overseer') or character.HasJob('repairmen') or character.HasJob('researcher')) then
 		return true
 	else
@@ -377,6 +454,7 @@ end
 
 -- Checks whether a character is a guard
 function isCharacterGuard (character)
+	FG.expectTypes('isCharacterGuard', {character}, {'userdata'})
 	if character.SpeciesName == 'human' and (character.HasJob('enforcerguard') or character.HasJob('eliteguard')) then
 		return true
 	else
@@ -386,6 +464,7 @@ end
 
 -- Checks whether a character is a civilian
 function isCharacterCivilian (character)
+	FG.expectTypes('isCharacterCivilian', {character}, {'userdata'})
 	if character.SpeciesName == 'human' and (isCharacterStaff(character) or character.HasJob('inmate')) then
 		return true
 	else
@@ -395,6 +474,7 @@ end
 
 -- Checks whether a client can or cannot respawn
 function canClientRespawn (client)
+	FG.expectTypes('canClientRespawn', {client}, {'userdata'})
 	if (client.Character == nil or client.Character.IsDead) and (not FG.spectators[client.Name]) and (not client.UsingFreeCam) and (not FG.paranormal.noRespawn[client]) then
 		return true
 	else
@@ -470,6 +550,7 @@ end
 
 -- Messages a message to a client
 function messageClient (client, msgType, text, sender)
+	FG.expectTypes('messageClient', {client}, {'userdata'})
 	if CLIENT then return end
 	-- Ignore means don't say anything
 	if msgType == 'ignore' then
