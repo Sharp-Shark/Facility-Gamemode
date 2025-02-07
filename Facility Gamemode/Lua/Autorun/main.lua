@@ -501,7 +501,7 @@ Hook.Add("think", "thinkCheck", function ()
 				end
 				FG.respawnTimerUpdate = false
 			end
-		elseif not FG.endGame and (Game.ServerSettings['RespawnMode'] == 1) then
+		elseif not FG.endGame and (Game.ServerSettings['RespawnMode'] == 2) then
 			-- Reset subclass setter for next wave
 			FG.terroristSubclassCount = 1
 			FG.nexpharmaSubclassCount = 1
