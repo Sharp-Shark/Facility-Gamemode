@@ -114,7 +114,7 @@
     <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="640,640,128,128" color="106,106,106,255" origin="0,0" />
   </Affliction>
   <!-- Intoxicated (from decon) -->
-  <Affliction name="Intoxicated" identifier="intoxicated" description="Noxious gases in the air tear through armor, skin and organs." type="intoxicated" targets="human,crawleradmin,mantisadmin,humanhusk,humangoblin,humantroll" limbspecific="false" indicatorlimb="Torso" showiconthreshold="0" showinhealthscannerthreshold="0" karmachangeonapplied="-10" maxstrength="75" WeaponsSkillGain="1.0" iconcolors="128,224,64,255">
+  <Affliction name="Intoxicated" identifier="intoxicated" description="Noxious gases in the air tear through armor, skin and organs." type="intoxicated" limbspecific="false" indicatorlimb="Torso" showiconthreshold="0" showinhealthscannerthreshold="0" karmachangeonapplied="-10" maxstrength="75" WeaponsSkillGain="1.0" iconcolors="128,224,64,255">
     <Effect minstrength="0" maxstrength="60" strengthchange="-1" minvitalitydecrease="0" maxvitalitydecrease="1" multiplybymaxvitality="true" />
     <Effect minstrength="60" maxstrength="75" strengthchange="-1" minvitalitydecrease="1" maxvitalitydecrease="2" multiplybymaxvitality="true" />
     <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="640,640,128,128" color="106,106,106,255" origin="0,0" />
