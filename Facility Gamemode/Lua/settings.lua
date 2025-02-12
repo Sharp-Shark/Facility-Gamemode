@@ -210,6 +210,7 @@ FG.settingsPresetsDefault = {
 		lighting = 'greenskin',
 		terrorRadius = false,
 		autoJobRoleSequence = 'mxx',
+		nexpharmaSquadSequence = '01',
 		decontaminationTimer = 60*9 + 15,
 		terroristTickets = -99,
 		nexpharmaTickets = 1

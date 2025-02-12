@@ -585,8 +585,7 @@
       <Item identifier="jetmaskother" equip="true">
         <Item identifier="oxygentank" />
       </Item>
-      <Item identifier="backpackradio" equip="true" />
-      <Item identifier="bandolier" equip="true">
+      <Item identifier="backpackradio" equip="true">
         <!--8 Plastiseal-->
         <Item identifier="antibleeding2" />
         <Item identifier="antibleeding2" />
@@ -614,6 +613,8 @@
 		<Item identifier="combatstimulantsyringe" />
 		<Item identifier="combatstimulantsyringe" />
 		<!-- End -->
+	  </Item>
+      <Item identifier="piratebodyarmor" equip="true">
 		<Item identifier="handcuffs" />
 	  </Item>
       <Item identifier="jetsmgcompact">
@@ -643,7 +644,35 @@
       <Item identifier="jetmaskother" equip="true">
         <Item identifier="oxygentank" />
       </Item>
-      <Item identifier="backpackradio" equip="true" />
+      <Item identifier="backpackradio" equip="true">
+        <!--8 Plastiseal-->
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+		<!-- End -->
+        <!--8 Midazolam-->
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+		<!-- End -->
+        <Item identifier="antibloodloss2" />
+        <!--4 Combat Stims-->
+		<Item identifier="combatstimulantsyringe" />
+		<Item identifier="combatstimulantsyringe" />
+		<Item identifier="combatstimulantsyringe" />
+		<Item identifier="combatstimulantsyringe" />
+		<!-- End -->
+	  </Item>
       <Item identifier="bodyarmor" equip="true">
 		<Item identifier="handcuffs" />
 	  </Item>
@@ -886,9 +915,36 @@
       <Item identifier="nexsuit" equip="true" outfit="true">
         <Item identifier="oxygentank" />
 		<Item identifier="handcuffs" />
-        <Item identifier="antibloodloss2" />
       </Item>
-      <Item identifier="backpackradio" equip="true" />
+      <Item identifier="backpackradio" equip="true">
+        <!--8 Plastiseal-->
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+		<!-- End -->
+        <!--8 Midazolam-->
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+		<!-- End -->
+        <Item identifier="antibloodloss2" />
+        <!--4 Combat Stims-->
+		<Item identifier="combatstimulantsyringe" />
+		<Item identifier="combatstimulantsyringe" />
+		<Item identifier="combatstimulantsyringe" />
+		<Item identifier="combatstimulantsyringe" />
+		<!-- End -->
+	  </Item>
       <!--<Item identifier="idcardmercs" equip="true"/>-->
       <Item identifier="mercssmg">
         <Item identifier="smgmagazine" />
@@ -901,25 +957,9 @@
       <Item identifier="divingknife" />
       <Item identifier="antibleeding2" />
       <Item identifier="antibleeding2" />
-      <Item identifier="antibleeding2" />
-      <Item identifier="antibleeding2" />
-      <Item identifier="antibleeding2" />
-      <Item identifier="antibleeding2" />
-      <Item identifier="antibleeding2" />
-      <Item identifier="antibleeding2" />
-      <Item identifier="midazolam" />
-      <Item identifier="midazolam" />
-      <Item identifier="midazolam" />
-      <Item identifier="midazolam" />
-      <Item identifier="midazolam" />
-      <Item identifier="midazolam" />
       <Item identifier="midazolam" />
       <Item identifier="midazolam" />
       <Item identifier="antibloodloss2" />
-      <Item identifier="combatstimulantsyringe" />
-      <Item identifier="combatstimulantsyringe" />
-      <Item identifier="combatstimulantsyringe" />
-      <Item identifier="combatstimulantsyringe" />
       <Item identifier="flashlight">
         <Item identifier="batterycell" />
       </Item>
@@ -933,7 +973,35 @@
       <Item identifier="jetmaskother" equip="true">
         <Item identifier="oxygentank" />
       </Item>
-      <Item identifier="backpackradio" equip="true" />
+      <Item identifier="backpackradio" equip="true">
+        <!--8 Plastiseal-->
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+        <Item identifier="antibleeding2" />
+		<!-- End -->
+        <!--8 Midazolam-->
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+        <Item identifier="midazolam" />
+		<!-- End -->
+        <Item identifier="antibloodloss2" />
+        <!--4 Combat Stims-->
+		<Item identifier="combatstimulantsyringe" />
+		<Item identifier="combatstimulantsyringe" />
+		<Item identifier="combatstimulantsyringe" />
+		<Item identifier="combatstimulantsyringe" />
+		<!-- End -->
+	  </Item>
       <Item identifier="bodyarmor" equip="true">
 		<Item identifier="handcuffs" />
 	  </Item>

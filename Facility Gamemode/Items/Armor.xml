@@ -634,17 +634,15 @@
       <RequiredItem identifier="plastic" />
       <RequiredItem identifier="fpgacircuit" />
     </Fabricate>
-    <WifiComponent range="80000.0" LinkToChat="true" MinChatMessageInterval="0.0">
-      <!--RequiredItems items="mobilebattery" type="Contained" /-->
-    </WifiComponent>
-    <Upgrade gameversion="0.18.0.0">
-      <WifiComponent>
-        <RequiredItems items="" />
-      </WifiComponent>
-    </Upgrade>
     <Wearable limbtype="Torso" slots="Bag" msg="ItemMsgPickUpSelect" displaycontainedstatus="true">
-      <sprite name="Radio Wearable" texture="backpackradio.png" limb="Torso" depth="0.1" canbehiddenbyotherwearables="false" hidelimb="false" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.7" hideotherwearables="false" sourcerect="172,0,88,280" origin="1.15,0.65" />
+      <StatusEffect type="OnWearing" target="NearbyCharacters" range="300" >
+	    <LuaHook name="backpackradio.update" />
+	  </StatusEffect>
+	  <sprite name="Radio Wearable" texture="backpackradio.png" limb="Torso" depth="0.1" canbehiddenbyotherwearables="false" hidelimb="false" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.7" hideotherwearables="false" sourcerect="172,0,88,280" origin="1.15,0.65" />
     </Wearable>
+	<ItemContainer capacity="4" >
+      <Containable items="smallitem" />
+    </ItemContainer>
   </Item>
   <!-- Goblin Mask -->
   <Item name="Goblin Mask" identifier="goblinmask" category="Equipment" cargocontaineridentifier="metalcrate" tags="smallitem,clothing" description="" scale="0.5">

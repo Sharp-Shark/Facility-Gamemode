@@ -52,6 +52,21 @@ Hook.Add("wifiSignalTransmitted", "wifiModifyChannel", function (wifiComponent, 
 end)
 --]]
 
+Hook.Add("backpackradio.update", "FG.backpackradio.update", function (effect, deltaTime, item, targets, worldPosition)
+	if (item.ParentInventory ~= nil) and (item.ParentInventory.Owner ~= nil) and (LuaUserData.TypeOf(item.ParentInventory.Owner) == 'Barotrauma.Character') then return end
+	local user = item.ParentInventory.Owner
+	local alliance = {
+		monster = isCharacterMonster(user),
+		terrorist = isCharacterTerrorist(user),
+		nexpharma = isCharacterNexpharma(user),
+	}
+	for target in targets do
+		if (user ~= target) and ((isCharacterMonster(target) and alliance.monster) or (isCharacterTerrorist(target) and alliance.terrorist) or (isCharacterNexpharma(target) and alliance.nexpharma)) then
+			giveAfflictionCharacter(target, 'backpackradiobuff', 40 / 60)
+		end
+	end
+end)
+
 Hook.Add("handheldTrigger.use", "FG.handheldTriggerUse", function (effect, deltaTime, item, targets, worldPosition)
 	if (effect.user ~= nil) then
 		local headset = effect.user.Inventory.GetItemAt(1)
@@ -140,8 +155,15 @@ Hook.Add("inventoryPutItem", "FG.reloadTime", function (inventory, item, charact
 		smgmagazine = 'mag',
 		stungundart = 'round'
 	}
+	
 	local reloadTime = reloadTimes[inventory.Owner.Prefab.Identifier.Value]
+	-- decrease reloadtime for backpackradiobuff'd characters
+	if type(reloadTime) == 'number' then
+		reloadTime = reloadTime / (characterUser.CharacterHealth.GetAfflictionStrengthByIdentifier('backpackradiobuff', true) / 50 + 1)
+	end
+	
 	local ammoType = ammoTypes[item.Prefab.Identifier.Value]
+	
 	if (reloadTime ~= nil) and (ammoType ~= nil) and (
 	(characterUser.CharacterHealth.GetAffliction('reloading', true) == nil) or 
 	((FG.lastGunReloaded[characterUser][1] ~= item) and (ammoType == 'round')) or 

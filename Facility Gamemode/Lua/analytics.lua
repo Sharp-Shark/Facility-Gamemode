@@ -61,7 +61,7 @@ Hook.Add("roundEnd", "sendAnalytics", function (arg)
 		FG.analytics.data.startTime = nil
 		FG.analytics.data.endTime = nil
 	end
-	if table.size(FG.analytics.data.obituary) == 0 then
+	if (FG.analytics.data.obituary ~= nil) and (table.size(FG.analytics.data.obituary) == 0) then
 		FG.analytics.data.obituary = 'make peace not war'
 	end
 	

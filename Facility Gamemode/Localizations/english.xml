@@ -142,4 +142,7 @@
   <!-- Husk Stun Affliction -->
   <afflictionname.huskstun>Husk stun</afflictionname.huskstun>
   <afflictiondescription.huskstun>Husk neurotoxin present in the host's blood.</afflictiondescription.huskstun>
+  <!-- Stimulated Affliction -->
+  <afflictionname.officerradiobuff>Emboldened</afflictionname.officerradiobuff>
+  <afflictiondescription.officerradiobuff>Emboldened by an officer, leading to peak performance.</afflictiondescription.officerradiobuff>
 </infotexts>

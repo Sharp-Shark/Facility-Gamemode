@@ -5,7 +5,7 @@
   <bloodemitter Particle="blackblood" AngleMin="0" AngleMax="0" ScaleMin="1" ScaleMax="1" VelocityMin="0" VelocityMax="0" EmitInterval="0" ParticlesPerSecond="0" ParticleAmount="5" HighQualityCollisionDetection="False" CopyEntityAngle="False" />
   <bloodemitter Particle="blackwaterblood" AngleMin="0" AngleMax="0" ScaleMin="1" ScaleMax="1" VelocityMin="0" VelocityMax="0" EmitInterval="0" ParticlesPerSecond="0" ParticleAmount="1" HighQualityCollisionDetection="False" CopyEntityAngle="False" />
   <gibemitter Particle="blackgib" AngleMin="0" AngleMax="360" ScaleMin="0.3" ScaleMax="0.6" VelocityMin="200" VelocityMax="500" EmitInterval="0" ParticlesPerSecond="0" ParticleAmount="10" HighQualityCollisionDetection="False" CopyEntityAngle="False" />
-  <health Vitality="1250" DoesBleed="False" CrushDepth="Infinity" UseHealthWindow="False" BleedingReduction="0.5" BurnReduction="0.5" ConstantHealthRegeneration="0.5" HealthRegenerationWhenEating="2.5" StunImmunity="True" PoisonImmunity="True" PoisonVulnerability="1" EmpVulnerability="0" ApplyAfflictionColors="False" />
+  <health Vitality="1500" DoesBleed="False" CrushDepth="Infinity" UseHealthWindow="False" BleedingReduction="0.5" BurnReduction="0.5" ConstantHealthRegeneration="0.2" HealthRegenerationWhenEating="1.0" StunImmunity="True" PoisonImmunity="True" PoisonVulnerability="1" EmpVulnerability="0" ApplyAfflictionColors="False" />
   <sound File="%ModDir%/Characters/Chimeraadmin/HUSKCHIMERA_attack1.ogg" State="Attack" Range="1000" Volume="1" Tags="" />
   <sound File="%ModDir%/Characters/Chimeraadmin/HUSKCHIMERA_attack2.ogg" State="Attack" Range="1000" Volume="1" Tags="" />
   <sound File="%ModDir%/Characters/Chimeraadmin/HUSKCHIMERA_attack3.ogg" State="Attack" Range="1000" Volume="1" Tags="" />
