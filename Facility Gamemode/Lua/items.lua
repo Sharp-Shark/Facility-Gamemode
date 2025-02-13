@@ -53,7 +53,12 @@ end)
 --]]
 
 Hook.Add("backpackradio.update", "FG.backpackradio.update", function (effect, deltaTime, item, targets, worldPosition)
-	if (item.ParentInventory ~= nil) and (item.ParentInventory.Owner ~= nil) and (LuaUserData.TypeOf(item.ParentInventory.Owner) == 'Barotrauma.Character') then return end
+	local tbl = {
+		['Barotrauma.Character'] = true,
+		['Barotrauma.AICharacter'] = true,
+	}
+	if (item.ParentInventory == nil) or (item.ParentInventory.Owner == nil) or (not tbl[tostring(LuaUserData.TypeOf(item.ParentInventory.Owner))]) then return end
+	
 	local user = item.ParentInventory.Owner
 	local alliance = {
 		monster = isCharacterMonster(user),

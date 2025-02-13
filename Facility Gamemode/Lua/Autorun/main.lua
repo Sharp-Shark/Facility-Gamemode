@@ -728,7 +728,7 @@ Hook.Add("think", "thinkCheck", function ()
 			-- Add ghost text
 			local txtInMessage
 			txtInMessage = ''
-			if (client.SpectatePos ~= nil) and (FG.settings.ghosts ~= 'disabled') then
+			if (client.SpectatePos ~= nil) and (FG.settings.ghosts ~= 'disabled') and (FG.paranormal.clients[client] ~= nil) then
 				txtInMessage = 'Type "/boo" in chat.\nlvl:' .. tostring(FG.paranormal.clients[client].level) .. '/5\nxp:' .. tostring(math.floor(FG.paranormal.clients[client].xp)) .. '/' .. tostring(FG.paranormal.clients[client].getXpNeeded()) .. '\n' .. numberAddZeroInFront(tostring(math.floor(FG.paranormal.clients[client].power)), #tostring(FG.paranormal.clients[client].getPowerCap())) .. ' ' .. FG.paranormal.powerTextBar(FG.paranormal.clients[client].power, FG.paranormal.clients[client].getPowerCap()) .. ' ' .. tostring(FG.paranormal.clients[client].getPowerCap())
 			end
 			message.WriteString(txtInMessage)
