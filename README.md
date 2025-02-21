@@ -5,4 +5,4 @@ Discord: https://discord.gg/c7Qnp8S4yB
 
 Steam Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=2915017487
 
-Mod Wiki: https://facility-gamemode-wiki.pythoncoffee.repl.co/Facility%20Gamemode%20Wiki/main.html
+Mod Wiki: https://sharp-shark.github.io/Facility-Gamemode/Facility%20Gamemode%20Wiki/main.html
