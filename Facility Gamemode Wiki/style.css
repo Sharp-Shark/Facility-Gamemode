@@ -1,0 +1,137 @@
+html, body {
+    height: 100%;
+    margin: 0px;
+	font-size: 100%;
+}
+
+footer {
+	color: white;
+}
+
+ul {
+	margin: 0px;
+}
+
+body {
+    background-image: linear-gradient(180deg, #1c2833, black);
+    background-color: black;
+    color: #abb2b9;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.25);
+    border-style: solid;
+    border-top-style: none;
+    border-right-style: none;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 4px;
+    padding: 6px;
+}
+
+table, th, td {
+    background-color: #2e4053;
+    color: #abb2b9;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 4px;
+    padding: 2px;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+big {
+    margin: 8px auto;
+    font-size: 135%;
+    font-weight: bold;
+}
+
+bigger {
+    margin: 8px auto;
+    font-size: 182%;
+    font-weight: bold;
+}
+
+a {
+    color: mediumslateblue;
+    text-decoration: underline;
+}
+
+p {
+	margin: 8px auto;
+}
+
+code {
+    margin-top: 8px auto;
+    font-family: "Lucida Console", "Courier New", monospace;
+    background-color: #0d230c;
+    color: #57a757;
+    padding: 2px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 4px;
+    white-space: pre;
+}
+
+.code {
+    max-height: 65%;
+    min-width: 65%;
+    max-width: 65%;
+    overflow-y: auto;
+    width: min-content;
+    font-size: 65%;
+    margin-top: 8px auto;
+    font-family: "Lucida Console", "Courier New", monospace;
+    background-color: #0d230c;
+    color: #57a757;
+    padding: 2px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 4px;
+    white-space: pre;
+}
+
+mono {
+    background-color: #0c1823;
+    color: #aaaaaa;
+    padding: 2px;
+    border-style: solid;
+    border-color: #0c1823;
+    border-width: 1px;
+    border-radius: 4px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-weight: 100;
+}
+
+.input {
+    font-size: 100%;
+    margin: 8px auto;
+    background-color: #2e4053;
+    color: #abb2b9;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 4px;
+    padding: 2px;
+    transition: background-color 0.2s, color 0.2s;
+    transition-timing-function: ease-in-out;
+}
+
+.input:hover {
+    background-color: #34495e;
+    color: #abb2b9;
+    transition: background-color 0.2s;
+    transition-timing-function: ease-in-out;
+}
+
+.input:focus {
+    background-color: #abb2b9;
+    color: #34495e;
+}
