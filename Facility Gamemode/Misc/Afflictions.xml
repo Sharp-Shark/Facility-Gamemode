@@ -163,7 +163,7 @@
   <!-- Buff given by Officer's Radio to nearby allies (like Buff Banner or Battalion's Backup from TF2) -->
   <Affliction name="Emboldened" identifier="backpackradiobuff" description="Emboldened by an officer, leading to peak performance." type="buff" isbuff="true" targets="human" limbspecific="false" indicatorlimb="Head" showiconthreshold="0" showinhealthscannerthreshold="0" maxstrength="100" iconcolors="100,135,165,0;100,135,165,255" >
     <Effect minstrength="0" maxstrength="100" strengthchange="-20" minspeedmultiplier="1.0" maxspeedmultiplier="1.1" resistancefor="damage,bleeding,burn,stun" minresistance="0.0" maxresistance="0.2" />
-    <Icon texture="Content/UI/TalentsIcons2.png" sheetindex="7,7" sheetelementsize="128,128" color="10,193,114,255" origin="0,0"/>
+    <Icon texture="Content/UI/TalentsIcons2.png" sheetindex="7,7" sheetelementsize="128,128" color="255,255,255,255" origin="0,0"/>
   </Affliction>
   <!-- Stimulated (minor regen) -->
   <Affliction name="Stimulated" identifier="stimulated" description="" type="stimulated" isbuff="true" targets="human,humangoblin,humanhusk,humantroll" limbspecific="false" indicatorlimb="Torso" showiconthreshold="0" showinhealthscannerthreshold="0" karmachangeonapplied="-10" maxstrength="60" WeaponsSkillGain="1.0" iconcolors="68,157,192,255">

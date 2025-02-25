@@ -293,7 +293,7 @@ Hook.Add("character.giveJobItems", "monsterAndRespawns", function (character)
 				character.TeleportTo(spawnPosition)
 				if FG.settings.monsterSpawn == 'corpse' then
 					giveItemCharacter(character, 'bodybag', 1, 4)
-					giveAfflictionCharacter(character, 'huskinfection', 1)
+					giveAfflictionCharacter(character, 'huskinfection', 999)
 				end
 			elseif monster == 'greenskin' then
 				local isTroll = math.random(100) <= FG.settings.initialTrollPercentage

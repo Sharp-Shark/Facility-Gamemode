@@ -116,21 +116,23 @@ FG.settingsPresetsDefault = {
 		info = 'monsters are replaced with their hatchling variants.',
 		author = 'Sharp-Shark',
 		gamemode = 'brood',
-		autoJobRoleSequence = 'xsixig'
+		autoJobRoleSequence = 'xsixig',
 	},
 	['huskmode'] = {
 		info = 'monsters are now player controlled husks.',
 		author = 'Sharp-Shark',
 		gamemode = 'husk',
-		monsterSpawn = 'corpse'
+		monsterSpawn = 'corpse',
+		terrorRadius = false,
+		autoJobRoleSequence = 'xsixig',
 	},
 	['jetinvasion'] = {
 		info = 'a PvP only mode where staff+guards defend agaisnt the JET.',
 		author = 'Sharp-Shark',
-		autoJobRoleSequence = 'jsgiejo',
+		autoJobRoleSequence = 'jesigjo',
 		terroristTickets = 1,
 		nexpharmaTickets = 1,
-		respawnType = 'classic'
+		respawnType = 'classic',
 	},
 	['prisonescape'] = {
 		info = 'a PvP only mode where the guards must kill all the escapees.',
@@ -138,7 +140,7 @@ FG.settingsPresetsDefault = {
 		autoJobRoleSequence = 'ig',
 		terroristTickets = 99,
 		nexpharmaTickets = 1,
-		respawnType = 'classic'
+		respawnType = 'classic',
 	},
 	['scp:cb'] = {
 		info = 'inspired by SCP:CB, JET+inmates fight agaisnt the monsters and people only respawn as MERCS.',
@@ -146,18 +148,18 @@ FG.settingsPresetsDefault = {
 		autoJobRoleSequence = 'xieji-xigji',--'xiiji-xji',
 		terroristTickets = 1,
 		nexpharmaTickets = 99,
-		respawnType = 'classic'
+		respawnType = 'classic',
 	},
 	['surfacetension'] = {
 		info = 'team deathmatch with JET vs MERCS at surface zone.',
 		author = 'Sharp-Shark',
 		autoJobRoleSequence = 'mj',
 		decontaminationTimer = 60*0.2 + 15,
-		terroristTickets = 1.5,
-		nexpharmaTickets = 1.5,
+		terroristTickets = 6,
+		nexpharmaTickets = 6,
 		respawnType = 'classic',
 		respawnSpeed = 999,
-		respawnAccel = 1
+		respawnAccel = 1,
 	},
 	['ffa'] = {
 		hide = true,
@@ -170,7 +172,7 @@ FG.settingsPresetsDefault = {
 		decontaminationTimer = 999999,
 		respawnType = 'infiniteguards',
 		respawnSpeed = 999,
-		respawnAccel = 1
+		respawnAccel = 1,
 	},
 	['battleroyale'] = {
 		hide = true,
@@ -188,7 +190,7 @@ FG.settingsPresetsDefault = {
 		info = 'monsters are now player controlled trolls, a stronger and dumber subspecies of goblins.',
 		author = 'Sharp-Shark',
 		gamemode = 'greenskin',
-		initialTrollPercentage = 100
+		initialTrollPercentage = 100,
 	},
 	['greenskinlair'] = {
 		info = 'the facility has become a greenskin lair and the JET are here to clean things up.',
@@ -200,7 +202,7 @@ FG.settingsPresetsDefault = {
 		autoJobRoleSequence = 'jxx',
 		decontaminationTimer = 60*9 + 15,
 		terroristTickets = 1,
-		nexpharmaTickets = -99
+		nexpharmaTickets = -99,
 	},
 	['vietnam'] = {
 		info = 'the facility has become a greenskin lair and the MERCS are here to clean things up.',
@@ -210,10 +212,10 @@ FG.settingsPresetsDefault = {
 		lighting = 'greenskin',
 		terrorRadius = false,
 		autoJobRoleSequence = 'mxx',
-		nexpharmaSquadSequence = '01',
+		nexpharmaSquadSequence = '02',
 		decontaminationTimer = 60*9 + 15,
 		terroristTickets = -99,
-		nexpharmaTickets = 1
+		nexpharmaTickets = 1,
 	},
 	['jetpack'] = {
 		hide = true,
@@ -229,7 +231,7 @@ FG.settingsPresetsDefault = {
 		terroristTickets = -99,
 		nexpharmaTickets = 999999,
 		respawnSpeed = 999,
-		respawnAccel = 1
+		respawnAccel = 1,
 	}
 }
 
