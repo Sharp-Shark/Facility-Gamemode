@@ -2,10 +2,10 @@
 <huskappendage>
   <limb name="Huskappendage 0" id="15" height="10" width="15" ignorecollisions="True" flip="True">
     <sprite texture="Content/Characters/Humanhusk/Husk_Injector.png" sourcerect="25,86,20,15" depth="0.11" origin="0.5,0.5" ignoretint="true" />
-    <attack cooldown="1.5" range="75" damagerange="50" duration="0.2" structuredamage="0" itemdamage="15" structuresoundtype="StructureSlash" targetforce="-10" severlimbsprobability="0.8" torque="-20" force="10" applyforceonlimbs="0,6">
+    <attack penetration="0.5" cooldown="1.5" range="75" damagerange="50" duration="0.2" structuredamage="0" itemdamage="15" structuresoundtype="StructureSlash" targetforce="-10" severlimbsprobability="0.8" torque="-20" force="10" applyforceonlimbs="0,6">
       <Affliction identifier="huskinfection" strength="2" />
       <Affliction identifier="bleeding" strength="10" />
-      <Affliction identifier="bitewounds" strength="20" />
+      <Affliction identifier="bitewounds" strength="25" />
       <Affliction identifier="huskstun" strength="25" />
       <Affliction identifier="stun" strength="0.35" />
       <Affliction identifier="stunvulnerability" strength="35" />

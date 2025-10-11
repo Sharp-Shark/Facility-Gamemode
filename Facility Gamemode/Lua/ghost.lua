@@ -184,6 +184,7 @@ FG.paranormal.actions.blackout = {name = 'blackout', levelNeeded = 0, cost = 10,
 	for target in targets do
 		FG.paranormal.lights[target] = 10 + 1 * FG.paranormal.clients[client].level
 		setLightState(target, false)
+		Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.GetItemPrefab('boofx'), target.WorldPosition, nil, nil, function (spawnedItem) spawnedItem.Submarine = target.Submarine end)
 	end
 	
 	FG.paranormal.setupReward(client, pos, radius * 2, 15 + 1 * FG.paranormal.clients[client].level)
@@ -213,6 +214,7 @@ FG.paranormal.actions.open = {name = 'open', levelNeeded = 0, cost = 15, script 
 	FG.paranormal.doors[target] = 5 + 1 * FG.paranormal.clients[client].level
 	target.GetComponentString('Door').IsJammed = true
 	setDoorState(target, true)
+	Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.GetItemPrefab('boofx'), target.WorldPosition, nil, nil, function (spawnedItem) spawnedItem.Submarine = target.Submarine end)
 
 	local pos = target.WorldPosition
 
@@ -243,6 +245,7 @@ FG.paranormal.actions.close = {name = 'close', levelNeeded = 0, cost = 20, scrip
 	FG.paranormal.doors[target] = 5 + 1 * FG.paranormal.clients[client].level
 	target.GetComponentString('Door').IsJammed = true
 	setDoorState(target, false)
+	Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.GetItemPrefab('boofx'), target.WorldPosition, nil, nil, function (spawnedItem) spawnedItem.Submarine = target.Submarine end)
 	
 	local pos = target.WorldPosition
 	
@@ -255,6 +258,11 @@ end}
 FG.paranormal.actions.say = {name = 'say', levelNeeded = 4, cost = 45, script = function (client, pos, data)
 	local speciesName = 'ghost'
 	if FG.paranormal.poltergeist == client then speciesName = 'poltergeist' end
+	
+	Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.GetItemPrefab('boofx'), pos, nil, nil, function (spawnedItem) end)
+	
+	if data.text == nil then return true end
+	
 	for player in Client.ClientList do
 		if (player == client) or (player.Character == nil) or (player.Character.IsDead) then
 			messageClient(player, 'chat-regular', data.text, speciesName .. ' (' .. client.Name .. ')')
@@ -289,6 +297,7 @@ FG.paranormal.actions.lockdownBlackout = {hide = true, script = function (client
 	for target in targets do
 		FG.paranormal.lights[target] = 9 + 2 * FG.paranormal.clients[client].level
 		setLightState(target, false)
+		Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.GetItemPrefab('boofx'), target.WorldPosition, nil, nil, function (spawnedItem) spawnedItem.Submarine = target.Submarine end)
 	end
 	
 	return true
@@ -319,6 +328,7 @@ FG.paranormal.actions.lockdown = {name = 'lockdown', levelNeeded = 3, cost = 60,
 		FG.paranormal.doors[target] = 10 + 2 * FG.paranormal.clients[client].level
 		target.GetComponentString('Door').IsJammed = true
 		setDoorState(target, false)
+		Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.GetItemPrefab('boofx'), target.WorldPosition, nil, nil, function (spawnedItem) spawnedItem.Submarine = target.Submarine end)
 	end
 	
 	FG.paranormal.setupReward(client, pos, radius * 2, 15 + 2 * FG.paranormal.clients[client].level)
@@ -349,6 +359,7 @@ FG.paranormal.actions.use = {name = 'use', levelNeeded = 2, cost = 60, script = 
 		for connection in target.Connections do
 			if connection.IsOutput then
 				target.SendSignal(tostring(true), connection.Name)
+				Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.GetItemPrefab('boofx'), target.WorldPosition, nil, nil, function (spawnedItem) spawnedItem.Submarine = target.Submarine end)
 			end
 		end
 	end
@@ -370,6 +381,10 @@ FG.paranormal.actions.manifest = {name = 'manifest', levelNeeded = 1, cost = 75,
 	--giveAfflictionCharacter(character, 'spawnprotection', 3)
 	giveAfflictionCharacter(character, 'stun', 4.5)
 	giveAfflictionCharacter(character, 'stunimmune', 1)
+	
+	Timer.NextFrame(function ()
+		Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.GetItemPrefab('boofx'), character.WorldPosition, nil, nil, function (spawnedItem) spawnedItem.Submarine = character.Submarine end)
+	end)
 	
 	return true
 end}

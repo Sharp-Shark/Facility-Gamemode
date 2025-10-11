@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Item identifier="boofx" tags="fx" scale="0.5" hideinmenus="true" HiddenInGame="true" noninteractable="true">
+    <Sprite texture="SupportBeamVerticalFlip.png" depth="0.54" sourcerect="0,0,1,1" />
+    <ItemComponent>
+      <StatusEffect target="This" type="Always">
+		<ParticleEmitter particle="electricshock" scalemin="0.05" scalemax="0.1" particleamount="2" anglemin="0" anglemax="360" velocitymin="20" velocitymax="30" DistanceMin="10" DistanceMax="30" />
+      </StatusEffect>
+      <StatusEffect target="This" type="OnSpawn" delay="0.2">
+        <Remove />
+      </StatusEffect>
+    </ItemComponent>
+  </Item>
+</Items>

@@ -612,8 +612,6 @@ Hook.Add("think", "thinkCheck", function ()
 				messageAllClients('text-game', {'deconTimeStart'})
 				-- Make all non surface lights dark after 20s
 				setNonSurfaceLights(Color(), 300)
-				-- Close all escape doors
-				for item in findItemsByTag('fg_escapedoor') do setDoorState(item, false) end
 			elseif FG.decontaminationTimer == 10 then
 				messageAllClients('text-game', {'deconTimeTenSeconds'})
 			elseif FG.decontaminationTimer == 60 then
