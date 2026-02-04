@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Facility Gamemode" modversion="1.19.20" corepackage="False" steamworkshopid="2915017487" gameversion="1.10.7.1">
+<contentpackage name="Facility Gamemode" modversion="1.19.21" corepackage="False" steamworkshopid="2915017487" gameversion="1.11.5.0">
   <Text file="%ModDir%/Localizations/english.xml" />
   <Text file="%ModDir%/Localizations/ptbr.xml" />
   <Text file="%ModDir%/Localizations/russian.xml" />
@@ -43,14 +43,16 @@
   <ItemAssembly file="%ModDir%/Assemblies/FG Tools.xml" />
   <ItemAssembly file="%ModDir%/Assemblies/FG Trash.xml" />
   <ItemAssembly file="%ModDir%/Assemblies/FG Weaponry.xml" />
-  <Submarine file="%ModDir%/Submarines/FG Respawn.sub" />
-  <Submarine file="%ModDir%/Submarines/FG Jetpack.sub" />
   <Submarine file="%ModDir%/Submarines/FG Monorail128.sub" />
   <Submarine file="%ModDir%/Submarines/FG Monorail256.sub" />
   <Submarine file="%ModDir%/Submarines/FG Monorail512.sub" />
   <Submarine file="%ModDir%/Submarines/FG Monorail384.sub" />
   <Submarine file="%ModDir%/Submarines/FG Facility.sub" />
   <Submarine file="%ModDir%/Submarines/FG Monorail128 (ATLUS).sub" />
+  <Submarine file="%ModDir%/Submarines/FG Respawn.sub" />
+  <Submarine file="%ModDir%/Submarines/FG Jetpack.sub" />
   <Submarine file="%ModDir%/Submarines/FG Apteekki.sub" />
   <Submarine file="%ModDir%/Submarines/FG Atlas.sub" />
+  <Submarine file="%ModDir%/Submarines/FG Monorail128 (RUBIDIUM).sub" />
+  <Submarine file="%ModDir%/Submarines/FG Rubidium.sub" />
 </contentpackage>

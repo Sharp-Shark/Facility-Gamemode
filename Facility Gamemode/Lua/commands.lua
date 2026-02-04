@@ -334,7 +334,7 @@ Hook.Add("chatMessage", "toggleSpectator", function (message, client)
     return true
 end)
 
--- Declare self as Spectator (ADMIN ONLY)
+-- Print spectators list (ADMIN ONLY)
 Hook.Add("chatMessage", "listSpectator", function (message, client)
     if message ~= '/spectators' then return end
 	if not client.HasPermission(ClientPermissions.ConsoleCommands) then messageClient(client, 'text-warning', string.localize('commandAdminOnly', nil, client.Language)) return true end

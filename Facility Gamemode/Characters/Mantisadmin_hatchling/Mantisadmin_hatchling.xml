@@ -1,5 +1,5 @@
 ﻿<Charactervariant inherit="Mantisadmin" speciesname="Mantisadmin_hatchling" displayname="Mutant Mantis Hatchling" texture="%ModDir%/Characters/Mantisadmin_hatchling/mantisadminhatchling.png">
-  <health vitality="800" bleedingreduction="1.0" burnreduction="1.0" constanthealthregeneration="1.0" healthregenerationwheneating="4.0"/>
+  <health vitality="1000" bleedingreduction="1.0" burnreduction="1.0" constanthealthregeneration="1.0" healthregenerationwheneating="4.0"/>
   <ragdoll scalemultiplier="0.8" file="%ModDir%/Characters/Mantisadmin/Ragdolls/MantisadminDefaultRagdoll.xml"/>
   <attack damagemultiplier="1.0" rangemultiplier="0.8" impactmultiplier="0.8" />
   <animations folder="%ModDir%/Characters/Mantisadmin_hatchling/Animations/"/>

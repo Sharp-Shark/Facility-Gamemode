@@ -418,7 +418,7 @@ local function setupConfigMenu()
 			saveSettingsPresets()
 		
 			local message = Networking.Start("loadClientConfig")
-			message.WriteString(File.Read(FG.path .. '/config.json'))
+			message.WriteString(File.Read(FG.savePath))
 			Networking.Send(message)
 			
 			print('[!] Config has been sent to the server.')

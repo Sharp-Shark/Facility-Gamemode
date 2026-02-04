@@ -4,6 +4,7 @@ FG.settingsDefault = {
 	hide = true,
 	info = 'all other presets inherit from this preset incase a setting value is left unspecified.',
 	author = 'Sharp-Shark',
+	forcedmap = '',
 	ghosts = 'regular',
 	gamemode = 'default',
 	monsterSpawn = 'default',
@@ -80,6 +81,7 @@ FG.settingsDescription = {
 	hide = 'blacklists the gamemode from voting.',
 	info = 'the description of your settings preset.',
 	author = 'whoever made the settings preset (fancy name for gamemode).',
+	forcedmap = 'forces a specific map to be used. Leave empty to not force a map.',
 	ghosts = 'determines if ghosts are allowed and how powerful they are.',
 	gamemode = 'changes a critical detail about the gamemode.',
 	monsterSpawn = 'determines which spawnpoint the monster will be placed in.',
@@ -135,6 +137,7 @@ FG.settingsPresetsDefault = {
 		respawnType = 'classic',
 	},
 	['prisonescape'] = {
+		hide = true,
 		info = 'a PvP only mode where the guards must kill all the escapees.',
 		author = 'Sharp-Shark',
 		autoJobRoleSequence = 'ig',
@@ -143,6 +146,7 @@ FG.settingsPresetsDefault = {
 		respawnType = 'classic',
 	},
 	['scp:cb'] = {
+		hide = true,
 		info = 'inspired by SCP:CB, JET+inmates fight agaisnt the monsters and people only respawn as MERCS.',
 		author = 'SonicHegehodge',
 		autoJobRoleSequence = 'xieji-xigji',--'xiiji-xji',
@@ -217,10 +221,11 @@ FG.settingsPresetsDefault = {
 		terroristTickets = -99,
 		nexpharmaTickets = 1,
 	},
-	['jetpack'] = {
+	['jetpackffa'] = {
 		hide = true,
-		info = 'jetpack joyride free for all.',
+		info = 'jetpack joyride endless free for all.',
 		author = 'Sharp-Shark',
+		forcedmap = 'FG Jetpack',
 		friendlyFire = true,
 		allowEnd = false,
 		autoJobMinPlayers = 0,
@@ -230,6 +235,22 @@ FG.settingsPresetsDefault = {
 		decontaminationTimer = 999999,
 		terroristTickets = -99,
 		nexpharmaTickets = 999999,
+		respawnSpeed = 999,
+		respawnAccel = 1,
+	},
+	['jetpack'] = {
+		hide = true,
+		info = 'jetpack joyride team deathmatch.',
+		author = 'Sharp-Shark',
+		forcedmap = 'FG Jetpack',
+		autoJobMinPlayers = 0,
+		autoJobRoleSequence = 'mj',
+		terroristSquadSequence = '3',
+		nexpharmaSquadSequence = '3',
+		decontaminationTimer = 999999,
+		terroristTickets = 6,
+		nexpharmaTickets = 6,
+		respawnType = 'classic',
 		respawnSpeed = 999,
 		respawnAccel = 1,
 	}
@@ -246,6 +267,7 @@ FG.settingsPresetsReceived = {}
 
 -- Save path
 local savePath = 'LocalMods/Facility Gamemode.json'
+FG.savePath = savePath
 
 -- Build settings table and returns it for use
 function getSettingsPreset(preset)

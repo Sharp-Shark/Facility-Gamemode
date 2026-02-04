@@ -472,14 +472,25 @@ function isCharacterCivilian (character)
 	end
 end
 
+-- Is alive
+function isClientCharacterAlive (client)
+	FG.expectTypes('isClientCharacterAlive', {client}, {'userdata'})
+	return (client.Character ~= nil) and (not client.Character.IsDead)
+end
+
 -- Checks whether a client can or cannot respawn
 function canClientRespawn (client)
+	--[[
 	FG.expectTypes('canClientRespawn', {client}, {'userdata'})
 	if (client.Character == nil or client.Character.IsDead) and (not FG.spectators[client.Name]) and (not client.UsingFreeCam) and (not FG.paranormal.noRespawn[client]) then
 		return true
 	else
 		return false
 	end
+	--]]
+	FG.expectTypes('canClientRespawn', {client}, {'userdata'})
+	if client.UsingFreeCam or (SERVER and client.SpectateOnly) or isClientCharacterAlive(client) or FG.spectators[client.Name] or FG.paranormal.noRespawn[client] then return false end
+	return true
 end
 
 -- Returns first item found with the tag
@@ -617,7 +628,6 @@ end
 function messageAllClients (msgType, text, sender)
 	messageClients(Client.ClientList, msgType, text, sender)
 end
-
 
 -- Spawns a human with a job somewhere
 function spawnHuman (client, job, pos, name, subclass)

@@ -233,12 +233,62 @@ function countRoleAmount (playerRole, extra)
 	return teamCount
 end
 
+-- taken from TraitorMod by Evil Factory
+local UpdateLobby = function(submarineInfo)
+    local submarines = Game.NetLobbyScreen.subs
+
+    for key, value in pairs(submarines) do
+        if value.Tags == 2 then
+            table.remove(submarines, key)
+        end
+    end
+	
+	if submarineInfo ~= nil then
+		table.insert(submarines, submarineInfo)
+	end
+	
+	Game.NetLobbyScreen.subs = submarines
+
+    for _, client in pairs(Client.ClientList) do
+        client.InitialLobbyUpdateSent = false
+        Networking.ClientWriteLobby(client)
+    end
+end
+
+FG.updateLobby = UpdateLobby
+
+-- Round start
+if SERVER then
+	Hook.Patch("Barotrauma.Networking.GameServer", "InitiateStartGame", function (instance, ptable)
+		-- Apply vote resutls if it started
+		FG.democracy.endVoting(Client.ClientList)
+		-- Reset the gamemodeChosen flag
+		FG.democracy.gamemodeChosen = false
+		-- Set map if gamemode forces one
+		--[[ disabled code because it can cause a bug
+		if FG.settings.forcedmap ~= '' then
+			local submarineInfo = SubmarineInfo(FG.path .. '/Submarines/' .. FG.settings.forcedmap .. '.sub')
+			UpdateLobby(submarineInfo)
+			ptable["selectedSub"] = submarineInfo
+		else
+			UpdateLobby()
+		end
+		]]--
+		--[[
+		Here's step-by-step to recreate the bug:
+			1. start a vote for jetpack gamemode
+			2. start the round
+			3. end the round
+			4. start a vote for regular gamemode
+			5. pick the jetpack map
+			6. start the round
+			7. notice it fucking bugs the fuck out
+		]]--
+	end)
+end
+
 -- Overrides the jobs the players chose, assuming auto jobs is activated
 Hook.Add("jobsAssigned", "automaticJobAssignment", function ()
-	-- Apply vote resutls if it started
-	FG.democracy.endVoting(Client.ClientList)
-	-- Reset the gamemodeChosen flag
-	FG.democracy.gamemodeChosen = false
 	
 	-- Autojob start
 	FG.playerRole = {}

@@ -1174,15 +1174,7 @@
     <InventoryIcon texture="InventoryIconAtlas.png" sourcerect="64,0,64,64" origin="0.5,0.5" />
     <Sprite texture="tools.png" depth="0.55" sourcerect="225,105,64,128" origin="0.5,0.5" />
     <Body width="30" height="100" density="8" />
-    <Holdable slots="RightHand+LeftHand" controlpose="true" aimpos="80,-20" handle1="-6,10" handle2="-60,35" msg="ItemMsgPickUpSelect">
-      <!-- the child LightComponent is only active when the Holdable is active, i.e. when the item is being held -->
-      <LightComponent LightColor="0.5,0.5,0.5,1.0" Flicker="0.02" range="1000" IsOn="true">
-        <LightTexture texture="Content/Lights/lightcone.png" origin="0.005, 0.485" size="1.0,1.0" />
-      </LightComponent>
-      <LightComponent LightColor="0.5,0.5,0.5,1.0" range="1000" IsOn="true" flicker="0.8" flickerspeed="1.0" pulsefrequency="0.1" pulseamount="0.5">
-        <LightTexture texture="Content/Lights/lightcone.png" origin="0.005, 0.485" size="1.0,1.0" />
-      </LightComponent>
-	</Holdable>
+    <Holdable slots="RightHand+LeftHand" controlpose="true" aimpos="80,-20" handle1="-6,10" handle2="-60,35" msg="ItemMsgPickUpSelect" />
     <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
       <sprite name="Carbonate Spray Worn" texture="tools.png" canbehiddenbyotherwearables="false" rotation="0" inheritlimbdepth="false" depth="0.6" sourcerect="225,105,64,128" limb="Torso" ignorelimbscale="true" scale="0.65" origin="1.0,0.5" />
     </Wearable>
