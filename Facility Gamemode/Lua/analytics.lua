@@ -1,3 +1,5 @@
+if true then return end
+
 FG.analytics = {
 	data = {},
 	settings = {}

@@ -114,9 +114,10 @@ require 'settings'
 require 'items'
 require 'ghost'
 if SERVER then
-	expectFiles('discord', 'analytics')
+	--expectFiles('discord', 'analytics')
+	--require 'analytics'
+	expectFiles('discord')
 	require 'discord'
-	require 'analytics'
 end
 
 -- Used for debugging other files
@@ -319,7 +320,7 @@ end
 -- Execute when someone joins
 Hook.Add("client.connected", "clientConnected", function (connectedClient)
 
-	if SERVER and FG.loadedFiles['discord'] and Game.ServerSettings.IsPublic then
+	if SERVER and FG.loadedFiles['discord'] and Game.ServerSettings.IsPublic and (not Game.ServerSettings.HasPassword) then
 		local name = connectedClient.Name
 		
 		if string.has(name, 'http://') or string.has(name, 'https://') then
@@ -346,7 +347,7 @@ end)
 -- Execute when someone leaves
 Hook.Add("client.disconnected", "clientDisconnected", function (disconnectedClient)
 
-	if SERVER and FG.loadedFiles['discord'] and Game.ServerSettings.IsPublic then
+	if SERVER and FG.loadedFiles['discord'] and Game.ServerSettings.IsPublic and (not Game.ServerSettings.HasPassword) then
 		local name = disconnectedClient.Name
 		
 		if string.has(name, 'http://') or string.has(name, 'https://') then
@@ -1029,7 +1030,7 @@ if SERVER then
 end
 
 -- Discord integration
-if SERVER and FG.loadedFiles['discord'] and Game.ServerSettings.IsPublic then
+if SERVER and FG.loadedFiles['discord'] and Game.ServerSettings.IsPublic and (not Game.ServerSettings.HasPassword) then
 	discordChatMessage('00| Server is up and running!')
 end
 
