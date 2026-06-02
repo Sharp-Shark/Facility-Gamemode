@@ -1,5 +1,3 @@
-if true then return end
-
 FG.analytics = {
 	data = {},
 	settings = {}
@@ -68,7 +66,7 @@ Hook.Add("roundEnd", "sendAnalytics", function (arg)
 	end
 	
 	if FG.analytics.data.finalplayercount > 1 then
-		FG.analytics.publish()
+		--FG.analytics.publish() -- this mod is dead I do not need analytics
 	end
 	
 	FG.analytics.data = {}

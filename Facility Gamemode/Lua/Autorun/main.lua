@@ -114,9 +114,8 @@ require 'settings'
 require 'items'
 require 'ghost'
 if SERVER then
-	--expectFiles('discord', 'analytics')
-	--require 'analytics'
-	expectFiles('discord')
+	expectFiles('discord', 'analytics')
+	require 'analytics'
 	require 'discord'
 end
 
